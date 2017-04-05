@@ -1,0 +1,73 @@
+@font-face {
+  font-family: Pacifico;
+  src: url(../font/Pacifico.ttf);
+}
+
+@font-face {
+  font-family: Antic-Regular;
+  src: url(../font/Antic-Regular.ttf);
+}
+
+.obrigatorio {
+  color: #ff0000;
+  font-weight: bold;
+}
+.select2-selection__choice {
+  color: #000;
+  /*font-size: 108%;*/
+}
+.validacao-text {
+  color: #ff0000;
+  font-weight: bold;
+}
+/* centered columns styles */
+.row-centered {
+  text-align:center;
+}
+.col-centered {
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+  /* inline-block space fix */
+  margin-right:-4px;
+}
+
+.texto-selecao {
+  font-size:83%;
+}
+
+#rodape {
+  margin-bottom: -500px;
+}
+
+.flash-message {
+  color: #FFF;
+  font-size: 130%;
+}
+
+.navbar-externo {
+  margin-bottom: 2%;
+}
+.login{
+  padding-top: 7%;
+  background: none;
+}
+.logo {
+  font-family: Pacifico;
+  font-size: 170%;
+  margin: 0;
+  color: #00BFFF;
+}
+
+.logo-black {
+  color: #000;
+  font-family: Pacifico;
+}
+
+.menu-text {
+  font-size: 120%;
+  padding-right: 2%;
+}
+
+
