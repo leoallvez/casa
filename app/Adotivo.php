@@ -102,8 +102,9 @@ class Adotivo extends Model{
     }
 
     public function hasAdotantes() {
-        // return count($this->adotantes()->get()) > 0;
-       $result = $this->adotantes()->where('has_vinculo', '=', true)->get();
+    
+       $result = $this->adotantes()->where('adotantes_adotivos.deleted_at', '=', null)->get();
+       // dd($result);
        return count($result) > 0;
     }
 

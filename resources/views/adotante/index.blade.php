@@ -62,7 +62,11 @@
                           <br>
                           <small>Cadastrado: {{ $adotante->created_at->format('d/m/Y') }}</small>
                         </td>
-                        <td>{!! $adotante->hasAdotivos() ? '<strong><i>Sim</i></strong>' : 'Não' !!}</td>
+                        <td style="padding: 2%">
+                          {!! 
+                            $adotante->hasAdotivos() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"  
+                          !!}
+                        </td>
                         <td>
                           {{ $adotante->estadoCivil->nome }}
                           <br>

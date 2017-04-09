@@ -66,7 +66,11 @@
                         <br>
                         <small>Cadastrado: {{ $adotivo->created_at->format('d/m/Y') }}</small>
                       </td>
-                      <td>{!! $adotivo->hasAdotantes() ? '<strong><i>Sim</i></strong>' : 'Não' !!}</td>
+                      <td style="padding: 2%">
+                        {!! 
+                          $adotivo->hasAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"  
+                        !!}
+                      </td>
                       <td>{{ $adotivo->getSexo() }}</td>
                       <td>
                         <a>{{ $adotivo->CalcularIdade() }}</a>
@@ -76,25 +80,26 @@
                       <td>{{ $adotivo->etnia->nome }}</td>
                       <td>{{ $adotivo->status->nome }}</td>
                       <td>
-                      <a href="{{ action('AdotivoController@edit', $adotivo->id) }}" class="btn btn-info btn-xs">
-                        <i class="fa fa-pencil"></i> 
-                        Alterar
-                      </a>
-                      <a href="{{ url('vinculos/adotivo', $adotivo->id) }}" class="btn btn-success btn-xs">
-                        <i class="fa fa-heart-o"></i> 
-                        Vínculos
-                      </a>
-                      @if(!$adotivo->hasAdotantes())
-                        <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotivo->id !!})">
-                          <i class="fa fa-trash-o"></i> 
-                          Inativar 
+                        <a href="{{ action('AdotivoController@edit', $adotivo->id) }}" class="btn btn-info btn-xs">
+                          <i class="fa fa-pencil"></i> 
+                          Alterar
                         </a>
-                      @else
-                        <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
-                          <i class="fa fa-trash-o"></i> 
-                          Inativar 
+                        <a href="{{ url('vinculos/adotivo', $adotivo->id) }}" class="btn btn-success btn-xs">
+                          <i class="fa fa-heart-o"></i> 
+                          Vínculos
                         </a>
-                      @endif
+                        @if(!$adotivo->hasAdotantes())
+                          <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotivo->id !!})">
+                            <i class="fa fa-trash-o"></i> 
+                            Inativar 
+                          </a>
+                        @else
+                          <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
+                            <i class="fa fa-trash-o"></i> 
+                            Inativar 
+                          </a>
+                        @endif
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -134,7 +139,7 @@
             closeOnCancel: false
           }, function(isConfirm) {
             if (isConfirm) {
-              var resource = app.$resource("{{ url('adotivos{/id}') }}");
+              var resource = app.$http.post("{{ url('adotivos{/id}') }}");
               resource.remove({id: id_adotivo }).then((response) => {
                 swal({
                   title: "Inativado!",

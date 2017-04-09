@@ -62,8 +62,8 @@
             {!! Form::textarea('input-observacao', 
                 $adotantes->observacoes(), 
                 [   
-                    'class'       => 'form-control', 
-                    #'size' => '30x5',
+                    'class' => 'form-control', 
+                     #'size'  => '40x5',
                     'disabled'
                 ]) 
             !!}

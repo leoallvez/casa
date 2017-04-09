@@ -44,9 +44,11 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('solicitar-cadastro/buscar', 'SolicitaCadastroController@buscar');
     Route::resource('solicitar-cadastro', 'SolicitaCadastroController');
     # Vículos
+    Route::patch('vinculos/vincular/', 'VinculoController@vincular'); # PUT is used to create or update.
+    Route::put('vinculos/desvincular/', 'VinculoController@desvincular' );
     Route::get('vinculos/adotivo/{adotivo_id}/adotantes/{adotantes_id}',['uses' => 'VinculoController@visualizar']);
     Route::get('vinculos/adotivo/{id}',['uses' => 'VinculoController@index', 'as' => 'listar']);
-    Route::resource('vinculo', 'VinculoController');  
+    // Route::resource('vinculo', 'VinculoController');  
 });
 # Solicitação Externo.
 Route::get('solicitar-cadastro/create', 'SolicitaCadastroController@create');

@@ -12,6 +12,13 @@
         <div class="title_left">
           <h3>Vínculos do(a) <br>{{ $adotivo->nome }}</h3>
         </div>
+        <div class="title_right">
+          <div class="col-md-2 col-sm-2 col-xs-2 form-group pull-right top_search">
+            <a href="{{ action("AdotivoController@index") }}"class="btn btn-success voltar-btn">
+            	Voltar
+            </a>
+          </div>
+        </div>
       </div>
       <div class="clearfix"></div>
       <div class="row">
@@ -87,7 +94,7 @@
 			                {{-- end project list --}}
 			              </div>
 			            @else
-			              Adotivo(a) ainda não teve nenhum vínculo!
+			              Adotivo(a) ainda não teve nenhum vínculo desfeito!
 			            @endif
 			            {{ $adotantesHistorico->links() }}
                     </div>
@@ -96,29 +103,35 @@
 			            	<h3>Vínculo Atual</h3>
 			             	<div class="clearfix"></div>
 			            </div>
-			            <div class="x_content">
+			            <div class="x_content">		
 			            	<div class="row">
-			                    <div class="col-md-10">
-		                          {!! Form::label('adotante_id', 'Adotante(s)') !!}
-		                          {!! Form::select(
-		                              'adotante_id', 
-		                              $adotantes, 
-		                              $adotivo->adotantes->id ?? null, 
-		                              [
-		                                'class' => 'form-control',
-		                                'id'    => 'adotante_id',
-		                                'placeholder' => 'Selecione Adotante(s)'
-		                              ])
-		                          !!}
-			                    </div>
-								<br>
-								<div class="col-md-2">
-									@if($adotivo->hasAdotantes())
-				                    	{!! Form::submit('Desassociar', ['class' => 'btn btn-danger']) !!}
-				                    @else
-				                    	{!! Form::submit('Associar', ['class' => 'btn btn-success']) !!}
-				                    @endif
-								</div>
+			                    {!! Form::open(['action' => 'VinculoController@vincular', 'method' => 'PATCH']) !!}
+			                      	<div class="col-md-10">
+			                          	{!! Form::label('adotante_id', 'Adotante(s)') !!}
+			                          	{!! Form::select(
+			                              'adotante_id', 
+			                              $adotantes, 
+			                              $idAdotanteVinculo ?? null, 
+			                              [
+			                                'class' => 'form-control',
+			                                'placeholder' => 'Selecione Adotante(s)',
+			                                $adotivo->hasAdotantes() ? 'disabled' : null
+			                              ])
+			                          	!!}
+			                          	{!! Form::hidden('adotivo_id', $adotivo->id ) !!}
+						            </div>
+									<br>
+									<div class="col-md-2">
+										@if($adotivo->hasAdotantes())
+					                    	{{-- {!! Form::button('Desassociar', ['class' => 'btn btn-danger']) !!} --}}
+					                    	<a href="#" class="btn btn-danger" v-on:click="desvincular({!! $adotivo->id !!})"> 
+					                    		Desvincular
+					                    	</a>
+					                    @else
+					                    	{!! Form::submit('Víncular', ['class' => 'btn btn-success']) !!}
+					                    @endif
+									</div>
+								{!! Form::close() !!}
 		                    </div>
 	                    </div>
                     </div>
@@ -134,6 +147,67 @@
 
 @section('js')
     <script type="text/javascript">
+    	Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#_token').getAttribute('content');
+
+    	var app = new Vue({
+    	  el: '#app',
+    	  methods: {
+    	    desvincular(id_adotivo) {
+    	      swal({
+    	      	title: "Tem certeza?",
+    	        text: "O vínculo entre adotivo e adontate(s) será desfeito!",
+    	        type: "warning",
+    	        showCancelButton: true,
+    	        confirmButtonColor: "#DD6B55",
+    	        confirmButtonText: "Sim",
+    	        cancelButtonText: "Cancelar",
+    	        closeOnConfirm: false,
+    	        closeOnCancel: false
+    	      }, function(isConfirm) {
+    	      	if (isConfirm) {
+    	        	var placeholder = "placeholder='Digite o motivo para o fim do vínculo'";
+			        swal({
+			            title: "Informe o motivo do fim do vínculo!",
+			            text: "<textarea class='form-control sweet-alert-textarea' rows='12' "+placeholder+" id='text-motivo'></textarea><br>",
+			            html: true,
+			            confirmButtonColor: "#DD6B55",
+			        	confirmButtonText: "Desvincular",
+			        	cancelButtonText: "Cancelar",
+			            showCancelButton: true,
+			            closeOnConfirm: false,
+			            animation: "slide-from-top",
+			            showLoaderOnConfirm: false
+    	          	}, function(isConfirm) {
+	    	          	if(isConfirm) {
+		    	          	var inputValue = $('#text-motivo').val();
+		    	            if (inputValue === false) return false;
+		    	            if (inputValue === "") {
+		    	              swal.showInputError("É obrigatório informar o motivo!");
+		    	              return false
+		    	            }
+		    	            var body = { id_adotivo: id_adotivo, observacoes: inputValue };
+		    	           //console.log(body);
+		    	            app.$http.put("{{ url('vinculos/desvincular/') }}", body).then((response) => {
+		    	            	console.log(response);
+		    	            	swal({
+		    	                	title: "Desvinculado!",
+		    	                	text: "Adotivo e adotante(s) foram desvinculados!",
+		    	              	type: "success"
+		    	              }, function() {
+		    	              	window.location.reload();
+		    	              });
+		    	            }, (response) => {
+		    	            	//Colocar uma mensagem de erro aqui.
+		    	            });
+	    	        	}
+    	        	}); /** Fim do primeiro if isConfirm */
+	        	} else {
+    	          swal("Cancelado", "Adotivo e adotante(s) ainda estão associados!", "error");
+    	        }
+    	      });
+    	    }
+    	  }
+    	});
     	$(document).ready(function() { 
     		$("#").select2({            
     		  language: {

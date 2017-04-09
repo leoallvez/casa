@@ -76,18 +76,22 @@ class Adotante extends Model {
     }    
   }
 
+  public function setHasVinculo(bool $value) {
+    $this->has_vinculo = $value;
+  }
+
   /**
    * Esse metodo retorna a idade de um adotante
    * @return int
    */
   public function getIdade() {
-      # Diferença entre a data de nascimento e do dia de hoje.
-      return $this->nascimento->diffInYears(Carbon::now());
+    # Diferença entre a data de nascimento e do dia de hoje.
+    return $this->nascimento->diffInYears(Carbon::now());
   }
   public function getNomeEnomeConjuge() {
-      $result = $this->nome;
-      $result .= (isset($this->conjuge_nome) && $this->conjuge_nome != "" )? " e ".$this->conjuge_nome : null;
-      return  $result ;
+    $result = $this->nome;
+    $result .= (isset($this->conjuge_nome) && $this->conjuge_nome != "" )? " e ".$this->conjuge_nome : null;
+    return  $result ;
   }
   /**
    * Esse metodo retorna se o sexo do adotante é masculino ou

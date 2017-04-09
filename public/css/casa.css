@@ -8,6 +8,16 @@
   src: url(../font/Antic-Regular.ttf);
 }
 
+.voltar-btn {
+  color: #FFF; 
+  width: 100%;
+  height: 100%;
+}
+
+.sweet-alert-textarea {
+  border-radius: 3px;
+}
+
 .obrigatorio {
   color: #ff0000;
   font-weight: bold;

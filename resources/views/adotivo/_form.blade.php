@@ -136,7 +136,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        {!! Form::label('restricao_id', 'Possui alguma restrição de saúde?') !!}
+        {!! Form::label('restricao_id', 'Possui restrição de saúde?') !!}
         {!! Form::select('restricao_id', 
             $restricoes, 
             $adotivo->restricao_id ?? null, 
