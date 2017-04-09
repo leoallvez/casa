@@ -19,14 +19,16 @@
         <div class="title_right">
           <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
             {!! Form::open(['action' => 'AdotivoController@buscar', 'method' => 'GET']) !!}
-
-            <div class="input-group">
-              <input type="text" class="form-control" name="inputBusca" placeholder="Pesquisar adotivo por nome">
-              <span class="input-group-btn">
-                <button class="btn btn-success" type="x" style="color: #FFF">Buscar</button>
-              </span>
-            </div>
-             
+              <div class="input-group">
+                <input type="text" 
+                  class="form-control" 
+                  name="inputBusca" 
+                  placeholder="Pesquisar adotivo por nome"
+                >
+                <span class="input-group-btn">
+                  <button class="btn btn-success" type="x" style="color: #FFF">Buscar</button>
+                </span>
+              </div>
             {!! Form::close() !!}
           </div>
         </div>
@@ -64,7 +66,9 @@
                       <td>
                         <a>{{ str_limit($adotivo->nome, 40) }}</a>
                         <br>
-                        <small>Cadastrado: {{ $adotivo->created_at->format('d/m/Y') }}</small>
+                        <small>
+                          Cadastrado: {{ $adotivo->created_at->format('d/m/Y') }}
+                        </small>
                       </td>
                       <td style="padding: 2%">
                         {!! 
@@ -72,29 +76,36 @@
                         !!}
                       </td>
                       <td>{{ $adotivo->getSexo() }}</td>
-                      <td>
-                        <a>{{ $adotivo->CalcularIdade() }}</a>
+                      <td style="padding-right: -5px">
+                        {{ $adotivo->calcularIdade() }}
                         <br>
-                        <small>Nascimento: {{ $adotivo->nascimento->format('d/m/Y') }}</small>
+                        <small>
+                          Nascimento: <br>
+                          {{ $adotivo->nascimento->format('d/m/Y') }}
+                        </small>
                       </td>
                       <td>{{ $adotivo->etnia->nome }}</td>
-                      <td>{{ $adotivo->status->nome }}</td>
+                      <td><a>{{ $adotivo->status->nome }}</a></td>
                       <td>
-                        <a href="{{ action('AdotivoController@edit', $adotivo->id) }}" class="btn btn-info btn-xs">
+                        <a href="{{ action('AdotivoController@edit', $adotivo->id) }}" 
+                          class="btn btn-info btn-xs">
                           <i class="fa fa-pencil"></i> 
                           Alterar
                         </a>
-                        <a href="{{ url('vinculos/adotivo', $adotivo->id) }}" class="btn btn-success btn-xs">
+                        <a href="{{ url('vinculos/adotivo', $adotivo->id) }}" 
+                          class="btn btn-success btn-xs">
                           <i class="fa fa-heart-o"></i> 
                           Vínculos
                         </a>
                         @if(!$adotivo->hasAdotantes())
-                          <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotivo->id !!})">
+                          <a href="#" class="btn btn-danger btn-xs" 
+                            v-on:click="excluir({!! $adotivo->id !!})">
                             <i class="fa fa-trash-o"></i> 
                             Inativar 
                           </a>
                         @else
-                          <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
+                          <a href="#" class="btn btn-danger btn-xs" 
+                            v-on:click="alertaNaoExcluir()">
                             <i class="fa fa-trash-o"></i> 
                             Inativar 
                           </a>

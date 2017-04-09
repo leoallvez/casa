@@ -103,13 +103,14 @@
         !!}
     </div>
 </div><br>
+
 <div class="row">
    <div class="col-md-3">
         {!! Form::label('nascionalidade_id', 'Nascionalidade') !!}
         {!! Form::select(
             'nascionalidade_id', 
             $nascionalidades, 
-            $adotivo->origem->id ?? null, 
+            $adotivo->nascionalidade->id ?? null, 
             [
                 'class' => 'form-control',
                 'id'    => 'nascionalidade_id' 
@@ -151,10 +152,30 @@
             </span>
         </a>
     </div>
+    {{-- <div class="col-md-3">
+        {!! Form::label('has_irmaos', 'Possui irmão(s)?') !!}<br>
+        {!! Form::checkbox('has_irmaos', 1, false) !!}
+    </div> --}}
+</div><br>
+{{-- {{ $irmaosIds }} --}}
+<div class="row">
+    <div class="col-md-12">
+       {!! Form::label('irmaosIds', 'Irmão(s)') !!}<br>
+       {!! Form::select(
+           'irmaosIds[]', 
+           $irmaos, 
+           $irmaosIds ?? null, 
+           [
+               'class'       => 'form-control',
+               'multiple'    => 'multiple',
+               'id'          => 'irmaos' 
+           ])
+       !!} 
+    </div>
 </div>
 <br>
 
-@if($adotivo->hasAdotantes())
+@if(isset($adotivo) && $adotivo->hasAdotantes())
     <div class="row">
         <div class="col-md-12">
             {!! Form::label(null ,'Adotante(s)') !!}<br>
@@ -187,9 +208,31 @@
       
         $(document).ready(function() {
          
-          $("#nascionalidade_id").select2({            language: {
+          $("#nascionalidade_id").select2({            
+            language: {
                 noResults: function() {
                     return "Nascionalidade não encontrada!";
+                }
+            }
+          });
+
+          $("#irmaos").select2({            
+            language: {
+                noResults: function() {
+                    return "Irmã(o) não encontrada(o)!";
+                }
+            }
+          });
+
+          $("#irmaos").select2({
+            placeholder: "Selecione irmão(s)",
+            maximumSelectionLength: 10,
+            language: {
+                noResults: function() {
+                    return "Irmã(o) não encontrada(o)!";
+                },
+                maximumSelected: function() {
+                    return "Só é possível incluir 10 irmãos no máximo!";
                 }
             }
           });

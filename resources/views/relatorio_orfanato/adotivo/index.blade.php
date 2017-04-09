@@ -67,7 +67,7 @@
                       </td>
                       <td>{{ $adotivo->getSexo() }}</td>
                       <td>
-                        <a>{{ $adotivo->CalcularIdade() }}</a>
+                        <a>{{ $adotivo->calcularIdade() }}</a>
                         <br>
                         <small>Nascimento: {{ $adotivo->nascimento->format('d/m/Y') }}</small>
                       </td>

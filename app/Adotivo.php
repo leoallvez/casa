@@ -20,6 +20,7 @@ class Adotivo extends Model{
     	'nome',
     	'sexo',
         'etnia_id',
+        'status_id',
         'nascimento',
         'usuario_id',
         'restricao_id',
@@ -67,7 +68,7 @@ class Adotivo extends Model{
      * Esse metodo retorna uma String com a idade de um adotant
      * @return string
      */
-    public function CalcularIdade() {
+    public function calcularIdade() {
         $anos = $this->nascimento->diffInYears(Carbon::now());
         $meses = $this->nascimento->diffInMonths(Carbon::now());
         $semanas = $this->nascimento->diffInWeeks(Carbon::now());
@@ -101,10 +102,30 @@ class Adotivo extends Model{
         return ($this->sexo == 'M')? 'Masculino' : 'Feminino';
     }
 
+    public function getIrmaosIds() {
+       return  $this->irmaos()
+        ->getRelatedIds()
+        ->toArray();
+    }
+
+    public function updateIrmaos(array $irmaosIds) {
+        if(isset( $irmaosIds )) {
+            $this->irmaos()->sync($irmaosIds);
+        }
+    }
+
+    public function saveIrmaos(array $irmaosIds) {
+        if(isset( $irmaosIds )) { 
+            $this->irmaos()->attach($irmaosIds);
+        }   
+    }
+
     public function hasAdotantes() {
     
-       $result = $this->adotantes()->where('adotantes_adotivos.deleted_at', '=', null)->get();
-       // dd($result);
+       $result = $this->adotantes()
+       ->where('adotantes_adotivos.deleted_at', '=', null)
+       ->get();
+
        return count($result) > 0;
     }
 
@@ -132,13 +153,22 @@ class Adotivo extends Model{
     public function visitas() {
         return $this->hasMany('Casa\Visita', 'adotivo_id');
     }
+    
 
-    public function restricao(){
-        return $this->hasOne('Casa\Restricao', 'id', 'restricao_id');
+    public function restricao() {
+        return $this->hasOne(
+            'Casa\Restricao', 
+            'id', 
+            'restricao_id'
+        );
     }
 
     public function irmaos() {
-        // return $this->belongsToMany('Casa\Irmao');
-        return $this->belongsToMany('Casa\Adotantes','irmaos','adotivo_id', 'irmao_id');
+        return $this->belongsToMany(
+            'Casa\Adotivo',
+            'irmaos',
+            'adotivo_id', 
+            'irmao_id'
+        );
     }
 }

@@ -37,13 +37,16 @@ class AdotivoController extends Controller{
         $escolaridades = Escolaridade::where('id', '<', 6)->pluck('nome', 'id'); 
         $restricoes = Restricao::pluck('nome', 'id');
 
+        $irmaos = Adotivo::orderBy('nome')->pluck('nome', 'id'); 
+
         return view('adotivo.create', compact(
             'adotantes', 
             'status',
             'etnias',
             'nascionalidades',
             'escolaridades',
-            'restricoes'
+            'restricoes',
+            'irmaos'
         ));
     }
 
@@ -54,6 +57,7 @@ class AdotivoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(AdotivoRequest $request) {
+    
         $adotivo = new Adotivo($request->all());
 
         #Usuário logado no sistema.
@@ -64,7 +68,12 @@ class AdotivoController extends Controller{
 
         $adotivo->save();
 
-        flash("Adotivo ".$adotivo->nome." Incluído com Sucesso!", 'success');
+        $adotivo->updateIrmaos($request->irmaosIds);
+
+        flash(
+            "Adotivo ".$adotivo->nome." Incluído com Sucesso!", 
+            'success'
+        );
         return redirect('adotivos');
     }
 
@@ -91,20 +100,30 @@ class AdotivoController extends Controller{
         $status    = AdotivoStatus::pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
-        $escolaridades = Escolaridade::where('id', '<', 6)->pluck('nome', 'id'); 
+        $escolaridades = Escolaridade::where('id', '<', 6)
+        ->pluck('nome', 'id'); 
+
         $adotante  = $adotivo->adotantes()->first();
         $restricoes = Restricao::pluck('nome', 'id');
 
-        return view('adotivo.edit', compact(
-            'adotivo', 
-            'adotantes', 
-            'adotante',
-            'status',
-            'etnias',
-            'nascionalidades',
-            'escolaridades',
-            'restricoes'
-        ));   
+        $irmaos = Adotivo::orderBy('nome')->pluck('nome', 'id');  
+
+        $irmaosIds = $adotivo->getIrmaosIds();
+
+        return view('adotivo.edit',
+            compact(
+                'adotivo', 
+                'adotantes', 
+                'adotante',
+                'status',
+                'etnias',
+                'nascionalidades',
+                'escolaridades',
+                'restricoes',
+                'irmaos',
+                'irmaosIds'
+            )
+        );   
     }
 
     /**
@@ -114,11 +133,16 @@ class AdotivoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(AdotivoRequest  $request, $id) {
         $adotivo = Adotivo::findOrFail($id);
         $adotivo->update($request->all());
+        $adotivo->updateIrmaos($request->irmaosIds);
 
-        flash("Adotivo ".$adotivo->nome." Alterado com Sucesso!", "success");
+        flash(
+            "Adotivo ".$adotivo->nome." Alterado com Sucesso!", 
+            "success"
+        );
 
         return redirect('adotivos');
     }

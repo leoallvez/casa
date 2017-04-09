@@ -81,7 +81,7 @@
                         <small>Cadastrado: {{ $adotivo->created_at->format('d/m/Y') }}</small>
                       </td>
                       <td>
-                        <a>{{ $adotivo->CalcularIdade() }}</a>
+                        <a>{{ $adotivo->calcularIdade() }}</a>
                         <br>
                         <small>Nascimento: {{ $adotivo->nascimento->format('d/m/Y') }}</small>
                       </td>
