@@ -24,7 +24,7 @@
 @endif
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-2">
         <div class="form-group">
             {!! Form::label('input-inicio', 'Data Inicial')!!}
             {!! Form::text('input-inicio', 
@@ -39,7 +39,7 @@
             !!}
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
         <div class="form-group">
             {!! Form::label('input-final', 'Data Final')!!}
             {!! Form::text('input-final', 
@@ -63,7 +63,7 @@
                 $adotantes->observacoes(), 
                 [   
                     'class' => 'form-control', 
-                     #'size'  => '40x5',
+                    "style" => 'background-color: #90CAF9; font-weight: bold; border: 1px solid #1976D2;',
                     'disabled'
                 ]) 
             !!}

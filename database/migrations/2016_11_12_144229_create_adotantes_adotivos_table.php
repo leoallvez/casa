@@ -15,7 +15,7 @@ class CreateAdotantesAdotivosTable extends Migration {
             $table->increments('id');
             $table->integer('adotante_id');
             $table->integer('adotivo_id');
-            $table->string('observacoes', 700)->nullable();
+            $table->text('observacoes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

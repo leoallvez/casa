@@ -154,7 +154,7 @@
 </div>
 <br>
 
-@if(isset($adotante))
+@if($adotivo->hasAdotantes())
     <div class="row">
         <div class="col-md-12">
             {!! Form::label(null ,'Adotante(s)') !!}<br>

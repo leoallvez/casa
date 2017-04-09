@@ -94,7 +94,7 @@
 			                {{-- end project list --}}
 			              </div>
 			            @else
-			              Adotivo(a) ainda não teve nenhum vínculo desfeito!
+			              Adotivo(a) não teve nenhum vínculo desfeito!
 			            @endif
 			            {{ $adotantesHistorico->links() }}
                     </div>
@@ -118,6 +118,12 @@
 			                                $adotivo->hasAdotantes() ? 'disabled' : null
 			                              ])
 			                          	!!}
+			                          	<br>
+			                          	<p>
+			                          	    <span class='validacao-text'> 
+			                          	        {{ $errors->first('adotante_id') }}
+			                          	    </span>
+			                          	</p>
 			                          	{!! Form::hidden('adotivo_id', $adotivo->id ) !!}
 						            </div>
 									<br>

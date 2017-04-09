@@ -5,6 +5,7 @@ namespace Casa\Http\Controllers;
 use Casa\Adotivo;
 use Casa\Adotante;
 use Illuminate\Http\Request;
+use Casa\Http\Requests\VinculoRequest;
 
 class VinculoController extends Controller {
     /**
@@ -40,24 +41,26 @@ class VinculoController extends Controller {
     	
         $adotivo = Adotivo::find($adotivo_id);
 
-        $adotantes = $adotivo->adotantes()
+         $adotantes = $adotivo->adotantes()
     	->where('adotantes_adotivos.adotante_id', '=', $adotante_id)
         ->first();
 
         return view('vinculo.visualizar', compact('adotivo', 'adotantes')); 
+    	
     }
 
-    public function vincular(Request $request) {
+    public function vincular(VinculoRequest $request) {
 
         $adotivo = Adotivo::find($request->adotivo_id);
         $adotante = Adotante::find($request->adotante_id);
 
-        $adotivo->setStatus(3);
-        $adotante->setHasVinculo(1);
+        $adotivo->status_id = 3;
 
+        $adotante->has_vinculo = 1;
+
+        
         $adotivo->adotantes()->save($adotante);
         $adotivo->save();
-
         return redirect('vinculos/adotivo/'.$adotivo->id);
     }
 
@@ -66,14 +69,13 @@ class VinculoController extends Controller {
         $adotivo = Adotivo::find($request->get('id_adotivo'));
 
         $adotante = $adotivo->adotantes()->where('adotantes.has_vinculo', '=', 1)->first();
-
-        $adotivo->setStatus(2);
-        $adotante->setHasVinculo(0);
+        $adotivo->status_id = 2;
+        $adotante->has_vinculo = 0;
         $adotante->save();
- 
+
         $adotivo->adotantes()
         ->updateExistingPivot($adotante->id, ['observacoes' => $request->get('observacoes') , 'deleted_at' => date("Y-m-d G:i:s")]);
-
+        
         $adotivo->save();
 
         return json_encode(['status' => true]);
