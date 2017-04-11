@@ -7,7 +7,7 @@
   font-family: Antic-Regular;
   src: url(../font/Antic-Regular.ttf);
 }
-input[type="text"]:disabled {
+input[type="text"]:disabled, select:disabled {
   background-color: #90CAF9;
   border: 1px solid #1976D2;
   font-weight: bold;

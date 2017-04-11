@@ -104,7 +104,7 @@ class Adotante extends Model {
   }
 
   public function hasAdotivos() {
-    return count($this->adotivos()->get()) > 0;
+    return $this->has_vinculo;
   }
 
   public function hasConjuge() {

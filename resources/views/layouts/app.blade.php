@@ -66,6 +66,10 @@
                     <a id="menu_toggle">
                         <i class="fa fa-bars"></i>
                     </a>
+
+                </div>
+                <div style="margin-top: 10; padding: 7px; ">
+             
                 </div>
               @endif
                 <ul class="nav navbar-nav navbar-right">
@@ -75,16 +79,29 @@
                             <span class=" fa fa-angle-down"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li>
-                            <a href="{{ url('/logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Sair
-                            </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                      </ul>
+                            <li>
+                                <a href="{{ url("usuarios/".Auth::user()->id."/edit") }}">
+                                    <i class="fa fa-pencil pull-left"></i>
+                                        Editar minhas informações
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-building pull-left"></i>
+                                    Minha instituição 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out pull-left"></i>
+                                        Sair
+                                </a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
