@@ -20,7 +20,7 @@
     <div class="col-md-3">
         <div class="form-group">
             {!! Form::label('nivel_id', 'Nível') !!}
-                {!! Form::select('nivel_id', $niveis, $usuario->nivel_id ?? null, 
+                {!! Form::select('nivel_id', $niveis, $usuario->nivel_id ?? 3, 
                     [
                         'id'       => 'tipos', 
                         'class'    => 'form-control',
@@ -70,7 +70,8 @@
                 [
                     'data-mask'   => '000.000.000-00',
                     'placeholder' => '000.000.000-00',
-                    'class'       => 'form-control'
+                    'class'       => 'form-control',
+                    (isset($usuario)) ? 'disabled' : null
                 ]) 
             !!}
             <span class='validacao-text'> 
@@ -79,13 +80,29 @@
         </div>
     </div>
 </div>
+@if(isset($usuario))
+    <div class="row">
+        <div class="col-md-12">
+            {!! Form::label("instituicao", "Instituição") !!}  
+            {!! 
+                Form::text("instituicao", $usuario->instituicao->razao_social, 
+                    [
+                        'class' => 'form-control',
+                        'disabled'
+                    ]
+                )
+            !!}
+        </div>
+    </div>
+@endif
+<br>
 @if(!isset($usuario) || Auth::id() == $usuario->id)
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('password', 'Senha') !!}
                 <small>Minimo 8 caracteres</small>
-                 {!! (!isset($usuario)) ? "<span class='obrigatorio'>*</span>" : null !!}
+                {!! (!isset($usuario)) ? "<span class='obrigatorio'>*</span>" : null !!}
                 {!! Form::password('password',
                     [
                         'class'       => 'form-control', 

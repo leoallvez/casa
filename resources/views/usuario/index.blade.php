@@ -11,10 +11,12 @@
       <div class="page-title">
         <div class="title_left">
           <h3>{!! Html::linkAction('UsuarioController@index','Usuários') !!}</h3>
-          <a class="btn btn-success btn-sm" href="{{ action('UsuarioController@create') }}">
-            <i class="fa fa-plus-circle"></i> 
-            Incluir Usuário
-          </a>
+          @if(Auth::user()->isAdmInsOrUsuarioComum())
+            <a class="btn btn-success btn-sm" href="{{ action('UsuarioController@create') }}">
+              <i class="fa fa-plus-circle"></i> 
+              Incluir Usuário
+            </a>
+          @endif
         </div>
         <div class="title_right">
           <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">

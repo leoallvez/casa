@@ -52,4 +52,8 @@ class Usuario extends Model {
     public function instituicao() {
         return $this->belongsTo('Casa\Instituicao', 'instituicao_id');    
     }
+
+    public function isAdmin() {
+        return $this->nivel_id == 1;
+    }
 }

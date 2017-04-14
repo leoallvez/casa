@@ -20,7 +20,7 @@ class UserStoreRequest extends FormRequest {
      */
     public function rules() {
         return [
-            'name'     => 'required|alpha',
+            'name'     => 'required',
             'cpf'      => 'required|cpf|size:14|unique:users,cpf', #.$this->id,
             'cargo'    => 'required',
             'email'    => 'required|email|unique:users,email',

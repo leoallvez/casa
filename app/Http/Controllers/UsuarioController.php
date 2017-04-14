@@ -2,6 +2,7 @@
 
 namespace Casa\Http\Controllers;
 
+use Casa\User;
 use Casa\Usuario;
 use Casa\UsuarioNivel;
 use Illuminate\Http\Request;
@@ -17,9 +18,15 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $usuarios = Usuario::where('nivel_id','!=', 4)
-        ->orderBy('name')
-        ->paginate(10);
+        if(Auth::user()->isAdmSistema()) { 
+            /** Lista adms do orfarnato */
+            $usuarios = Usuario::where('nivel_id','=', 2);
+        } else {
+            /** Lista adm dos usuários comum */
+            $usuarios = Usuario::where('nivel_id','=', 3);    
+        }
+        /** paginação */
+        $usuarios = $usuarios->orderBy('name')->paginate(10);
 
         return view('usuario.index', compact('usuarios'));
     }
@@ -31,8 +38,8 @@ class UsuarioController extends Controller
      */
     public function create() {
         $niveis = UsuarioNivel::all()->pluck('nome', 'id');
-        unset($niveis[1]);
-        unset($niveis[4]);
+
+        $nivelCadastroId = Auth::user()->getNivelCadastro();
 
         return view('usuario.create', compact('niveis'));
     }
@@ -99,6 +106,12 @@ class UsuarioController extends Controller
         $usuario->update($request->except(['password']));
 
         flash('Usuário Alterado com Sucesso!', 'success');
+
+        /** Se for um usuário comum  */
+        //dd(Auth::user()->isAdm());
+        if(!Auth::user()->isAdm()) {
+            return redirect('/');
+        }
 
         return redirect('usuarios');
     }

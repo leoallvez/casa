@@ -86,7 +86,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ url("instituicao/".Auth::user()->instituicao_id) }}">
                                     <i class="fa fa-building pull-left"></i>
                                     Minha instituição 
                                 </a>

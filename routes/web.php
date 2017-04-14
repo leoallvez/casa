@@ -48,7 +48,9 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::put('vinculos/desvincular/', 'VinculoController@desvincular' );
     Route::get('vinculos/adotivo/{adotivo_id}/adotantes/{adotantes_id}',['uses' => 'VinculoController@visualizar']);
     Route::get('vinculos/adotivo/{id}',['uses' => 'VinculoController@index', 'as' => 'listar']);
-    // Route::resource('vinculo', 'VinculoController');  
+    // Route::resource('vinculo', 'VinculoController');
+    # instituição
+    Route::resource('instituicao', 'InstituicaoController');  
 });
 # Solicitação Externo.
 Route::get('solicitar-cadastro/create', 'SolicitaCadastroController@create');
