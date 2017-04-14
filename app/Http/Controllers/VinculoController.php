@@ -15,23 +15,33 @@ class VinculoController extends Controller {
      */
     public function index($id) {
     	$adotivo = Adotivo::find($id);
-
+        /** [description] Listagem do histórico adotantes*/
     	$adotantesHistorico = $adotivo->adotantes()
     	->orderBy('adotantes_adotivos.created_at')
     	->where('adotantes_adotivos.adotivo_id', '=', $id)
-    	->where('adotantes_adotivos.deleted_at', '!=', null)
-    	->paginate(10); 
-        # Caso o adotivo tenha vínculo trazer o id, senão null.
+    	->where('adotantes_adotivos.deleted_at', '!=', null);
+        /** 
+         * Caso o adotivo tenha vínculo trazer o id do adotivo, 
+         * senão null. 
+        */
         $idAdotanteVinculo = $adotivo->adotantes()
         ->where('adotantes.has_vinculo','=', 1)
         ->first()['id'];
 
     	$adotantes = Adotante::orderBy('nome')->get();
+        /**
+         * Tirar da listagem de adotantes disponiveis os adotantes
+         * que já tiverram vínculo com o adotivo.
+         */
+        
+        $adotantes = $adotantes->diff($adotantesHistorico->get());
 
+        $adotantesHistorico = $adotantesHistorico->paginate(10); 
+        /** Nome de adotate com conjuge caso tenha. */
     	foreach ($adotantes as $adotante) {
     		$adotante->nome = $adotante->getNomeEnomeConjuge(); 
     	}
-
+     
     	$adotantes = $adotantes->pluck('nome', 'id');
    
 		return view('vinculo.index', compact('adotivo', 'adotantesHistorico', 'adotantes', 'idAdotanteVinculo'));   
