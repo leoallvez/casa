@@ -20,7 +20,10 @@ class AdotivoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $adotivos = Adotivo::orderBy('nome')->paginate(10);
+        $adotivos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
+        ->orderBy('nome')
+        ->paginate(10);
+        
         return view('adotivo.index', compact('adotivos'));
     }
 

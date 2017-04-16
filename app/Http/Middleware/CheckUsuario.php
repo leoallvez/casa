@@ -14,7 +14,7 @@ class CheckUsuario {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        // dd(Auth::user()->deleted_at);
+      
         if (Auth::user()->nivel_id == 4 || Auth::user()->deleted_at != null) {
             Auth::logout();
             return redirect('login');

@@ -20,8 +20,10 @@ class AdotanteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        
-        $adotantes = Adotante::orderBy('nome')->paginate(10);
+        //Auth::user()
+        $adotantes = Adotante::where('instituicao_id', Auth::user()->instituicao_id)
+        ->orderBy('nome')
+        ->paginate(10);
         return view('adotante.index', compact('adotantes'));
     }
 

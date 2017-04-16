@@ -1,7 +1,7 @@
 <?php
 
 namespace Casa;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -40,6 +40,25 @@ class Usuario extends Model {
     public function setInstituicao($instituicao_id) {
         $this->instituicao_id = $instituicao_id;   
     }
+    /** 
+     * Esse método retorna uma listagem de 
+     * usuários da instituição do usuário
+     * logado no sistema.
+     * @return Colletion de Usuario.
+     */
+    public static function listUsers() {
+        $usuarios = self::where('instituicao_id', Auth::user()->instituicao_id);
+        
+        if(Auth::user()->isAdmSistema()) { 
+            /** Lista adms do orfarnato */
+            $usuarios = $usuarios->where('nivel_id','=', 2);
+        } else {
+            /** Lista adm dos usuários comum */
+            $usuarios = $usuarios->where('nivel_id','=', 3);    
+        }
+        /** paginação */
+        return $usuarios->orderBy('name')->paginate(10);
+    }
 
     public function setEmail($email) {
         $this->email = $email;
@@ -51,9 +70,5 @@ class Usuario extends Model {
 
     public function instituicao() {
         return $this->belongsTo('Casa\Instituicao', 'instituicao_id');    
-    }
-
-    public function isAdmin() {
-        return $this->nivel_id == 1;
     }
 }

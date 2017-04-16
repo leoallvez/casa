@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder {
             # Administrador
     		[
     			'name'       => 'Administrador',
-    			'email'      => 'administrador@casa.com.br',
+    			'email'      => 'adm@casa.com.br',
                 'password'   =>  Hash::make('casa2017'),
                 'cpf'        => '200.175.702-63',
                 'cargo'      => 'Administrador',
@@ -62,6 +62,27 @@ class UsersTableSeeder extends Seeder {
                 'nivel_id'   => 1,
                 'created_at' => date('Y-m-d'),
                 'instituicao_id' => 1
+            ],
+            # Instituição Esperança.
+            [
+                'name'       => 'Luciano Amaral Filho',
+                'email'      => 'adm@esperanca.com.br',
+                'password'   =>  Hash::make('casa2017'),
+                'cpf'        => '798.293.595-81',
+                'cargo'      => 'Administrador Instituição',
+                'nivel_id'   => 2,
+                'created_at' => date('Y-m-d'),
+                'instituicao_id' => 2
+            ],
+            [
+                'name'       => 'Maria Lopes Silva',
+                'email'      => 'padrao@esperanca.com.br',
+                'password'   =>  Hash::make('casa2017'),
+                'cpf'        => '684.438.177-80',
+                'cargo'      => 'Assistente',
+                'nivel_id'   => 3,
+                'created_at' => date('Y-m-d'),
+                'instituicao_id' => 2
             ]
     	];
     	DB::table('users')->insert($usuarios);

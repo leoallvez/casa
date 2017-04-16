@@ -18,15 +18,7 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        if(Auth::user()->isAdmSistema()) { 
-            /** Lista adms do orfarnato */
-            $usuarios = Usuario::where('nivel_id','=', 2);
-        } else {
-            /** Lista adm dos usuários comum */
-            $usuarios = Usuario::where('nivel_id','=', 3);    
-        }
-        /** paginação */
-        $usuarios = $usuarios->orderBy('name')->paginate(10);
+        $usuarios = Usuario::listUsers();
 
         return view('usuario.index', compact('usuarios'));
     }
@@ -58,7 +50,7 @@ class UsuarioController extends Controller
         $usuario = new Usuario($request->except(['password']));
         $usuario->setInstituicao($usuarioLogado->instituicao_id);
         $usuario->setNivel(3);
-        $usuario->setSenha($request->password);
+        $usuario->setSenha('casa'.date('Y'));
         $usuario->save();
 
         flash('Usuário Incluido com Sucesso', 'success');
@@ -107,8 +99,7 @@ class UsuarioController extends Controller
 
         flash('Usuário Alterado com Sucesso!', 'success');
 
-        /** Se for um usuário comum  */
-        //dd(Auth::user()->isAdm());
+        /** Se for um usuário comum */
         if(!Auth::user()->isAdm()) {
             return redirect('/');
         }

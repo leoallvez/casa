@@ -24,7 +24,7 @@ class UserStoreRequest extends FormRequest {
             'cpf'      => 'required|cpf|size:14|unique:users,cpf', #.$this->id,
             'cargo'    => 'required',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:8'
+            // 'password' => 'required|confirmed|min:8'
         ];
     }
 
@@ -36,9 +36,9 @@ class UserStoreRequest extends FormRequest {
             'cpf.size'           => 'O campo CPF deve ter 14 caracteres.',
             'cpf.unique'         => 'CPF já cadastrado no sistema.',
             'email.required'     => 'O campo e-mail é obrigatório',
-            'password.min'       => 'A Senha deve ter no mínimo 8 caracteres.',
-            'password.confirmed' => 'A Senha e a confirmação não conferem.',
-            'password.required'  => 'O campo senha é obrigatório.'
+            // 'password.min'       => 'A Senha deve ter no mínimo 8 caracteres.',
+            // 'password.confirmed' => 'A Senha e a confirmação não conferem.',
+            // 'password.required'  => 'O campo senha é obrigatório.'
         ];
     }
 }

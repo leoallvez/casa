@@ -30,8 +30,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  5,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+                
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Melissa Barcelos',
@@ -52,8 +60,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  1,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
 			[ 
         		'nome'            => 'Fernando Silva Prado',
@@ -74,8 +90,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Bento de Albuquerque Santiago',
@@ -96,8 +120,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Pedro Costa Lima',
@@ -118,15 +150,23 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Juliana Catarina Cecília Ribeiro',
         		'conjuge_nome'    => 'Ricardo Lopes Ribeiro ',
         		'sexo'            => 'F',
         		'nascimento'      => '1985-06-06',
-        		'cpf'             => '204.755.783-68',
+        		'cpf'             => '167.401.588-78',
         		'rg'              => '41.555.405-9',
         		'endereco'        => 'Rua Nova Paulista',
         		'endereco_numero' => '104',
@@ -140,15 +180,23 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Juliana Catarina Cecília Ribeiro',
         		'conjuge_nome'    => 'Ricardo Lopes Ribeiro ',
         		'sexo'            => 'F',
         		'nascimento'      => '1985-06-06',
-        		'cpf'             => '204.755.783-68',
+        		'cpf'             => '623.163.262-85',
         		'rg'              => '41.555.406-9',
         		'endereco'        => 'Rua Nova Paulista',
         		'endereco_numero' => '104',
@@ -162,8 +210,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Sônia Fernades Silva',
@@ -184,8 +240,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Luciano Fabiano Lima',
@@ -206,8 +270,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Fabiana de Paula Alves',
@@ -228,8 +300,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Adriana Lima Ferreira',
@@ -250,8 +330,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
    
         	[ 
@@ -273,8 +361,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  5,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Juliana Pereira da Costa',
@@ -295,8 +391,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  1,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
 			[ 
         		'nome'            => 'Renato Luís da Silva',
@@ -317,8 +421,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Katia Ferreira Silvado',
@@ -339,8 +451,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Felipe Almeida Silva',
@@ -361,15 +481,23 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Milena Maria Silvado',
         		'conjuge_nome'    => 'Ricardo Silvado Ribeiro ',
         		'sexo'            => 'F',
         		'nascimento'      => '1987-06-06',
-        		'cpf'             => '204.755.783-68',
+        		'cpf'             => '109.831.533-29',
         		'rg'              => '41.555.416-9',
         		'endereco'        => 'Rua Nova Paulista',
         		'endereco_numero' => '104',
@@ -383,8 +511,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Amanda Thais Vicente',
@@ -405,8 +541,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Janaina Silva da Costa',
@@ -427,8 +571,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Viviane Solange',
@@ -449,8 +601,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Andreia Almeida Silva',
@@ -471,8 +631,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Luisa Ferreira Braga',
@@ -493,8 +661,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	# new 
         	[ 
@@ -516,8 +692,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  5,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Zelia Novaes',
@@ -538,8 +722,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  1,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
 			[ 
         		'nome'            => 'Julia Ferraz de Nova',
@@ -560,8 +752,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Bruna Miranda Lima',
@@ -582,8 +782,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      => date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      => date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Gustavo Novaes Lima',
@@ -604,15 +812,23 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Gabriela Lucas de Santiago',
         		'conjuge_nome'    => 'Ricardo Silvado Ribeiro ',
         		'sexo'            => 'F',
         		'nascimento'      => '1987-06-06',
-        		'cpf'             => '204.755.783-68',
+        		'cpf'             => '656.416.256-12',
         		'rg'              => '477.249.228-46',
         		'endereco'        => 'Rua Nova Paulista',
         		'endereco_numero' => '104',
@@ -626,8 +842,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Tereza Mariana',
@@ -648,8 +872,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Bianca Lima da Silva',
@@ -670,8 +902,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Cintia Fernada da Silva',
@@ -692,8 +932,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Luana Bianca Silvado',
@@ -714,8 +962,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	],
         	[ 
         		'nome'            => 'Leonora Carlar Lima',
@@ -736,8 +992,16 @@ class AdotantesTableSeeder extends Seeder {
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
-        		'instituicao_id'  =>  1,
-        		'created_at'      =>  date('Y-m-d')
+        		'instituicao_id'  =>  2,
+        		'created_at'      =>  date('Y-m-d'),
+
+                'escolaridade_id'                   => 5,
+                'nascionalidade_id'                 => 1,
+                'categoria_profissional_id'         => 4,
+
+                'conjuge_escolaridade_id'           => 5,
+                'conjuge_nascionalidade_id'         => 1,
+                'conjuge_categoria_profissional_id' => 4
         	]
         ];
         DB::table('adotantes')->insert($adotantes);

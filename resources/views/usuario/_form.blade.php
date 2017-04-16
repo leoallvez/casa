@@ -64,19 +64,27 @@
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            {!! Form::label('cpf', 'CPF') !!}
-             <span class='obrigatorio'>*</span>
-            {!! Form::text('cpf', null, 
+            {!! Form::label("cpf", "CPF") !!}
+            <span class='obrigatorio'>*</span>
+            {{-- A request de validação obriga o envido do cpf --}}
+            {!! Form::text((!isset($usuario)) ? 'cpf' : null, 
+                $usuario->cpf ?? null, 
                 [
+                    'class'       => 'form-control', 
                     'data-mask'   => '000.000.000-00',
                     'placeholder' => '000.000.000-00',
-                    'class'       => 'form-control',
-                    (isset($usuario)) ? 'disabled' : null
+                    (isset($usuario)) ? 'disabled' : null,
                 ]) 
             !!}
-            <span class='validacao-text'> 
-                {{ $errors->first('cpf') }}
-            </span> 
+            {{-- A request de validação obriga o envido do cpf --}}
+            @if(isset($usuario))
+                {{ Form::hidden('cpf', $usuario->cpf ) }}
+            @endif
+            <a>
+                <span class='validacao-text'> 
+                    {{ $errors->first('cpf') }}
+                </span>
+            </a>
         </div>
     </div>
 </div>
@@ -96,7 +104,7 @@
     </div>
 @endif
 <br>
-@if(!isset($usuario) || Auth::id() == $usuario->id)
+@if(isset($usuario) && Auth::id() == $usuario->id)
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">

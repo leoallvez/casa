@@ -46,8 +46,7 @@ class Adotante extends Model {
     'estado_civil_id',
     'escolaridade_id',
     'nascionalidade_id',
-    'categoria_profissional_id',
-    'origem_id'
+    'categoria_profissional_id'
   ];
 
   public function setInstituicao(int $id) {
