@@ -47,14 +47,15 @@ class Usuario extends Model {
      * @return Colletion de Usuario.
      */
     public static function listUsers() {
-        $usuarios = self::where('instituicao_id', Auth::user()->instituicao_id);
+        //$usuarios = self::where('instituicao_id', Auth::user()->instituicao_id);
         
         if(Auth::user()->isAdmSistema()) { 
-            /** Lista adms do orfarnato */
-            $usuarios = $usuarios->where('nivel_id','=', 2);
+            /** Lista adms de todos orfarnatos */
+            $usuarios = self::where('nivel_id','=', 2);
         } else {
-            /** Lista adm dos usuários comum */
-            $usuarios = $usuarios->where('nivel_id','=', 3);    
+            /** Lista dos usuários comum da instituição do adm logado.*/
+            $usuarios = self::where('nivel_id','=', 3)
+            ->where('instituicao_id', Auth::user()->instituicao_id);   
         }
         /** paginação */
         return $usuarios->orderBy('name')->paginate(10);
