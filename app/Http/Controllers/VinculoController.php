@@ -5,6 +5,7 @@ namespace Casa\Http\Controllers;
 use Casa\Adotivo;
 use Casa\Adotante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\VinculoRequest;
 
 class VinculoController extends Controller {
@@ -18,8 +19,9 @@ class VinculoController extends Controller {
         /** [description] Listagem do histórico adotantes*/
     	$adotantesHistorico = $adotivo->adotantes()
     	->orderBy('adotantes_adotivos.created_at')
+        
     	->where('adotantes_adotivos.adotivo_id', '=', $id)
-    	->where('adotantes_adotivos.deleted_at', '!=', null);
+    	->where('adotantes_adotivos.deleted_at', '!=', null);;
         /** 
          * Caso o adotivo tenha vínculo trazer o id do adotivo, 
          * senão null. 
@@ -28,7 +30,9 @@ class VinculoController extends Controller {
         ->where('adotantes.has_vinculo','=', 1)
         ->first()['id'];
 
-    	$adotantes = Adotante::orderBy('nome')->get();
+    	$adotantes = Adotante::orderBy('nome')
+        ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
+        ->get();
         /**
          * Tirar da listagem de adotantes disponiveis os adotantes
          * que já tiverram vínculo com o adotivo.

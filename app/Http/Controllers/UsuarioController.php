@@ -123,9 +123,17 @@ class UsuarioController extends Controller
     }
 
     public function buscar(Request $request) {
-  
-        $usuarios = Usuario::where('nivel_id','!=', 4)
-        ->where('name', 'like', '%'.$request->inputBusca.'%')
+        # id: 1 Adm do sistema ver e adm sistema id: 2
+        # id: 2 Ver usuario padrão id: 3
+        if(Auth::user()->isAdmSistema()) {
+            $usuarios = Usuario::where('nivel_id','=', 2);
+            
+        }else if(Auth::user()->isAdmInstituicao()) {
+            $usuarios = Usuario::where('nivel_id','=', 3)
+            ->where('instituicao_id', Auth::user()->instituicao_id);
+        }
+
+        $usuarios = $usuarios->where('name', 'like', '%'.$request->inputBusca.'%')
         ->orWhere('cpf','=', setMascara($request->inputBusca, '###.###.###-##'))
         ->orderBy('name')
         ->paginate(10);

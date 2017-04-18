@@ -65,14 +65,14 @@ class Adotivo extends Model{
    }
 
     /**
-     * Esse metodo retorna uma String com a idade de um adotant
+     * Esse metodo retornar uma String com a idade de um adotivo.
      * @return string
      */
     public function calcularIdade() {
-        $anos = $this->nascimento->diffInYears(Carbon::now());
-        $meses = $this->nascimento->diffInMonths(Carbon::now());
+        $anos    = $this->nascimento->diffInYears(Carbon::now());
+        $meses   = $this->nascimento->diffInMonths(Carbon::now());
         $semanas = $this->nascimento->diffInWeeks(Carbon::now());
-        $dias = $this->nascimento->diffInDays(Carbon::now());
+        $dias    = $this->nascimento->diffInDays(Carbon::now());
 
         $idade = '';
         if( $anos > 0 && $anos > 1)
@@ -108,13 +108,15 @@ class Adotivo extends Model{
         ->toArray();
     }
 
-    public function updateIrmaos(array $irmaosIds) {
+    public function updateIrmaos($irmaosIds) {
         if(isset( $irmaosIds )) {
             $this->irmaos()->sync($irmaosIds);
+        } else {
+            $this->irmaos()->sync([]);       
         }
     }
 
-    public function saveIrmaos(array $irmaosIds) {
+    public function saveIrmaos($irmaosIds) {
         if(isset( $irmaosIds )) { 
             $this->irmaos()->attach($irmaosIds);
         }   
@@ -154,7 +156,6 @@ class Adotivo extends Model{
         return $this->hasMany('Casa\Visita', 'adotivo_id');
     }
     
-
     public function restricao() {
         return $this->hasOne(
             'Casa\Restricao', 

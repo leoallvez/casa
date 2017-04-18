@@ -63,14 +63,14 @@ class Adotante extends Model {
    * @param type $request 
    * @return type
    */
-  public function validarConjuge(&$request) {
-    if($request['estado_civil_id'] != 2 && $request['estado_civil_id'] != 6){
+  public static function validarConjuge(&$request) {
+    if($request['estado_civil_id'] != 2 && $request['estado_civil_id'] != 6) {
       $request['conjuge_nome'] = null; 
       $request['conjuge_sexo'] = null; 
       $request['conjuge_nascimento'] = null; 
       $request['conjuge_cpf'] = null; 
-      $request['conjuge_rg']= null; 
-      $request['conjuge_escolaridade_id']= null; 
+      $request['conjuge_rg'] = null; 
+      $request['conjuge_escolaridade_id'] = null; 
       $request['conjuge_categoria_profissional_id'] = null;
     }    
   }

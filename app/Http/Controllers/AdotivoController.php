@@ -165,6 +165,7 @@ class AdotivoController extends Controller{
 
     public function buscar(Request $request) {
         $adotivos = Adotivo::where('nome', 'like', '%'.$request->inputBusca.'%')
+        ->where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(10);
         return view('adotivo.index', compact('adotivos'));

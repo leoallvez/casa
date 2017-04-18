@@ -8,10 +8,12 @@ use Casa\Adotante;
 use Casa\EstadoCivil;
 use Casa\Escolaridade;
 use Casa\Nascionalidade;
-use Casa\CategoriaProfissional;
 use Illuminate\Http\Request;
+use Casa\CategoriaProfissional;
 use Illuminate\Support\Facades\Auth;
+use Casa\Http\Requests\VinculoRequest;
 use Casa\Http\Requests\AdotanteRequest;
+
 
 class AdotanteController extends Controller {
     /**
@@ -20,7 +22,7 @@ class AdotanteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //Auth::user()
+
         $adotantes = Adotante::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(10);
@@ -56,6 +58,8 @@ class AdotanteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(AdotanteRequest $request) {
+
+        Adotante::validarConjuge($request);
 
         $adotante = new Adotante($request->all());
 
@@ -107,6 +111,7 @@ class AdotanteController extends Controller {
         $escolaridades = Escolaridade::all()->pluck('nome', 'id');
         $categoriasProfissionais = CategoriaProfissional::all()->pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
+        
         // if(empty($adotivosProcessoIds)){
         //     $adotivos = Adotivo::where('status_id', '=', 2)->pluck('nome', 'id');
         // }else{
@@ -138,7 +143,7 @@ class AdotanteController extends Controller {
         
         $adotante = Adotante::findOrFail($id);
         
-        $adotante->validarConjuge($request);
+        Adotante::validarConjuge($request);
         $adotante->update($request->all());
 
         $adotivos = $request->adotivos;
@@ -174,6 +179,7 @@ class AdotanteController extends Controller {
     public function buscar(Request $request) {
         
         $adotantes = Adotante::where('nome', 'like', '%'.$request->inputBusca.'%')
+        ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
         ->orWhere('cpf','=', setMascara($request->inputBusca, '###.###.###-##'))
         ->orderBy('nome')
         ->paginate(10);
