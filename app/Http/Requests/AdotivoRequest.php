@@ -32,7 +32,7 @@ class AdotivoRequest extends FormRequest
 
     public function messages() {
         return [
-            'nascimento.after'    => 'O adotivo deve menos de 18 anos!',
+            'nascimento.after'    => 'O adotivo deve ter menos de 18 anos!',
             'nascimento.before'   => 'A data de nascimento deve ser uma data antes de hoje',
             'nascimento.min'      => 'A data de nascimento deve ser no formato: 00/00/0000.',
             'data_chegada.after'  => 'A data chegada deve ser uma data após o nascimento do adotivo!',

@@ -150,8 +150,8 @@
             closeOnCancel: false
           }, function(isConfirm) {
             if (isConfirm) {
-              var resource = app.$http.post("{{ url('adotivos{/id}') }}");
-              resource.remove({id: id_adotivo }).then((response) => {
+              var resource = app.$resource("{{ url('adotivos{/id}') }}");
+              resource.remove({ id: id_adotivo }).then((response) => {
                 swal({
                   title: "Inativado!",
                   text: "Adotivo foi Inativado!",

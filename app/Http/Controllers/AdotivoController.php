@@ -40,7 +40,9 @@ class AdotivoController extends Controller{
         $escolaridades = Escolaridade::where('id', '<', 6)->pluck('nome', 'id'); 
         $restricoes = Restricao::pluck('nome', 'id');
 
-        $irmaos = Adotivo::orderBy('nome')->pluck('nome', 'id'); 
+        $irmaos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
+        ->orderBy('nome')
+        ->pluck('nome', 'id'); 
 
         return view('adotivo.create', compact(
             'adotantes', 

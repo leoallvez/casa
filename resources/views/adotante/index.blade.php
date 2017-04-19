@@ -118,7 +118,7 @@
     var app = new Vue({
       el: '#app',
       methods: {
-        excluir(id_adotivo) {
+        excluir(id_adotante) {
           swal({
             title: "Tem certeza?",
             text: "O adotante será inativado!",
@@ -133,7 +133,7 @@
           }, function(isConfirm) {
             if (isConfirm) {
               var resource = app.$resource("{{ url('adotantes{/id}') }}");
-              resource.remove({id: id_adotivo }).then((response) => {
+              resource.remove({id: id_adotante }).then((response) => {
                 swal({
                   title: "Inativado!",
                   text: "Adotante foi Inativado!",
