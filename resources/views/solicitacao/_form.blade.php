@@ -90,6 +90,33 @@
     </div>
 
     <div class="row">
+		@if(!isset($instituicao))
+            <div class="col-md-2">
+                <div class="form-group">
+                    {!! Form::label('estado_id', 'Estado') !!}
+                    {!! Form::select(
+                            'estado_id', 
+                            $estados, 
+                            $instituicao->estadoinstituicao_id ?? null, 
+                            ['class' => 'form-control', 'id' => 'estado']
+                        ) 
+                    !!}
+                </div>
+            </div>
+        @else
+            <div class="col-md-2">
+                <div class="form-group">
+                    {!! Form::label('estado_id', 'Estado') !!}
+                    {!! Form::text('estado_id', $instituicao->estado->UF, 
+                        [
+                            'class'       => 'form-control',
+                            'placeholder' =>'Digite Bairro Onde a Instituição esta Localizada',
+                            (isset($instituicao)) ? 'disabled' : null 
+                        ]) 
+                    !!} 
+                </div>
+         </div>       
+        @endif
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('cidade', 'Cidade') !!}
@@ -124,33 +151,6 @@
                 </span>
             </p>
         </div>
-        @if(!isset($instituicao))
-            <div class="col-md-2">
-                <div class="form-group">
-                    {!! Form::label('estado_id', 'Estado') !!}
-                    {!! Form::select(
-                            'estado_id', 
-                            $estados, 
-                            $instituicao->estadoinstituicao_id ?? null, 
-                            ['class' => 'form-control', 'id' => 'estado']
-                        ) 
-                    !!}
-                </div>
-            </div>
-        @else
-            <div class="col-md-2">
-                <div class="form-group">
-                    {!! Form::label('estado_id', 'Estado') !!}
-                    {!! Form::text('estado_id', $instituicao->estado->UF, 
-                        [
-                            'class'       => 'form-control',
-                            'placeholder' =>'Digite Bairro Onde a Instituição esta Localizada',
-                            (isset($instituicao)) ? 'disabled' : null 
-                        ]) 
-                    !!} 
-                </div>
-         </div>       
-        @endif
     </div>
 
     <div class="row">

@@ -230,6 +230,19 @@
     </div>
 
     <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                {!! Form::label('estado_id', 'Estado') !!}
+                {!! Form::select(
+                        'estado_id', 
+                        $estados, 
+                        $adotante->estado_id ?? null, 
+                        ['class' => 'form-control', 'id' => 'estado']
+                    ) 
+                !!}
+            </div>
+        </div>
+
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('cidade', 'Cidade') !!}
@@ -252,17 +265,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                {!! Form::label('estado_id', 'Estado') !!}<br>
-                {!! Form::select('estado_id', $estados, $adotante->estado_id ?? null, 
-                    [
-                        'class' => 'form-control', 
-                        'id'    => 'estado'
-                    ]) 
-                !!}
-            </div>
-        </div>
+        
     </div>
 
     <div class="row">
@@ -296,6 +299,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('telefone', 'Telefone ') !!}
+                <span class='obrigatorio'>*</span>
                 {!! Form::text('telefone', null, 
                     [
                         'class'       => 'form-control', 
@@ -303,6 +307,11 @@
                         'placeholder' => '(00) 0000-0000'
                     ]) 
                 !!}
+                <p>
+                <span class='validacao-text'> 
+                    {{ $errors->first('telefone') }}
+                </span>
+            </p>
             </div>
         </div>
         <div class="col-md-6">
@@ -353,7 +362,7 @@
             <div class="form-group">
                 {!! Form::label('input-conjuge-nascimento', 'Data de Nascimento do Conjuge')!!}
                 <span class='obrigatorio'>*</span>
-                {!! Form::text('input-nascimento', 
+                {!! Form::text('input-conjuge-nascimento', 
                     (isset($adotante->conjuge_nascimento)) ? $adotante->conjuge_nascimento->formatLocalized('%d/%m/%Y') : null, 
                     [   
                         'class'       => 'form-control conjuge', 

@@ -44,6 +44,8 @@ class AdotivoController extends Controller{
         ->orderBy('nome')
         ->pluck('nome', 'id'); 
 
+        # TODO Salvar 
+
         return view('adotivo.create', compact(
             'adotantes', 
             'status',

@@ -26,14 +26,15 @@ class AdotanteRequest extends FormRequest {
             'estado_civil_id'           => 'required',
             'escolaridade_id'           => 'required',
             'categoria_profissional_id' => 'required',
+            'telefone'                  => 'required',
             #id é um campo hidden no formulário.
-            'cpf'                      => 'required|cpf|size:14|different:conjuge_cpf|unique:adotantes,cpf,'.$this->id.
+            'cpf'                       => 'required|cpf|size:14|different:conjuge_cpf|unique:adotantes,cpf,'.$this->id.
             '|unique:adotantes,conjuge_cpf,'.$this->id,   
-            'rg'                       => 'required|different:conjuge_rg|unique:adotantes,rg,'.$this->id.
+            'rg'                        => 'required|different:conjuge_rg|unique:adotantes,rg,'.$this->id.
             '|unique:adotantes,conjuge_rg,'.$this->id,
-            'nascimento'               => 'required|date|min:10|before:18 years ago',
-            'email'                    => 'required|email',
-            'cep'                      => 'size:9'
+            'nascimento'                => 'required|date|min:10|before:18 years ago',
+            'email'                     => 'required|email',
+            'cep'                       => 'size:9'
         ];
         # Conjuge
         if($this->estado_civil_id == 2 || $this->estado_civil_id == 6) {
@@ -57,6 +58,7 @@ class AdotanteRequest extends FormRequest {
             'estado_civil_id.required'                   => 'O campo estado civil é obrigatório.',
             'nascimento.before'                          => 'O adotante deve ter 18 anos ou mais!',
             'nascimento.min'                             => 'A data de nascimento deve ser no formato: 00/00/0000.',
+            'telefone'                                   => 'O campo telefone é obrigatório.',
             'cpf.cpf'                                    => 'CPF inválido.',
             'cpf.required'                               => 'O campo CPF é obrigatório.',
             'cpf.unique'                                 => 'CPF já está em uso.',

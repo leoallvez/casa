@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Adotivo extends Model{
     use SoftDeletes;
-    
+
     protected $dates = [
         'created_at',
         'nascimento',
@@ -19,19 +19,19 @@ class Adotivo extends Model{
     protected $fillable = [
     	'nome',
     	'sexo',
-        'etnia_id',
-        'status_id',
-        'nascimento',
-        'usuario_id',
-        'restricao_id',
-        'data_chegada',
-        'instituicao_id',
-        'escolaridade_id',
-        'nascionalidade_id'
+      'etnia_id',
+      'status_id',
+      'nascimento',
+      'usuario_id',
+      'restricao_id',
+      'data_chegada',
+      'instituicao_id',
+      'escolaridade_id',
+      'nascionalidade_id'
     ];
     /**
      * Retorna um array contendo outro array com nome do status e
-     * a quantidade de adotivo nesse status. 
+     * a quantidade de adotivo nesse status.
      * @return array of array
      */
     public static function getQuantidadePorStatus() {
@@ -44,7 +44,7 @@ class Adotivo extends Model{
             ->where('adotivos_status.id', '=', $s->id)
             ->groupBy('adotivos_status.nome')
             ->first();
-    
+
             if(isset($resultado)){
                 $dados[] = [$s->nome, intval($resultado->quantidade)];
             }else{
@@ -54,14 +54,14 @@ class Adotivo extends Model{
         return $dados;
     }
     public function setStatus(int $status_id) {
-        $this->status_id = $status_id;  
+        $this->status_id = $status_id;
     }
     public function setInstituicao(int $id) {
         $this->instituicao_id = $id;
     }
-   
+
    public function setUsuario(int $id) {
-        $this->usuario_id = $id; 
+        $this->usuario_id = $id;
    }
 
     /**
@@ -83,17 +83,17 @@ class Adotivo extends Model{
         if($meses > 0 && $meses < 13 && $meses > 1)
             $idade .= $meses.' meses ';
         else if($meses == 1 )
-            $idade .= ' 1 mês';    
+            $idade .= ' 1 mês';
 
-        if($semanas > 0 && $semanas < 4 && $semanas > 1) 
-            $idade .= $semanas.' semanas ';  
+        if($semanas > 0 && $semanas < 4 && $semanas > 1)
+            $idade .= $semanas.' semanas ';
         else if ($semanas == 1)
             $idade .= '1 semana ';
 
         if($dias > 0 && $dias < 7 && $dias > 1)
-            $idade .= $dias.' dias'; 
+            $idade .= $dias.' dias';
         else if ($dias == 1)
-            $idade .= ' 1 dia'; 
+            $idade .= ' 1 dia';
 
         return $idade;
     }
@@ -107,23 +107,23 @@ class Adotivo extends Model{
         ->getRelatedIds()
         ->toArray();
     }
-
+    //TODO teste
     public function updateIrmaos($irmaosIds) {
         if(isset( $irmaosIds )) {
             $this->irmaos()->sync($irmaosIds);
         } else {
-            $this->irmaos()->sync([]);       
+            $this->irmaos()->sync([]);
         }
     }
 
     public function saveIrmaos($irmaosIds) {
-        if(isset( $irmaosIds )) { 
+        if(isset( $irmaosIds )) {
             $this->irmaos()->attach($irmaosIds);
-        }   
+        }
     }
 
     public function hasAdotantes() {
-    
+
        $result = $this->adotantes()
        ->where('adotantes_adotivos.deleted_at', '=', null)
        ->get();
@@ -155,11 +155,11 @@ class Adotivo extends Model{
     public function visitas() {
         return $this->hasMany('Casa\Visita', 'adotivo_id');
     }
-    
+
     public function restricao() {
         return $this->hasOne(
-            'Casa\Restricao', 
-            'id', 
+            'Casa\Restricao',
+            'id',
             'restricao_id'
         );
     }
@@ -168,7 +168,7 @@ class Adotivo extends Model{
         return $this->belongsToMany(
             'Casa\Adotivo',
             'irmaos',
-            'adotivo_id', 
+            'adotivo_id',
             'irmao_id'
         );
     }
