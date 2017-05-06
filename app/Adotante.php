@@ -54,25 +54,25 @@ class Adotante extends Model {
   }
 
   public function setUsuario(int $id) {
-    $this->usuario_id = $id; 
+    $this->usuario_id = $id;
   }
-   
+
   /**
-   * Esse metódo altera o nome o conjuge para nulo caso seja alterado o estado civil 
+   * Esse metódo altera o nome o conjuge para nulo caso seja alterado o estado civil
    * para um valor diferende de casado ou únião estável.
-   * @param type $request 
+   * @param type $request
    * @return type
    */
   public static function validarConjuge(&$request) {
     if($request['estado_civil_id'] != 2 && $request['estado_civil_id'] != 6) {
-      $request['conjuge_nome'] = null; 
-      $request['conjuge_sexo'] = null; 
-      $request['conjuge_nascimento'] = null; 
-      $request['conjuge_cpf'] = null; 
-      $request['conjuge_rg'] = null; 
-      $request['conjuge_escolaridade_id'] = null; 
+      $request['conjuge_nome'] = null;
+      $request['conjuge_sexo'] = null;
+      $request['conjuge_nascimento'] = null;
+      $request['conjuge_cpf'] = null;
+      $request['conjuge_rg'] = null;
+      $request['conjuge_escolaridade_id'] = null;
       $request['conjuge_categoria_profissional_id'] = null;
-    }    
+    }
   }
 
   public function setHasVinculo(bool $value) {
@@ -97,7 +97,7 @@ class Adotante extends Model {
    * femino
    * @return string
    */
-  
+
   public function getSexo() {
     return ($this->sexo == 'M')? 'Masculino' : 'Feminino';
   }
@@ -109,7 +109,7 @@ class Adotante extends Model {
   public function hasConjuge() {
     return ($this->estado_civil_id == 2 || $this->estado_civil_id == 6);
   }
-  
+
   public function adotivos() {
     return $this->belongsToMany('Casa\Adotivo', 'adotantes_adotivos')
     ->withPivot('created_at', 'deleted_at');
@@ -134,12 +134,12 @@ class Adotante extends Model {
   public function visitas() {
     return $this->hasMany('Casa\Visita', 'adotante_id');
   }
-
+  
   public function observacoes() {
     return $this->belongsToMany(Adotivo::class, 'adotantes_adotivos')
     ->withPivot('observacoes')
     ->orderBy('id', 'desc')
     ->get()->first()
-    ->pivot->observacoes; 
+    ->pivot->observacoes;
   }
 }
