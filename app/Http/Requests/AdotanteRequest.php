@@ -19,7 +19,7 @@ class AdotanteRequest extends FormRequest {
      * @return array
      */
     public function rules() {
-        
+
         $regras = [
             # difereça de 16 com a idade do adotivo
             'nome'                      => 'required',
@@ -29,10 +29,10 @@ class AdotanteRequest extends FormRequest {
             'telefone'                  => 'required',
             #id é um campo hidden no formulário.
             'cpf'                       => 'required|cpf|size:14|different:conjuge_cpf|unique:adotantes,cpf,'.$this->id.
-            '|unique:adotantes,conjuge_cpf,'.$this->id,   
+            '|unique:adotantes,conjuge_cpf,'.$this->id,
             'rg'                        => 'required|different:conjuge_rg|unique:adotantes,rg,'.$this->id.
             '|unique:adotantes,conjuge_rg,'.$this->id,
-            'nascimento'                => 'required|date|min:10|before:18 years ago',
+            'nascimento'                => 'required|date|min:10|before:18 years ago|after:75 years ago',
             'email'                     => 'required|email',
             'cep'                       => 'size:9'
         ];
@@ -40,11 +40,11 @@ class AdotanteRequest extends FormRequest {
         if($this->estado_civil_id == 2 || $this->estado_civil_id == 6) {
             $regras_conjuge = [
                 'conjuge_nome'                      => 'required',
-                'conjuge_nascimento'                => 'required|date|min:10|before:18 years ago',
+                'conjuge_nascimento'                => 'required|date|min:10|before:18 years ago|after:75 years ago',
                 'conjuge_cpf'                       => 'required|cpf|size:14|unique:adotantes,conjuge_cpf,'.$this->id.
-                '|unique:adotantes,cpf,'.$this->id, 
+                '|unique:adotantes,cpf,'.$this->id,
                 'conjuge_rg'                        => 'required|unique:adotantes,conjuge_rg,'.$this->id.
-                '|unique:adotantes,rg,'.$this->id,                
+                '|unique:adotantes,rg,'.$this->id,
                 'conjuge_escolaridade_id'           => 'required',
                 'conjuge_categoria_profissional_id' => 'required'
             ];
@@ -56,6 +56,7 @@ class AdotanteRequest extends FormRequest {
     public function messages() {
         return [
             'estado_civil_id.required'                   => 'O campo estado civil é obrigatório.',
+            'nascimento.after'                           => 'O adotante deve ter no máximo 75 anos.',
             'nascimento.before'                          => 'O adotante deve ter 18 anos ou mais!',
             'nascimento.min'                             => 'A data de nascimento deve ser no formato: 00/00/0000.',
             'telefone'                                   => 'O campo telefone é obrigatório.',
@@ -70,6 +71,7 @@ class AdotanteRequest extends FormRequest {
             # Conjuge
             'conjuge_nome.required'                      => 'Estado civil casado ou únião estavel, o nome do conjuge é obrigatório',
             'conjuge_nome.alpha_spaces'                  => 'Nome do conjuge deve conter somente letras.',
+            'conjuge_nascimento.after'                   => 'O conjuge deve ter no máximo 75 anos.',
             'conjuge_nascimento.required'                => 'Data de nascimento obrigatória',
             'conjuge_nascimento.before'                  => 'O conjuge deve ter 18 anos ou mais!',
             'conjuge_nascimento.min'                     => 'A data de nascimento deve ser no formato: 00/00/0000.',

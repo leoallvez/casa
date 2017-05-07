@@ -43,13 +43,15 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(UserStoreRequest $request) {
-        
+
         #Usuário logado no sistema.
         $usuarioLogado = Auth::user();
-        
+
         $usuario = new Usuario($request->except(['password']));
         $usuario->setInstituicao($usuarioLogado->instituicao_id);
-        $usuario->setNivel(3);
+        # Definindo o nível do usuário que será cadastrado.
+
+        $usuario->setNivel((Auth::user()->isAdmSistema()) ? 1 : 3);
         $usuario->setSenha('casa'.date('Y'));
         $usuario->save();
 
@@ -65,7 +67,7 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        
+
     }
 
     /**
@@ -119,7 +121,7 @@ class UsuarioController extends Controller
 
         flash('Usuário Inativado com Sucesso', 'danger');
 
-        return $usuario; 
+        return $usuario;
     }
 
     public function buscar(Request $request) {
@@ -127,7 +129,7 @@ class UsuarioController extends Controller
         # id: 2 Ver usuario padrão id: 3
         if(Auth::user()->isAdmSistema()) {
             $usuarios = Usuario::where('nivel_id','=', 2);
-            
+
         }else if(Auth::user()->isAdmInstituicao()) {
             $usuarios = Usuario::where('nivel_id','=', 3)
             ->where('instituicao_id', Auth::user()->instituicao_id);

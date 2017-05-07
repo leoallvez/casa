@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Usuario extends Model {
-    
+
     use SoftDeletes;
 
     protected $dates = ['created_at'];
@@ -30,7 +30,7 @@ class Usuario extends Model {
     }
     /**
      * Cria uma hash para a senha informada.
-     * @param string $password 
+     * @param string $password
      * @return void
      */
     public function setSenha($password) {
@@ -38,24 +38,23 @@ class Usuario extends Model {
     }
 
     public function setInstituicao($instituicao_id) {
-        $this->instituicao_id = $instituicao_id;   
+        $this->instituicao_id = $instituicao_id;
     }
-    /** 
-     * Esse método retorna uma listagem de 
+    /**
+     * Esse método retorna uma listagem de
      * usuários da instituição do usuário
      * logado no sistema.
      * @return Colletion de Usuario.
      */
     public static function listUsers() {
-        //$usuarios = self::where('instituicao_id', Auth::user()->instituicao_id);
-        
-        if(Auth::user()->isAdmSistema()) { 
-            /** Lista adms de todos orfarnatos */
-            $usuarios = self::where('nivel_id','=', 2);
+
+        if(Auth::user()->isAdmSistema()) {
+            /** Listar adms do sistem e adms de todos orfarnatos*/
+            $usuarios = self::where('nivel_id','=', 1)->orWhere('nivel_id', '=', 2);
         } else {
             /** Lista dos usuários comum da instituição do adm logado.*/
             $usuarios = self::where('nivel_id','=', 3)
-            ->where('instituicao_id', Auth::user()->instituicao_id);   
+            ->where('instituicao_id', Auth::user()->instituicao_id);
         }
         /** paginação */
         return $usuarios->orderBy('name')->paginate(10);
@@ -70,6 +69,6 @@ class Usuario extends Model {
     }
 
     public function instituicao() {
-        return $this->belongsTo('Casa\Instituicao', 'instituicao_id');    
+        return $this->belongsTo('Casa\Instituicao', 'instituicao_id');
     }
 }

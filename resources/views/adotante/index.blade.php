@@ -12,7 +12,7 @@
         <div class="title_left">
           <h3>{!! Html::linkAction('AdotanteController@index','Adotantes') !!}</h3>
           <a class="btn btn-success btn-sm" href="{{ action('AdotanteController@create') }}">
-            <i class="fa fa-plus-circle"></i> 
+            <i class="fa fa-plus-circle"></i>
             Incluir Adotante
           </a>
         </div>
@@ -63,8 +63,8 @@
                           <small>Cadastrado: {{ $adotante->created_at->format('d/m/Y') }}</small>
                         </td>
                         <td style="padding: 2%">
-                          {!! 
-                            $adotante->hasAdotivos() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"  
+                          {!!
+                            $adotante->hasAdotivos() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
                           !!}
                         </td>
                         <td>
@@ -78,19 +78,21 @@
                         <td>{{ $adotante->cpf }}</td>
                         <td>
                           <a href="{{ action('AdotanteController@edit', $adotante->id) }}" class="btn btn-info btn-xs">
-                            <i class="fa fa-pencil"></i> 
-                            Alterar 
+                            <i class="fa fa-pencil"></i>
+                            Alterar
                           </a>
-                          @if(!$adotante->hasAdotivos())
-                            <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotante->id !!})">
-                              <i class="fa fa-trash-o"></i> 
-                              Inativar 
-                            </a>
-                          @else
-                            <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
-                              <i class="fa fa-trash-o"></i> 
-                              Inativar 
-                            </a>
+                          @if(Auth::user()->isAdmInstituicao())
+                            @if(!$adotante->hasAdotivos())
+                              <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotante->id !!})">
+                                <i class="fa fa-trash-o"></i>
+                                Inativar
+                              </a>
+                            @else
+                              <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
+                                <i class="fa fa-trash-o"></i>
+                                Inativar
+                              </a>
+                            @endif
                           @endif
                         </td>
                       </tr>
@@ -161,4 +163,4 @@
       }
     });
   </script>;
-@endsection 
+@endsection

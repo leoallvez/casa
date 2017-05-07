@@ -12,7 +12,7 @@
         <div class="title_left">
           <h3>{!! Html::linkAction('AdotivoController@index','Adotivos') !!}</h3>
           <a class="btn btn-success btn-sm" href="{{ action('AdotivoController@create') }}">
-            <i class="fa fa-plus-circle"></i> 
+            <i class="fa fa-plus-circle"></i>
             Incluir Adotivo
           </a>
         </div>
@@ -20,9 +20,9 @@
           <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
             {!! Form::open(['action' => 'AdotivoController@buscar', 'method' => 'GET']) !!}
               <div class="input-group">
-                <input type="text" 
-                  class="form-control" 
-                  name="inputBusca" 
+                <input type="text"
+                  class="form-control"
+                  name="inputBusca"
                   placeholder="Pesquisar adotivo por nome"
                 >
                 <span class="input-group-btn">
@@ -71,8 +71,8 @@
                         </small>
                       </td>
                       <td style="padding: 2%">
-                        {!! 
-                          $adotivo->hasAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"  
+                        {!!
+                          $adotivo->hasAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
                         !!}
                       </td>
                       <td>{{ $adotivo->getSexo() }}</td>
@@ -87,28 +87,30 @@
                       <td>{{ $adotivo->etnia->nome }}</td>
                       <td><a>{{ $adotivo->status->nome }}</a></td>
                       <td>
-                        <a href="{{ action('AdotivoController@edit', $adotivo->id) }}" 
+                        <a href="{{ action('AdotivoController@edit', $adotivo->id) }}"
                           class="btn btn-info btn-xs">
-                          <i class="fa fa-pencil"></i> 
+                          <i class="fa fa-pencil"></i>
                           Alterar
                         </a>
-                        <a href="{{ url('vinculos/adotivo', $adotivo->id) }}" 
+                        <a href="{{ url('vinculos/adotivo', $adotivo->id) }}"
                           class="btn btn-success btn-xs">
-                          <i class="fa fa-heart-o"></i> 
+                          <i class="fa fa-heart-o"></i>
                           Vínculos
                         </a>
-                        @if(!$adotivo->hasAdotantes())
-                          <a href="#" class="btn btn-danger btn-xs" 
-                            v-on:click="excluir({!! $adotivo->id !!})">
-                            <i class="fa fa-trash-o"></i> 
-                            Inativar 
-                          </a>
-                        @else
-                          <a href="#" class="btn btn-danger btn-xs" 
-                            v-on:click="alertaNaoExcluir()">
-                            <i class="fa fa-trash-o"></i> 
-                            Inativar 
-                          </a>
+                        @if(Auth::user()->isAdmInstituicao())
+                          @if(!$adotivo->hasAdotantes())
+                            <a href="#" class="btn btn-danger btn-xs"
+                              v-on:click="excluir({!! $adotivo->id !!})">
+                              <i class="fa fa-trash-o"></i>
+                              Inativar
+                            </a>
+                          @else
+                            <a href="#" class="btn btn-danger btn-xs"
+                              v-on:click="alertaNaoExcluir()">
+                              <i class="fa fa-trash-o"></i>
+                              Inativar
+                            </a>
+                          @endif
                         @endif
                       </td>
                     </tr>
@@ -179,4 +181,4 @@
       }
     });
   </script>;
-@endsection 
+@endsection

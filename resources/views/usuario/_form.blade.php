@@ -6,27 +6,27 @@
         <div class="form-group">
             {!! Form::label('name', 'Nome') !!}
              <span class='obrigatorio'>*</span>
-            {!! Form::text('name', null, 
+            {!! Form::text('name', null,
                 [
-                    'class'       => 'form-control', 
+                    'class'       => 'form-control',
                     'placeholder' => 'Digite o Nome Completo do Usuário'
-                ]) 
+                ])
             !!}
-            <span class='validacao-text'> 
+            <span class='validacao-text'>
                 {{ $errors->first('name') }}
-            </span>            
+            </span>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             {!! Form::label('nivel_id', 'Nível') !!}
-                {!! Form::select('nivel_id', $niveis, $usuario->nivel_id ?? 3, 
+                {!! Form::select('nivel_id', $niveis, $usuario->nivel_id ?? Auth::user()->getNivelCadastro(), 
                     [
-                        'id'       => 'tipos', 
+                        'id'       => 'tipos',
                         'class'    => 'form-control',
                         'disabled'
-                    ]) 
-                !!} 
+                    ])
+                !!}
         </div>
     </div>
 </div>
@@ -36,30 +36,30 @@
         <div class="form-group">
             {!! Form::label('cargo', 'Cargo') !!}
              <span class='obrigatorio'>*</span>
-            {!! Form::text('cargo', null, 
+            {!! Form::text('cargo', null,
                 [
-                    'class'       => 'form-control', 
+                    'class'       => 'form-control',
                     'placeholder' => 'Digite a Cargo do Usuário'
-                ]) 
+                ])
             !!}
-            <span class='validacao-text'> 
+            <span class='validacao-text'>
                 {{ $errors->first('cargo') }}
-            </span> 
+            </span>
         </div>
     </div>
      <div class="col-md-4">
         <div class="form-group">
             {!! Form::label('email', 'Email') !!}
             <span class='obrigatorio'>*</span>
-            {!! Form::text('email', null, 
+            {!! Form::text('email', null,
                 [
-                    'class'       => 'form-control', 
+                    'class'       => 'form-control',
                     'placeholder' => 'Digite o Email do Usuário'
-                ]) 
+                ])
             !!}
-            <span class='validacao-text'> 
+            <span class='validacao-text'>
                 {{ $errors->first('email') }}
-            </span> 
+            </span>
         </div>
     </div>
     <div class="col-md-3">
@@ -67,21 +67,21 @@
             {!! Form::label("cpf", "CPF") !!}
             <span class='obrigatorio'>*</span>
             {{-- A request de validação obriga o envido do cpf --}}
-            {!! Form::text((!isset($usuario)) ? 'cpf' : null, 
-                $usuario->cpf ?? null, 
+            {!! Form::text((!isset($usuario)) ? 'cpf' : null,
+                $usuario->cpf ?? null,
                 [
-                    'class'       => 'form-control', 
+                    'class'       => 'form-control',
                     'data-mask'   => '000.000.000-00',
                     'placeholder' => '000.000.000-00',
                     (isset($usuario)) ? 'disabled' : null,
-                ]) 
+                ])
             !!}
             {{-- A request de validação obriga o envido do cpf --}}
             @if(isset($usuario))
                 {{ Form::hidden('cpf', $usuario->cpf ) }}
             @endif
             <a>
-                <span class='validacao-text'> 
+                <span class='validacao-text'>
                     {{ $errors->first('cpf') }}
                 </span>
             </a>
@@ -91,9 +91,9 @@
 @if(isset($usuario))
     <div class="row">
         <div class="col-md-12">
-            {!! Form::label("instituicao", "Instituição") !!}  
-            {!! 
-                Form::text("instituicao", $usuario->instituicao->razao_social, 
+            {!! Form::label("instituicao", "Instituição") !!}
+            {!!
+                Form::text("instituicao", $usuario->instituicao->razao_social,
                     [
                         'class' => 'form-control',
                         'disabled'
@@ -113,13 +113,13 @@
                 {!! (!isset($usuario)) ? "<span class='obrigatorio'>*</span>" : null !!}
                 {!! Form::password('password',
                     [
-                        'class'       => 'form-control', 
+                        'class'       => 'form-control',
                         'placeholder' => 'Digite a Senha do Usuário com no mínimo oito caracteres'
-                    ]) 
+                    ])
                 !!}
-                <span class='validacao-text'> 
+                <span class='validacao-text'>
                     {{ $errors->first('password') }}
-                </span> 
+                </span>
             </div>
         </div>
         <div class="col-md-6">
@@ -128,11 +128,11 @@
                 {!! (!isset($usuario)) ? "<span class='obrigatorio'>*</span>" : null !!}
                 {!! Form::password('password_confirmation',
                     [
-                        'class'       => 'form-control', 
+                        'class'       => 'form-control',
                         'placeholder' => 'Confirme a Senha do Usuário'
-                    ]) 
+                    ])
                 !!}
-                <span class='validacao-text'> 
+                <span class='validacao-text'>
                     {{ $errors->first('password_confirmation') }}
                 </span>
             </div>
