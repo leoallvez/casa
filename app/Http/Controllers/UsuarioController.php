@@ -125,10 +125,9 @@ class UsuarioController extends Controller
     }
 
     public function buscar(Request $request) {
-        # id: 1 Adm do sistema ver e adm sistema id: 2
-        # id: 2 Ver usuario padrão id: 3
+
         if(Auth::user()->isAdmSistema()) {
-            $usuarios = Usuario::where('nivel_id','=', 2);
+            $usuarios = Usuario::whereBetween('nivel_id',[1,2]); //where('nivel_id','=', 1)->orWhere('nivel_id','=', 2);
 
         }else if(Auth::user()->isAdmInstituicao()) {
             $usuarios = Usuario::where('nivel_id','=', 3)

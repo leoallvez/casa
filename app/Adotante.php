@@ -65,14 +65,21 @@ class Adotante extends Model {
    */
   public static function validarConjuge(&$request) {
     if($request['estado_civil_id'] != 2 && $request['estado_civil_id'] != 6) {
-      $request['conjuge_nome'] = null;
-      $request['conjuge_sexo'] = null;
-      $request['conjuge_nascimento'] = null;
-      $request['conjuge_cpf'] = null;
-      $request['conjuge_rg'] = null;
-      $request['conjuge_escolaridade_id'] = null;
-      $request['conjuge_categoria_profissional_id'] = null;
-    }
+
+      $conjugeAtributos = [
+        'conjuge_rg',
+        'conjuge_cpf',
+        'conjuge_sexo',
+        'conjuge_nome',
+        'conjuge_nascimento',
+        'conjuge_escolaridade_id',
+        'conjuge_categoria_profissional_id'
+      ];
+
+      foreach ($conjugeAtributos as $atributo ) {
+        $request[$atributo] = null;
+      }
+
   }
 
   public function setHasVinculo(bool $value) {
@@ -89,7 +96,7 @@ class Adotante extends Model {
   }
   public function getNomeEnomeConjuge() {
     $result = $this->nome;
-    $result .= (isset($this->conjuge_nome) && $this->conjuge_nome != "" )? " e ".$this->conjuge_nome : null;
+    $result .= (isset($this->conjuge_nome) && $this->conjuge_nome != "" )? " --- ".$this->conjuge_nome : null;
     return  $result ;
   }
   /**
@@ -134,7 +141,7 @@ class Adotante extends Model {
   public function visitas() {
     return $this->hasMany('Casa\Visita', 'adotante_id');
   }
-  
+
   public function observacoes() {
     return $this->belongsToMany(Adotivo::class, 'adotantes_adotivos')
     ->withPivot('observacoes')

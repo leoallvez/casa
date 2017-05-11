@@ -417,7 +417,7 @@
         
         <div class="col-md-3">
             <div class="form-group">
-                {!! Form::label('conjuge_rg', 'RG do conjuge') !!}
+                {!! Form::label('conjuge_rg', 'RG do Conjuge') !!}
                 <span class='obrigatorio'>*</span>
                 {!! Form::text('conjuge_rg', null, 
                     [
@@ -475,7 +475,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                {!! Form::label('conjuge_nascionalidade_id', 'Nascionalidade') !!}
+                {!! Form::label('conjuge_nascionalidade_id', 'Nascionalidade do Conjuge') !!}
                 {!! Form::select(
                     'conjuge_nascionalidade_id', 
                     $nascionalidades, 

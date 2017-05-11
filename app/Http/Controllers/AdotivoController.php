@@ -23,7 +23,7 @@ class AdotivoController extends Controller{
         $adotivos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(10);
-        
+
         return view('adotivo.index', compact('adotivos'));
     }
 
@@ -34,20 +34,20 @@ class AdotivoController extends Controller{
      */
     public function create() {
         $adotantes = Adotante::pluck('nome', 'id');
-        $status    = AdotivoStatus::pluck('nome', 'id');     
+        $status    = AdotivoStatus::where('id', '<', 3)->pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
-        $escolaridades = Escolaridade::where('id', '<', 6)->pluck('nome', 'id'); 
+        $escolaridades = Escolaridade::where('id', '<', 6)->pluck('nome', 'id');
         $restricoes = Restricao::pluck('nome', 'id');
 
         $irmaos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
-        ->pluck('nome', 'id'); 
+        ->pluck('nome', 'id');
 
-        # TODO Salvar 
+        # TODO Salvar
 
         return view('adotivo.create', compact(
-            'adotantes', 
+            'adotantes',
             'status',
             'etnias',
             'nascionalidades',
@@ -64,7 +64,7 @@ class AdotivoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(AdotivoRequest $request) {
-    
+
         $adotivo = new Adotivo($request->all());
 
         #Usuário logado no sistema.
@@ -78,7 +78,7 @@ class AdotivoController extends Controller{
         $adotivo->updateIrmaos($request->irmaosIds);
 
         flash(
-            "Adotivo ".$adotivo->nome." Incluído com Sucesso!", 
+            "Adotivo ".$adotivo->nome." Incluído com Sucesso!",
             'success'
         );
         return redirect('adotivos');
@@ -108,19 +108,21 @@ class AdotivoController extends Controller{
         $etnias    = Etnia::pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
         $escolaridades = Escolaridade::where('id', '<', 6)
-        ->pluck('nome', 'id'); 
+        ->pluck('nome', 'id');
 
         $adotante  = $adotivo->adotantes()->first();
         $restricoes = Restricao::pluck('nome', 'id');
 
-        $irmaos = Adotivo::orderBy('nome')->pluck('nome', 'id');  
+        $irmaos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
+        ->orderBy('nome')
+        ->pluck('nome', 'id');
 
         $irmaosIds = $adotivo->getIrmaosIds();
 
         return view('adotivo.edit',
             compact(
-                'adotivo', 
-                'adotantes', 
+                'adotivo',
+                'adotantes',
                 'adotante',
                 'status',
                 'etnias',
@@ -130,7 +132,7 @@ class AdotivoController extends Controller{
                 'irmaos',
                 'irmaosIds'
             )
-        );   
+        );
     }
 
     /**
@@ -140,14 +142,14 @@ class AdotivoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function update(AdotivoRequest  $request, $id) {
         $adotivo = Adotivo::findOrFail($id);
         $adotivo->update($request->all());
         $adotivo->updateIrmaos($request->irmaosIds);
 
         flash(
-            "Adotivo ".$adotivo->nome." Alterado com Sucesso!", 
+            "Adotivo ".$adotivo->nome." Alterado com Sucesso!",
             "success"
         );
 
