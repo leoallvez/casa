@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                
+
                             </div>
                         </div>
 
@@ -55,9 +55,9 @@
                                     Acessar
                                 </button>
 
-                                {{-- <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Esqueceu sua senha?
-                                </a> --}}
+                                <a class="btn btn-success" href="{{ action('SolicitaCadastroController@create') }}">
+                                    Solicitar Cadastro
+                                </a>
                             </div>
                         </div>
                     </form>
