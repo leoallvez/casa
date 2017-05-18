@@ -41,24 +41,21 @@
     </script>
   </head>
 
-    <nav class="navbar navbar-default navbar-externo">
-      <div class="container">
-        <div class="navbar">
-          <a class="navbar-brand" href="{{ url('/') }}" >
-              <img src="{{ asset('img/casa.png') }}" style="display: inline-block">
-              <span class="logo-black " style="display: inline-block;">{{ config('app.name', 'Casa') }}</span>
-          </a>
-          <p class="navbar-text navbar-right pull-right menu-text">
-            @if (Request::is('solicitar-cadastro/create'))
-                <a href="{{ url('/login') }}" class="navbar-link">Entrar</a>
-            @endif
-            @if(Request::is('login'))
-                <a href="{{ action('SolicitaCadastroController@create') }}" class="navbar-link"> Solicitar Cadastro</a>
-            @endif
-          </p>
+  @if (Request::is('solicitar-cadastro/create'))
+      <nav class="navbar navbar-default navbar-externo">
+        <div class="container">
+          <div class="navbar">
+            <a class="navbar-brand" href="{{ url('/') }}" >
+                <img src="{{ asset('img/casa.png') }}" style="display: inline-block">
+                <span class="logo-black " style="display: inline-block;">{{ config('app.name', 'Casa') }}</span>
+            </a>
+            <p class="navbar-text navbar-right pull-right menu-text">
+                  <a href="{{ url('/login') }}" class="navbar-link">Entrar</a>
+            </p>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    @endif
 
     <div class="right_col" role="main" id="app">
       @yield('content')

@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            {!! Form::label('nascionalidade_id', 'Nascionalidade') !!}
+            {!! Form::label('nascionalidade_id', 'Nacionalidade') !!}
             {!! Form::select(
                 'nascionalidade_id',
                 $nascionalidades,
@@ -332,12 +332,12 @@
     <legend><h3>Conjuge</h3></legend>
     <div class="row">
         <div class="col-md-12 form-group">
-            {!! Form::label('conjuge_nome', 'Nome do Conjuge') !!}
+            {!! Form::label('conjuge_nome', 'Nome do Cônjuge') !!}
             <span class='obrigatorio'>*</span>
             {!! Form::text('conjuge_nome', null,
                 [
                     'class'       => 'form-control conjuge',
-                    'placeholder' => 'Nome completo do conjuge do Adotante',
+                    'placeholder' => 'Nome completo do cônjuge do Adotante',
                     'id'          => 'conjuge_nome'
                 ])
             !!}
@@ -351,7 +351,7 @@
     <div class="row">
         <div class="col-md-3">
             <p>
-                {!! Form::label('conjuge_sexo', 'Sexo do Conjuge') !!}<br>
+                {!! Form::label('conjuge_sexo', 'Sexo do Cônjuge') !!}<br>
                 Masculino:
                 {!! Form::radio('conjuge_sexo', 'M', true, ['class' => 'flat']) !!}
                 Feminino:
@@ -360,7 +360,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                {!! Form::label('input-conjuge-nascimento', 'Data de Nascimento do Conjuge')!!}
+                {!! Form::label('input-conjuge-nascimento', 'Data de Nascimento do Cônjuge')!!}
                 <span class='obrigatorio'>*</span>
                 {!! Form::text('input-conjuge-nascimento',
                     (isset($adotante->conjuge_nascimento)) ? $adotante->conjuge_nascimento->formatLocalized('%d/%m/%Y') : null,
@@ -422,7 +422,7 @@
                 {!! Form::text('conjuge_rg', null,
                     [
                         'class'       => 'form-control conjuge',
-                        'placeholder' => 'Digite o RG do conjuge',
+                        'placeholder' => 'Digite o RG do cônjuge',
                         'maxlength'   => '30'
                     ])
                 !!}
@@ -475,7 +475,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                {!! Form::label('conjuge_nascionalidade_id', 'Nascionalidade do Cônjuge') !!}
+                {!! Form::label('conjuge_nascionalidade_id', 'Nacionalidade do Cônjuge') !!}
                 {!! Form::select(
                     'conjuge_nascionalidade_id',
                     $nascionalidades,

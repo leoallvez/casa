@@ -106,7 +106,7 @@
 
 <div class="row">
    <div class="col-md-3">
-        {!! Form::label('nascionalidade_id', 'Nascionalidade') !!}
+        {!! Form::label('nascionalidade_id', 'Nacionalidade') !!}
         {!! Form::select(
             'nascionalidade_id', 
             $nascionalidades, 
@@ -211,7 +211,7 @@
           $("#nascionalidade_id").select2({            
             language: {
                 noResults: function() {
-                    return "Nascionalidade não encontrada!";
+                    return "Nacionalidade não encontrada!";
                 }
             }
           });

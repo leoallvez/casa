@@ -55,7 +55,7 @@ class UsuarioController extends Controller
         $usuario->setSenha('casa'.date('Y'));
         $usuario->save();
 
-        flash('Usuário Incluido com Sucesso', 'success');
+        flash('Usuário Incluído com Sucesso', 'success');
 
         return redirect('usuarios');
     }
