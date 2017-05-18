@@ -21,39 +21,33 @@
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <div class="form-group has-feedback has-feedback-left">
-                                  <input id="email"
+                                <div class="col-md-12 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input id="email"
                                          type="email"
-                                         class="form-control"
+                                         class="form-control has-feedback-left"
                                          name="email"
                                          value="{{ old('email') }}"
                                          required
                                          autofocus
                                          placeholder="E-mail">
-                                <i class="form-control-feedback glyphicon glyphicon-envelope"></i>
+                                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                              <div class="form-group has-feedback has-feedback-left">
+                              <div class="col-md-12 col-sm-6 col-xs-12 form-group has-feedback">
                                 <input id="password"
                                        type="password"
-                                       class="form-control"
+                                       class="form-control has-feedback-left"
                                        name="password"
                                        required
                                        placeholder="Senha">
-                                <i class="form-control-feedback glyphicon glyphicon-lock"></i>
-                                @if($errors->has('password'))
+                                <span class="fa fa-lock form-control-feedback left" aria-hidden="true"></span>
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                               </div>
@@ -62,12 +56,14 @@
 
                         <div class="form-group">
                             <div class="col-md-8">
-                                <button type="submit" class="btn btn-primary">
-                                    Acessar
-                                </button>
-                                <a class="btn btn-success" href="{{ action('SolicitaCadastroController@create') }}">
-                                    Solicitar Cadastro
-                                </a>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        Acessar
+                                    </button>
+                                    <a class="btn btn-success" href="{{ action('SolicitaCadastroController@create') }}">
+                                        Solicitar Cadastro
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </form>
