@@ -57,7 +57,7 @@
       </nav>
     @endif
 
-    <div class="right_col" role="main" id="app">
+    <div class="right_col" role="main" id="app" style="position: relative;">
       @yield('content')
     </div>
 

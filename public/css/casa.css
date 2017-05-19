@@ -64,10 +64,7 @@
   .navbar-externo {
     margin-bottom: 2%;
   }
-  .login{
-    padding-top: 7%;
-    background: none;
-  }
+
   .logo {
     font-family: Pacifico;
     font-size: 170%;
@@ -83,4 +80,62 @@
   .menu-text {
     font-size: 120%;
     padding-right: 2%;
+  }
+
+  /*login desck*/
+  .login-casa {
+    margin-top: 5%;
+    transition: all 1s;
+  }
+
+  .login {
+    background-color: rgba(255,255,255,0.5);
+    transition: all 1.2s;
+  }
+
+  .login:hover {
+      background-color: rgba(255,255,255,1);
+      border: rgba(255,255,255,1);
+  }
+
+  .login input {
+      background-color: rgba(255,255,255,0.5);
+      color: #FFF;
+  }
+
+  .login:hover input {
+      background-color: rgba(255,255,255,0.5);
+      color: #000;
+  }
+
+  .login input::-webkit-input-placeholder {
+    color: #FFF;
+  }
+
+  .login:hover input::-webkit-input-placeholder {
+    color: #A9A9A9;
+  }
+
+  .login button{
+      background-color: rgba(51,122,183,0.5);
+  }
+
+  .login:hover button{
+      background-color: rgba(51,122,183,1);
+  }
+
+  .login a {
+     background-color: rgba(38,185,154,0.5);
+  }
+
+  .login:hover a {
+     background-color: rgba(38,185,154,1);
+  }
+
+  /*login mobile*/
+  @media screen and (max-width: 800px) {
+    .login-casa {
+      padding: 10%;
+      margin-top: 10%;
+    }
   }
