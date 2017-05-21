@@ -7,6 +7,32 @@
     font-family: Antic-Regular;
     src: url(../font/Antic-Regular.ttf);
   }
+
+  *{
+    margin: 0;
+    padding: auto;
+  }
+
+  .login-html, .body-login {
+    background:repeating-linear-gradient(-45deg,#00BFFF,rgba(38,185,154,1) 7px, #FFF 5px, #FFF 10px);
+    background-position: fixed;
+    /*valor cover deixa a imagem maior ou igual ao seu box*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*transition: all 1s;*/
+  }
+
+  .body-solicitacao {
+    background:repeating-linear-gradient(-45deg,#00BFFF,rgba(38,185,154,0.5) 7px, #FFF 5px, #FFF 10px);
+    background:repeating-linear-gradient(45deg,#00BFFF,rgba(38,185,154,0.5) 10px, #FFF 2px, #FFF 10px);
+    background-position: fixed;
+  }
+
+  .body-login {
+    overflow-x: hidden;
+    overflow-Y: hidden;
+  }
+
   input[type="text"]:disabled, select:disabled {
     background-color: #90CAF9;
     border: 1px solid #1976D2;
@@ -63,6 +89,9 @@
 
   .navbar-externo {
     margin-bottom: 2%;
+    background: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.9);
+    border-radius: 0px;
   }
 
   .logo {
@@ -88,14 +117,30 @@
     transition: all 1s;
   }
 
+  .login-logo-font {
+    font-family: Pacifico;
+    font-size: 190%;
+    margin: 0;
+    color: #00BFFF;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.9);
+  }
+
+  .login-heading {
+    background-color: rgba(245, 245, 245, 0.5) !important;
+  }
+
   .login {
     background-color: rgba(255,255,255,0.5);
     transition: all 1.2s;
   }
 
   .login:hover {
-      background-color: rgba(255,255,255,1);
-      border: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,1);
+  }
+
+  .login-logo-img {
+    display: inline-block; 
+    margin-left: 4%
   }
 
   .login input {
@@ -104,38 +149,103 @@
   }
 
   .login:hover input {
-      background-color: rgba(255,255,255,0.5);
-      color: #000;
+    background-color: rgba(255,255,255,0.5);
+    color: #000;
   }
 
   .login input::-webkit-input-placeholder {
-    color: #FFF;
-  }
-
-  .login:hover input::-webkit-input-placeholder {
     color: #A9A9A9;
   }
 
-  .login button{
+  .login button {
       background-color: rgba(51,122,183,0.5);
+      box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
   }
 
   .login:hover button{
       background-color: rgba(51,122,183,1);
+      box-shadow: 2px 2px 3px rgba(0,0,0,1);
   }
 
+  .login input:focus button{ 
+    background-color: rgba(51,122,183,1);
+
+  }
   .login a {
      background-color: rgba(38,185,154,0.5);
+     box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
   }
 
   .login:hover a {
      background-color: rgba(38,185,154,1);
+     box-shadow: 2px 2px 3px rgba(0,0,0,1);
+  }
+  /**Imagens da tela de login*/
+  .img {
+      /*background-position: fixed;*/
+      /*valor cover deixa a imagem maior ou igual ao seu box*/
+      size: cover !important;
+      background-size: auto 100%;
+      filter: brightness(0.9);
+      -webkit-filter: brightness(0.9);
+      -moz-filter: brightness(0.9);
+      -o-filter: brightness(0.9);
+      -ms-filter: brightness(0.9);
   }
 
+  .fadein img {
+      background-position: fixed;
+      position:absolute;
+      width: 100%;
+      height: auto;
+      left:0;
+      top:0;
+  }
   /*login mobile*/
   @media screen and (max-width: 800px) {
+    
+    .login-html, .body-login {
+      background:repeating-linear-gradient(-45deg,#00BFFF,rgba(38,185,154,0.5) 7px, #FFF 5px, #FFF 10px);
+      background:repeating-linear-gradient(45deg,#00BFFF,rgba(38,185,154,0.5) 10px, #FFF 2px, #FFF 10px);
+    }
+
     .login-casa {
       padding: 10%;
-      margin-top: 10%;
+      max-width: 100% !important;
     }
+
+    .login {
+      background-color: rgba(255,255,255,1);
+      box-shadow: 2px 2px 3px rgba(0,0,0,0.9);
+    }
+
+    .login input {
+      background-color: rgba(255,255,255,0.5);
+      color: #000;
+    }
+
+    .login button{
+      background-color: rgba(51,122,183,1);
+    }
+
+    .login a {
+     background-color: rgba(38,185,154,1);
+    }
+
+    .login input::-webkit-input-placeholder {
+      color: #A9A9A9;
+    }
+
+    .img { 
+       display: none !important;
+     }
+  }
+
+  @media screen and (max-width: 720px) { 
+
+    .login-casa {
+      padding: 0%;
+      margin-top: 5%;
+    }
+
   }

@@ -10,7 +10,7 @@
     {{-- CSRF Token --}}
     <meta id="_token" name="csrf-token" content="{{ csrf_token() }}">
     {{-- Icon --}}
-    <link rel="shortcut icon" href="{{ asset('img/casa-black.png') }}" >
+    <link rel="shortcut icon" href="{{ asset('img/casa.png') }}" >
     {{-- Bootstrap --}}
     <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}

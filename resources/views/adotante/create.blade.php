@@ -24,7 +24,7 @@
 	            <br/>
             	{!! Form::open(['url' => 'adotantes', 'class' => 'form-horizontal form-label-left' ]) !!}
                 	@include('adotante._form', ['nomeBotaoSubmit' => 'Incluir'])
-              	{!! Form::close() !!}
+              {!! Form::close() !!}
 	          </div>
 	        </div>
 	      </div>

@@ -11,7 +11,7 @@
 <fieldset>
     <legend><h3>Adotante</h3></legend>
     <div class="row">
-        <div class="col-md-9 form-group">
+        <div class="col-md-9 col-xs-12 form-group">
             {!! Form::label('nome', 'Nome') !!}
             <span class='obrigatorio'>*</span>
             {!! Form::text('nome', null,
@@ -540,14 +540,6 @@
             date = date.split("/").reverse().join("-");
             $(hidden).val(date);
         }
-
-        $("#estado").select2({
-            language: {
-                "noResults": function(){
-                    return "Estado não encontrado!";
-                }
-            }
-        });
 
         $( document ).ready(function() {
            @if(Request::old('estado_civil_id') != null)

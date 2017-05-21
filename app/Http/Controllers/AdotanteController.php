@@ -36,7 +36,7 @@ class AdotanteController extends Controller {
      */
     public function create() {
         $estadosCivis = EstadoCivil::pluck('nome', 'id');
-        $estados = Estado::pluck('UF', 'id');
+        $estados = Estado::pluck('nome', 'id');
         $escolaridades = Escolaridade::pluck('nome', 'id');
         $categoriasProfissionais = CategoriaProfissional::pluck('nome', 'id');
         // $adotivos = Adotivo::where('status_id', '=', 2)->pluck('nome', 'id');
@@ -105,7 +105,7 @@ class AdotanteController extends Controller {
     public function edit($id) {
         $adotante = Adotante::findOrFail($id);
         $estadosCivis = EstadoCivil::all()->pluck('nome', 'id');
-        $estados = Estado::all()->pluck('UF', 'id');
+        $estados = Estado::all()->pluck('nome', 'id');
         // $adotivosProcessoIds = $adotante->adotivos()->pluck('adotivo_id')->toArray();
 
         $escolaridades = Escolaridade::all()->pluck('nome', 'id');

@@ -28,7 +28,7 @@ class SolicitaCadastroController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $estados = Estado::all()->pluck('UF', 'id');
+        $estados = Estado::all()->pluck('nome', 'id');
 
         return view('solicitacao.create', compact('estados'));
     }
