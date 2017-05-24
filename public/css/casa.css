@@ -94,6 +94,10 @@
     border-radius: 0px;
   }
 
+  #btn-entrar {
+     box-shadow: 2px 2px 3px rgba(0,0,0,1);  
+  }
+
   .logo {
     font-family: Pacifico;
     font-size: 170%;
