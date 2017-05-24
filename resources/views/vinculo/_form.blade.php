@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12 form-group">
+    <div class="col-md-12 col-xs-12 form-group">
         {!! Form::label('adotante', 'Adotante') !!}
         {!! Form::text('adotante', $adotantes->nome,
             [
@@ -11,7 +11,7 @@
 </div>
 @if($adotantes->hasConjuge())
     <div class="row">
-        <div class="col-md-12 form-group">
+        <div class="col-md-12 col-xs-12 form-group">
             {!! Form::label('conjuge', 'Conjuge') !!}
             {!! Form::text('conjuge', $adotantes->conjuge_nome,
                 [
@@ -24,7 +24,7 @@
 @endif
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-12">
         <div class="form-group">
             {!! Form::label('input-inicio', 'Data Inicial')!!}
             {!! Form::text('input-inicio',
@@ -39,7 +39,7 @@
             !!}
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-12">
         <div class="form-group">
             {!! Form::label('input-final', 'Data Final')!!}
             {!! Form::text('input-final',
@@ -56,7 +56,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-xs-12">
         <div class="form-group">
             {!! Form::label('input-observacao', 'Observação')!!}
             {!! Form::textarea('input-observacao',

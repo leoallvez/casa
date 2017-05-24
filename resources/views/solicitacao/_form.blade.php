@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9 col-xs-9">
+        <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco', 'Endereço') !!}
                 {!! Form::text('endereco', null, 
@@ -55,7 +55,7 @@
                 </span>
             </p>
         </div>
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco_numero', 'Número') !!}
                 {!! Form::text('endereco_numero', null, 
@@ -91,7 +91,7 @@
 
     <div class="row">
 		@if(!isset($instituicao))
-            <div class="col-md-2 col-xs-6">
+            <div class="col-md-2 col-xs-12">
                 <div class="form-group">
                     {!! Form::label('estado_id', 'Estado') !!}
                     {!! Form::select(
@@ -104,7 +104,7 @@
                 </div>
             </div>
         @else
-            <div class="col-md-2 col-xs-6">
+            <div class="col-md-2 col-xs-12">
                 <div class="form-group">
                     {!! Form::label('estado_id', 'Estado') !!}
                     {!! Form::text('estado_id', $instituicao->estado->UF, 
@@ -117,7 +117,7 @@
                 </div>
          </div>       
         @endif
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cidade', 'Cidade') !!}
                 {!! Form::text('cidade', null, 
@@ -154,7 +154,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cep', 'CEP') !!}
                 {!! Form::text('cep', null, 
@@ -172,7 +172,7 @@
                 </span>
             </p>
         </div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('email_instituicao', 'E-mail Instituição') !!}
                 {!! Form::text('email_instituicao',$instituicao->email ?? null, 
@@ -192,7 +192,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('telefone', 'Telefone ') !!}
                 {!! Form::text('telefone', null, 
@@ -216,7 +216,7 @@
 <fieldset>
     <legend><h3>Administrador</h3></legend>
     <div class="row">
-        <div class="col-md-9 col-xs-8">
+        <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('name', 'Nome') !!}
                 {!! Form::text('name', $usuario->name  ?? null, 
@@ -233,7 +233,7 @@
                 </span>
             </p>
         </div>
-        <div class="col-md-3 col-xs-4">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cpf', 'CPF') !!}
                 {!! Form::text('cpf', $usuario->cpf ?? null, 
@@ -253,7 +253,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cargo', 'Cargo') !!}
                 {!! Form::text('cargo', $usuario->cargo ?? null, 
@@ -270,7 +270,7 @@
                 </span>
             </p>
         </div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('email_adminstrador', 'E-mail Administrador') !!}
                 {!! Form::text('email_adminstrador', $usuario->email ?? null, 
@@ -288,7 +288,7 @@
     </div>
     @if(!isset($instituicao))
     <div class="row">
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('password', 'Senha') !!}
                 {!! Form::password('password',
@@ -303,7 +303,7 @@
                 {{ $errors->first('password') }}
             </span>
         </div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('password_confirmation', 'Confirmar Senha') !!}
                 {!! Form::password('password_confirmation',
@@ -321,9 +321,7 @@
     </div>
     @endif
 </fieldset>
-
 <br>
-
 <div class="form-group">
     @if(isset($instituicao))
         {{ Html::linkAction(

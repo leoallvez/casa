@@ -28,7 +28,7 @@
             </p>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('estado_civil_id', 'Estado Civil') !!}
                 <span class='obrigatorio'>*</span>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('escolaridade_id', 'Escolaridade') !!}
                 <span class='obrigatorio'>*</span>
@@ -72,7 +72,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('categoria_profissional_id', 'Categoria Profissional') !!}
                 <span class='obrigatorio'>*</span>
@@ -91,7 +91,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             {!! Form::label('nascionalidade_id', 'Nacionalidade') !!}
             {!! Form::select(
                 'nascionalidade_id',
@@ -105,7 +105,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <p>
                 {!! Form::label('sexo', 'Sexo') !!}<br>
                 Masculino:
@@ -114,7 +114,7 @@
                 {!! Form::radio('sexo', 'F', null, ['class' => 'flat']) !!}
             </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('input-nascimento', 'Nascimento')!!}
                 <span class='obrigatorio'>*</span>
@@ -145,7 +145,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label("cpf", "CPF") !!}
                 <span class='obrigatorio'>*</span>
@@ -171,7 +171,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('rg', 'RG') !!}
                 <span class='obrigatorio'>*</span>
@@ -192,7 +192,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco', 'Endereço') !!}
                 {!! Form::text('endereco', null,
@@ -203,7 +203,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco_numero', 'Número') !!}
                 {!! Form::text('endereco_numero', null,
@@ -216,7 +216,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
             <div class="form-group">
                 {!! Form::label('complemento', 'Complemento') !!}
                 {!! Form::text('complemento', null,
@@ -230,7 +230,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-12">
             <div class="form-group">
                 {!! Form::label('estado_id', 'Estado') !!}
                 {!! Form::select(
@@ -243,7 +243,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cidade', 'Cidade') !!}
                 {!! Form::text('cidade', null,
@@ -254,7 +254,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
                 {!! Form::label('bairro', 'Bairro') !!}
                 {!! Form::text('bairro', null,
@@ -269,7 +269,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             {!! Form::label('cep', 'CEP') !!}
             {!! Form::text('cep', null,
                 [
@@ -279,7 +279,7 @@
                 ])
             !!}
         </div>
-        <div class="col-md-6 ">
+        <div class="col-md-6 col-xs-12">
             {!! Form::label('email', 'E-mail') !!}
             <span class='obrigatorio'>*</span>
             {!! Form::text('email', null,
@@ -296,7 +296,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('telefone', 'Telefone ') !!}
                 <span class='obrigatorio'>*</span>
@@ -314,7 +314,7 @@
             </p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('celular', 'Celular ') !!}
                 {!! Form::text('celular', null,
@@ -331,7 +331,7 @@
 <fieldset id="conjuge">
     <legend><h3>Conjuge</h3></legend>
     <div class="row">
-        <div class="col-md-12 form-group">
+        <div class="col-md-12  col-xs-12 form-group">
             {!! Form::label('conjuge_nome', 'Nome do Cônjuge') !!}
             <span class='obrigatorio'>*</span>
             {!! Form::text('conjuge_nome', null,
@@ -349,7 +349,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <p>
                 {!! Form::label('conjuge_sexo', 'Sexo do Cônjuge') !!}<br>
                 Masculino:
@@ -358,7 +358,7 @@
                 {!! Form::radio('conjuge_sexo', 'F', null, ['class' => 'flat']) !!}
             </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('input-conjuge-nascimento', 'Data de Nascimento do Cônjuge')!!}
                 <span class='obrigatorio'>*</span>
@@ -389,7 +389,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label("conjuge_cpf", "CPF do Cônjuge") !!}
                 <span class='obrigatorio'>*</span>
@@ -415,7 +415,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('conjuge_rg', 'RG do Cônjuge') !!}
                 <span class='obrigatorio'>*</span>
@@ -435,7 +435,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('conjuge_escolaridade_id', 'Escolaridade do Cônjuge') !!}
                 <span class='obrigatorio'>*</span>
@@ -454,7 +454,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('conjuge_categoria_profissional_id', 'Categoria Profissional do Cônjuge') !!}
                 <span class='obrigatorio'>*</span>
@@ -473,7 +473,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('conjuge_nascionalidade_id', 'Nacionalidade do Cônjuge') !!}
                 {!! Form::select(
@@ -493,7 +493,7 @@
 <fieldset>
     <legend><h3>Adotivo(s)</h3></legend>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
             <div class="form-group">
                 {!! Form::select(
                     'adotivos[]',

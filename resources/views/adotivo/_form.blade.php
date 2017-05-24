@@ -1,7 +1,7 @@
 <link href="{{ asset('assets/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet" />
 
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-12">
         {!! Form::label('nome', 'Nome') !!}
         <span class='obrigatorio'>*</span>
         {!! Form::text('nome', null, 
@@ -14,7 +14,7 @@
             {{ $errors->first('nome') }}
         </span>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         {!! Form::label('sexo', 'Sexo') !!}<br>
         <strong> Masculino: </strong>
         {!! Form::radio('sexo', 'M', true, ['class' => 'flat']) !!}
@@ -24,7 +24,7 @@
 </div><br>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         {!! Form::label('input-nascimento', 'Nascimento')!!}
         <span class='obrigatorio'>*</span>
         {!! Form::text('input-nascimento', 
@@ -51,7 +51,7 @@
         </span>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         {!! Form::label('input-chegada', 'Data de Chegada')!!}
         <span class='obrigatorio'>*</span>
         {!! Form::text('input-chegada', 
@@ -79,7 +79,7 @@
         </span>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         {!! Form::label('status_id', 'Status') !!}
         {!! Form::select(
             'status_id', 
@@ -91,7 +91,7 @@
         !!}
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         {!! Form::label('etnia_id', 'Etnia') !!}
         {!! Form::select(
             'etnia_id', 
@@ -105,7 +105,7 @@
 </div><br>
 
 <div class="row">
-   <div class="col-md-3">
+   <div class="col-md-3 col-xs-12">
         {!! Form::label('nascionalidade_id', 'Nacionalidade') !!}
         {!! Form::select(
             'nascionalidade_id', 
@@ -117,7 +117,7 @@
             ])
         !!}
     </div> 
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         <div class="form-group">
             {!! Form::label('escolaridade_id', 'Escolaridade') !!}
             <span class='obrigatorio'>*</span>
@@ -136,7 +136,7 @@
             </a>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         {!! Form::label('restricao_id', 'Possui restrição de saúde?') !!}
         {!! Form::select('restricao_id', 
             $restricoes, 
@@ -152,14 +152,14 @@
             </span>
         </a>
     </div>
-    {{-- <div class="col-md-3">
+    {{-- <div class="col-md-3 col-xs-12">
         {!! Form::label('has_irmaos', 'Possui irmão(s)?') !!}<br>
         {!! Form::checkbox('has_irmaos', 1, false) !!}
     </div> --}}
 </div><br>
 {{-- {{ $irmaosIds }} --}}
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-xs-12">
        {!! Form::label('irmaosIds', 'Irmão(s)') !!}<br>
        {!! Form::select(
            'irmaosIds[]', 
@@ -177,7 +177,7 @@
 
 @if(isset($adotivo) && $adotivo->hasAdotantes())
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
             {!! Form::label(null ,'Adotante(s)') !!}<br>
             {!! Form::text(null, $adotante->getNomeEnomeConjuge(),
             [
