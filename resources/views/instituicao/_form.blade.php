@@ -1,7 +1,7 @@
 <fieldset>
     <legend><h3>Instituição</h3></legend>
     <div class="row">
-        <div class="col-md-9" >
+        <div class="col-md-9 col-xs-12" >
             <div class="form-group">
                 {!! Form::label('razao_social', 'Razão Social') !!}
                 {!! Form::text('razao_social', $instituicao->razao_social ?? null, 
@@ -13,7 +13,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cnpj', 'CNPJ') !!}
                 {!! Form::text('cnpj', $instituicao->cnpj ?? null, 
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco', 'Endereço') !!}
                 {!! Form::text('endereco', $instituicao->endereco ?? null, 
@@ -40,7 +40,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco_numero', 'Número') !!}
                 {!! Form::text('endereco_numero', $instituicao->endereco_numero ?? null, 
@@ -55,7 +55,7 @@
     </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
             <div class="form-group">
                 {!! Form::label('complemento', 'Complemento') !!}
                 {!! Form::text('complemento', $instituicao->complento ?? null, 
@@ -70,7 +70,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cidade', 'Cidade') !!}
                 {!! Form::text('cidade', $instituicao->cidade ?? null, 
@@ -82,7 +82,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
                 {!! Form::label('bairro', 'Bairro ') !!}
                 {!! Form::text('bairro', $instituicao->bairro ?? null, 
@@ -95,7 +95,7 @@
             </div>
         </div>
         
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-12">
             <div class="form-group">
                 {!! Form::label('estado_id', 'Estado') !!}
                 {!! Form::text('estado_id', $instituicao->estado->UF, 
@@ -110,7 +110,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cep', 'CEP') !!}
                 {!! Form::text('cep', $instituicao->cep ?? null, 
@@ -123,7 +123,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('email_instituicao', 'E-mail Instituição') !!}
                 {!! Form::text('email_instituicao',$instituicao->email ?? null, 
@@ -138,7 +138,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('telefone', 'Telefone ') !!}
                 {!! Form::text('telefone', $instituicao->telefone ?? null, 
@@ -157,7 +157,7 @@
 <fieldset>
     <legend><h3>Administrador</h3></legend>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('name', 'Nome') !!}
                 {!! Form::text('name', $usuario->name  ?? null, 
@@ -169,7 +169,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cpf', 'CPF') !!}
                 {!! Form::text('cpf', $usuario->cpf ?? null, 
@@ -184,7 +184,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cargo', 'Cargo') !!}
                 {!! Form::text('cargo', $usuario->cargo ?? null, 
@@ -196,7 +196,7 @@
                 !!}
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('email_adminstrador', 'E-mail Administrador') !!}
                 {!! Form::text('email_adminstrador', $usuario->email ?? null, 

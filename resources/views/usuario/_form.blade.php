@@ -2,7 +2,7 @@
 {!! Form::hidden('id') !!}
 
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-12">
         <div class="form-group">
             {!! Form::label('name', 'Nome') !!}
              <span class='obrigatorio'>*</span>
@@ -17,7 +17,7 @@
             </span>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         <div class="form-group">
             {!! Form::label('nivel_id', 'Nível') !!}
                 {!! Form::select('nivel_id', $niveis, $usuario->nivel_id ?? Auth::user()->getNivelCadastro(), 
@@ -32,7 +32,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-5 col-xs-12">
         <div class="form-group">
             {!! Form::label('cargo', 'Cargo') !!}
              <span class='obrigatorio'>*</span>
@@ -47,7 +47,7 @@
             </span>
         </div>
     </div>
-     <div class="col-md-4">
+     <div class="col-md-4 col-xs-12">
         <div class="form-group">
             {!! Form::label('email', 'Email') !!}
             <span class='obrigatorio'>*</span>
@@ -62,7 +62,7 @@
             </span>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-12">
         <div class="form-group">
             {!! Form::label("cpf", "CPF") !!}
             <span class='obrigatorio'>*</span>
@@ -90,7 +90,7 @@
 </div>
 @if(isset($usuario))
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
             {!! Form::label("instituicao", "Instituição") !!}
             {!!
                 Form::text("instituicao", $usuario->instituicao->razao_social,
@@ -106,7 +106,7 @@
 <br>
 @if(isset($usuario) && Auth::id() == $usuario->id)
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('password', 'Senha') !!}
                 <small>Minimo 8 caracteres</small>
@@ -122,7 +122,7 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('password_confirmation', 'Confirmar Senha') !!}
                 {!! (!isset($usuario)) ? "<span class='obrigatorio'>*</span>" : null !!}
