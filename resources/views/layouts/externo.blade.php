@@ -37,7 +37,7 @@
                   </span>
               </a>
               <p class="navbar-text navbar-right pull-right menu-text">
-                  <a href="{{ url('/login') }}" class="btn btn-info" id="btn-entra">Entrar</a>
+                  <a href="{{ url('/login') }}" class="btn btn-info btn-blue">Entrar</a>
               </p>
             </div>
           </div>

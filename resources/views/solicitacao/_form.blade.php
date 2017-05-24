@@ -334,7 +334,7 @@
     @endif
     {!! Form::submit(
             $nomeBotaoSubmit, 
-            ['class' => (isset($instituicao))? 'btn btn-success' : 'btn btn-primary']
+            ['class' => (isset($instituicao))? 'btn btn-success' : 'btn btn-primary btn-blue']
         ) 
     !!}
     @if(isset($instituicao))
