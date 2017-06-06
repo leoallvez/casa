@@ -12,7 +12,7 @@
                     @include('flash::message')
                     <div class="panel-heading">Casa</div>
                     <div class="panel-body">
-                        <i> Bem-vindo</i> <b>{{Auth::user()->name }}</b><i> você esta em</i>
+                        <i> Bem-vindo</i> <b>{{Auth::user()->name }}</b><i>você esta em</i>
                         <span class="logo">{{ config('app.name', 'Casa') }}!</span>
                     </div>
                 </div>

@@ -36,9 +36,6 @@
                     {{ config('app.name', 'Casa') }}
                   </span>
               </a>
-
-
-              
               <p class="navbar-text navbar-right pull-right menu-text">
                   <a href="{{ url('/login') }}" class="btn btn-info btn-blue">Entrar</a>
               </p>

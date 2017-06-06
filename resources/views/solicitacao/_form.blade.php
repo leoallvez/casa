@@ -38,6 +38,36 @@
         </div>
     </div>
     <div class="row">
+        
+        <div class="col-md-2 col-xs-12">
+            <div class="form-group">
+                {!! Form::label('cep', 'CEP') !!}
+                
+                {!! Form::text('cep', null, 
+                    [
+                        'class'       => 'form-control',
+                        'data-mask'   => '00000-000',
+                        'placeholder' => '00000-000',
+                        'onchange'    => 'buscarCEP()',
+                        (isset($instituicao)) ? 'disabled' : null 
+                    ]) 
+                !!}
+            </div>
+            
+            <p>
+                <span class='validacao-text'> 
+                    {{ $errors->first('cep') }}
+                </span>
+            </p>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <div class="form-group">
+                <br>
+                <span><stron>* Digite o CEP para buscar o endereço</stron></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('endereco', 'Endereço') !!}
@@ -98,7 +128,7 @@
                             'estado_id', 
                             $estados, 
                             $instituicao->estadoinstituicao_id ?? null, 
-                            ['class' => 'form-control', 'id' => 'estado']
+                            ['class' => 'form-control estado', 'id' => 'estado']
                         ) 
                     !!}
                 </div>
@@ -156,24 +186,6 @@
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
-                {!! Form::label('cep', 'CEP') !!}
-                {!! Form::text('cep', null, 
-                    [
-                        'class'       => 'form-control',
-                        'data-mask'   => '00000-000',
-                        'placeholder' => '00000-000',
-                        (isset($instituicao)) ? 'disabled' : null 
-                    ]) 
-                !!}
-            </div>
-            <p>
-                <span class='validacao-text'> 
-                    {{ $errors->first('cep') }}
-                </span>
-            </p>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="form-group">
                 {!! Form::label('email_instituicao', 'E-mail Instituição') !!}
                 {!! Form::text('email_instituicao',$instituicao->email ?? null, 
                     [
@@ -189,9 +201,6 @@
                 </span>
             </p>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('telefone', 'Telefone ') !!}
@@ -353,16 +362,169 @@
     </p>
 </div>
 
+
+
 @section('js')
+
   <script type="text/javascript">
-    $(document).ready(function() {
-        $("#estado").select2({
-          language: {
-            "noResults": function(){
-                return "Estado não encontrado!";
-            }
-          }
-        });
-    });
+
+  function buscarIdEstado(uf) {
+
+      var id = 1;
+
+      switch(uf) {
+        case 'SP':
+            id = 1;
+            break;
+        case 'AC':
+            id = 2;
+            break;
+        case 'AL':
+            id = 3;
+            break;
+        case 'AM':
+            id = 4;
+            break;
+        case 'AP':
+            id = 5
+            break;
+        case 'BA':
+            id = 6;
+            break;
+        case 'CE':
+            id = 7;
+            break;
+        case 'DF':
+            id = 8;
+            break;
+        case 'ES':
+            id = 9;
+            break;
+        case 'GO':
+            id = 10;
+            break;
+        case 'MA':
+            id = 11;
+            break;
+        case 'MT':
+            id = 12;
+            break;
+        case 'MS':
+            id = 13;
+            break;
+        case 'MG':
+            id = 14;
+            break;
+        case 'PA':
+            id = 15;
+            break;
+        case 'PB':
+            id = 16;
+            break;
+        case 'PR':
+            id = 17;
+            break;
+        case 'PE':
+            id = 18;
+            break;
+        case 'PI':
+            id = 19;
+            break;
+        case 'RJ':
+            id = 20;
+            break;
+        case 'RN':
+            id = 21;
+            break;
+        case 'RO':
+            id = 22;
+            break;
+        case 'RS':
+            id = 23;
+            break;
+        case 'RR':
+            id = 24;
+            break;
+        case 'SC':
+            id = 25;
+            break;
+        case 'SE':
+            id = 26;
+            break;
+        case 'TO':
+            id = 27;
+            break;  
+     }
+     return id;
+  }
+
+  var request = null;
+
+  function createRequest() {
+     //Criar um novo objeto para fazer solicitações AJAX ao servidor.
+     try {
+       request = new XMLHttpRequest();
+     } catch (trymicrosoft) {
+       try {
+         request = new ActiveXObject("Msxml2.XMLHTTP");
+       } catch (othermicrosoft) {
+         try {
+           request = new ActiveXObject("Microsoft.XMLHTTP");
+         } catch (failed) {
+           request = null;
+         }
+       }
+     }
+     if (request == null)
+       console.log("Error creating request object!");
+  }
+   /**
+    Todo o código abaixo da condicional “if (request.readyState == 4)” 
+    será executado quando a solicitação ao servidor for totalmente concluída, 
+    ou seja, quando uma resposta for trazida do servidor.
+   */
+   function atualizaPagina() {
+    if (request.readyState == 4) {
+        
+        var result = request.responseText;
+        // Convertendo Jso em um objeto javascript
+        result = JSON.parse(result);
+        if(result.status){
+            $('#endereco').val(result.endereco.ds_abrev_logradouro);
+            $('#cidade').val(result.endereco.ds_localidade);
+            $('#bairro').val(result.endereco.ds_bairro);
+            
+            var id_estado = buscarIdEstado(result.endereco.ds_uf);
+            //Select de Estado.
+            $('.estado option')
+                .removeAttr('selected')
+                .filter('[value='+id_estado+']')
+                .attr('selected', true);
+        } else {
+            //Cep não encontrador!
+            $('#cep').val("");
+            $('#endereco').val("");
+            $('#cidade').val("");
+            $('#bairro').val("");
+            //Select de Estado.
+            $('.estado option')
+                .removeAttr('selected')
+                .filter('[value=1]')
+                .attr('selected', true);
+        }
+    }
+  }
+  function buscarCEP() {
+     createRequest();
+     // Pegando o valor cep digitado
+     var cep = $('#cep').val();
+     // A url da API que será feita a consulta
+     var url = "http://cep-api.dev/api/v1/buscar/"+cep;
+     request.open("GET", url, true);
+     request.onreadystatechange = atualizaPagina;
+
+     request.send(null);
+  }
+
   </script>
 @endsection
