@@ -22,8 +22,10 @@ return [
     | Define a url da API de CEP.
     | 
     */
-
+    /*localhost*/
     'api-url' => 'http://cep-api.dev/api/v1/buscar/',
+    /* online */
+    // 'api-url' => 'http://cep-api.esy.es/public/api/v1/buscar/',
 
     /*
     |--------------------------------------------------------------------------

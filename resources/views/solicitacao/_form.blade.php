@@ -419,7 +419,7 @@
     }
 
     function buscarCEP() {
-        createRequest();e
+        createRequest();
         // Pegando o valor cep digitado
         var cep = $('#cep').val();
         // A url da API que será feita a consulta
