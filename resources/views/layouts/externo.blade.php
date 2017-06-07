@@ -17,6 +17,8 @@
     <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
     {{-- Custom Theme Style --}}
     <link href="{{ asset('assets/build/css/custom.min.css') }}" rel="stylesheet" />
+    {{-- Sweet Alert --}}
+    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
     <link href="{{ asset('css/casa.css') }}" rel="stylesheet" />
     <script>
@@ -63,19 +65,22 @@
         <img class="img" src="{{ asset('slides/img-16.jpg') }}" style="display: none">
       </div>
     @endif
+    
     <div class="right_col" role="main" id="app" style="position: relative;">
       @yield('content')
     </div>
+    {{-- Sweet Alert --}}
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     {{-- jQuery --}}
     <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
     {{-- JQuery Mark--}}
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+    {{-- Casa Js --}}
+    <script src="{{ asset('js/casa.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
     <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     {{-- Custom Theme Scripts --}}
     <script src="{{ asset('assets/build/js/custom.min.js') }}"></script>
-    {{-- Casa Js --}}
-    <script src="{{ asset('js/casa.js') }}"></script>
   </body>
 </html>

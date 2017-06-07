@@ -362,169 +362,72 @@
     </p>
 </div>
 
-
-
 @section('js')
-
   <script type="text/javascript">
 
-  function buscarIdEstado(uf) {
+    var request = null;
 
-      var id = 1;
+    function createRequest() {
+        //Criar um novo objeto para fazer solicitações AJAX ao servidor.
+        try {
+        request = new XMLHttpRequest();
+        } catch (trymicrosoft) {
+        try {
+                request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (othermicrosoft) {
+                try {
+                request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (failed) {
+                request = null;
+                }
+            }
+        }
+        if (request == null)
+         console.log("Error creating request object!");
+    }
+    /**
+        Todo o código abaixo da condicional “if (request.readyState == 4)” 
+        será executado quando a solicitação ao servidor for totalmente concluída, 
+        ou seja, quando uma resposta for trazida do servidor.
+    */
+    function atualizaPagina() {
 
-      switch(uf) {
-        case 'SP':
-            id = 1;
-            break;
-        case 'AC':
-            id = 2;
-            break;
-        case 'AL':
-            id = 3;
-            break;
-        case 'AM':
-            id = 4;
-            break;
-        case 'AP':
-            id = 5
-            break;
-        case 'BA':
-            id = 6;
-            break;
-        case 'CE':
-            id = 7;
-            break;
-        case 'DF':
-            id = 8;
-            break;
-        case 'ES':
-            id = 9;
-            break;
-        case 'GO':
-            id = 10;
-            break;
-        case 'MA':
-            id = 11;
-            break;
-        case 'MT':
-            id = 12;
-            break;
-        case 'MS':
-            id = 13;
-            break;
-        case 'MG':
-            id = 14;
-            break;
-        case 'PA':
-            id = 15;
-            break;
-        case 'PB':
-            id = 16;
-            break;
-        case 'PR':
-            id = 17;
-            break;
-        case 'PE':
-            id = 18;
-            break;
-        case 'PI':
-            id = 19;
-            break;
-        case 'RJ':
-            id = 20;
-            break;
-        case 'RN':
-            id = 21;
-            break;
-        case 'RO':
-            id = 22;
-            break;
-        case 'RS':
-            id = 23;
-            break;
-        case 'RR':
-            id = 24;
-            break;
-        case 'SC':
-            id = 25;
-            break;
-        case 'SE':
-            id = 26;
-            break;
-        case 'TO':
-            id = 27;
-            break;  
-     }
-     return id;
-  }
-
-  var request = null;
-
-  function createRequest() {
-     //Criar um novo objeto para fazer solicitações AJAX ao servidor.
-     try {
-       request = new XMLHttpRequest();
-     } catch (trymicrosoft) {
-       try {
-         request = new ActiveXObject("Msxml2.XMLHTTP");
-       } catch (othermicrosoft) {
-         try {
-           request = new ActiveXObject("Microsoft.XMLHTTP");
-         } catch (failed) {
-           request = null;
-         }
-       }
-     }
-     if (request == null)
-       console.log("Error creating request object!");
-  }
-   /**
-    Todo o código abaixo da condicional “if (request.readyState == 4)” 
-    será executado quando a solicitação ao servidor for totalmente concluída, 
-    ou seja, quando uma resposta for trazida do servidor.
-   */
-   function atualizaPagina() {
-    if (request.readyState == 4) {
-        
-        var result = request.responseText;
-        // Convertendo Jso em um objeto javascript
-        result = JSON.parse(result);
-        if(result.status){
-            $('#endereco').val(result.endereco.ds_abrev_logradouro);
-            $('#cidade').val(result.endereco.ds_localidade);
-            $('#bairro').val(result.endereco.ds_bairro);
+        if (request.readyState == 4) {
             
-            var id_estado = buscarIdEstado(result.endereco.ds_uf);
-            //Select de Estado.
-            $('.estado option')
-                .removeAttr('selected')
-                .filter('[value='+id_estado+']')
-                .attr('selected', true);
-        } else {
-            //Cep não encontrador!
-            $('#cep').val("");
-            $('#endereco').val("");
-            $('#cidade').val("");
-            $('#bairro').val("");
-            //Select de Estado.
-            $('.estado option')
-                .removeAttr('selected')
-                .filter('[value=1]')
-                .attr('selected', true);
+            var result = request.responseText;
+            // Convertendo Jso em um objeto javascript
+            result = JSON.parse(result);
+            if(result.status){
+                $('#endereco').val(result.endereco.ds_abrev_logradouro);
+                $('#cidade').val(result.endereco.ds_localidade);
+                $('#bairro').val(result.endereco.ds_bairro);
+                
+                var id_estado = buscarIdEstado(result.endereco.ds_uf);
+                //Select de Estado.
+                $('.estado option')
+                    .removeAttr('selected')
+                    .filter('[value='+id_estado+']')
+                    .attr('selected', true);
+            } else {
+                swal({
+                    title: "CEP não encontrado!",
+                    text: "Você ainda pode preencher as informações de endereço manualmente.",
+                    showConfirmButton: true
+                });
+            }
         }
     }
-  }
-  function buscarCEP() {
-     createRequest();
-     // Pegando o valor cep digitado
-     var cep = $('#cep').val();
-     // A url da API que será feita a consulta
-     var url = "http://cep-api.dev/api/v1/buscar/"+cep;
-     request.open("GET", url, true);
-     request.onreadystatechange = atualizaPagina;
 
-     request.send(null);
-  }
+    function buscarCEP() {
+        createRequest();e
+        // Pegando o valor cep digitado
+        var cep = $('#cep').val();
+        // A url da API que será feita a consulta
+        var url = "{{ Config::get('app.api-url') }}"+cep;
+        request.open("GET", url, true);
+        request.onreadystatechange = atualizaPagina;
 
+        request.send(null);
+    }
   </script>
 @endsection

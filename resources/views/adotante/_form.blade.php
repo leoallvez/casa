@@ -190,6 +190,27 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-12">
+            <div class="form-group">
+                {!! Form::label('cep', 'CEP') !!}
+                {!! Form::text('cep', null,
+                    [
+                        'class'       => 'form-control cep',
+                        'data-mask'   => '00000-000',
+                        'placeholder' => '00000-000',
+                        'onchange'    => 'buscarCEP()'
+                    ])
+                !!}
+            </div>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <div class="form-group">
+                <br>
+                <span><stron>* Digite o CEP para buscar o endereço</stron></span>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-9 col-xs-12">
@@ -237,7 +258,10 @@
                         'estado_id',
                         $estados,
                         $adotante->estado_id ?? null,
-                        ['class' => 'form-control', 'id' => 'estado']
+                        [
+                            'class' => 'form-control estado', 
+                            'id'    => 'estado'
+                        ]
                     )
                 !!}
             </div>
@@ -265,20 +289,9 @@
                 !!}
             </div>
         </div>
-
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-xs-12">
-            {!! Form::label('cep', 'CEP') !!}
-            {!! Form::text('cep', null,
-                [
-                    'class'       => 'form-control cep',
-                    'data-mask'   => '00000-000',
-                    'placeholder' => '00000-000'
-                ])
-            !!}
-        </div>
         <div class="col-md-6 col-xs-12">
             {!! Form::label('email', 'E-mail') !!}
             <span class='obrigatorio'>*</span>
@@ -294,8 +307,6 @@
                 </span>
             </p>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('telefone', 'Telefone ') !!}
@@ -314,6 +325,8 @@
             </p>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('celular', 'Celular ') !!}
@@ -434,6 +447,7 @@
             </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
@@ -554,5 +568,70 @@
                $('#conjuge').hide();
            }
         });
+
+        var request = null;
+
+        function createRequest() {
+            //Criar um novo objeto para fazer solicitações AJAX ao servidor.
+            try {
+            request = new XMLHttpRequest();
+            } catch (trymicrosoft) {
+            try {
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (othermicrosoft) {
+                    try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (failed) {
+                    request = null;
+                    }
+                }
+            }
+            if (request == null)
+            console.log("Error creating request object!");
+        }
+        /**
+            Todo o código abaixo da condicional “if (request.readyState == 4)” 
+            será executado quando a solicitação ao servidor for totalmente concluída, 
+            ou seja, quando uma resposta for trazida do servidor.
+        */
+        function atualizaPagina() {
+
+            if (request.readyState == 4) {
+                
+                var result = request.responseText;
+                // Convertendo Jso em um objeto javascript
+                result = JSON.parse(result);
+                if(result.status){
+                    $('#endereco').val(result.endereco.ds_abrev_logradouro);
+                    $('#cidade').val(result.endereco.ds_localidade);
+                    $('#bairro').val(result.endereco.ds_bairro);
+                    
+                    var id_estado = buscarIdEstado(result.endereco.ds_uf);
+                    //Select de Estado.
+                    $('.estado option')
+                        .removeAttr('selected')
+                        .filter('[value='+id_estado+']')
+                        .attr('selected', true);
+                } else {
+                    swal({
+                        title: "CEP não encontrado!",
+                        text: "Você ainda pode preencher as informações de endereço manualmente.",
+                        showConfirmButton: true
+                    });
+                }
+            }
+        }
+        
+        function buscarCEP() {
+            createRequest();
+            // Pegando o valor cep digitado
+            var cep = $('#cep').val();
+            // A url da API que será feita a consulta
+            var url = "{{ Config::get('app.api-url') }}"+cep;
+            request.open("GET", url, true);
+            request.onreadystatechange = atualizaPagina;
+
+            request.send(null);
+        }
     </script>
 @endsection

@@ -125,8 +125,6 @@
       @endif
     {{-- Footer content --}}
     </div>
-    {{-- Casa Js --}}
-    <script src="{{ asset('js/casa.js') }}"></script>
     {{-- Vue Js--}}
     <script src="{{ asset('js/vue.min.js') }}"></script>
     {{-- Vue Resource --}}
@@ -139,6 +137,8 @@
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     {{-- Select2 --}}
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    {{-- Casa Js --}}
+    <script src="{{ asset('js/casa.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
     <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
