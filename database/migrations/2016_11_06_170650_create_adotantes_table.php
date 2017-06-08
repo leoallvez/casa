@@ -35,7 +35,7 @@ class CreateAdotantesTable extends Migration {
             $table->string('conjuge_cpf')->nullable()->index();
             $table->string('conjuge_rg')->nullable();
             $table->integer('conjuge_escolaridade_id')->nullable();
-            $table->integer('conjuge_nascionalidade_id')->default(1);
+            $table->integer('conjuge_nascionalidade_id')->nullable();
             $table->integer('conjuge_categoria_profissional_id')->nullable();
             #FK
             $table->integer('estado_id');

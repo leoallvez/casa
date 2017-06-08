@@ -174,7 +174,7 @@
               title: "Atenção",
               text: "Não é possivel inativar adotivo pois possui vínculo.",
               type: "error"
-            }, function() {
+          }, function() {
               // window.location.reload();
           });
         }
