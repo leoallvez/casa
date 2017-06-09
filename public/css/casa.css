@@ -151,7 +151,7 @@
 
   .login input {
       background-color: rgba(255,255,255,0.5);
-      color: #FFF;
+      /*color: #FFF;*/
   }
 
   .login:hover input {

@@ -20,9 +20,9 @@ class UserUpdateRequest extends FormRequest {
     public function rules() {
         return [
             //
-            'name'     => 'required',
+            'name'     => 'required|regex:/^[\pL\s\-]+$/u',
             'cpf'      => 'required|cpf|size:14|unique:users,cpf,'.$this->id,
-            'cargo'    => 'required',
+            'cargo'    => 'required|regex:/^[\pL\s\-]+$/u',
             'email'    => 'required|email|unique:users,email,'.$this->id,
             'password' => 'confirmed|min:8'
         ];
@@ -31,6 +31,7 @@ class UserUpdateRequest extends FormRequest {
     public function messages() {
         return [
             'name.required'      => 'O campo nome é obrigatório.',
+            'name.regex'         => 'O nome deve conter apenas letras e espaços.',
             'cpf.cpf'            => 'Número de CPF inválido,',
             'cpf.required'       => 'O campo CPF é obrigatório.',
             'cpf.size'           => 'O campo CPF deve ter 14 caracteres.',

@@ -83,8 +83,43 @@ class UsersTableSeeder extends Seeder {
                 'nivel_id'   => 3,
                 'created_at' => date('Y-m-d'),
                 'instituicao_id' => 2
+            ],
+            # Solicitações de cadastro.
+            # Raio de Luz
+            [
+                'name'       => 'Ricardo de Lima Santana',
+                'email'      => 'ricardo@luz.com.br',
+                'password'   =>  Hash::make('casa2017'),
+                'cpf'        => '347.696.612-74',
+                'cargo'      => 'Diretor',
+                'nivel_id'   => 4,
+                'created_at' => date('Y-m-d'),
+                'instituicao_id' => 3
+            ],
+            # Casa de Santa Clara
+            [
+                'name'       => 'Juliana da Silva',
+                'email'      => 'juliana@santa-clara.com.br',
+                'password'   =>  Hash::make('casa2017'),
+                'cpf'        => '262.456.184-60',
+                'cargo'      => 'Gerente',
+                'nivel_id'   => 4,
+                'created_at' => date('Y-m-d'),
+                'instituicao_id' => 4
+            ],
+            # Centro Educacional à Criança e Adolescente.
+            [
+                'name'       => 'Katia Ferreira de Souza',
+                'email'      => 'katia@centro-educacional.com.br',
+                'password'   =>  Hash::make('casa2017'),
+                'cpf'        => '107.990.694-00',
+                'cargo'      => 'Diretora',
+                'nivel_id'   => 4,
+                'created_at' => date('Y-m-d'),
+                'instituicao_id' => 5
             ]
     	];
+        
     	DB::table('users')->insert($usuarios);
     }
 }

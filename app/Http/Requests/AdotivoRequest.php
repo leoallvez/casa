@@ -23,7 +23,7 @@ class AdotivoRequest extends FormRequest
         # 'nascimento'  => depois: 18 anos atras.
         # 'data_chegada' => depois: nascimento.
         return [
-            'nome'            => 'required',
+            'nome'            => 'required|regex:/^[\pL\s\-]+$/u',
             'nascimento'      => 'required|date|min:10|after:18 years ago|before:today',
             'data_chegada'    => 'required|date|after:nascimento|before:tomorrow',
             'escolaridade_id' => 'required'
@@ -32,6 +32,7 @@ class AdotivoRequest extends FormRequest
 
     public function messages() {
         return [
+            'nome.regex'          => 'O nome deve conter apenas letras e espaços.',
             'nascimento.after'    => 'O adotivo deve ter menos de 18 anos!',
             'nascimento.before'   => 'A data de nascimento deve ser uma data antes de hoje',
             'nascimento.min'      => 'A data de nascimento deve ser no formato: 00/00/0000.',

@@ -53,19 +53,22 @@
                     ]) 
                 !!}
             </div>
-            
             <p>
                 <span class='validacao-text'> 
                     {{ $errors->first('cep') }}
                 </span>
             </p>
         </div>
-        <div class="col-md-7 col-xs-12">
-            <div class="form-group">
-                <br>
-                <span><stron>* Digite o CEP para buscar o endereço</stron></span>
+        @if(Request::is('solicitar-cadastro/create'))
+            <div class="col-md-7 col-xs-12">
+                <div class="form-group">
+                    <br>
+                    <span>
+                        <stron>* Digite o CEP para buscar o endereço</stron>
+                    </span>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <div class="row">
         <div class="col-md-9 col-xs-12">

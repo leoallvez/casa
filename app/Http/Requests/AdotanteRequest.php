@@ -22,7 +22,7 @@ class AdotanteRequest extends FormRequest {
 
         $regras = [
             # difereça de 16 com a idade do adotivo
-            'nome'                      => 'required',
+            'nome'                      => 'required|regex:/^[\pL\s\-]+$/u',
             'estado_civil_id'           => 'required',
             'escolaridade_id'           => 'required',
             'categoria_profissional_id' => 'required',
@@ -39,7 +39,7 @@ class AdotanteRequest extends FormRequest {
         # Conjuge
         if($this->estado_civil_id == 2 || $this->estado_civil_id == 6) {
             $regras_conjuge = [
-                'conjuge_nome'                      => 'required',
+                'conjuge_nome'                      => 'required|regex:/^[\pL\s\-]+$/u',
                 'conjuge_nascimento'                => 'required|date|min:10|before:18 years ago|after:75 years ago',
                 'conjuge_cpf'                       => 'required|cpf|size:14|unique:adotantes,conjuge_cpf,'.$this->id.
                 '|unique:adotantes,cpf,'.$this->id,
@@ -55,6 +55,7 @@ class AdotanteRequest extends FormRequest {
 
     public function messages() {
         return [
+            'nome.regex'                                 => 'O nome deve conter apenas letras e espaços.',
             'estado_civil_id.required'                   => 'O campo estado civil é obrigatório.',
             'nascimento.after'                           => 'O adotante deve ter no máximo 75 anos.',
             'nascimento.before'                          => 'O adotante deve ter 18 anos ou mais!',
@@ -66,9 +67,11 @@ class AdotanteRequest extends FormRequest {
             'cpf.different'                              => 'CPF do adotante e do cônjuge devem ser diferentes.',
             'rg.required'                                => 'O campo RG é obrigatório',
             'rg.unique'                                  => 'O RG já está em uso.',
+            'rg.different'                               => 'CPF do adotante e do cônjuge devem ser diferentes.',
             'escolaridade_id.required'                   => 'O campo escolaridade é obrigatório.',
             'categoria_profissional_id.required'         => 'O campo categoria profissional é obrigatório.',
             # Conjuge
+            'conjuge_nome.regex'                         => 'O nome deve conter apenas letras e espaços.',
             'conjuge_nome.required'                      => 'Estado civil casado ou únião estavel, o nome do cônjuge é obrigatório',
             'conjuge_nome.alpha_spaces'                  => 'Nome do cônjuge deve conter somente letras.',
             'conjuge_nascimento.after'                   => 'O cônjuge deve ter no máximo 75 anos.',

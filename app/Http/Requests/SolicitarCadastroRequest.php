@@ -22,7 +22,7 @@ class SolicitarCadastroRequest extends FormRequest {
     public function rules() {
         return [
             # Instituição
-            'razao_social'          => 'required',
+            'razao_social'          => 'required|regex:/^[\pL\s\-]+$/u',
             'cnpj'                  => 'required|cnpj|size:18|unique:instituicoes,cnpj', 
             'endereco'              => 'required',
             'endereco_numero'       => 'required',
@@ -32,9 +32,9 @@ class SolicitarCadastroRequest extends FormRequest {
             'email_instituicao'     => 'required|email',
             'telefone'              => 'required',
             # Administrador
-            'name'                  => 'required', 
+            'name'                  => 'required|regex:/^[\pL\s\-]+$/u', 
             'cpf'                   => 'required|cpf|size:14|unique:users,cpf',
-            'cargo'                 => 'required',
+            'cargo'                 => 'required|regex:/^[\pL\s\-]+$/u',
             'email_adminstrador'    => 'required|email|unique:users,email',
             'password'              => 'required|confirmed|min:8',
             'password_confirmation' => 'required|min:8'
@@ -44,6 +44,7 @@ class SolicitarCadastroRequest extends FormRequest {
         return [
             # Instituição
             'razao_social.required'          => '* A razão social é obrigatória.',
+            'razao_social.regex'             => '* A razão social deve conter apenas letras e espaços.',
             'cnpj.required'                  => '* O CNPJ é obrigatório.',
             'cnpj.cnpj'                      => '* CNPJ inválido.',
             'cnpj.unique'                    => '* CNPJ já está em uso.',
@@ -56,6 +57,7 @@ class SolicitarCadastroRequest extends FormRequest {
             'telefone.required'              => '* O telefone da instituição é obrigatório.',
             # Administrador
             'name.required'                  => '* O nome do administrador é obrigatório.',
+            'name.regex'                     => '* O nome deve conter apenas letras e espaços.',
             'cpf.required'                   => '* O CPF é obrigatório.',
             'cpf.cpf'                        => '* O CPF inválido.',
             'cpf.unique'                     => '* CPF já está em uso.',

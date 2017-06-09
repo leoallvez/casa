@@ -62,14 +62,14 @@ class VinculoTableSeeder extends Seeder {
             [
                 'adotante_id'  => 8, 
                 'adotivo_id'   => 27,
-                'observacoes'  => 'A criança optou por cancelar as visitas.',
+                'observacoes'  => 'O adotante optou por cancelar as visitas.',
                 'created_at'   => '2017-02-08',
                 'deleted_at'   => '2017-03-02'
             ],
             [
                 'adotante_id'  => 9, 
                 'adotivo_id'   => 27,
-                'observacoes'  => 'O adotivo optou por cancelar as visitas.',
+                'observacoes'  => 'O adotante optou por cancelar as visitas.',
                 'created_at'   => '2017-03-08',
                 'deleted_at'   => '2017-04-02'
             ],
