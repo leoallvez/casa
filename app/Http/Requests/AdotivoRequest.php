@@ -26,7 +26,6 @@ class AdotivoRequest extends FormRequest
             'nome'            => 'required|regex:/^[\pL\s\-]+$/u',
             'nascimento'      => 'required|date|min:10|after:18 years ago|before:today',
             'data_chegada'    => 'required|date|after:nascimento|before:tomorrow',
-            'escolaridade_id' => 'required'
         ];
     }
 
@@ -38,7 +37,6 @@ class AdotivoRequest extends FormRequest
             'nascimento.min'      => 'A data de nascimento deve ser no formato: 00/00/0000.',
             'data_chegada.after'  => 'A data chegada deve ser uma data após o nascimento do adotivo!',
             'data_chegada.before' => 'A data chegada deve ser uma data antes de amanhã!',
-            'escolaridade_id.required' => 'O campo de escolaridade é obrigatório.'
         ];
     }
 }

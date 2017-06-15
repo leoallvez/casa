@@ -117,25 +117,7 @@
             ])
         !!}
     </div> 
-    <div class="col-md-3 col-xs-12">
-        <div class="form-group">
-            {!! Form::label('escolaridade_id', 'Escolaridade') !!}
-            <span class='obrigatorio'>*</span>
-            {!! Form::select('escolaridade_id', 
-                $escolaridades, 
-                $adotivo->escolaridade_id ?? null, 
-                [
-                    'class'       => 'form-control conjuge',
-                    'placeholder' => 'Selecione'
-                ]) 
-            !!}
-            <a>
-                <span class='validacao-text'> 
-                    {{ $errors->first('escolaridade_id') }}
-                </span>
-            </a>
-        </div>
-    </div>
+
     <div class="col-md-3 col-xs-12">
         {!! Form::label('restricao_id', 'Possui restrição de saúde?') !!}
         {!! Form::select('restricao_id', 
@@ -152,12 +134,7 @@
             </span>
         </a>
     </div>
-    {{-- <div class="col-md-3 col-xs-12">
-        {!! Form::label('has_irmaos', 'Possui irmão(s)?') !!}<br>
-        {!! Form::checkbox('has_irmaos', 1, false) !!}
-    </div> --}}
 </div><br>
-{{-- {{ $irmaosIds }} --}}
 <div class="row">
     <div class="col-md-12 col-xs-12">
        {!! Form::label('irmaosIds', 'Irmão(s)') !!}<br>
@@ -225,16 +202,16 @@
           });
 
           $("#irmaos").select2({
-            placeholder: "Selecione irmão(s)",
-            maximumSelectionLength: 10,
-            language: {
-                noResults: function() {
-                    return "Irmã(o) não encontrada(o)!";
-                },
-                maximumSelected: function() {
-                    return "Só é possível incluir 10 irmãos no máximo!";
+                placeholder: "Selecione irmão(s)",
+                maximumSelectionLength: 10,
+                language: {
+                    noResults: function() {
+                        return "Irmã(o) não encontrada(o)!";
+                    },
+                    maximumSelected: function() {
+                        return "Só é possível incluir 10 irmãos no máximo!";
+                    }
                 }
-            }
           });
         });
     </script>

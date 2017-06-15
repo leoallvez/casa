@@ -20,7 +20,6 @@ class CreateAdotivosTable extends Migration {
             $table->boolean('has_irmaos')->default(false);
             $table->date('data_adocao')->nullable();
             # FK
-            $table->integer('escolaridade_id')->default(1);
             $table->integer('instituicao_id');
             $table->integer('usuario_id');
             $table->integer('etnia_id');
