@@ -39,7 +39,6 @@ class AdotanteController extends Controller {
         $estados = Estado::pluck('nome', 'id');
         $escolaridades = Escolaridade::pluck('nome', 'id');
         $categoriasProfissionais = CategoriaProfissional::pluck('nome', 'id');
-        // $adotivos = Adotivo::where('status_id', '=', 2)->pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
 
         return view('adotante.create', compact(
@@ -71,17 +70,6 @@ class AdotanteController extends Controller {
 
         $adotante->save();
 
-        // $adotivos = $request->adotivos;
-        # Salvando adotivos na tabela intermediaria adotante_adotivo.
-        // if(isset($adotivos)){
-
-        //     foreach($adotivos as $adotivo) {
-        //         $adotivo = Adotivo::find($adotivo);
-        //         $adotivo->setStatus(3);
-        //         $adotante->adotivos()->save($adotivo);
-        //     }
-        // }
-
         flash("Adotante ".$adotante->nome." Incluído com Sucesso!", "success");
         return redirect('adotantes');
     }
@@ -106,17 +94,10 @@ class AdotanteController extends Controller {
         $adotante = Adotante::findOrFail($id);
         $estadosCivis = EstadoCivil::all()->pluck('nome', 'id');
         $estados = Estado::all()->pluck('nome', 'id');
-        // $adotivosProcessoIds = $adotante->adotivos()->pluck('adotivo_id')->toArray();
 
         $escolaridades = Escolaridade::all()->pluck('nome', 'id');
         $categoriasProfissionais = CategoriaProfissional::all()->pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
-
-        // if(empty($adotivosProcessoIds)){
-        //     $adotivos = Adotivo::where('status_id', '=', 2)->pluck('nome', 'id');
-        // }else{
-        //     $adotivos = $adotante->adotivos()->get()->pluck('nome', 'id');
-        // }
 
         return view('adotante.edit',
             compact(
@@ -148,17 +129,6 @@ class AdotanteController extends Controller {
 
         $adotivos = $request->adotivos;
 
-        /** Mudando status do adotivos selecionados.*/
-        // if(isset($adotivos)){
-        //     foreach($adotivos as $adotivo) {
-        //         $adotivo = Adotivo::find($adotivo);
-
-        //         $adotivo->setStatus(3);
-        //         $adotante->adotivos()->save($adotivo);
-        //     }
-        //     /**Sync = 'Sincronizar' adotivos na tabela intermediaria.*/
-        //     $adotante->adotivos()->sync($adotivos ?? []);
-        // }
         flash("Adotante ".$adotante->nome." Alterado com Sucesso!", "success");
         return redirect('adotantes');
     }
@@ -177,6 +147,8 @@ class AdotanteController extends Controller {
     }
 
     public function buscar(Request $request) {
+        # Retirar os espaços do incios e fim da string.
+        $request->inputBusca = trim($request->inputBusca);
 
         $adotantes = Adotante::where('nome', 'like', '%'.$request->inputBusca.'%')
         ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
@@ -184,6 +156,8 @@ class AdotanteController extends Controller {
         ->orderBy('nome')
         ->paginate(10);
 
-        return view('adotante.index', compact('adotantes'));
+        $inputBusca = $request->inputBusca;
+
+        return view('adotante.index', compact('adotantes', 'inputBusca'));
     }
 }

@@ -127,12 +127,14 @@ class UsuarioController extends Controller
     public function buscar(Request $request) {
 
         if(Auth::user()->isAdmSistema()) {
-            $usuarios = Usuario::whereBetween('nivel_id',[1,2]); //where('nivel_id','=', 1)->orWhere('nivel_id','=', 2);
+            $usuarios = Usuario::whereBetween('nivel_id',[1,2]);
 
         }else if(Auth::user()->isAdmInstituicao()) {
             $usuarios = Usuario::where('nivel_id','=', 3)
             ->where('instituicao_id', Auth::user()->instituicao_id);
         }
+        # Retirar os espaços do incios e fim da string.
+        $request->inputBusca = trim($request->inputBusca);
 
         $usuarios = $usuarios->where('name', 'like', '%'.$request->inputBusca.'%')
         ->orWhere('cpf','=', setMascara($request->inputBusca, '###.###.###-##'))

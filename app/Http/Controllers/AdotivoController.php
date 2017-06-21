@@ -37,21 +37,17 @@ class AdotivoController extends Controller{
         $status    = AdotivoStatus::where('id', '<', 3)->pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
-        $escolaridades = Escolaridade::where('id', '<', 6)->pluck('nome', 'id');
         $restricoes = Restricao::pluck('nome', 'id');
 
         $irmaos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->pluck('nome', 'id');
 
-        # TODO Salvar
-
         return view('adotivo.create', compact(
             'adotantes',
             'status',
             'etnias',
             'nascionalidades',
-            'escolaridades',
             'restricoes',
             'irmaos'
         ));
@@ -107,13 +103,16 @@ class AdotivoController extends Controller{
         $status    = AdotivoStatus::pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
         $nascionalidades = Nascionalidade::pluck('nome', 'id');
-        $escolaridades = Escolaridade::where('id', '<', 6)
-        ->pluck('nome', 'id');
 
-        $adotante  = $adotivo->adotantes()->first();
+        $adotante   = $adotivo->adotantes()->first();
         $restricoes = Restricao::pluck('nome', 'id');
 
-        $irmaos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
+        $conditions = [
+                        ['instituicao_id','=', Auth::user()->instituicao_id ], 
+                        ['id','<>', $adotivo->id],
+                     ];
+
+        $irmaos = Adotivo::where($conditions)
         ->orderBy('nome')
         ->pluck('nome', 'id');
 
@@ -127,7 +126,6 @@ class AdotivoController extends Controller{
                 'status',
                 'etnias',
                 'nascionalidades',
-                'escolaridades',
                 'restricoes',
                 'irmaos',
                 'irmaosIds'
@@ -170,6 +168,9 @@ class AdotivoController extends Controller{
     }
 
     public function buscar(Request $request) {
+        # Retirar os espaços do incios e fim da string.
+        $request->inputBusca = trim($request->inputBusca);
+        
         $adotivos = Adotivo::where('nome', 'like', '%'.$request->inputBusca.'%')
         ->where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
