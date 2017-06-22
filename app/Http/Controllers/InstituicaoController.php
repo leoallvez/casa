@@ -13,9 +13,10 @@ class InstituicaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $instituicoes = Instituicao::where('is_aprovada', true)->paginate(10);
+
+        return view('instituicao.index', compact('instituicoes'));
     }
 
     /**

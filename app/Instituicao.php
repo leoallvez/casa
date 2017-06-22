@@ -46,4 +46,11 @@ class Instituicao extends Model {
 	public function usuarios() {
     	return $this->hasMany('Casa\Usuario', 'user_id');
     }
+
+	public function getAdm() {
+
+		$usuario = Usuario::where('instituicao_id', $this->id)->whereIn('nivel_id', [1,2])->first();
+
+		return $usuario->name ?? 'Não encontrado';
+	}
 }

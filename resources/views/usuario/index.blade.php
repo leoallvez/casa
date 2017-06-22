@@ -20,7 +20,12 @@
           <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
             {!! Form::open(['action' => 'UsuarioController@buscar', 'method' => 'GET']) !!}
             <div class="input-group">
-              <input type="text" class="form-control" name="inputBusca" placeholder="Pesquisar usuários por nome ou CPF">
+              {!! Form::text('inputBusca', $inputBusca ?? null,
+                [
+                    'class'       => 'form-control',
+                    'placeholder' => 'Pesquisar usuários por nome ou CPF',
+                ])
+              !!}
               <span class="input-group-btn">
                 <button class="btn btn-success" type="x" style="color: #FFF">Buscar</button>
               </span>

@@ -175,6 +175,9 @@ class AdotivoController extends Controller{
         ->where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(10);
-        return view('adotivo.index', compact('adotivos'));
+
+        $inputBusca = $request->inputBusca;
+
+        return view('adotivo.index', compact('adotivos', 'inputBusca'));
     }
 }

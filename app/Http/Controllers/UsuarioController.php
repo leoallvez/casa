@@ -141,6 +141,8 @@ class UsuarioController extends Controller
         ->orderBy('name')
         ->paginate(10);
 
-        return view('usuario.index', compact('usuarios'));
+        $inputBusca = $request->inputBusca;
+
+        return view('usuario.index', compact('usuarios', 'inputBusca'));
     }
 }

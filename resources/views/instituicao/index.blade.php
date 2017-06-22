@@ -10,11 +10,7 @@
     <div>
       <div class="page-title">
         <div class="title_left">
-          <h3>{!! Html::linkAction('AdotanteController@index','Adotantes') !!}</h3>
-          <a class="btn btn-success btn-sm" href="{{ action('AdotanteController@create') }}">
-            <i class="fa fa-plus-circle"></i>
-            Incluir Adotante
-          </a>
+          <h3>{!! Html::linkAction('InstituicaoController@index','instituição') !!}</h3>
         </div>
         <div class="title_right">
           <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -23,7 +19,7 @@
                 {!! Form::text('inputBusca', $inputBusca ?? null,
                   [
                       'class'       => 'form-control',
-                      'placeholder' => 'Pesquisar adotante por nome ou CPF',
+                      'placeholder' => 'Pesquisar instituição por razão social ou CNPJ',
                   ])
                 !!}
                 <span class="input-group-btn">
@@ -44,61 +40,39 @@
             </div>
             {{-- <pre> @{{ $data | json }}</pre> --}}
             @include('mensagens.alerta_div')
-            @if($adotantes->count() > 0)
+            @if($instituicoes->count() > 0)
               <div class="table-responsive">
                 <p>Listagem dos adotantes ativos.</p>
                 {{-- start list --}}
                 <table class="table table-hover table-general">
                   <thead>
                     <tr>
-                      <th>Nome</th>
-                      <th>Vínculo?</th>
-                      <th>Estado Civil</th>
-                      <th>Idade</th>
-                      <th>CPF</th>
-                      <th>Ação</th>
+                      <th>Razão social</th>
+                      <th>CNPJ</th>
+                      <th>Telefone</th>
+                      <th>E-mail</th>
+                      <th>Administrador</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($adotantes as $adotante)
+                    @foreach($instituicoes as $instituicao)
                       <tr>
                         <td>
-                          <a>{{ str_limit($adotante->nome, 40) }}</a>
-                          <br>
-                          <small>Cadastrado: {{ $adotante->created_at->format('d/m/Y') }}</small>
+                          <a>{{ str_limit($instituicao->razao_social, 40) }}</a>
                         </td>
-                        <td style="padding: 2%">
-                          {!!
-                            $adotante->hasAdotivos() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
-                          !!}
-                        </td>
+                        <td>{{ $instituicao->cnpj }}</td>
+                        <td>{{ $instituicao->telefone }}</td>
+                        <td>{{ $instituicao->email }}</td>
+                        <td>{{ $instituicao->getAdm() }}</td>
                         <td>
-                          {{ $adotante->estadoCivil->nome }}
-                          <br>
-                          @if( $adotante->hasConjuge())
-                            <small>Conjuge: {{ str_limit($adotante->conjuge_nome, 40) }}</small>
-                          @endif
-                        </td>
-                        <td>{{ $adotante->getIdade() }} Anos</td>
-                        <td>{{ $adotante->cpf }}</td>
-                        <td>
-                          <a href="{{ action('AdotanteController@edit', $adotante->id) }}" class="btn btn-info btn-xs">
+                          <a href="#" class="btn btn-info btn-xs">
                             <i class="fa fa-pencil"></i>
                             Alterar
                           </a>
-                          @if(Auth::user()->isAdmInstituicao())
-                            @if(!$adotante->hasAdotivos())
-                              <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotante->id !!})">
-                                <i class="fa fa-trash-o"></i>
-                                Inativar
-                              </a>
-                            @else
-                              <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
-                                <i class="fa fa-trash-o"></i>
-                                Inativar
-                              </a>
-                            @endif
-                          @endif
+                          <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $instituicao->id !!})">
+                            <i class="fa fa-trash-o"></i>
+                            Inativar
+                          </a>
                         </td>
                       </tr>
                     @endforeach
@@ -110,7 +84,7 @@
               Não foram encontrados registros na base de dados!
             @endif
           </div>
-          {{ $adotantes->links() }}
+          {{ $instituicoes->links() }}
         </div>
       </div>
     </div>
