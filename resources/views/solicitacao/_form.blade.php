@@ -38,7 +38,6 @@
         </div>
     </div>
     <div class="row">
-        
         <div class="col-md-2 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cep', 'CEP') !!}
@@ -105,7 +104,6 @@
                 </span>
             </p>
         </div>
-    </div>
     </div>
     <div class="row">
         <div class="col-md-12 col-xs-12">

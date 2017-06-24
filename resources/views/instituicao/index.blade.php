@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  Adotantes
+  Instituição
 @endsection
 
 @section('content')
@@ -10,11 +10,11 @@
     <div>
       <div class="page-title">
         <div class="title_left">
-          <h3>{!! Html::linkAction('InstituicaoController@index','instituição') !!}</h3>
+          <h3>{!! Html::linkAction('InstituicaoController@index','Instituição') !!}</h3>
         </div>
         <div class="title_right">
-          <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
-            {!! Form::open(['action' => 'AdotanteController@buscar', 'method' => 'GET']) !!}
+          <div class="col-md-9 col-sm-5 col-xs-12 form-group pull-right top_search">
+            {!! Form::open(['action' => 'InstituicaoController@buscar', 'method' => 'GET']) !!}
               <div class="input-group">
                 {!! Form::text('inputBusca', $inputBusca ?? null,
                   [
@@ -65,7 +65,7 @@
                         <td>{{ $instituicao->email }}</td>
                         <td>{{ $instituicao->getAdm() }}</td>
                         <td>
-                          <a href="#" class="btn btn-info btn-xs">
+                          <a href="{{ action('InstituicaoController@edit', $instituicao->id) }}" class="btn btn-info btn-xs">
                             <i class="fa fa-pencil"></i>
                             Alterar
                           </a>

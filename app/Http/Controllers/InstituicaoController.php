@@ -5,6 +5,8 @@ use Casa\User;
 use Casa\Estado;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Casa\Http\Requests\InstituicaoRequest;
 
 class InstituicaoController extends Controller
 {
@@ -49,13 +51,12 @@ class InstituicaoController extends Controller
     public function show($id)
     {
         $instituicao = Instituicao::findOrfail($id);
-
-        // dd($instituicao);
         
         $usuario = User::where('instituicao_id', '=', $instituicao->id)->first();
         $estados = Estado::all()->pluck('UF', 'id');
+        $disabled = true;
 
-        return view('instituicao.show', compact('instituicao', 'usuario', 'estados'));
+        return view('instituicao.show', compact('instituicao', 'usuario', 'estados', 'disabled'));
     }
 
     /**
@@ -64,9 +65,14 @@ class InstituicaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $instituicao = Instituicao::findOrfail($id);
+        
+        $usuario = User::where('instituicao_id', '=', $instituicao->id)->first();
+        $estados = Estado::all()->pluck('nome', 'id');
+        $disabled = false;
+
+        return view('instituicao.edit', compact('instituicao', 'usuario', 'estados', 'disabled'));
     }
 
     /**
@@ -76,8 +82,9 @@ class InstituicaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(InstituicaoRequest $request, $id) {
+
+        dd($request->all());
         //
     }
 
@@ -90,5 +97,21 @@ class InstituicaoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function buscar(Request $request) {
+        # Retirar os espaços do incios e fim da string.
+        $request->inputBusca = trim($request->inputBusca);
+
+        $instituicoes = Instituicao::where('razao_social', 'like', '%'.$request->inputBusca.'%')
+        ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'))
+        ->orderBy('razao_social')
+        ->paginate(10);
+
+        $inputBusca = $request->inputBusca;
+
+        # ##.###.###/####-##
+
+        return view('instituicao.index', compact('instituicoes', 'inputBusca'));
     }
 }

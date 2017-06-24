@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('vinculos/adotivo/{id}',['uses' => 'VinculoController@index', 'as' => 'listar']);
     // Route::resource('vinculo', 'VinculoController');
     # instituição
+    Route::get('instituicao/buscar', 'InstituicaoController@buscar');
     Route::resource('instituicao', 'InstituicaoController');  
 });
 # Solicitação Externo.
