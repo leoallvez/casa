@@ -503,135 +503,14 @@
     </div>
 </fieldset>
 <br>
-{{--
-<fieldset>
-    <legend><h3>Adotivo(s)</h3></legend>
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <div class="form-group">
-                {!! Form::select(
-                    'adotivos[]',
-                    $adotivos,
-                    $adotivosProcessoIds ?? null,
-                    [
-                        'class'       => 'form-control',
-                        'id'          => 'adotivos',
-                        'multiple'    => 'multiple',
-                        (!empty($adotivosProcessoIds)) ? 'disabled' : null
-                    ]
-                    )
-                !!}
-            </div>
-        </div>
-    </div>
-</fieldset>
---}}
-<br>
 <div class="form-group">
     {!! Html::linkAction('AdotanteController@index','Voltar', null, ['class' => 'btn btn-primary']) !!}
     {!! Form::submit($nomeBotaoSubmit, ['class' => 'btn btn-success']) !!}
 </div>
 
 @section('js')
-    <script type="text/javascript">
-
-        function limparNomeConjuge() {
-            $('.conjuge').val('');
-        }
-
-        $(function() {
-            $('#estado_civil_id').change(function() {
-                if($('#estado_civil_id').val()  == 2 || $('#estado_civil_id').val() == 6) {
-                    $('#conjuge').show();
-                } else {
-                    $('#conjuge').hide();
-                }
-            });
-        });
-
-        function converteData(input, hidden) {
-            var date = $(input).val();
-            date = date.split("/").reverse().join("-");
-            $(hidden).val(date);
-        }
-
-        $( document ).ready(function() {
-           @if(Request::old('estado_civil_id') != null)
-               var estado_civil = {{ Request::old('estado_civil_id') }};
-           @else
-               var estado_civil = {{ $adotante->estado_civil_id ?? 1}};
-           @endif
-
-           if( estado_civil == 2 || estado_civil == 6) {
-               $('#conjuge').show();
-           } else {
-               $('#conjuge').hide();
-           }
-        });
-
-        var request = null;
-
-        function createRequest() {
-            //Criar um novo objeto para fazer solicitações AJAX ao servidor.
-            try {
-            request = new XMLHttpRequest();
-            } catch (trymicrosoft) {
-            try {
-                    request = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (othermicrosoft) {
-                    try {
-                    request = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (failed) {
-                    request = null;
-                    }
-                }
-            }
-            if (request == null)
-            console.log("Error creating request object!");
-        }
-        /**
-            Todo o código abaixo da condicional “if (request.readyState == 4)” 
-            será executado quando a solicitação ao servidor for totalmente concluída, 
-            ou seja, quando uma resposta for trazida do servidor.
-        */
-        function atualizaPagina() {
-
-            if (request.readyState == 4) {
-                
-                var result = request.responseText;
-                // Convertendo Jso em um objeto javascript
-                result = JSON.parse(result);
-                if(result.status){
-                    $('#endereco').val(result.endereco.ds_abrev_logradouro);
-                    $('#cidade').val(result.endereco.ds_localidade);
-                    $('#bairro').val(result.endereco.ds_bairro);
-                    
-                    var id_estado = buscarIdEstado(result.endereco.ds_uf);
-                    //Select de Estado.
-                    $('.estado option')
-                        .removeAttr('selected')
-                        .filter('[value='+id_estado+']')
-                        .attr('selected', true);
-                } else {
-                    swal({
-                        title: "CEP não encontrado!",
-                        text: "Você ainda pode preencher as informações de endereço manualmente.",
-                        showConfirmButton: true
-                    });
-                }
-            }
-        }
-        
-        function buscarCEP() {
-            createRequest();
-            // Pegando o valor cep digitado
-            var cep = $('#cep').val();
-            // A url da API que será feita a consulta
-            var url = "{{ Config::get('app.api-url') }}"+cep;
-            request.open("GET", url, true);
-            request.onreadystatechange = atualizaPagina;
-
-            request.send(null);
-        }
-    </script>
+  <script type="text/javascript">
+    var url = "{{ Config::get('app.api-url') }}";
+  </script>
+  <script src="{{ asset('js/buscar_cep.js') }}"></script> 
 @endsection

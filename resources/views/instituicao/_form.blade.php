@@ -300,5 +300,5 @@
   <script type="text/javascript">
     var url = "{{ Config::get('app.api-url') }}";
   </script>
-  <script src="{{ asset('js/cep.js') }}"></script>
+  <script src="{{ asset('js/buscar_cep.js') }}"></script> 
 @endsection
