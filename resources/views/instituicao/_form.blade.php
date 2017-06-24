@@ -1,5 +1,6 @@
 <fieldset>
     <legend><h3>Instituição</h3></legend>
+    {{ Form::hidden('instituicao_id', $instituicao->id ?? null) }}
     <div class="row">
         <div class="col-md-9 col-xs-12" >
             <div class="form-group">
@@ -43,9 +44,10 @@
                 {!! Form::label('cep', 'CEP') !!}
                 {!! Form::text('cep', $instituicao->cep ?? null, 
                     [
-                        'class'       => 'form-control',
+                        'class'       => 'form-control cep',
                         'data-mask'   => '00000-000',
                         'placeholder' => '00000-000',
+                        'onchange'    => 'buscarCEP()',
                         $disabled ? 'disabled' : null,
                     ]) 
                 !!}
@@ -207,11 +209,12 @@
 
 <fieldset>
     <legend><h3>Administrador</h3></legend>
+    {{ Form::hidden('adm_id', $adm->id ?? null) }}
     <div class="row">
         <div class="col-md-9 col-xs-12">
             <div class="form-group">
                 {!! Form::label('name', 'Nome') !!}
-                {!! Form::text('name', $usuario->name  ?? null, 
+                {!! Form::text('name', $adm->name  ?? null, 
                     [
                         'class'       => 'form-control', 
                         'placeholder' => 'Digite o Nome Completo do Administrador',
@@ -228,7 +231,7 @@
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cpf', 'CPF') !!}
-                {!! Form::text('cpf', $usuario->cpf ?? null, 
+                {!! Form::text('cpf', $adm->cpf ?? null, 
                     [
                         'class'       => 'form-control', 
                         'data-mask'   => '000.000.000-00',
@@ -248,7 +251,7 @@
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cargo', 'Cargo') !!}
-                {!! Form::text('cargo', $usuario->cargo ?? null, 
+                {!! Form::text('cargo', $adm->cargo ?? null, 
                     [
                         'class'       => 'form-control', 
                         'placeholder' => 'Digite a Cargo do Administrador do Sistema na Instituição',
@@ -265,7 +268,7 @@
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('email_adminstrador', 'E-mail Administrador') !!}
-                {!! Form::text('email_adminstrador', $usuario->email ?? null, 
+                {!! Form::text('email_adminstrador', $adm->email ?? null, 
                     [
                         'class'       => 'form-control', 
                         'placeholder' => 'exemplo@exemplo.com.br',
@@ -295,70 +298,7 @@
 
 @section('js')
   <script type="text/javascript">
-
-    var request = null;
-
-    function createRequest() {
-        //Criar um novo objeto para fazer solicitações AJAX ao servidor.
-        try {
-        request = new XMLHttpRequest();
-        } catch (trymicrosoft) {
-        try {
-                request = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (othermicrosoft) {
-                try {
-                request = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (failed) {
-                request = null;
-                }
-            }
-        }
-        if (request == null)
-         console.log("Error creating request object!");
-    }
-    /**
-        Todo o código abaixo da condicional “if (request.readyState == 4)” 
-        será executado quando a solicitação ao servidor for totalmente concluída, 
-        ou seja, quando uma resposta for trazida do servidor.
-    */
-    function atualizaPagina() {
-
-        if (request.readyState == 4) {
-            
-            var result = request.responseText;
-            // Convertendo Jso em um objeto javascript
-            result = JSON.parse(result);
-            if(result.status){
-                $('#endereco').val(result.endereco.ds_abrev_logradouro);
-                $('#cidade').val(result.endereco.ds_localidade);
-                $('#bairro').val(result.endereco.ds_bairro);
-                
-                var id_estado = buscarIdEstado(result.endereco.ds_uf);
-                //Select de Estado.
-                $('.estado option')
-                    .removeAttr('selected')
-                    .filter('[value='+id_estado+']')
-                    .attr('selected', true);
-            } else {
-                swal({
-                    title: "CEP não encontrado!",
-                    text: "Você ainda pode preencher as informações de endereço manualmente.",
-                    showConfirmButton: true
-                });
-            }
-        }
-    }
-
-    function buscarCEP() {
-        createRequest();
-        // Pegando o valor cep digitado
-        var cep = $('#cep').val();
-        // A url da API que será feita a consulta
-        var url = "{{ Config::get('app.api-url') }}"+cep;
-        request.open("GET", url, true);
-        request.onreadystatechange = atualizaPagina;
-
-        request.send(null);
-    }
+    var url = "{{ Config::get('app.api-url') }}";
   </script>
+  <script src="{{ asset('js/cep.js') }}"></script>
 @endsection

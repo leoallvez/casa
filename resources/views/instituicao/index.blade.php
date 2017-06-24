@@ -58,7 +58,7 @@
                     @foreach($instituicoes as $instituicao)
                       <tr>
                         <td>
-                          <a>{{ str_limit($instituicao->razao_social, 40) }}</a>
+                          <a>{{ str_limit($instituicao->razao_social, 30) }}</a>
                         </td>
                         <td>{{ $instituicao->cnpj }}</td>
                         <td>{{ $instituicao->telefone }}</td>
@@ -99,10 +99,10 @@
     var app = new Vue({
       el: '#app',
       methods: {
-        excluir(id_adotante) {
+        excluir(instituicao_id) {
           swal({
             title: "Tem certeza?",
-            text: "O adotante será inativado!",
+            text: "A instituição e todos os seus usuários serão inativos!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -113,11 +113,11 @@
             closeOnCancel: false
           }, function(isConfirm) {
             if (isConfirm) {
-              var resource = app.$resource("{{ url('adotantes{/id}') }}");
-              resource.remove({id: id_adotante }).then((response) => {
+              var resource = app.$resource("{{ url('instituicao{/id}') }}");
+              resource.remove({id: instituicao_id }).then((response) => {
                 swal({
-                  title: "Inativado!",
-                  text: "Adotante foi Inativado!",
+                  title: "Inativada!",
+                  text: "Instituição foi Inativada!",
                   type: "success"
                 }, function() {
                   window.location.reload();
@@ -126,17 +126,8 @@
                 //Colocar uma mensagem de erro aqui Aqui
               });
             } else {
-              swal("Cancelado", "Adotante ainda ativo!", "error");
+              swal("Cancelado", "Instituição ainda ativa!", "error");
             }
-          });
-        },
-        alertaNaoExcluir() {
-          swal({
-              title: "Atenção",
-              text: "Não é possivel inativar adotante por possuir vínculo com um ou mais adotivos.",
-              type: "error"
-            }, function() {
-              // window.location.reload();
           });
         }
       }

@@ -33,7 +33,7 @@ class AdotanteRequest extends FormRequest {
             'rg'                        => 'required|different:conjuge_rg|unique:adotantes,rg,'.$this->id.
             '|unique:adotantes,conjuge_rg,'.$this->id,
             'nascimento'                => 'required|date|min:10|before:18 years ago|after:75 years ago',
-            'email'                     => 'required|email',
+            'email'                     => 'required|email|unique:adotantes,email,'.$this->id,
             'cep'                       => 'size:9'
         ];
         # Conjuge

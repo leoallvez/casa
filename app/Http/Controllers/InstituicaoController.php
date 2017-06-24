@@ -3,20 +3,20 @@
 namespace Casa\Http\Controllers;
 use Casa\User;
 use Casa\Estado;
+use Casa\Usuario;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\InstituicaoRequest;
 
-class InstituicaoController extends Controller
-{
+class InstituicaoController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $instituicoes = Instituicao::where('is_aprovada', true)->paginate(10);
+        $instituicoes = Instituicao::where('is_aprovada', true)->where('id', '<>', 1)->paginate(10);
 
         return view('instituicao.index', compact('instituicoes'));
     }
@@ -52,7 +52,8 @@ class InstituicaoController extends Controller
     {
         $instituicao = Instituicao::findOrfail($id);
         
-        $usuario = User::where('instituicao_id', '=', $instituicao->id)->first();
+        $usuario = User::where('instituicao_id', '=', $instituicao->id)
+        ->whereIn('nivel_id', [1,2])->first();
         $estados = Estado::all()->pluck('UF', 'id');
         $disabled = true;
 
@@ -68,11 +69,13 @@ class InstituicaoController extends Controller
     public function edit($id) {
         $instituicao = Instituicao::findOrfail($id);
         
-        $usuario = User::where('instituicao_id', '=', $instituicao->id)->first();
+        $adm = User::where('instituicao_id', '=', $instituicao->id)
+        ->whereIn('nivel_id', [1,2])->first();
+
         $estados = Estado::all()->pluck('nome', 'id');
         $disabled = false;
 
-        return view('instituicao.edit', compact('instituicao', 'usuario', 'estados', 'disabled'));
+        return view('instituicao.edit', compact('instituicao', 'adm', 'estados', 'disabled'));
     }
 
     /**
@@ -94,9 +97,13 @@ class InstituicaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        Instituicao::findOrFail($id)->delete();
+
+        Usuario::where('instituicao_id', $id)->delete();
+
+        flash("Instituição inativada com Sucesso", 'danger');
+        return json_encode(['status' => true]);
     }
 
     public function buscar(Request $request) {
@@ -109,8 +116,6 @@ class InstituicaoController extends Controller
         ->paginate(10);
 
         $inputBusca = $request->inputBusca;
-
-        # ##.###.###/####-##
 
         return view('instituicao.index', compact('instituicoes', 'inputBusca'));
     }

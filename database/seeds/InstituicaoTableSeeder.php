@@ -38,7 +38,7 @@ class InstituicaoTableSeeder extends Seeder {
                 'cep'             => '12345-123',
                 'bairro'          => 'Vila Renato',
                 'cidade'          => 'São Paulo',
-                'email'           => 'contato@esperança.com.br',
+                'email'           => 'contato@esperanca.com.br',
                 'estado_id'       => 1,
                 'created_at'      => date('Y-m-d')
             ],

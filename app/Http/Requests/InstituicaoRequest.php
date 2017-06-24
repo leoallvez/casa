@@ -28,12 +28,15 @@ class InstituicaoRequest extends FormRequest {
             'cidade'                => 'required',
             'bairro'                => 'required',
             'cep'                   => 'required',
-            'email_instituicao'     => 'required|email',
+            'email_instituicao'     => 'required|email|unique:instituicoes,email,'.$this->instituicao_id,
             'telefone'              => 'required',
             # Administrador
             'name'                  => 'required|regex:/^[\pL\s\-]+$/u', 
             'cargo'                 => 'required|regex:/^[\pL\s\-]+$/u',
-            //'email_adminstrador'    => 'required|email|unique:users,email',
+            # adm_id is a hidden input in the form.
+            'email_adminstrador'    => 'required|email|unique:users,email,'.$this->adm_id,
+
+     
         ];
     }
 
@@ -48,6 +51,7 @@ class InstituicaoRequest extends FormRequest {
             'bairro.required'                => '* O bairro da instituição é obrigatório.',
             'cep.required'                   => '* O CEP da instituição é obrigatório.',
             'email_instituicao.required'     => '* O e-mail da instituição é obrigatório.',
+            'email_instituicao,unique'       => '* O e-mail da instituição já está em uso'
             'telefone.required'              => '* O telefone da instituição é obrigatório.',
             # Administrador
             'name.required'                  => '* O nome do administrador é obrigatório.',
