@@ -26,17 +26,20 @@ function createRequest() {
 function atualizaPagina() {
 
     if (request.readyState == 4) {
-        
-        var result = request.responseText;
-        // Convertendo JSON em um objeto javascript.
-        result = JSON.parse(result);
 
-        if(result.status){
-            $('#endereco').val(result.endereco.ds_abrev_logradouro);
-            $('#cidade').val(result.endereco.ds_localidade);
-            $('#bairro').val(result.endereco.ds_bairro);
+        if(request.status == 200){
+
+            /** Convertendo JSON em um objeto javascript.*/
+            var result = JSON.parse(request.responseText);
+
+            console.log(result.logradouro);
+
+            $('#endereco').val(result.logradouro);
+            $('#complemento').val(result.complemento);
+            $('#cidade').val(result.localidade);
+            $('#bairro').val(result.bairro);
             
-            var id_estado = buscarIdEstado(result.endereco.ds_uf);
+            var id_estado = buscarIdEstado(result.uf);
             //Select de Estado.
             $('.estado option')
                 .removeAttr('selected')
@@ -54,10 +57,11 @@ function atualizaPagina() {
 
 function buscarCEP() {
     createRequest();
-    // Pegando o valor cep digitado
+    // Pegando o valor CEP digitado
     var cep = $('#cep').val();
-    // A url da API que será feita a consulta.
-    request.open("GET", url + cep, true);
+    cep = cep.replace("-", "");
+    // A URL da API que será feita a consulta.
+    request.open("GET", 'https://viacep.com.br/ws/'+cep+'/json/', true);
 
     request.onreadystatechange = atualizaPagina;
 

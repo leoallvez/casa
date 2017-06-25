@@ -110,6 +110,7 @@
                 {!! Form::text('complemento', $instituicao->complento ?? null, 
                     [
                         'class'       => 'form-control',
+                        'placeholder' => 'Digite o Complemento do Endereço da Instituição',
                         $disabled ? 'disabled' : null,
                     ]) 
                 !!}
