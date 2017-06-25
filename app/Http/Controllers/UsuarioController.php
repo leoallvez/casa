@@ -116,12 +116,11 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        $usuario = Usuario::findOrfail($id);
-        $usuario->delete();
-
+        
+        Usuario::destroy($id);
+        
         flash('Usuário Inativado com Sucesso', 'danger');
-
-        return $usuario;
+        return json_encode(['status' => true]);
     }
 
     public function buscar(Request $request) {

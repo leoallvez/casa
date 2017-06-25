@@ -13,6 +13,7 @@ class CreateAdotivosTable extends Migration {
     public function up() {
         Schema::create('adotivos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('matricula')->nullable(false)->unique();
             $table->string('nome')->index();
             $table->char('sexo', 1);
             $table->date('nascimento');

@@ -131,6 +131,13 @@ class Adotivo extends Model{
        return count($result) > 0;
     }
 
+    public static function gerarMatricula() {
+
+        $last_id = self::all()->last()->id;
+
+        return ($last_id)? str_pad($last_id + 1 , 12, "CASA-00000000", STR_PAD_LEFT) : "CASA-00000001";
+    }
+
     public function adotantes() {
     	return $this->belongsToMany('Casa\Adotante', 'adotantes_adotivos')
         ->withPivot('created_at', 'deleted_at');

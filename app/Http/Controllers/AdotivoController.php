@@ -33,6 +33,8 @@ class AdotivoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        $matricula = Adotivo::gerarMatricula();
+
         $adotantes = Adotante::pluck('nome', 'id');
         $status    = AdotivoStatus::where('id', '<', 3)->pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
@@ -44,6 +46,7 @@ class AdotivoController extends Controller{
         ->pluck('nome', 'id');
 
         return view('adotivo.create', compact(
+            'matricula',
             'adotantes',
             'status',
             'etnias',
@@ -161,7 +164,7 @@ class AdotivoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        Adotivo::findOrFail($id)->delete();
+        Adotivo::destroy($id);
 
         flash("Adotivo Inativado(a) com Sucesso", 'danger');
         return json_encode(['status' => true]);

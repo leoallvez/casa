@@ -11,6 +11,7 @@ class AdotivosTableSeeder extends Seeder {
     public function run() {
     	$adotivos = [
     	    [
+				'matricula'         => 'CASA-00000001',
     			'nome'              => 'Rodrigo Azevedo Dias',
     			'sexo'              => 'M',
     			'nascimento'        => '2008-10-10',
@@ -21,9 +22,10 @@ class AdotivosTableSeeder extends Seeder {
     			'usuario_id'        => 4,
     			'etnia_id'          => 1,
     			'status_id'         => 1,
-    			'created_at'        => date('Y-m-d') 
+    			'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000002',
 	    		'nome'              => 'Isabelle Sousa Rodrigues',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2010-10-28',
@@ -34,9 +36,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 2,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000003',
 	    		'nome'              => 'Danilo Gomes Oliveira',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2013-07-13',
@@ -47,9 +50,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 3,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000004',
 	    		'nome'              => 'Vitoria Souza Silva',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-06-12',
@@ -60,9 +64,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 4,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000005',
 	    		'nome'              => 'Carolina Oliveira Correia',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-09-07',
@@ -73,9 +78,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 5,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000006',
 	    		'nome'              => 'Luis Castro Araujo',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2011-07-14',
@@ -86,9 +92,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 6,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000007',
 	    		'nome'              => 'Manuela Azevedo Sousa',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2012-06-10',
@@ -99,9 +106,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 7,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000008',
 	    		'nome'              => 'Luiza Costa Cavalcanti',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2014-06-02',
@@ -112,9 +120,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000009',
 	    		'nome'              => 'Paulo Silva Lima',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2014-12-17',
@@ -128,6 +137,7 @@ class AdotivosTableSeeder extends Seeder {
 	    		'created_at'        => date('Y-m-d') 
     		],
     		[
+				'matricula'         => 'CASA-00000010',
 	    		'nome'              => 'Sophia Souza Dias',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-12-12',
@@ -141,6 +151,7 @@ class AdotivosTableSeeder extends Seeder {
 	    		'created_at'        => date('Y-m-d') 
     		],
     		[
+				'matricula'         => 'CASA-00000011',
 	    		'nome'              => 'Murilo Araujo Alves',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2010-02-20',
@@ -151,9 +162,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000012',
 	    		'nome'              => 'Diogo Souza Gomes',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2010-07-20',
@@ -164,10 +176,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
-    		#new 1
     		[
+				'matricula'         => 'CASA-00000013',
     			'nome'              => 'Gabriel Cunha Araujo',
     			'sexo'              => 'M',
     			'nascimento'        => '2008-10-10',
@@ -178,9 +190,10 @@ class AdotivosTableSeeder extends Seeder {
     			'usuario_id'        => 4,
     			'etnia_id'          => 1,
     			'status_id'         => 2,
-    			'created_at'        => date('Y-m-d') 
+    			'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000014',
 	    		'nome'              => 'Beatrice Pereira Almeida',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2010-10-28',
@@ -194,6 +207,7 @@ class AdotivosTableSeeder extends Seeder {
 	    		'created_at'        => date('Y-m-d') 
     		],
     		[
+				'matricula'         => 'CASA-00000015',
 	    		'nome'              => 'Tomás Cardoso Dias',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2013-07-13',
@@ -204,9 +218,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 3,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000016',
 	    		'nome'              => 'Vitoria Souza Silva',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-06-12',
@@ -217,9 +232,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 4,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000017',
 	    		'nome'              => 'Letícia Alves Castro',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-09-07',
@@ -233,6 +249,7 @@ class AdotivosTableSeeder extends Seeder {
 	    		'created_at'        => date('Y-m-d') 
     		],
     		[
+				'matricula'         => 'CASA-00000018',
 	    		'nome'              => 'Gustavo Gomes Souza',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2011-07-14',
@@ -243,9 +260,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 6,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000019',
 	    		'nome'              => 'Cauã Cunha Ferreira',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2012-06-10',
@@ -256,9 +274,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 7,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000020',
 	    		'nome'              => 'Vinícius Oliveira Lima',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2014-06-02',
@@ -269,9 +288,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000021',
 	    		'nome'              => 'Julian Oliveira Pinto',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2014-12-17',
@@ -282,9 +302,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 3,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000022',
 	    		'nome'              => 'Rafaela Rodrigues Goncalves',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-12-12',
@@ -295,9 +316,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 3,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000023',
 	    		'nome'              => 'Thaís Martins Gomes',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2010-02-20',
@@ -308,9 +330,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 3,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000024',
 	    		'nome'              => 'Fábio Melo Carvalho',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2010-07-20',
@@ -321,10 +344,11 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 3,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		#new 2
     		[
+				'matricula'         => 'CASA-00000025',
     			'nome'              => 'Beatriz Castro Santos',
     			'sexo'              => 'F',
     			'nascimento'        => '2000-10-10',
@@ -335,9 +359,10 @@ class AdotivosTableSeeder extends Seeder {
     			'usuario_id'        => 4,
     			'etnia_id'          => 1,
     			'status_id'         => 3,
-    			'created_at'        => date('Y-m-d') 
+    			'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000026',
 	    		'nome'              => 'Carolina Dias Gomes',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2003-10-28',
@@ -348,9 +373,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 2,
 	    		'status_id'         => 2,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000027',
 	    		'nome'              => 'Alice Barbosa Souza',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2005-07-13',
@@ -361,9 +387,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 3,
 	    		'status_id'         => 4,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000028',
 	    		'nome'              => 'Mateus Alves Costa',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2006-06-12',
@@ -374,9 +401,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 4,
 	    		'status_id'         => 4,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000029',
 	    		'nome'              => 'Gabriel Barros Oliveira',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2007-09-07',
@@ -387,9 +415,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 5,
 	    		'status_id'         => 4,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000030',
 	    		'nome'              => 'Giovana Rodrigues Goncalves',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2000-12-14',
@@ -403,6 +432,7 @@ class AdotivosTableSeeder extends Seeder {
 	    		'created_at'        => date('Y-m-d') 
     		],
     		[
+				'matricula'         => 'CASA-00000031',
 	    		'nome'              => 'Erick Almeida Souza',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2002-06-10',
@@ -413,9 +443,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 7,
 	    		'status_id'         => 4,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000032',
 	    		'nome'              => 'Douglas Silva Almeida',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2012-06-02',
@@ -426,9 +457,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 5,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000033',
 	    		'nome'              => 'Amanda Silva Fernandes',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2004-12-17',
@@ -439,9 +471,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 5,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000034',
 	    		'nome'              => 'Nicolash Alves Barbosa',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2003-12-12',
@@ -452,9 +485,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 5,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000035',
 	    		'nome'              => 'Danilo Barbosa Gomes',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2013-02-20',
@@ -465,9 +499,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 5,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000036',
 	    		'nome'              => 'Luiza Sousa Pinto',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2009-07-20',
@@ -478,10 +513,11 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 6,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		#new 1
     		[
+				'matricula'         => 'CASA-00000037',
     			'nome'              => 'Raissa Barbosa Cunha',
     			'sexo'              => 'F',
     			'nascimento'        => '2011-10-10',
@@ -492,9 +528,10 @@ class AdotivosTableSeeder extends Seeder {
     			'usuario_id'        => 4,
     			'etnia_id'          => 1,
     			'status_id'         => 6,
-    			'created_at'        => date('Y-m-d') 
+    			'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000038',
 	    		'nome'              => 'Luan Correia Pinto',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2010-10-28',
@@ -505,9 +542,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 2,
 	    		'status_id'         => 6,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000039',
 	    		'nome'              => 'Gabrielle Ferreira Pinto',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2013-07-13',
@@ -518,9 +556,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 3,
 	    		'status_id'         => 6,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000040',
 	    		'nome'              => 'Tiago Silva Ferreira',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2017-01-12',
@@ -531,9 +570,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 4,
 	    		'status_id'         => 6,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000041',
 	    		'nome'              => 'João Ribeiro Souza',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2015-09-07',
@@ -544,9 +584,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 5,
 	    		'status_id'         => 6,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000042',
 	    		'nome'              => 'Gabrielly Martins Araujo',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2011-07-14',
@@ -557,9 +598,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 6,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000043',
 	    		'nome'              => 'Carolina Oliveira Correia',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2012-06-10',
@@ -570,9 +612,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 7,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000044',
 	    		'nome'              => 'Rafaela Santos Cardoso',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2014-06-02',
@@ -583,9 +626,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000045',
 	    		'nome'              => 'Isabelle Barbosa Lima',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2014-12-17',
@@ -596,9 +640,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000046',
 	    		'nome'              => 'Sarah Araujo Pereira',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2016-12-12',
@@ -609,9 +654,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'), 
     		],
     		[
+				'matricula'         => 'CASA-00000047',
 	    		'nome'              => 'Yasmin Correia Barbosa',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2010-02-20',
@@ -622,9 +668,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000048',
 	    		'nome'              => 'Fábio Melo Castro',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2010-07-20',
@@ -635,9 +682,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000049',
 	    		'nome'              => 'Victor Cardoso Sousa',
 	    		'sexo'              => 'M',
 	    		'nascimento'        => '2013-02-20',
@@ -648,9 +696,10 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		],
     		[
+				'matricula'         => 'CASA-00000050',
 	    		'nome'              => 'Raissa Rodrigues Fernandes',
 	    		'sexo'              => 'F',
 	    		'nascimento'        => '2010-07-20',
@@ -661,7 +710,7 @@ class AdotivosTableSeeder extends Seeder {
 	    		'usuario_id'        => 4,
 	    		'etnia_id'          => 1,
 	    		'status_id'         => 1,
-	    		'created_at'        => date('Y-m-d') 
+	    		'created_at'        => date('Y-m-d'),
     		]
     	];
     	DB::table('adotivos')->insert($adotivos);

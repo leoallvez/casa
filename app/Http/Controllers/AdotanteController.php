@@ -140,7 +140,8 @@ class AdotanteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        Adotante::findOrFail($id)->delete();
+        
+        Adotante::destroy($id);
 
         flash("Adotante inativado(a) com Sucesso", 'danger');
         return json_encode(['status' => true]);
