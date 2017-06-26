@@ -510,7 +510,40 @@
 
 @section('js')
   <script type="text/javascript">
-    var url = "{{ Config::get('app.api-url') }}";
+  
+    function limparNomeConjuge() {		 
+        $('.conjuge').val('');
+    }		
+    
+    $(function() {		
+        $('#estado_civil_id').change(function() {		
+            if($('#estado_civil_id').val()  == 2 || $('#estado_civil_id').val() == 6) {		
+                $('#conjuge').show();		
+            } else {		
+                $('#conjuge').hide();		
+            }		
+        });		
+    });		
+    
+    function converteData(input, hidden) {		
+        var date = $(input).val();		
+        date = date.split("/").reverse().join("-");		
+        $(hidden).val(date);		
+    }		
+    
+    $( document ).ready(function() {		
+        @if(Request::old('estado_civil_id') != null)		
+            var estado_civil = {{ Request::old('estado_civil_id') }};		
+        @else		
+            var estado_civil = {{ $adotante->estado_civil_id ?? 1}};		
+        @endif		
+    
+        if( estado_civil == 2 || estado_civil == 6) {		
+            $('#conjuge').show();		
+        } else {		
+            $('#conjuge').hide();		
+        }		
+    });
   </script>
   <script src="{{ asset('js/buscar_cep.js') }}"></script> 
 @endsection
