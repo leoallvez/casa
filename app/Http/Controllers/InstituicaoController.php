@@ -22,42 +22,20 @@ class InstituicaoController extends Controller {
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $instituicao = Instituicao::findOrfail($id);
         
-        $usuario = User::where('instituicao_id', '=', $instituicao->id)
+        $adm = User::where('instituicao_id', '=', $instituicao->id)
         ->whereIn('nivel_id', [1,2])->first();
         $estados = Estado::all()->pluck('UF', 'id');
         $disabled = true;
 
-        return view('instituicao.show', compact('instituicao', 'usuario', 'estados', 'disabled'));
+        return view('instituicao.edit', compact('instituicao', 'adm', 'estados', 'disabled'));
     }
 
     /**
@@ -71,6 +49,10 @@ class InstituicaoController extends Controller {
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
         ->whereIn('nivel_id', [1,2])->first();
+
+        $usuarios = User::where('instituicao_id', '=', $instituicao->id)->pluck('name', 'id');
+
+        dd($usuarios);
 
         $estados = Estado::all()->pluck('nome', 'id');
         $disabled = false;

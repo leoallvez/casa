@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/home', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'usuario']], function () {

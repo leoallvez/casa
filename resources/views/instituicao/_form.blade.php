@@ -126,7 +126,7 @@
                     $estados, 
                     $instituicao->estadoinstituicao_id ?? null, 
                     [
-                        'class'       => 'form-control',
+                        'class' => 'form-control estado',
                         $disabled ? 'disabled' : null,
                     ]) 
                 !!}
@@ -211,23 +211,38 @@
     <legend><h3>Administrador</h3></legend>
     {{ Form::hidden('adm_id', $adm->id ?? null) }}
     <div class="row">
+
         <div class="col-md-9 col-xs-12">
-            <div class="form-group">
-                {!! Form::label('name', 'Nome') !!}
-                {!! Form::text('name', $adm->name  ?? null, 
+            @if(Request::is('instituicao/*/edit'))
+                {!! Form::label('adm_id', 'Nome') !!}
+                {!! Form::select(
+                    'adm_id', 
+                    $estados, 
+                    $instituicao->estadoinstituicao_id ?? null, 
                     [
-                        'class'       => 'form-control', 
-                        'placeholder' => 'Digite o Nome Completo do Administrador',
+                        'class' => 'form-control estado',
                         $disabled ? 'disabled' : null,
                     ]) 
                 !!}
-            </div>
-            <p>
-                <span class='validacao-text'> 
-                    {{ $errors->first('name') }}
-                </span>
-            </p>
+            @else
+                <div class="form-group">
+                    {!! Form::label('name', 'Nome') !!}
+                    {!! Form::text('name', $adm->name  ?? null, 
+                        [
+                            'class'       => 'form-control', 
+                            'placeholder' => 'Digite o Nome Completo do Administrador',
+                            $disabled ? 'disabled' : null,
+                        ]) 
+                    !!}
+                </div>
+                <p>
+                    <span class='validacao-text'> 
+                        {{ $errors->first('name') }}
+                    </span>
+                </p>
+            @endif
         </div>
+
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cpf', 'CPF') !!}
