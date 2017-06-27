@@ -211,19 +211,21 @@
     <legend><h3>Administrador</h3></legend>
     {{ Form::hidden('adm_id', $adm->id ?? null) }}
     <div class="row">
-
         <div class="col-md-9 col-xs-12">
             @if(Request::is('instituicao/*/edit'))
-                {!! Form::label('adm_id', 'Nome') !!}
-                {!! Form::select(
-                    'adm_id', 
-                    $estados, 
-                    $instituicao->estadoinstituicao_id ?? null, 
-                    [
-                        'class' => 'form-control estado',
-                        $disabled ? 'disabled' : null,
-                    ]) 
-                !!}
+                <div class="form-group">
+                    {!! Form::label('adm_id', 'Nome') !!}
+                    {!! Form::select(
+                        'adm_id', 
+                        $usuarios, 
+                        $adm->id ?? null, 
+                        [
+                            'class' => 'form-control',
+                        ]) 
+                    !!}
+                </div>
+                {{-- TODO: Quando alterar o select altera o nome do adm --}}
+                {{ Form::hidden('name', $adm->name ?? null) }}
             @else
                 <div class="form-group">
                     {!! Form::label('name', 'Nome') !!}
@@ -242,7 +244,7 @@
                 </p>
             @endif
         </div>
-
+        {{-- TODO: Quando alterar o select altera o CPF do adm --}}
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cpf', 'CPF') !!}
@@ -263,6 +265,7 @@
         </div>
     </div>
     <div class="row">
+        {{-- TODO: Quando alterar o select altera o CPF do adm --}}
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cargo', 'Cargo') !!}

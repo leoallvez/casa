@@ -52,12 +52,10 @@ class InstituicaoController extends Controller {
 
         $usuarios = User::where('instituicao_id', '=', $instituicao->id)->pluck('name', 'id');
 
-        dd($usuarios);
-
         $estados = Estado::all()->pluck('nome', 'id');
         $disabled = false;
 
-        return view('instituicao.edit', compact('instituicao', 'adm', 'estados', 'disabled'));
+        return view('instituicao.edit', compact('instituicao', 'adm', 'usuarios', 'estados', 'disabled'));
     }
 
     /**
@@ -69,8 +67,13 @@ class InstituicaoController extends Controller {
      */
     public function update(InstituicaoRequest $request, $id) {
 
-        dd($request->all());
-        //
+        $instituicao = Instituicao::findOrfail($id);
+
+        $instituicao->update($request->all());
+
+        flash('Instituicao Alterada com Sucesso!', 'success');
+        
+        return redirect('instituicao');
     }
 
     /**

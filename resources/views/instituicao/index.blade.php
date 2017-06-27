@@ -102,7 +102,7 @@
         excluir(instituicao_id) {
           swal({
             title: "Tem certeza?",
-            text: "A instituição e todos os seus usuários serão inativos!",
+            text: "A instituição e todos os seus usuários serão inativados!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",

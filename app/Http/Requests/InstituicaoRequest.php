@@ -51,7 +51,7 @@ class InstituicaoRequest extends FormRequest {
             'bairro.required'                => '* O bairro da instituição é obrigatório.',
             'cep.required'                   => '* O CEP da instituição é obrigatório.',
             'email_instituicao.required'     => '* O e-mail da instituição é obrigatório.',
-            'email_instituicao,unique'       => '* O e-mail da instituição já está em uso'
+            'email_instituicao,unique'       => '* O e-mail da instituição já está em uso',
             'telefone.required'              => '* O telefone da instituição é obrigatório.',
             # Administrador
             'name.required'                  => '* O nome do administrador é obrigatório.',
