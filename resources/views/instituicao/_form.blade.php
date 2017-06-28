@@ -315,5 +315,9 @@
 @endif
 
 @section('js')
+  <script>
+    var url = "{{ url('/') }}"+"usuarios/buscar-adm/";
+  </script>
   <script src="{{ asset('js/buscar_cep.js') }}"></script> 
+  <script src="{{ asset('js/buscar_adm.js') }}"></script> 
 @endsection

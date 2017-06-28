@@ -144,4 +144,22 @@ class UsuarioController extends Controller
 
         return view('usuario.index', compact('usuarios', 'inputBusca'));
     }
+
+    public function buscarAdm($id) {
+        dd(url('/'));
+        $adm = User::where('id', $id)
+        ->whereIn('nivel_id', [1,2])
+        ->first();
+
+        if(!is_null($adm)) {
+            return response()->json(
+                [
+                    'status' => true, 
+                    'adm'    => $adm,
+                ]
+            );
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
 }

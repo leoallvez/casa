@@ -13,6 +13,8 @@
 
 Auth::routes();
 
+Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@buscarAdm');
+
 Route::group(['middleware' => ['auth', 'usuario']], function () {
     # Home.
     Route::get('home', 'HomeController@index');
@@ -24,6 +26,7 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('adotivos/buscar', 'AdotivoController@buscar');
     Route::resource('adotivos', 'AdotivoController');
     # Usuários.
+    //Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@buscarAdm');
     Route::get('usuarios/buscar', 'UsuarioController@buscar');
     Route::resource('usuarios', 'UsuarioController');
     # Visitas.
@@ -40,7 +43,7 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('solicitar-cadastro/buscar', 'SolicitaCadastroController@buscar');
     Route::resource('solicitar-cadastro', 'SolicitaCadastroController');
     # Vículos
-    Route::patch('vinculos/vincular/', 'VinculoController@vincular'); # PUT is used to create or update.
+    Route::patch('vinculos/vincular/', 'VinculoController@vincular'); #PUT is used to create or update.
     Route::put('vinculos/desvincular/', 'VinculoController@desvincular' );
     Route::get('vinculos/adotivo/{adotivo_id}/adotantes/{adotantes_id}',['uses' => 'VinculoController@visualizar']);
     Route::get('vinculos/adotivo/{id}',['uses' => 'VinculoController@index', 'as' => 'listar']);

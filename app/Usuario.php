@@ -24,6 +24,11 @@ class Usuario extends Model {
         'instituicao_id',
         'created_at'
     ];
+    # atributos que não serão retornardos na response.
+    protected $hidden = [
+        'password', 
+        'remember_token',
+    ];
 
     public function setNivel($nivel_id) {
         $this->nivel_id = $nivel_id;
