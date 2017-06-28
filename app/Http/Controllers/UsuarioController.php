@@ -146,9 +146,9 @@ class UsuarioController extends Controller
     }
 
     public function buscarAdm($id) {
-        dd(url('/'));
+        # Serão pesquisados apenas usuario padrões e adm instituição.
         $adm = User::where('id', $id)
-        ->whereIn('nivel_id', [1,2])
+        ->whereIn('nivel_id', [2,3])
         ->first();
 
         if(!is_null($adm)) {
@@ -157,9 +157,9 @@ class UsuarioController extends Controller
                     'status' => true, 
                     'adm'    => $adm,
                 ]
-            );
+            ,200);
         } else {
-            return response()->json(['status' => false]);
+            return response()->json(['status' => false],204);
         }
     }
 }

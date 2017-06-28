@@ -209,7 +209,8 @@
 
 <fieldset>
     <legend><h3>Administrador</h3></legend>
-    {{ Form::hidden('adm_id', $adm->id ?? null) }}
+    {{-- id do último adm da instituição --}}
+    {{ Form::hidden('old_adm_id', $adm->id) }}
     <div class="row">
         <div class="col-md-9 col-xs-12">
             @if(Request::is('instituicao/*/edit'))
@@ -220,12 +221,13 @@
                         $usuarios, 
                         $adm->id ?? null, 
                         [
-                            'class' => 'form-control',
+                            'class'    => 'form-control',
+                            'onchange' => 'buscarAdm()',
                         ]) 
                     !!}
                 </div>
                 {{-- TODO: Quando alterar o select altera o nome do adm --}}
-                {{ Form::hidden('name', $adm->name ?? null) }}
+                {{ Form::hidden('name', $adm->name, ['id' => 'name']) }}
             @else
                 <div class="form-group">
                     {!! Form::label('name', 'Nome') !!}
@@ -244,7 +246,6 @@
                 </p>
             @endif
         </div>
-        {{-- TODO: Quando alterar o select altera o CPF do adm --}}
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cpf', 'CPF') !!}
@@ -265,7 +266,6 @@
         </div>
     </div>
     <div class="row">
-        {{-- TODO: Quando alterar o select altera o CPF do adm --}}
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
                 {!! Form::label('cargo', 'Cargo') !!}
@@ -290,7 +290,7 @@
                     [
                         'class'       => 'form-control', 
                         'placeholder' => 'exemplo@exemplo.com.br',
-                        $disabled ? 'disabled' : null,
+                        'disabled',
                     ]) 
                 !!}
             </div>
@@ -316,7 +316,7 @@
 
 @section('js')
   <script>
-    var url = "{{ url('/') }}"+"usuarios/buscar-adm/";
+    var url = "{{ url('/').'/usuarios/buscar-adm/' }}";
   </script>
   <script src="{{ asset('js/buscar_cep.js') }}"></script> 
   <script src="{{ asset('js/buscar_adm.js') }}"></script> 

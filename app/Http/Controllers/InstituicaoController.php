@@ -48,7 +48,9 @@ class InstituicaoController extends Controller {
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [1,2])->first();
+        ->whereIn('nivel_id', [1,2])
+        ->orderBy('name')
+        ->first();
 
         $usuarios = User::where('instituicao_id', '=', $instituicao->id)->pluck('name', 'id');
 
@@ -69,6 +71,21 @@ class InstituicaoController extends Controller {
 
         $instituicao = Instituicao::findOrfail($id);
 
+        # atualizar ADM da instuição.
+        $adm = Usuario::find($request->adm_id);
+
+        if($adm->id == $request->old_adm_id) {
+            $adm->update($request->all());
+        } else {
+            # Atualizar novo ADM
+            $adm->update(['nivel_id' => 2, 'cargo' => $request->cargo]);
+            # Atualizar ADM antigo como usuário padrão
+            $adm_old = Usuario::find($request->old_adm_id);
+
+            $adm_old->update(['nivel_id' => 3]);
+        }
+
+        #TODO: Altualizar Email
         $instituicao->update($request->all());
 
         flash('Instituicao Alterada com Sucesso!', 'success');

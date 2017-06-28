@@ -34,9 +34,7 @@ class InstituicaoRequest extends FormRequest {
             'name'                  => 'required|regex:/^[\pL\s\-]+$/u', 
             'cargo'                 => 'required|regex:/^[\pL\s\-]+$/u',
             # adm_id is a hidden input in the form.
-            'email_adminstrador'    => 'required|email|unique:users,email,'.$this->adm_id,
-
-     
+            #'email_adminstrador'    => 'required|email|unique:users,email,'.$this->adm_id,
         ];
     }
 
