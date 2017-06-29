@@ -268,7 +268,7 @@
     <div class="row" id="delete_adm">
         <div class="col-md-12 col-xs-12">
             <div class="form-group">
-                {{ Form::checkbox('inativar_old_adm', true,['id' => 'inativar_old_adm']) }} Inativar administrador anterior {{ $adm->name }}? 
+                {{ Form::checkbox('inativar_old_adm', true) }} Inativar administrador anterior {{ $adm->name }}? 
             </div>
         </div>
     </div>
@@ -324,19 +324,14 @@
 @section('js')
   <script>
     $(function() {		
-        $('#adm_id').change(function() {	
-
-            console.log("Id do admin selecionado: "+$('#adm_id').val());
-
-            console.log("Id do admin old: "+$('#old_adm_id').val());
-
-            console.log($('#adm_id').val() != $('#old_adm_id').val());
+        $('#adm_id').change(function() {
 
             if($('#adm_id').val() != $('#old_adm_id').val()) {		
-                $('#delete_adm').show();		
+                $('#delete_adm').show();	
+                $('input[name=inativar_old_adm]').attr('checked', false);	
             } else {		
                 $('#delete_adm').hide();
-                $('#inativar_old_adm').val(null);		
+                $('input[name=inativar_old_adm]').attr('checked', false);	
             }		
         });		
     });	
