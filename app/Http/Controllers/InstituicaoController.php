@@ -16,7 +16,10 @@ class InstituicaoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $instituicoes = Instituicao::where('is_aprovada', true)->where('id', '<>', 1)->paginate(10);
+        $instituicoes = Instituicao::where('is_aprovada', true)
+        ->where('id', '<>', 1)
+        ->orderBy('razao_social')
+        ->paginate(10);
 
         return view('instituicao.index', compact('instituicoes'));
     }
@@ -52,7 +55,9 @@ class InstituicaoController extends Controller {
         ->orderBy('name')
         ->first();
 
-        $usuarios = User::where('instituicao_id', '=', $instituicao->id)->pluck('name', 'id');
+        $usuarios = User::where('instituicao_id', '=', $instituicao->id)
+        ->where('deleted_at', null)
+        ->pluck('name', 'id');
 
         $estados = Estado::all()->pluck('nome', 'id');
         $disabled = false;
@@ -77,14 +82,17 @@ class InstituicaoController extends Controller {
         if($adm->id == $request->old_adm_id) {
             $adm->update($request->all());
         } else {
-            # Atualizar novo ADM
+            # Atualizar novo ADM.
             $adm->update(['nivel_id' => 2, 'cargo' => $request->cargo]);
-            # Atualizar ADM antigo como usuário padrão
+            # Atualizar ADM antigo como usuário padrão.
             $adm_old = Usuario::find($request->old_adm_id);
 
             $adm_old->update(['nivel_id' => 3]);
+            # Anativar ADM antigo.
+            if(!is_null($request->inativar_old_adm)) {
+                $adm_old->delete();
+            }
         }
-
         #TODO: Altualizar Email
         $instituicao->update($request->all());
 

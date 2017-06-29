@@ -50,7 +50,6 @@
                       <th>Razão social</th>
                       <th>CNPJ</th>
                       <th>Telefone</th>
-                      <th>E-mail</th>
                       <th>Administrador</th>
                     </tr>
                   </thead>
@@ -62,8 +61,7 @@
                         </td>
                         <td>{{ $instituicao->cnpj }}</td>
                         <td>{{ $instituicao->telefone }}</td>
-                        <td>{{ $instituicao->email }}</td>
-                        <td>{{ $instituicao->getAdm() }}</td>
+                        <td>{{ str_limit($instituicao->getAdm(), 30) }}</td>
                         <td>
                           <a href="{{ action('InstituicaoController@edit', $instituicao->id) }}" class="btn btn-info btn-xs">
                             <i class="fa fa-pencil"></i>

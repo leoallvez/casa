@@ -9,11 +9,21 @@
             </ul>
         </li>
       @endif
+
       @if(Auth::user()->isAdm())
         <li>
           <a href="{{ action("UsuarioController@index") }}">
             <i class="fa fa-user-plus"></i>
             Usuários
+          </a>
+        </li>
+      @endif
+
+      @if(Auth::user()->isAdmSistema())
+        <li>
+          <a href="{{ action("InstituicaoController@index") }}">
+            <i class="fa fa-child"></i>
+            Instituições
           </a>
         </li>
       @endif

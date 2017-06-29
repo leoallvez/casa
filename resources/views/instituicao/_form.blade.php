@@ -155,7 +155,7 @@
                 {!! Form::text('bairro', $instituicao->bairro ?? null, 
                     [
                         'class'       => 'form-control',
-                        'placeholder' =>'Digite Bairro Onde a Instituição esta Localizada',
+                        'placeholder' => 'Digite Bairro Onde a Instituição esta Localizada',
                         $disabled ? 'disabled' : null,
                     ]) 
                 !!}
@@ -210,7 +210,7 @@
 <fieldset>
     <legend><h3>Administrador</h3></legend>
     {{-- id do último adm da instituição --}}
-    {{ Form::hidden('old_adm_id', $adm->id) }}
+    {{ Form::hidden('old_adm_id', $adm->id,['id' => 'old_adm_id']) }}
     <div class="row">
         <div class="col-md-9 col-xs-12">
             @if(Request::is('instituicao/*/edit'))
@@ -265,6 +265,13 @@
             </p>
         </div>
     </div>
+    <div class="row" id="delete_adm">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+                {{ Form::checkbox('inativar_old_adm', true,['id' => 'inativar_old_adm']) }} Inativar administrador anterior {{ $adm->name }}? 
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="form-group">
@@ -316,6 +323,28 @@
 
 @section('js')
   <script>
+    $(function() {		
+        $('#adm_id').change(function() {	
+
+            console.log("Id do admin selecionado: "+$('#adm_id').val());
+
+            console.log("Id do admin old: "+$('#old_adm_id').val());
+
+            console.log($('#adm_id').val() != $('#old_adm_id').val());
+
+            if($('#adm_id').val() != $('#old_adm_id').val()) {		
+                $('#delete_adm').show();		
+            } else {		
+                $('#delete_adm').hide();
+                $('#inativar_old_adm').val(null);		
+            }		
+        });		
+    });	
+
+    $( document ).ready(function() {		
+	    $('#delete_adm').hide();	
+    });
+    
     var url = "{{ url('/').'/usuarios/buscar-adm/' }}";
   </script>
   <script src="{{ asset('js/buscar_cep.js') }}"></script> 
