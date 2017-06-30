@@ -364,7 +364,7 @@ class AdotantesTableSeeder extends Seeder {
         	],
         	[
         		'nome'            => 'Adriana Lima Ferreira',
-        		'conjuge_nome'    => 'Gustavo Lima da Costa',
+        		'conjuge_nome'    => 'Ricardo Lima da Silva',
         		'sexo'            => 'F',
         		'nascimento'      => '1975-06-06',
         		'cpf'             => '882.366.563-90',

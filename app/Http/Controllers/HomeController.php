@@ -21,9 +21,7 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // if(Auth::check())
-            return view('home');
-        // else
-            // return view('login');
+   
+        return view('home');
     }
 }

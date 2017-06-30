@@ -22,7 +22,7 @@
       @if(Auth::user()->isAdmSistema())
         <li>
           <a href="{{ action("InstituicaoController@index") }}">
-            <i class="fa fa-child"></i>
+            <i class="fa fa fa-building"></i>
             Instituições
           </a>
         </li>

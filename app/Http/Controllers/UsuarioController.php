@@ -61,16 +61,6 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -152,14 +142,8 @@ class UsuarioController extends Controller
         ->first();
 
         if(!is_null($adm)) {
-            return response()->json(
-                [
-                    'status' => true, 
-                    'adm'    => $adm,
-                ]
-            ,200);
-        } else {
-            return response()->json(['status' => false],204);
+            return response()->json(['status' => true, 'adm' => $adm], 200);
         }
+        return response()->json(['status' => false], 204);
     }
 }

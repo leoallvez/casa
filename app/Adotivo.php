@@ -109,7 +109,7 @@ class Adotivo extends Model{
         # Adotante pode não ter conjuge.
         if(!is_null($adotante->conjuge_nascimento)) {
             $conjuge_difference  = $this->nascimento->diffInYears($adotante->conjuge_nascimento);
-            return $adotante_difference >= 16 || $conjuge_difference >= 16;
+            return $adotante_difference >= 16 && $conjuge_difference >= 16;
         }
         return $adotante_difference >= 16;
     }
@@ -121,7 +121,7 @@ class Adotivo extends Model{
     public function getIrmaosIds() {
        return  $this->irmaos()->getRelatedIds()->toArray();
     }
-    //TODO teste
+
     public function updateIrmaos($irmaosIds) {
         if(isset( $irmaosIds )) {
             $this->irmaos()->sync($irmaosIds);
