@@ -25,7 +25,7 @@
         <div class="col-md-12">
           <div class="x_panel">
             {{-- <pre> @{{ $data | json }}</pre> --}}
-            {{-- @include('flash::message') --}}
+            @include('mensagens.alerta_div')
             <div class="x_content">
               <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">

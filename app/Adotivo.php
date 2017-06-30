@@ -17,8 +17,8 @@ class Adotivo extends Model{
     ];
 
     protected $fillable = [
-    	'nome',
-    	'sexo',
+      'nome',
+      'sexo',
       'etnia_id',
       'status_id',
       'nascimento',
@@ -45,7 +45,7 @@ class Adotivo extends Model{
             ->groupBy('adotivos_status.nome')
             ->first();
 
-            if(isset($resultado)){
+            if(isset($resultado)) {
                 $dados[] = [$s->nome, intval($resultado->quantidade)];
             }else{
                 $dados[] = [$s->nome, 0];
@@ -60,9 +60,9 @@ class Adotivo extends Model{
         $this->instituicao_id = $id;
     }
 
-   public function setUsuario(int $id) {
-        $this->usuario_id = $id;
-   }
+    public function setUsuario(int $id) {
+            $this->usuario_id = $id;
+    }
 
     /**
      * Esse metodo retornar uma String com a idade de um adotivo.
@@ -75,6 +75,7 @@ class Adotivo extends Model{
         $dias    = $this->nascimento->diffInDays(Carbon::now());
 
         $idade = '';
+
         if( $anos > 0 && $anos > 1)
             $idade .= $anos.' anos ';
         else if($anos == 1 )
@@ -87,25 +88,38 @@ class Adotivo extends Model{
 
         if($semanas > 0 && $semanas < 4 && $semanas > 1)
             $idade .= $semanas.' semanas ';
-        else if ($semanas == 1)
+        else if($semanas == 1)
             $idade .= '1 semana ';
 
         if($dias > 0 && $dias < 7 && $dias > 1)
             $idade .= $dias.' dias';
-        else if ($dias == 1)
+        else if($dias == 1)
             $idade .= ' 1 dia';
 
         return $idade;
     }
+    
+    /**
+     * Caso o adotivo, adotante e conjuge tenham uma diferença maior que 16 anos
+     * retorna true, caso contrario false.
+     * @return boolean
+     */
+    public function HasSixteenYearsApart(Adotante $adotante) {
+        $adotante_difference = $this->nascimento->diffInYears($adotante->nascimento);
+        # Adotante pode não ter conjuge.
+        if(!is_null($adotante->conjuge_nascimento)) {
+            $conjuge_difference  = $this->nascimento->diffInYears($adotante->conjuge_nascimento);
+            return $adotante_difference >= 16 || $conjuge_difference >= 16;
+        }
+        return $adotante_difference >= 16;
+    }
 
     public function getSexo() {
-        return ($this->sexo == 'M')? 'Masculino' : 'Feminino';
+        return ($this->sexo == 'M') ? 'Masculino' : 'Feminino';
     }
 
     public function getIrmaosIds() {
-       return  $this->irmaos()
-        ->getRelatedIds()
-        ->toArray();
+       return  $this->irmaos()->getRelatedIds()->toArray();
     }
     //TODO teste
     public function updateIrmaos($irmaosIds) {

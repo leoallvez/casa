@@ -48,33 +48,41 @@ class VinculoController extends Controller {
      
     	$adotantes = $adotantes->pluck('nome', 'id');
    
-		return view('vinculo.index', compact('adotivo', 'adotantesHistorico', 'adotantes', 'idAdotanteVinculo'));   
+		return view('vinculo.index', compact(
+            'adotivo', 
+            'adotantesHistorico', 
+            'adotantes', 
+            'idAdotanteVinculo'
+        ));   
     }
 
     public function visualizar($adotivo_id, $adotante_id) {
     	
         $adotivo = Adotivo::find($adotivo_id);
 
-         $adotantes = $adotivo->adotantes()
+        $adotantes = $adotivo->adotantes()
     	->where('adotantes_adotivos.adotante_id', '=', $adotante_id)
         ->first();
-
-        return view('vinculo.visualizar', compact('adotivo', 'adotantes')); 
-    	
+        return view('vinculo.visualizar', compact('adotivo', 'adotantes')); 	
     }
 
     public function vincular(VinculoRequest $request) {
 
         $adotivo = Adotivo::find($request->adotivo_id);
         $adotante = Adotante::find($request->adotante_id);
+        # Não podem tem menos 16 anos de diferença.
+        if(!$adotivo->HasSixteenYearsApart($adotante)) {
+            flash("Adotivo tem diferença de idade inferior a 16 anos com o adotante ou seu conjuge", 'danger');
+            return redirect('vinculos/adotivo/'.$adotivo->id);
+        }
 
         $adotivo->status_id = 3;
 
         $adotante->has_vinculo = 1;
 
-        
         $adotivo->adotantes()->save($adotante);
         $adotivo->save();
+        flash("Adotivo ".$adotivo->nome." vinculado(a) com Sucesso!", "success");
         return redirect('vinculos/adotivo/'.$adotivo->id);
     }
 
