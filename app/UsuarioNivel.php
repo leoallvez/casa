@@ -11,4 +11,8 @@ class UsuarioNivel extends Model {
     public function usuarios() {
     	return $this->hasMany('Casa\Usuario', 'user_id');
     }
+
+    public static function list() {
+        return self::where('id', '<>', 4)->pluck('nome', 'id');
+    }
 }

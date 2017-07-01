@@ -79,12 +79,21 @@
                             <span class=" fa fa-angle-down"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-usermenu pull-right">
-                            <li>
-                                <a href="{{ url("usuarios/".Auth::user()->id."/edit") }}">
-                                    <i class="fa fa-pencil pull-left"></i>
-                                        Editar minhas informações
-                                </a>
-                            </li>
+                            @if(Auth::user()->isAdmSistema())
+                              <li>
+                                  <a href="{{ url("administradores-sistema/".Auth::user()->id."/edit") }}">
+                                      <i class="fa fa-pencil pull-left"></i>
+                                          Editar minhas informações
+                                  </a>
+                              </li>
+                            @else
+                              <li>
+                                  <a href="{{ url("usuarios/".Auth::user()->id."/edit") }}">
+                                      <i class="fa fa-pencil pull-left"></i>
+                                          Editar minhas informações
+                                  </a>
+                              </li>
+                            @endif
                             <li>
                                 <a href="{{ url("instituicao/".Auth::user()->instituicao_id) }}">
                                     <i class="fa fa-building pull-left"></i>

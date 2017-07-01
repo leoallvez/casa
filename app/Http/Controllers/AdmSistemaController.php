@@ -3,25 +3,24 @@
 namespace Casa\Http\Controllers;
 
 use Casa\User;
-use Casa\Usuario;
+use Casa\AdmSistema;
 use Casa\UsuarioNivel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\UserStoreRequest;
 use Casa\Http\Requests\UserUpdateRequest;
 
-class UsuarioController extends Controller {
+class AdmSistemaController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $usuarios = Usuario::list();
+        $adms = AdmSistema::list();
 
-        return view('usuario.index', compact('usuarios'));
+        return view('adm-sistema.index', compact('adms'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,8 +28,8 @@ class UsuarioController extends Controller {
      */
     public function create() {
         $niveis = UsuarioNivel::all()->pluck('nome', 'id');
-
-        return view('usuario.create', compact('niveis'));
+        
+        return view('adm-sistema.create', compact('niveis'));
     }
 
     /**
@@ -41,13 +40,12 @@ class UsuarioController extends Controller {
      */
     public function store(UserStoreRequest $request) {
 
-        $usuario = new Usuario($request->except(['password']));
+        $adm = new AdmSistema($request->except(['password']));
+        $adm->save();
 
-        $usuario->save();
+        flash('Administrador do Sistema Incluído com Sucesso', 'success');
 
-        flash('Usuário Incluído com Sucesso', 'success');
-
-        return redirect('usuarios');
+        return redirect('administradores-sistema');
     }
 
     /**
@@ -57,11 +55,11 @@ class UsuarioController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $usuario = Usuario::findOrfail($id);
+        $adm = AdmSistema::findOrfail($id);
 
         $niveis = UsuarioNivel::list();
 
-        return view('usuario.edit', compact('usuario','niveis'));
+        return view('adm-sistema.edit', compact('adm','niveis'));
     }
 
     /**
@@ -73,18 +71,13 @@ class UsuarioController extends Controller {
      */
     public function update(UserUpdateRequest $request, $id) {
 
-        $usuario = Usuario::findOrfail($id);
-        $usuario->setSenha($request->password);
-        $usuario->update($request->except(['password']));
+        $adm = AdmSistema::findOrfail($id);
+        $adm->setSenha($request->password);
+        $adm->update($request->except(['password']));
 
-        flash('Informações Alterada com Sucesso!', 'success');
+        flash('Administrador do Sistema Alterado com Sucesso!', 'success');
 
-        /** Se for um usuário comum  ou for adm de instituição*/
-        if(Auth::user()->isAdmInsOrUsuarioPadrao()) {
-            return redirect('/');
-        }
-
-        return redirect('usuarios');
+        return redirect('administradores-sistema');
     }
 
     /**
@@ -95,30 +88,18 @@ class UsuarioController extends Controller {
      */
     public function destroy($id) {
         
-        Usuario::destroy($id);
+        AdmSistema::destroy($id);
         
-        flash('Usuário Inativado com Sucesso', 'danger');
+        flash('Administrador do Sistema Inativado com Sucesso', 'danger');
         return json_encode(['status' => true]);
     }
-
+    
     public function buscar(Request $request) {
 
-        $usuarios = Usuario::fetch($request->inputBusca);
-       
+        $adms = AdmSistema::fetch($request->inputBusca);
+
         $inputBusca = $request->inputBusca;
 
-        return view('usuario.index', compact('usuarios', 'inputBusca'));
-    }
-
-    public function findUsers($id) {
-        # Serão pesquisados apenas usuario padrões e adm instituição.
-        $adm = Usuario::where('id', $id)
-        ->whereIn('nivel_id', [2,3])
-        ->first();
-
-        if(!is_null($adm)) {
-            return response()->json(['status' => true, 'adm' => $adm], 200);
-        }
-        return response()->json(['status' => false], 204);
+        return view('adm-sistema.index', compact('adms', 'inputBusca'));
     }
 }

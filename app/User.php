@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->nivel_id == 3;
     }
 
-    public function isAdmInsOrUsuarioComum() {
+    public function isAdmInsOrUsuarioPadrao() {
         return $this->nivel_id == 2 ||  $this->nivel_id == 3;
     }
 

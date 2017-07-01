@@ -26,9 +26,12 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('adotivos/buscar', 'AdotivoController@buscar');
     Route::resource('adotivos', 'AdotivoController');
     # Usuários.
-    Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@buscarAdm');
+    Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@findUsers');
     Route::get('usuarios/buscar', 'UsuarioController@buscar');
     Route::resource('usuarios', 'UsuarioController');
+    # Administrador Sistema
+    Route::get('administradores-sistema/buscar', 'AdmSistemaController@buscar');
+    Route::resource('administradores-sistema', 'AdmSistemaController');
     # Visitas.
     Route::resource('visitas', 'VisitaController');
     # Relatórios.
