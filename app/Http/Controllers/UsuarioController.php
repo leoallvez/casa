@@ -77,7 +77,7 @@ class UsuarioController extends Controller {
         $usuario->setSenha($request->password);
         $usuario->update($request->except(['password']));
 
-        flash('Informações Alterada com Sucesso!', 'success');
+        flash('Informações Alteradas com Sucesso!', 'success');
 
         /** Se for um usuário comum  ou for adm de instituição*/
         if(Auth::user()->isAdmInsOrUsuarioPadrao()) {

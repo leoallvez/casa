@@ -6,11 +6,11 @@ namespace Casa;
 
 class AdmSistema extends Usuario {
 
-    private const NIVEL = 1;
+    const NIVEL_ADM_SISTEMA = 1;
 
     public function __construct(array $attributes = array(), $password = null) {
        
-        parent::__construct($attributes, $password, self::NIVEL);
+        parent::__construct($attributes, $password, self::NIVEL_ADM_SISTEMA);
     }
 
     /**
@@ -18,11 +18,11 @@ class AdmSistema extends Usuario {
      */
     public static function list() {
 
-        $adm = self::where('nivel_id','=', self::NIVEL);
+        $adm = self::where('nivel_id','=', self::NIVEL_ADM_SISTEMA);
         return $adm->orderBy('name')->paginate(10);
     }
 
-    public static function fetch($request, $nivel = self::NIVEL) {
+    public static function fetch($request, $nivel = self::NIVEL_ADM_SISTEMA) {
         return parent::fetch($request, $nivel);
     }
 }

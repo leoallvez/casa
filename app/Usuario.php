@@ -10,7 +10,7 @@ class Usuario extends Model {
 
     use SoftDeletes;
 
-    private const NIVEL = 3;
+    const NIVEL_PADRAO = 3;
 
     protected $dates = ['created_at'];
 
@@ -37,7 +37,7 @@ class Usuario extends Model {
         $this->instituicao_id = Auth::user()->instituicao_id;
         $password = $password ?? 'casa'.date('Y');
         $this->password = Hash::make($password);
-        $this->nivel_id = $nivel_id ?? self::NIVEL;
+        $this->nivel_id = $nivel_id ?? self::NIVEL_PADRAO;
     } 
 
     public function setNivel($nivel_id) {
@@ -64,13 +64,13 @@ class Usuario extends Model {
      */
     public static function list() {
 
-        $usuarios = self::where('nivel_id','=', self::NIVEL)
+        $usuarios = self::where('nivel_id','=', self::NIVEL_PADRAO)
         ->where('instituicao_id', Auth::user()->instituicao_id);
 
         return $usuarios->orderBy('name')->paginate(10);
     }
 
-    public static function fetch($inputBusca, $nivel = self::NIVEL) {
+    public static function fetch($inputBusca, $nivel = self::NIVEL_PADRAO) {
 
         $usuarios = self::where('nivel_id','=', $nivel)
         ->where('instituicao_id', Auth::user()->instituicao_id);
