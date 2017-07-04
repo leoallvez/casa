@@ -11,12 +11,17 @@ class Visita extends Model {
     protected $dates = ['dia'];
 
     protected $fillable = [
-    	'adotivo_id',
-    	'adotante_id',
     	'dia',
-    	'hora', 
+    	'hora_inicio',
+    	'hora_fim',
+    	'status', 
     	'minuto',
-        'tempo_estimado'
+        'tempo_estimado',
+        'opiniao_adotantes',
+        'opiniao_adotivos',
+        'observacoes',
+        # FK
+        'instituicao_id',
     ];
 
     public function adotante() {

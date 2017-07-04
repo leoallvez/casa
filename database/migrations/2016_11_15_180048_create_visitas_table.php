@@ -13,19 +13,17 @@ class CreateVisitasTable extends Migration
      */
     public function up() {
         Schema::create('visitas', function (Blueprint $table) {
-            $table->increments('id');
-            
+            $table->increments('id'); 
             $table->date('dia');
-            $table->string('hora');
-            $table->string('tempo_estimado');
-            $table->text('observacoes');
-            #FK
+            $table->time('hora_inicio');
+            $table->time('hora_fim');
+            $table->string('status');
+            $table->text('opiniao_adotantes')->nullable();
+            $table->text('opiniao_adotivos')->nullable();
+            $table->text('observacoes')->nullable();
+            # FK
             $table->integer('instituicao_id');
-            $table->integer('adotivo_id');
-            $table->integer('adotante_id');
-
-            $table->softDeletes();
-            $table->timestamps();
+            
         });
     }
 
