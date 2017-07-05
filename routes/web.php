@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('administradores-sistema/buscar', 'AdmSistemaController@buscar');
     Route::resource('administradores-sistema', 'AdmSistemaController');
     # Visitas.
-    Route::resource('visitas', 'VisitaController');
+    Route::resource('visitas', 'AgendaVisitaController');
     # Relatórios.
     Route::put('relatorio-adotivo', 'RelatorioAdotivoController@gerar');
     Route::resource('relatorio-adotivo',  'RelatorioAdotivoController');

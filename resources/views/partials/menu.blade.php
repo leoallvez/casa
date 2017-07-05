@@ -47,7 +47,7 @@
       @endif
       @if(Auth::user()->isAdmInstituicao() || Auth::user()->isUsuarioPadrao())
         <li>
-          <a href="{{ action("VisitaController@index") }}">
+          <a href="{{ action("AgendaVisitaController@index") }}">
             <i class="fa fa-calendar"></i>
             Agenda de Visitas
           </a>

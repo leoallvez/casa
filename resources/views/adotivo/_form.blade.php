@@ -1,6 +1,5 @@
 <link href="{{ asset('assets/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet" />
 
-
 <div class="row">
     <div class="col-md-2 col-xs-12">
         {!! Form::label('matricula', 'Número de Matrícula') !!}

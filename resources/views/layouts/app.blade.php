@@ -34,6 +34,20 @@
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{-- Select 2 --}}
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+
+    <!-- FullCalendar -->
+    <link href="{{ asset('css/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset('css/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media='print'/>
+
+    <link href="{{ asset('css/fullcalendar/bootstrap-colorpicker.min.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset('css/fullcalendar/bootstrapValidator.min.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset('css/fullcalendar/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset('css/fullcalendar/casa-fullcallendar.css') }}" rel="stylesheet" />
+
     <script>
       window.Laravel = <?php echo json_encode([
         'csrfToken' => csrf_token(),
@@ -188,5 +202,18 @@
     <script src="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     {{-- Custom Theme Scripts --}}
     <script src="{{ asset('assets/build/js/custom.min.js') }}"></script>
+
+    <!-- FullCalendar -->
+    <script src="{{ asset('js/fullcalendar/bootstrapValidator.min.js') }}"></script>
+
+    <script src="{{ asset('js/fullcalendar/fullcalendar.min.js') }}"></script>
+
+    <script src="{{ asset('js/fullcalendar/bootstrap-colorpicker.min.js') }}"></script>
+
+    <script src="{{ asset('js/fullcalendar/pt-br.js') }}"></script>
+
+    <script src="{{ asset('js/fullcalendar/bootstrap-timepicker.min.js') }}"></script>
+
+    @yield('calendar-js')
   </body>
 </html>
