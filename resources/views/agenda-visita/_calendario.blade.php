@@ -58,8 +58,17 @@
 
 @section('calendar-js')
     <script type="text/javascript">
+        var url_list_events = "{{ url('/') }}/visitas/listar";
+        var url_store_event = "{{ url('/') }}/visitas";
+        var url_update_event = "{{ url('/') }}/visitas/";
 
         $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $(function(){
                 var currentDate; // Holds the day clicked when adding a new event
                 var currentEvent; // Holds the event object when editing an event
@@ -79,7 +88,7 @@
                         right: 'month, basicWeek, basicDay'
                     },
                     // Get all events stored in database
-                    events: 'http://casa2.dev/visitas/listar',
+                    events: url_list_events,
                     // Handle Day Click
                     dayClick: function(date, event, view) {
 
@@ -169,37 +178,52 @@
                 // Handle Click on Add Button
                 $('.modal').on('click', '#add-event',  function(e){
                     if(validator(['title', 'description'])) {
-                        $.post('crud/addEvent.php', {
-                            title: $('#title').val(),
-                            description: $('#description').val(),
-                            color: $('#color').val(),
-                            date: currentDate + ' ' + getTime()
-                        }, function(result){
-                            $('.modal').modal('hide');
-                            $('#calendar').fullCalendar("refetchEvents");
+
+                        $.ajax({
+                            url: url_store_event, // your api url
+                            method: 'POST', // method is any HTTP method
+                            data: {
+                                title: $('#title').val(),
+                                description: $('#description').val(),
+                                color: $('#color').val(),
+                                date: currentDate + ' ' + getTime()
+                            }, // data as js object
+                            success: function() {
+                                $('.modal').modal('hide');
+                                $('#calendar').fullCalendar("refetchEvents");    
+                            }
                         });
                     }
                 });
                 // Handle click on Update Button
                 $('.modal').on('click', '#update-event',  function(e){
                     if(validator(['title', 'description'])) {
-                        $.post('crud/updateEvent.php', {
-                            id: currentEvent._id,
-                            title: $('#title').val(),
-                            description: $('#description').val(),
-                            color: $('#color').val(),
-                            date: currentEvent.date.split(' ')[0]  + ' ' +  getTime()
-                        }, function(result){
-                            $('.modal').modal('hide');
-                            $('#calendar').fullCalendar("refetchEvents");
+                        $.ajax({
+                            url: url_update_event + currentEvent._id, // your api url
+                            method: 'PUT', // method is any HTTP method
+                            data: {
+                                title: $('#title').val(),
+                                description: $('#description').val(),
+                                color: $('#color').val(),
+                                date: currentEvent.date.split(' ')[0]  + ' ' +  getTime()
+                            }, // data as js object
+                            success: function() {
+                                $('.modal').modal('hide');
+                                $('#calendar').fullCalendar("refetchEvents");    
+                            }
                         });
                     }
                 });
                 // Handle Click on Delete Button
                 $('.modal').on('click', '#delete-event',  function(e){
-                    $.get('crud/deleteEvent.php?id=' + currentEvent._id, function(result){
-                        $('.modal').modal('hide');
-                        $('#calendar').fullCalendar("refetchEvents");
+                    $.ajax({
+                        url: url_update_event + currentEvent._id, // your api url
+                        method: 'DELETE', // method is any HTTP method
+                        data: {}, // data as js object
+                        success: function() {
+                            $('.modal').modal('hide');
+                            $('#calendar').fullCalendar("refetchEvents");    
+                        }
                     });
                 });
                 // Get Formated Time From Timepicker
