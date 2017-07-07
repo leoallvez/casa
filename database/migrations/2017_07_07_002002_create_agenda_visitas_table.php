@@ -4,16 +4,15 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVisitasTable extends Migration
-{
+class CreateAgendaVisitasTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('visitas', function (Blueprint $table) {
-            $table->increments('id'); 
+        Schema::create('agenda_visitas', function (Blueprint $table) {
+            $table->increments('id');
             $table->date('dia');
             $table->time('hora_inicio');
             $table->time('hora_fim');
@@ -22,8 +21,9 @@ class CreateVisitasTable extends Migration
             $table->text('opiniao_adotivos')->nullable();
             $table->text('observacoes')->nullable();
             # FK
+            $table->integer('usuario_id');
             $table->integer('instituicao_id');
-            
+            $table->timestamps();
         });
     }
 
@@ -33,6 +33,6 @@ class CreateVisitasTable extends Migration
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('visitas');
+        Schema::dropIfExists('agenda_visitas');
     }
 }

@@ -49,7 +49,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
-                    Cancelar
+                    Voltar
                 </button>
             </div>
         </div>
@@ -58,11 +58,10 @@
 
 @section('calendar-js')
     <script type="text/javascript">
-        var url_list_events = "{{ url('/') }}/visitas/listar";
-        var url_store_event = "{{ url('/') }}/visitas";
-        var url_update_event = "{{ url('/') }}/visitas/";
+        var url_base = "{{ url('/') }}";
 
         $(document).ready(function() {
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -82,13 +81,16 @@
                 // Fullcalendar
                 $('#calendar').fullCalendar({
                     timeFormat: 'H(:mm)',
+                    //theme: true,
+                    //weekNumbers: true,
+                    //handleWindowResize: true,
                     header: {
                         left: 'prev, next, today',
                         center: 'title',
                         right: 'month, basicWeek, basicDay'
                     },
                     // Get all events stored in database
-                    events: url_list_events,
+                    events: url_base + "/visitas/listar",
                     // Handle Day Click
                     dayClick: function(date, event, view) {
 
@@ -99,8 +101,8 @@
                             buttons: {
                                 add: {
                                     id: 'add-event', // Buttons id
-                                    css: 'btn-success', // Buttons class
-                                    label: 'Adicionar' // Buttons label
+                                    css: 'btn btn-success', // Buttons class
+                                    label: 'Agendar' // Buttons label
                                 }
                             },
                             title: 'Adicionar Evento: ' + date.format('DD/MM/Y') // Modal title
@@ -134,13 +136,13 @@
                             buttons: {
                                 delete: {
                                     id: 'delete-event',
-                                    css: 'btn-danger',
-                                    label: 'Deletar'
+                                    css: 'btn btn-danger',
+                                    label: 'Cancelar Visita'
                                 },
                                 update: {
                                     id: 'update-event',
                                     css: 'btn-success',
-                                    label: 'Atualizar'
+                                    label: 'Reagendar'
                                 }
                             },
                             title: 'Editar Evento "' + calEvent.title + '"',
@@ -180,7 +182,7 @@
                     if(validator(['title', 'description'])) {
 
                         $.ajax({
-                            url: url_store_event, // your api url
+                            url: url_base + "/visitas", // your api url
                             method: 'POST', // method is any HTTP method
                             data: {
                                 title: $('#title').val(),
@@ -188,9 +190,18 @@
                                 color: $('#color').val(),
                                 date: currentDate + ' ' + getTime()
                             }, // data as js object
-                            success: function() {
+                            success: function(data) {
                                 $('.modal').modal('hide');
-                                $('#calendar').fullCalendar("refetchEvents");    
+                                $('#calendar').fullCalendar("refetchEvents");  
+                                swal(
+                                    'Agendado',
+                                    JSON.parse(data).message,
+                                    'success'
+                                );
+                                console.log(data); // JSON
+                            },
+                            error: function(data) {
+                                console.log(data.responseText);
                             }
                         });
                     }
@@ -199,7 +210,7 @@
                 $('.modal').on('click', '#update-event',  function(e){
                     if(validator(['title', 'description'])) {
                         $.ajax({
-                            url: url_update_event + currentEvent._id, // your api url
+                            url: url_base + "/visitas/" + currentEvent._id, // your api url
                             method: 'PUT', // method is any HTTP method
                             data: {
                                 title: $('#title').val(),
@@ -207,9 +218,18 @@
                                 color: $('#color').val(),
                                 date: currentEvent.date.split(' ')[0]  + ' ' +  getTime()
                             }, // data as js object
-                            success: function() {
+                            success: function(data) {
                                 $('.modal').modal('hide');
-                                $('#calendar').fullCalendar("refetchEvents");    
+                                $('#calendar').fullCalendar("refetchEvents"); 
+                                swal(
+                                    'Reagendo',
+                                    JSON.parse(data).message,
+                                    'success'
+                                );
+                                console.log(data);    
+                            },
+                            error: function(data) {
+                                console.log(data.responseText);
                             }
                         });
                     }
@@ -217,12 +237,21 @@
                 // Handle Click on Delete Button
                 $('.modal').on('click', '#delete-event',  function(e){
                     $.ajax({
-                        url: url_update_event + currentEvent._id, // your api url
+                        url: url_base + "/visitas/" + currentEvent._id, // your api url
                         method: 'DELETE', // method is any HTTP method
                         data: {}, // data as js object
-                        success: function() {
+                        success: function(data) {
                             $('.modal').modal('hide');
                             $('#calendar').fullCalendar("refetchEvents");    
+                            swal(
+                                    'Cancelada',
+                                    JSON.parse(data).message,
+                                    'success'
+                            );
+                            console.log(data);  
+                        },
+                        error: function(data) {
+                            console.log(data.responseText);
                         }
                     });
                 });

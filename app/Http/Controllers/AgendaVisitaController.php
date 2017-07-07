@@ -33,11 +33,13 @@ class AgendaVisitaController extends Controller {
      */
     public function store(Request $request) {
 
-       $visita = new AgendaVisita($request->all());
+        $visita = new AgendaVisita($request->all());
+        $visita->save();
 
-       $visita->save();
-
-       return json_encode(['status' => true]);
+        return json_encode([
+           'status'  => true,
+           'message' => 'Visita agendada com sucesso'
+        ]);
     }
 
     /**
@@ -70,10 +72,13 @@ class AgendaVisitaController extends Controller {
      */
     public function update(Request $request, $id) {
         
-       $visita = AgendaVisita::find($id);
-       $visita->update($request->all());
+        $visita = AgendaVisita::find($id);
+        $visita->update($request->all());
 
-       return json_encode(['status' => true]);
+        return json_encode([
+            'status'  => true, 
+            'message' => 'Visita reagendada com sucesso'
+        ]);
     }
 
     /**
@@ -83,9 +88,13 @@ class AgendaVisitaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+
        AgendaVisita::destroy($id);
 
-       return json_encode(['status' => true]);
+       return json_encode([
+           'status'  => true, 
+           'message' => 'Visita cancelada com sucesso' 
+       ]);
     }
 
     public function listar() {
