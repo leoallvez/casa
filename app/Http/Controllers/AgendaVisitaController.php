@@ -2,8 +2,12 @@
 
 namespace Casa\Http\Controllers;
 
+use Casa\Adotivo;
+use Casa\Vinculo;
+use Casa\Adotante;
 use Casa\AgendaVisita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AgendaVisitaController extends Controller {
     /**
@@ -12,7 +16,27 @@ class AgendaVisitaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('agenda-visita.agenda');
+        #Listar todos os ids dos adotantes que tem vinculo
+        $adotantes_ids = Vinculo::where('deleted_at', null)->pluck('adotante_id');
+
+        $adotantes = Adotante::whereIn('id', $adotantes_ids)
+        ->where('instituicao_id', Auth::user()->instituicao_id)
+        ->get();
+
+        /** Nome de adotate com conjuge caso tenha. */
+    	foreach ($adotantes as $adotante) {
+    		$adotante->nome = $adotante->getNomeEnomeConjuge(); 
+    	}
+     
+    	$adotantes = $adotantes->pluck('nome', 'id');
+
+        $adotivos_ids = Vinculo::where('deleted_at', null)->pluck('adotivo_id');
+        #Listas dos adotivos do da instituição que tem vinculo
+        $adotivos = Adotivo::whereIn('id', $adotivos_ids)
+        ->where('instituicao_id', Auth::user()->instituicao_id)
+        ->pluck('nome', 'id');
+
+        return view('agenda-visita.agenda', compact($adotantes, $adotivos));
     }
 
     /**
@@ -98,6 +122,8 @@ class AgendaVisitaController extends Controller {
     }
 
     public function listar() {
+
+        # TODO: listar apenas a visita da instituição
         return AgendaVisita::all();
     }       
 }
