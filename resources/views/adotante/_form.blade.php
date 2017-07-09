@@ -489,7 +489,7 @@
         </div>
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
-                {!! Form::label('conjuge_nascionalidade_id', 'Nacionalidade do Cônjuge') !!}
+                {!! Form::label('adotante_id', 'Adotante(s)') !!}
                 {!! Form::select(
                     'conjuge_nascionalidade_id',
                     $nascionalidades,

@@ -19,7 +19,81 @@
             </div>
             <div class="modal-body">
                 <div class="error"></div>
-                <form class="form-horizontal" id="crud-form">
+                <form id="crud-form">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!! Form::label('adotante_id', 'Adotante(s)') !!}
+                                {!! Form::select(
+                                    'adotante_id',
+                                    $adotantes,
+                                    null,
+                                    [
+                                        'class' => 'form-control',
+                                        'placeholder' => 'Selecione Adotante(s)'
+                                    ])
+                                !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!! Form::label('adotivo_id', 'Adotivo(s)') !!}
+                                {!! Form::select(
+                                    'adotivo_id',
+                                    $adotivos,
+                                    null,
+                                    [
+                                        'class' => 'form-control',
+                                        'placeholder' => '--'
+                                    ])
+                                !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {!! Form::label('dia', 'Data') !!}
+                                {!! Form::text('dia', null,
+                                    [
+                                        'class' => 'form-control',
+                                        'placeholder' => '00/00/0000',
+                                        'disabled'
+                                    ])
+                                !!}
+                            </div>
+                            <div class="col-md-3">
+                                {!! Form::label('hora_inicio', 'Hora Inicial') !!}
+                                {!! Form::time('hora_inicio', null,
+                                    [
+                                        'class' => 'form-control',
+                                    ])
+                                !!}
+                            </div>
+                            <div class="col-md-3">
+                                {!! Form::label('hora_fim', 'Hora Final') !!}
+                                {!! Form::time('hora_fim', null,
+                                    [
+                                        'class' => 'form-control',
+                                    ])
+                                !!}
+                            </div>
+                            <div class="col-md-3">
+                                {!! Form::label('tempo_total', 'Tempo Total') !!}
+                                {!! Form::time('temp_total', null,
+                                    [
+                                        'class' => 'form-control',
+                                        'disabled'
+                                    ])
+                                !!}
+                            </div>
+                        </div>
+                    </div>
+                    {{--
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="title">Título</label>
                         <div class="col-md-4">
@@ -45,6 +119,7 @@
                             <span class="help-block">Click para mudar cor</span>
                         </div>
                     </div>
+                    --}}
                 </form>
             </div>
             <div class="modal-footer">

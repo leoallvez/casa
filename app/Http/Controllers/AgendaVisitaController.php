@@ -22,13 +22,17 @@ class AgendaVisitaController extends Controller {
         $adotantes = Adotante::whereIn('id', $adotantes_ids)
         ->where('instituicao_id', Auth::user()->instituicao_id)
         ->get();
-
+        # TODO Verificar se foi encontrado adotantes.
         /** Nome de adotate com conjuge caso tenha. */
-    	foreach ($adotantes as $adotante) {
-    		$adotante->nome = $adotante->getNomeEnomeConjuge(); 
-    	}
-     
-    	$adotantes = $adotantes->pluck('nome', 'id');
+
+        if(!$adotantes->isEmpty()) {
+            foreach ($adotantes as $adotante) {
+                $adotante->nome = $adotante->getNomeEnomeConjuge(); 
+            }
+            $adotantes = $adotantes->pluck('nome', 'id');
+        }
+
+        // dd($adotantes);
 
         $adotivos_ids = Vinculo::where('deleted_at', null)->pluck('adotivo_id');
         #Listas dos adotivos do da instituição que tem vinculo
@@ -36,7 +40,7 @@ class AgendaVisitaController extends Controller {
         ->where('instituicao_id', Auth::user()->instituicao_id)
         ->pluck('nome', 'id');
 
-        return view('agenda-visita.agenda', compact($adotantes, $adotivos));
+        return view('agenda-visita.agenda', compact('adotantes', 'adotivos'));
     }
 
     /**
