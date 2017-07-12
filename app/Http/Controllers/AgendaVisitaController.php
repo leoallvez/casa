@@ -16,39 +16,12 @@ class AgendaVisitaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        #Listar todos os ids dos adotantes que tem vinculo
-        $adotantes_ids = Vinculo::where('deleted_at', null)->pluck('adotante_id');
 
-        $adotantes = Adotante::whereIn('id', $adotantes_ids)
-        ->where('instituicao_id', Auth::user()->instituicao_id)
-        ->get();
-        # TODO Verificar se foi encontrado adotantes.
-        /** Nome de adotate com conjuge caso tenha. */
+        $vinculo = new Vinculo();
 
-        if(!$adotantes->isEmpty()) {
-            foreach ($adotantes as $adotante) {
-                $adotante->nome = $adotante->getNomeEnomeConjuge(); 
-            }
-            $adotantes = $adotantes->pluck('nome', 'id');
-        }
+        $adotantes =  $vinculo->listarAdotantesComViculos();
+        $adotivos  =  $vinculo->listarAdotivosComVinculo();
 
-        $adotivosVinculos = Vinculo::where('deleted_at', null)
-        ->pluck('adotivo_id', 'id')->toArray();
-
-        #dd($adotivosVinculos);
-        $adotivos = [];
-
-        foreach($adotivosVinculos as $key => $value) {
-            #Listas dos adotivos do da instituição que tem vinculo
-            $adotivo = Adotivo::where('id', $value)
-            ->where('instituicao_id', Auth::user()->instituicao_id)
-            ->first();
-           
-            $adotivos[$key] = $adotivo->nome;
-        }
-
-        #dd($adotivos);
-        
         return view('agenda-visita.agenda', compact('adotantes', 'adotivos'));
     }
 
