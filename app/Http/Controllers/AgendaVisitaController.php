@@ -32,14 +32,23 @@ class AgendaVisitaController extends Controller {
             $adotantes = $adotantes->pluck('nome', 'id');
         }
 
-        // dd($adotantes);
+        $adotivosVinculos = Vinculo::where('deleted_at', null)
+        ->pluck('adotivo_id', 'id')->toArray();
 
-        $adotivos_ids = Vinculo::where('deleted_at', null)->pluck('adotivo_id');
-        #Listas dos adotivos do da instituição que tem vinculo
-        $adotivos = Adotivo::whereIn('id', $adotivos_ids)
-        ->where('instituicao_id', Auth::user()->instituicao_id)
-        ->pluck('nome', 'id');
+        #dd($adotivosVinculos);
+        $adotivos = [];
 
+        foreach($adotivosVinculos as $key => $value) {
+            #Listas dos adotivos do da instituição que tem vinculo
+            $adotivo = Adotivo::where('id', $value)
+            ->where('instituicao_id', Auth::user()->instituicao_id)
+            ->first();
+           
+            $adotivos[$key] = $adotivo->nome;
+        }
+
+        #dd($adotivos);
+        
         return view('agenda-visita.agenda', compact('adotantes', 'adotivos'));
     }
 
