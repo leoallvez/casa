@@ -56,4 +56,18 @@ class Vinculo extends Model {
         }
         return $adotivos ?? [];
     }
+
+    /**
+     *
+     * @return array
+     */
+
+    public function getAdotivosByAdotantesId(int $id) {
+
+        return self::where('adotante_id', $id)
+        ->where('deleted_at', null)
+        ->pluck('id')
+        ->toArray();
+
+    }
 }

@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::get('administradores-sistema/buscar', 'AdmSistemaController@buscar');
     Route::resource('administradores-sistema', 'AdmSistemaController');
     # Visitas.
+    Route::get('visitas/busca-adotivos/adotantes/{id}', 'AgendaVisitaController@buscarAdotivos');
     Route::get('visitas/listar', 'AgendaVisitaController@listar');
     Route::resource('visitas', 'AgendaVisitaController');
     # Relatórios.

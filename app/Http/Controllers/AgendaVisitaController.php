@@ -108,8 +108,19 @@ class AgendaVisitaController extends Controller {
     }
 
     public function listar() {
-
+        
         # TODO: listar apenas a visita da instituição
         return AgendaVisita::all();
-    }       
+    }    
+
+    public function buscarAdotivos($id) {
+
+        if(!is_null($id)) {
+            return json_encode([
+                'status'   => true, 
+                'adotivos' => (new Vinculo)->getAdotivosByAdotantesId($id),
+            ]);
+        }
+        return  json_encode(['status'  => false]);
+    }   
 }

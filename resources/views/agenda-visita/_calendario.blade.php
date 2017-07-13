@@ -29,8 +29,9 @@
                                     $adotantes,
                                     null,
                                     [
-                                        'class' => 'form-control',
-                                        'placeholder' => 'Selecione Adotante(s)'
+                                        'class'       => 'form-control',
+                                        'placeholder' => 'Selecione Adotante(s)',
+                                        'onchange'    => 'buscarAdotivos()',
                                     ])
                                 !!}
                             </div>
@@ -40,14 +41,16 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                {!! Form::label('adotivo_id', 'Adotivo(s)') !!}
+                                {!! Form::label('adotivo_id', 'Adotivo(s)') !!}<br>
                                 {!! Form::select(
                                     'adotivo_id',
                                     $adotivos,
                                     null,
                                     [
-                                        'class' => 'form-control',
-                                        'placeholder' => '--'
+                                        'class'    => 'form-control',
+                                        'multiple' => 'multiple',
+                                        'style'    => 'width: 100%',
+                                        'disabled'
                                     ])
                                 !!}
                             </div>
@@ -347,7 +350,30 @@
                     }
                     return true;
                 }
+            }); // Fim do script do calendario
+    
+            $("#adotivo_id").select2({            
+                placeholder: "--",
+                multiple: true
             });
         });
+
+        function buscarAdotivos() {
+            var id_adotante = $('#adotante_id').val();
+
+            $.ajax({
+                url: url_base + "/visitas/busca-adotivos/adotantes/"+ id_adotante, 
+                method: 'GET', // method is any HTTP method
+                success: function(data) {
+                    var adotivos = JSON.parse(data).adotivos;
+                    //$("#adotivo_id").select2('val', adotivos);
+                    $('#adotivo_id').val(adotivos).trigger("change");
+                    console.log(adotivos); // JSON
+                },
+                error: function(data) {
+                    console.log(data.responseText);
+                }
+            });
+        }
     </script>
 @endsection
