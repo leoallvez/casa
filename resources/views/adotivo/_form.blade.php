@@ -2,13 +2,17 @@
 
 <div class="row">
     <div class="col-md-2 col-xs-12">
-        {!! Form::label('matricula', 'Número de Matrícula') !!}
-        {!! Form::text('matricula', $matricula ?? $adotivo->matricula, 
+        {!! Form::label('matricula-diplay', 'Número de Matrícula') !!}
+        {!! Form::text('matricula-display', $matricula ?? $adotivo->matricula, 
             [
                 'class' => 'form-control', 
                 'disabled',
             ]) 
         !!}
+        @if(isset($matricula))
+            {!! Form::hidden('matricula', $matricula) !!}
+        @endif
+
     </div>
 </div>
 <br>
@@ -196,14 +200,6 @@
         }
       
         $(document).ready(function() {
-         
-          $("#nascionalidade_id").select2({            
-            language: {
-                noResults: function() {
-                    return "Nacionalidade não encontrada!";
-                }
-            }
-          });
 
           $("#irmaos").select2({            
             language: {

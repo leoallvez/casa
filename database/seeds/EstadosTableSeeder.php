@@ -27,7 +27,7 @@ class EstadosTableSeeder extends Seeder
             ["UF" => "MG", "nome" => "Minas Gerais"],
             ["UF" => "PA", "nome" => "Pará"],
             ["UF" => "PB", "nome" => "Paraíba"],
-            ["UF" => "PR", "nome" => "paraná"],
+            ["UF" => "PR", "nome" => "Paraná"],
             ["UF" => "PE", "nome" => "Pernambuco"],
             ["UF" => "PI", "nome" => "Piauí"],
             ["UF" => "RJ", "nome" => "Rio de Janeiro"],

@@ -120,10 +120,15 @@ class InstituicaoController extends Controller {
         # Retirar os espaços do incios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
 
-        $instituicoes = Instituicao::where('razao_social', 'like', '%'.$request->inputBusca.'%')
-        ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'))
-        ->orderBy('razao_social')
-        ->paginate(10);
+        $instituicoes = Instituicao::where('is_aprovada', true)
+        ->where('id', '<>', 1);
+
+        if(!empty($request->inputBusca)) {
+            $instituicoes = $instituicoes->where('razao_social', 'like', '%'.$request->inputBusca.'%')
+            ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'));
+        } 
+
+        $instituicoes = $instituicoes->orderBy('razao_social')->paginate(10);
 
         $inputBusca = $request->inputBusca;
 

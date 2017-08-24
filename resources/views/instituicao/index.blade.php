@@ -42,7 +42,7 @@
             @include('mensagens.alerta_div')
             @if($instituicoes->count() > 0)
               <div class="table-responsive">
-                <p>Listagem dos adotantes ativos.</p>
+                <p>Listagem das instituicões ativas.</p>
                 {{-- start list --}}
                 <table class="table table-hover table-general">
                   <thead>

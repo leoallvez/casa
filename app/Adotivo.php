@@ -21,6 +21,7 @@ class Adotivo extends Model{
       'sexo',
       'etnia_id',
       'status_id',
+      'matricula',
       'nascimento',
       'usuario_id',
       'restricao_id',
@@ -104,7 +105,7 @@ class Adotivo extends Model{
      * retorna true, caso contrario false.
      * @return boolean
      */
-    public function HasSixteenYearsApart(Adotante $adotante) {
+    public function has16AnosDeDiferenca(Adotante $adotante) {
         $adotante_difference = $this->nascimento->diffInYears($adotante->nascimento);
         # Adotante pode não ter conjuge.
         if(!is_null($adotante->conjuge_nascimento)) {
@@ -122,7 +123,7 @@ class Adotivo extends Model{
        return  $this->irmaos()->getRelatedIds()->toArray();
     }
 
-    public function updateIrmaos($irmaosIds) {
+    public function salvarImaos($irmaosIds) {
         if(isset( $irmaosIds )) {
             $this->irmaos()->sync($irmaosIds);
         } else {
@@ -130,11 +131,11 @@ class Adotivo extends Model{
         }
     }
 
-    public function saveIrmaos($irmaosIds) {
-        if(isset( $irmaosIds )) {
-            $this->irmaos()->attach($irmaosIds);
-        }
-    }
+    // public function saveIrmaos($irmaosIds) {
+    //     if(isset( $irmaosIds )) {
+    //         $this->irmaos()->attach($irmaosIds);
+    //     }
+    // }
 
     public function hasAdotantes() {
 

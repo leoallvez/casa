@@ -39,6 +39,18 @@
     font-weight: bold;
   }
 
+  input[type="text"]:disabled, select:disabled {
+    background-color: #90CAF9;
+    border: 1px solid #1976D2;
+    font-weight: bold;
+  }
+
+  .disabled-input {
+    background-color: #90CAF9;
+    border: 1px solid #1976D2;
+    font-weight: bold;
+  }
+
   .voltar-btn {
     color: #FFF;
     width: 100%;
