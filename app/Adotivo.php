@@ -28,7 +28,7 @@ class Adotivo extends Model{
       'data_chegada',
       'instituicao_id',
       'escolaridade_id',
-      'nascionalidade_id'
+      'nacionalidade_id'
     ];
     /**
      * Retorna um array contendo outro array com nome do status e
@@ -166,8 +166,8 @@ class Adotivo extends Model{
         return $this->belongsTo('Casa\Etnia');
     }
 
-    public function nascionalidade() {
-        return $this->belongsTo('Casa\Nascionalidade');
+    public function nacionalidade() {
+        return $this->belongsTo('Casa\Nacionalidade');
     }
 
     public function instituicao() {

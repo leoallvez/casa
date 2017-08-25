@@ -25,7 +25,7 @@ class CreateAdotivosTable extends Migration {
             $table->integer('usuario_id');
             $table->integer('etnia_id');
             $table->integer('status_id');
-            $table->integer('nascionalidade_id');
+            $table->integer('nacionalidade_id');
             $table->integer('restricao_id')->default(1);
 
             $table->softDeletes();

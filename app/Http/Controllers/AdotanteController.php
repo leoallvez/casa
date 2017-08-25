@@ -7,7 +7,7 @@ use Casa\Adotivo;
 use Casa\Adotante;
 use Casa\EstadoCivil;
 use Casa\Escolaridade;
-use Casa\Nascionalidade;
+use Casa\Nacionalidade;
 use Illuminate\Http\Request;
 use Casa\CategoriaProfissional;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +39,7 @@ class AdotanteController extends Controller {
         $estados = Estado::pluck('nome', 'id');
         $escolaridades = Escolaridade::pluck('nome', 'id');
         $categoriasProfissionais = CategoriaProfissional::pluck('nome', 'id');
-        $nascionalidades = Nascionalidade::pluck('nome', 'id');
+        $nascionalidades = Nacionalidade::pluck('nome', 'id');
 
         return view('adotante.create', compact(
             'estadosCivis',
@@ -87,7 +87,7 @@ class AdotanteController extends Controller {
 
         $escolaridades = Escolaridade::all()->pluck('nome', 'id');
         $categoriasProfissionais = CategoriaProfissional::all()->pluck('nome', 'id');
-        $nascionalidades = Nascionalidade::pluck('nome', 'id');
+        $nascionalidades = Nacionalidade::pluck('nome', 'id');
 
         return view('adotante.edit',
             compact(

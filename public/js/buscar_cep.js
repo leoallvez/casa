@@ -33,7 +33,7 @@ function atualizaPagina() {
             var result = JSON.parse(request.responseText);
 
             console.log(result.logradouro);
-
+            $('#endereco_numero').val('');
             $('#endereco').val(result.logradouro);
             $('#complemento').val(result.complemento);
             $('#cidade').val(result.localidade);

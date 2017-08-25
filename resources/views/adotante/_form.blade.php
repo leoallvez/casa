@@ -92,13 +92,13 @@
             </div>
         </div>
         <div class="col-md-3 col-xs-12">
-            {!! Form::label('nascionalidade_id', 'Nacionalidade') !!}
+            {!! Form::label('nacionalidade_id', 'Nacionalidade') !!}
             {!! Form::select(
-                'nascionalidade_id',
+                'nacionalidade_id',
                 $nascionalidades,
                 $adotivo->origem->id ?? null,
                 [
-                    'class' => 'form-control nascionalidade'
+                    'class' => 'form-control nacionalidade'
                 ])
             !!}
         </div>

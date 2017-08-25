@@ -42,7 +42,7 @@ class CreateAdotantesTable extends Migration {
             $table->integer('usuario_id');
             $table->integer('estado_civil_id')->default(1);
             $table->integer('instituicao_id');
-            $table->integer('nascionalidade_id')->default(1);
+            $table->integer('nacionalidade_id')->default(1);
             $table->integer('escolaridade_id')->nullable();
             $table->integer('categoria_profissional_id')->nullable();
 

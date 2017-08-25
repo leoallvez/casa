@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Adotante extends Model {
+class Adotante extends lMode {
   use SoftDeletes;
 
   protected $dates = [
@@ -45,7 +45,7 @@ class Adotante extends Model {
     'estado_id',
     'estado_civil_id',
     'escolaridade_id',
-    'nascionalidade_id',
+    'nacionalidade_id',
     'categoria_profissional_id'
   ];
 

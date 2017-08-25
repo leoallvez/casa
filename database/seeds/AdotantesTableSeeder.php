@@ -34,7 +34,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -69,7 +69,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => null,
@@ -104,7 +104,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -139,7 +139,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -174,7 +174,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -209,7 +209,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -244,7 +244,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -279,7 +279,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -314,7 +314,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -350,7 +350,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -385,7 +385,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -420,7 +420,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -455,7 +455,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => null,
@@ -490,7 +490,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -525,7 +525,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -560,7 +560,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -595,7 +595,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -630,7 +630,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -665,7 +665,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -700,7 +700,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -735,7 +735,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -762,7 +762,7 @@ class AdotantesTableSeeder extends Seeder {
         		'cidade'          => 'São Paulo',
         		'telefone'        => '(96) 2514-0000',
         		'celular'         => '(96) 99118-7654',
-        		'email'           => 'adriana@yahoo.com',
+        		'email'           => 'luisa@yahoo.com',
         		'estado_id'       =>  1,
         		'usuario_id'      =>  4,
         		'estado_civil_id' =>  2,
@@ -770,7 +770,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -805,7 +805,7 @@ class AdotantesTableSeeder extends Seeder {
         		'instituicao_id'  =>  2,
         		'created_at'      => date('Y-m-d'),
 				'escolaridade_id'                   => 5,
-				'nascionalidade_id'                 => 1,
+				'nacionalidade_id'                 => 1,
 				'categoria_profissional_id'         => 4,
 				'conjuge_escolaridade_id'           => 5,
 				'conjuge_nascionalidade_id'         => 1,
@@ -839,7 +839,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -874,7 +874,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -909,7 +909,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      => date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -944,7 +944,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -979,7 +979,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -1014,7 +1014,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -1049,7 +1049,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -1084,7 +1084,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -1119,7 +1119,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,
@@ -1154,7 +1154,7 @@ class AdotantesTableSeeder extends Seeder {
         		'created_at'      =>  date('Y-m-d'),
 
                 'escolaridade_id'                   => 5,
-                'nascionalidade_id'                 => 1,
+                'nacionalidade_id'                 => 1,
                 'categoria_profissional_id'         => 4,
 
                 'conjuge_escolaridade_id'           => 5,

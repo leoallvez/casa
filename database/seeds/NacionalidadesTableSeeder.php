@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Seeder;
 
-class NascionalidadesTableSeeder extends Seeder {
+class NacionalidadesTableSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run() {
-    	$nascionalidades = [
+    	$nacionalidades = [
             ['nome' => 'Brasileiro'],
     		['nome' => 'Albanês'],
     		['nome' => 'Alemão'],
@@ -73,6 +73,6 @@ class NascionalidadesTableSeeder extends Seeder {
             ['nome' => 'Moçambicano'],
             ['nome' => 'Nigeriano']
     	];
-    	DB::table('nascionalidades')->insert($nascionalidades);
+    	DB::table('nacionalidades')->insert($nacionalidades);
     }
 }

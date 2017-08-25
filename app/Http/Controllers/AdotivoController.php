@@ -8,7 +8,7 @@ use Casa\Adotante;
 use Casa\Restricao;
 use Casa\Escolaridade;
 use Casa\AdotivoStatus;
-use Casa\Nascionalidade;
+use Casa\Nacionalidade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\AdotivoRequest;
@@ -38,7 +38,7 @@ class AdotivoController extends Controller{
         $adotantes = Adotante::pluck('nome', 'id');
         $status    = AdotivoStatus::where('id', '<', 3)->pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
-        $nascionalidades = Nascionalidade::pluck('nome', 'id');
+        $nascionalidades = Nacionalidade::pluck('nome', 'id');
         $restricoes = Restricao::pluck('nome', 'id');
 
         $irmaos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
@@ -105,7 +105,7 @@ class AdotivoController extends Controller{
         $adotantes = Adotante::all()->pluck('nome', 'id');
         $status    = AdotivoStatus::pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
-        $nascionalidades = Nascionalidade::pluck('nome', 'id');
+        $nascionalidades = Nacionalidade::pluck('nome', 'id');
 
         $adotante   = $adotivo->adotantes()->first();
         $restricoes = Restricao::pluck('nome', 'id');
