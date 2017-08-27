@@ -17,6 +17,11 @@ class Visita extends Model {
     {
         return $this->belongsTo('Casa\Agenda', 'agenda_id');
     }
+
+    public function vinculo()
+    {
+        return $this->belongsTo('Casa\Vinculo', 'vinculo_id');
+    }
 }
 
 

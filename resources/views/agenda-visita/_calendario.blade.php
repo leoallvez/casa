@@ -74,6 +74,7 @@
                                 {!! Form::time('hora_inicio', null,
                                     [
                                         'class' => 'form-control',
+                                        'onblur' => 'calcularTempoTotal()',
                                     ])
                                 !!}
                             </div>
@@ -82,13 +83,15 @@
                                 {!! Form::time('hora_fim', null,
                                     [
                                         'class' => 'form-control',
+                                        'onblur' => 'calcularTempoTotal()',
                                     ])
                                 !!}
                             </div>
                             <div class="col-md-3">
                                 {!! Form::label('tempo_total', 'Tempo Total') !!}
-                                {!! Form::time('temp_total', null,
+                                {!! Form::text('tempo_total', '--:--',
                                     [
+                                        'id' => 'tempo_total',
                                         'class' => 'form-control',
                                         'disabled'
                                     ])
@@ -263,13 +266,17 @@
                             url: url_base + "/visitas", // your api url
                             method: 'POST', // method is any HTTP method
                             data: {
-                                adotante_id: $('adotante_id').val(),
-                                description: $('#description').val(),
-                                color: $('#color').val(),
-                                date: currentDate + ' ' + getTime()
+                                //dia: $('#dia').val(),
+                                adotante_id: $('#adotante_id').val(),
+                                hora_inicio: $('#hora_inicio').val(),
+                                hora_fim: $('#hora_fim').val(),
+                                status: 'agendado',
+                                //color: $('#color').val(),
+                                dia: currentDate
                             }, // data as js object
                             success: function(data) {
                                 $('.modal').modal('hide');
+                                limparCampos();
                                 $('#calendar').fullCalendar("refetchEvents");  
                                 swal(
                                     'Agendado',
@@ -359,6 +366,39 @@
             });
         });
 
+        function limparCampos() {
+            $('#dia').val(null);
+            $('#adotivo_id').val('').trigger("change");
+            $('#adotante_id').val(null);
+            $('#hora_inicio').val(null);
+            $('#hora_fim').val(null);
+            $('#tempo_total').val('--:--');
+        }
+
+        function calcularTempoTotal() {
+
+            var startTime = $('#hora_inicio').val();
+            var endTime   = $('#hora_fim').val();
+
+            if(startTime && endTime) {
+
+                startTime = moment(startTime, "HH:mm");
+                endTime = moment(endTime, "HH:mm");
+
+                var duration = moment.duration(endTime.diff(startTime));
+                var hours = parseInt(duration.asHours());
+                if(hours < 10) { hours = "0" + hours; }
+                var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                if(minutes < 10) { minutes = "0" + minutes; }
+
+                $('#tempo_total').val(hours + ':' + minutes);
+            } else {
+                $('#tempo_total').val('--:--');
+            }
+
+        }
+
+
         function buscarAdotivos() {
             var id_adotante = $('#adotante_id').val();
 
@@ -367,7 +407,6 @@
                 method: 'GET', // method is any HTTP method
                 success: function(data) {
                     var adotivos = JSON.parse(data).adotivos;
-                    //$("#adotivo_id").select2('val', adotivos);
                     $('#adotivo_id').val(adotivos).trigger("change");
                     console.log(adotivos); // JSON
                 },

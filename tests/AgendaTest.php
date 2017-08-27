@@ -2,6 +2,7 @@
 
 use \Casa\Visita;
 use \Casa\Agenda;
+use \Casa\Vinculo;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AgendaTest extends TestCase
@@ -25,10 +26,10 @@ class AgendaTest extends TestCase
 
         $agenda->save();
 
-        $this->seeInDatabase('agendas', ['status' => 'agendada']);
+        $this->seeInDatabase('agendas', ['dia' => '2017-08-26']);
     }
 
-    public function testAssociateVisitWithAgenda()
+    public function testAssociateManyVisitasWithOneAgenda()
     {
         $atributos = [
             'dia'               => '2017-08-26',
@@ -43,8 +44,6 @@ class AgendaTest extends TestCase
         $agenda = new Agenda($atributos);
 
         $agenda->save();
-
-        //$visita = new Visita(['vinculo_id' => '3814']);
 
         $visitas = [
             new Visita(['vinculo_id' => 3811]),
@@ -63,5 +62,17 @@ class AgendaTest extends TestCase
         $this->seeInDatabase('visitas', ['vinculo_id' => 3813]);
         $this->seeInDatabase('visitas', ['vinculo_id' => 3814]);
         $this->seeInDatabase('visitas', ['vinculo_id' => 3815]);
+    }
+
+    public function testAssociateVisitWithVinculo() 
+    {
+        $vinculo = new Vinculo(['adotante_id' => 3456, 'adotivo_id' => 9807]);
+        $vinculo->save();
+
+        $visita = new Visita(['agenda_id' => 7899]);
+
+        $visita->vinculo()->associate($vinculo)->save();
+
+        $this->seeInDatabase('visitas', ['agenda_id' => 7899]);
     }
 }

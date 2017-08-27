@@ -5,7 +5,7 @@ namespace Casa\Http\Controllers;
 use Casa\Adotivo;
 use Casa\Vinculo;
 use Casa\Adotante;
-use Casa\AgendaVisita;
+use Casa\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,8 +43,8 @@ class AgendaController extends Controller {
      */
     public function store(Request $request) {
 
-        $visita = new AgendaVisita($request->all());
-        $visita->save();
+        $agenda = new Agenda($request->all());
+        $agenda->save();
 
         return json_encode([
            'status'  => true,
@@ -82,8 +82,8 @@ class AgendaController extends Controller {
      */
     public function update(Request $request, $id) {
         
-        $visita = AgendaVisita::find($id);
-        $visita->update($request->all());
+        $agenda = Agenda::find($id);
+        $agenda->update($request->all());
 
         return json_encode([
             'status'  => true, 
@@ -99,7 +99,7 @@ class AgendaController extends Controller {
      */
     public function destroy($id) {
 
-       AgendaVisita::destroy($id);
+       Agenda::destroy($id);
 
        return json_encode([
            'status'  => true, 
@@ -110,7 +110,7 @@ class AgendaController extends Controller {
     public function listar() {
         
         # TODO: listar apenas a visita da instituição
-        return AgendaVisita::all();
+        return Agenda::all();
     }    
 
     public function buscarAdotivos($id) {

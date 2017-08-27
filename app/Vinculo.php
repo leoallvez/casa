@@ -9,6 +9,11 @@ class Vinculo extends Model {
     
     protected $table = 'adotantes_adotivos';
 
+    protected $fillable = [
+    	'adotante_id',
+    	'adotivo_id',
+    ];
+
     protected $dates = ['created_at'];
 
     /**
@@ -69,5 +74,10 @@ class Vinculo extends Model {
         ->pluck('id')
         ->toArray();
 
+    }
+
+    public function visitas()
+    {
+        return $this->hasMany('Casa\Visita');
     }
 }
