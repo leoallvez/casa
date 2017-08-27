@@ -183,9 +183,9 @@
                                     label: 'Agendar' // Buttons label
                                 }
                             },
-                            title: 'Adicionar Evento: ' + date.format('DD/MM/Y') // Modal title
+                            title: 'Agendar Visita dia: ' + date.format('DD/MM/Y') // Modal title
                         });
-
+                        $('#dia').val(date.format('DD/MM/Y'));
                     },
                     // Event Mouseover
                     eventMouseover: function(calEvent, jsEvent, view) {
@@ -257,13 +257,13 @@
                 }
                 // Handle Click on Add Button
                 $('.modal').on('click', '#add-event',  function(e){
-                    if(validator(['title', 'description'])) {
+                    if(validator(['adotante_id', 'dia', 'hora_inicio', 'hora_fim'])) {
 
                         $.ajax({
                             url: url_base + "/visitas", // your api url
                             method: 'POST', // method is any HTTP method
                             data: {
-                                title: $('#title').val(),
+                                adotante_id: $('adotante_id').val(),
                                 description: $('#description').val(),
                                 color: $('#color').val(),
                                 date: currentDate + ' ' + getTime()
@@ -341,6 +341,7 @@
                 // Dead Basic Validation For Inputs
                 function validator(elements) {
                     var errors = 0;
+                    console.log(elements);
                     $.each(elements, function(index, element){
                         if($.trim($('#' + element).val()) == '') errors++;
                     });

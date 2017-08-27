@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Adotante extends lMode {
+class Adotante extends Model {
   use SoftDeletes;
 
   protected $dates = [

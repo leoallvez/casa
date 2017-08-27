@@ -9,7 +9,7 @@ use Casa\AgendaVisita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AgendaVisitaController extends Controller {
+class AgendaController extends Controller {
     /**
      * Display a listing of the resource.
      *

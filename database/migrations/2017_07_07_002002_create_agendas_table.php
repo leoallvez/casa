@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgendaVisitasTable extends Migration {
+class CreateAgendasTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('agenda_visitas', function (Blueprint $table) {
+        Schema::create('agendas', function (Blueprint $table) {
             $table->increments('id');
             $table->date('dia');
             $table->time('hora_inicio');
@@ -33,6 +33,6 @@ class CreateAgendaVisitasTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('agenda_visitas');
+        Schema::dropIfExists('agendas');
     }
 }

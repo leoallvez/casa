@@ -34,7 +34,7 @@ class Usuario extends Model {
 
     public function __construct(array $attributes = array(), $password = null) {
         parent::__construct($attributes);
-        $this->instituicao_id = Auth::user()->instituicao_id;
+        $this->instituicao_id = 1; // Auth::user()->instituicao_id;
         $password = $password ?? 'casa'.date('Y');
         $this->password = Hash::make($password);
         $this->nivel_id = $nivel_id ?? self::NIVEL_PADRAO;
