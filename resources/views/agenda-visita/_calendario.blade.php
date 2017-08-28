@@ -164,7 +164,7 @@
                     timeFormat: 'H(:mm)',
                     //theme: true,
                     //weekNumbers: true,
-                    //handleWindowResize: true,
+                    handleWindowResize: true,
                     header: {
                         left: 'prev, next, today',
                         center: 'title',
@@ -395,7 +395,6 @@
             } else {
                 $('#tempo_total').val('--:--');
             }
-
         }
 
 
