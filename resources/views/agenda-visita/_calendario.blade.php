@@ -353,7 +353,7 @@
                         if($.trim($('#' + element).val()) == '') errors++;
                     });
                     if(errors) {
-                        $('.error').html('Por favor inserir titulo e descrição.');
+                        $('.error').html('Por favor preencher todos os campos');
                         return false;
                     }
                     return true;

@@ -64,7 +64,7 @@ class AgendaTest extends TestCase
         $this->seeInDatabase('visitas', ['vinculo_id' => 3815]);
     }
 
-    public function testAssociateVisitWithVinculo() 
+    public function testAssociateVisitaWithVinculo() 
     {
         $vinculo = new Vinculo(['adotante_id' => 3456, 'adotivo_id' => 9807]);
         $vinculo->save();
@@ -74,5 +74,24 @@ class AgendaTest extends TestCase
         $visita->vinculo()->associate($vinculo)->save();
 
         $this->seeInDatabase('visitas', ['agenda_id' => 7899]);
+    }
+
+    public function testAgendarVisita() 
+    {
+        $atributos = [
+            'dia'               => '2017-09-05',
+            'hora_inicio'       => '12:00',
+            'hora_fim'          => '14:00',
+            'status'            => 'agendada',
+            'opiniao_adotantes' => 'Lorem ipsum dolor sit amet 1',
+            'opiniao_adotivos'  => 'Lorem ipsum dolor sit amet 2',
+            'observacoes'       => 'Lorem ipsum dolor sit amet 3',
+        ];
+
+        $agendar = new Agenda($atributos);
+        $agendado = $agendar->agendarVisita(2);
+
+        $this->assertTrue($agendado);
+        $this->seeInDatabase('agendas', ['dia' => '2017-09-05']);
     }
 }

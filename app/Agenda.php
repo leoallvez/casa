@@ -1,6 +1,8 @@
 <?php
 
 namespace Casa;
+use Casa\Visita;
+use Casa\Adotante;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +34,25 @@ class Agenda extends Model {
         'opiniao_adotivos',
         'observacoes',
     ];
+
+    public function agendarVisita(int $adotante_id) 
+    {
+        $adotante = Adotante::find($adotante_id);
+
+        if(!is_null($adotante)) {
+            
+            $this->save();
+            $vinculos = $adotante->adotivos;
+
+            foreach($vinculos as $vinculo) {
+                $visita = new Visita;
+                $visita->vinculo()->associate($vinculo);
+                $visita->agenda()->associate($this)->save();
+            }
+            return true;
+        }
+        return false;
+    }
 
     public function visitas()
     {

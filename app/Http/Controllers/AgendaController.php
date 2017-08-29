@@ -41,10 +41,10 @@ class AgendaController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
+    public function store(Request $request) 
+    {
         $agenda = new Agenda($request->all());
-        $agenda->save();
+        $agenda->agendarVisita($request->adotante_id);
 
         return json_encode([
            'status'  => true,
