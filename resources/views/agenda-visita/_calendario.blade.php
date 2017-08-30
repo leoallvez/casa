@@ -161,17 +161,50 @@
                 });  // Timepicker
                 // Fullcalendar
                 $('#calendar').fullCalendar({
+                    eventLimit: true,
+                    navLinks: true,
                     timeFormat: 'H(:mm)',
                     //theme: true,
                     //weekNumbers: true,
-                    handleWindowResize: true,
+                    handleWindowResize: false,
                     header: {
                         left: 'prev, next, today',
                         center: 'title',
                         right: 'month, basicWeek, basicDay'
                     },
                     // Get all events stored in database
-                    events: url_base + "/visitas/listar",
+                    //events: url_base + "/visitas/listar",
+                    events: [
+                            {
+                                "id": "1",
+                                "title": "Event 1",
+                                "description": "This is events description <br> Bahia",
+                                "color": "#f00877",
+                                "date": "2017-08-30 09:00:00"
+                            },
+                            {
+                                "id": "2",
+                                "title": "Event 2",
+                                "description": "This is events description",
+                                "color": "#08aaf0",
+                                "date": "2017-08-30 10:00:00"
+                            },
+                            {
+                                "id": "2",
+                                "title": "Event 2",
+                                "description": "This is events description",
+                                "color": "#08aaf0",
+                                "date": "2017-08-30 11:30:00"
+                            },
+                            {
+                                "id": "2",
+                                "title": "Event 2",
+                                "description": "This is events description",
+                                "color": "#08aaf0",
+                                "date": "2017-08-30 11:30:00",
+                                "bahia": "teste"
+                            }
+                        ],
                     // Handle Day Click
                     dayClick: function(date, event, view) {
 
