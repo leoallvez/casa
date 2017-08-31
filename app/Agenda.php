@@ -35,6 +35,11 @@ class Agenda extends Model {
         'observacoes',
     ];
 
+    public function visitas()
+    {
+        return $this->hasMany('Casa\Visita');
+    }
+
     public function agendarVisita(int $adotante_id) 
     {
         $adotante = Adotante::find($adotante_id);
@@ -54,8 +59,43 @@ class Agenda extends Model {
         return false;
     }
 
-    public function visitas()
+    public static function listar() 
     {
-        return $this->hasMany('Casa\Visita');
+        //$results = [];
+        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id)->get();
+        
+        if(!is_null($agendas)) {
+    
+            foreach($agendas as $agenda) {
+                
+                $results[] = [
+                    "id"          => $agenda->id,
+                    "title"       => 'Teste 1',
+                    "description" => 'Teste 2',
+                    "color"       => $agenda->getCorDoStatus(),
+                    "date"        => $agenda->getDiaEHorario(),
+                ];
+            }
+        }
+        return response()->json($results);
+    }
+
+    private function getCorDoStatus() : string {
+        switch($this->status) {
+            case 'agendado':
+                $cor = '#27AE60';
+                break;
+            case 'reagendado':
+                $cor = '#FFC300';
+                break;
+            case 'cancelado':
+                $cor = '#FF5733';
+                break;
+        }
+        return $cor;
+    }
+
+    private function getDiaEHorario() : string {
+        return $this->dia." ".$this->hora_inicio;
     }
 }

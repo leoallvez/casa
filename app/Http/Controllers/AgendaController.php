@@ -110,7 +110,8 @@ class AgendaController extends Controller {
     public function listar() {
         
         # TODO: listar apenas a visita da instituição
-        return Agenda::all();
+        //return Agenda::all();
+        return Agenda::listar();
     }    
 
     public function buscarAdotivos($id) {
