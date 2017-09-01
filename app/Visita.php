@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Visita extends Model {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     protected $fillable = [
     	'agenda_id',

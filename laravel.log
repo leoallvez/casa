@@ -16342,9 +16342,9 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-17 22:45:24] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Casa\Adotivo::salvarImaos() must be of the type array, null given, called in C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php on line 143 in C:\laragon\www\Casa2\app\Adotivo.php:111
+[2017-04-17 22:45:24] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Casa\Adotivo::salvarIrmaos() must be of the type array, null given, called in C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php on line 143 in C:\laragon\www\Casa2\app\Adotivo.php:111
 Stack trace:
-#0 C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php(143): Casa\Adotivo->salvarImaos(NULL)
+#0 C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php(143): Casa\Adotivo->salvarIrmaos(NULL)
 #1 [internal function]: Casa\Http\Controllers\AdotivoController->update(Object(Casa\Http\Requests\AdotivoRequest), '51')
 #2 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
 #3 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(44): Illuminate\Routing\Controller->callAction('update', Array)
@@ -16390,9 +16390,9 @@ Stack trace:
 #43 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
-[2017-04-17 22:48:42] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Casa\Adotivo::salvarImaos() must be of the type array, null given, called in C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php on line 144 in C:\laragon\www\Casa2\app\Adotivo.php:111
+[2017-04-17 22:48:42] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Casa\Adotivo::salvarIrmaos() must be of the type array, null given, called in C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php on line 144 in C:\laragon\www\Casa2\app\Adotivo.php:111
 Stack trace:
-#0 C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php(144): Casa\Adotivo->salvarImaos(NULL)
+#0 C:\laragon\www\Casa2\app\Http\Controllers\AdotivoController.php(144): Casa\Adotivo->salvarIrmaos(NULL)
 #1 [internal function]: Casa\Http\Controllers\AdotivoController->update(Object(Casa\Http\Requests\AdotivoRequest), '51')
 #2 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
 #3 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(44): Illuminate\Routing\Controller->callAction('update', Array)

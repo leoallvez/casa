@@ -123,19 +123,61 @@ class Adotivo extends Model{
        return  $this->irmaos()->getRelatedIds()->toArray();
     }
 
-    public function salvarImaos($irmaosIds) {
-        if(isset( $irmaosIds )) {
+    public function salvarIrmaos($irmaosIds) {
+    
+        if(isset($irmaosIds)) {
+
+            $irmaos = Adotivo::whereIn('id',$irmaosIds)->get();
+
+            foreach($irmaos as $irmao) {
+                $irmao->irmaos()->sync([$this->id]);
+            }
             $this->irmaos()->sync($irmaosIds);
         } else {
             $this->irmaos()->sync([]);
         }
     }
 
-    // public function saveIrmaos($irmaosIds) {
-    //     if(isset( $irmaosIds )) {
-    //         $this->irmaos()->attach($irmaosIds);
-    //     }
-    // }
+    public function altualizarIrmaos($irmaosIds) {
+
+        if(isset($irmaosIds)) {
+            $this->removerVinculoNosIrmaos($irmaosIds);
+            $this->realizarVinculoNosIrmaos($irmaosIds);
+            $this->irmaos()->sync($irmaosIds);
+        } else {
+            $this->removerVinculoNosIrmaos();
+            $this->irmaos()->sync([]);
+        }
+    }
+    /**
+     * Realiza o vinculos do adotivo em seu(s) irmão(s)
+     * que tem o id no array.
+     * Caso já exista o vinculo não o modifica.
+    */
+    private function realizarVinculoNosIrmaos(array $irmaosIds) {
+        $irmaos = Adotivo::whereIn('id',$irmaosIds)->get();
+        foreach($irmaos as $irmao) {
+            $irmao->irmaos()->sync([$this->id]);
+        }
+    }
+    /**
+     * Remove o vinculos do adotivo em seu(s) irmão(s)
+     * estão na base mas que não que tem o id no array.
+     * Caso o array seja vazio remove todo os vinculos
+     * os irmãos na qual tem o adotivo.
+    */
+    private function removerVinculoNosIrmaos(array $irmaosIds = []) {
+        if(count($irmaosIds) > 0) {
+            # Pegar todos irmãos que não tem seu id no array
+            $Irmaos= $this->irmaos()->where('irmaos.id','<>', $irmaosIds)->get();
+        }else {
+            $Irmaos= $this->irmaos()->get();    
+        }
+        # Desfazer o($) vinculo(s).
+        foreach($Irmaos as $irmao) {
+            $irmao->irmaos()->detach($this->id);
+        }
+    }
 
     public function hasAdotantes() {
 

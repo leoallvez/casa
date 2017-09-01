@@ -74,7 +74,7 @@ class AdotivoController extends Controller{
 
         $adotivo->save();
 
-        $adotivo->salvarImaos($request->irmaosIds);
+        $adotivo->salvarIrmaos($request->irmaosIds);
 
         flash(
             "Adotivo ".$adotivo->nome." Incluído com Sucesso!",
@@ -147,8 +147,7 @@ class AdotivoController extends Controller{
     public function update(AdotivoRequest  $request, $id) {
         $adotivo = Adotivo::findOrFail($id);
         $adotivo->update($request->all());
-        $adotivo->salvarImaos($request->irmaosIds);
-
+        $adotivo->altualizarIrmaos($request->irmaosIds);
         flash(
             "Adotivo ".$adotivo->nome." Alterado com Sucesso!",
             "success"
