@@ -47,12 +47,15 @@ class Agenda extends Model {
         if(!is_null($adotante)) {
             
             $this->save();
-            $vinculos = $adotante->adotivos;
-
+            $adotivos = $adotante->adotivos->pluck('id');
+            
+            $vinculos = Vinculo::whereIn('adotivo_id', $adotivos)->get();
+            //$vinculos = $adotante->adotivos;
             foreach($vinculos as $vinculo) {
                 $visita = new Visita;
                 $visita->vinculo()->associate($vinculo);
-                $visita->agenda()->associate($this)->save();
+                $visita->agenda()->associate($this);
+                $visita->save();
             }
             return true;
         }
@@ -65,15 +68,17 @@ class Agenda extends Model {
         $agendas = self::where('instituicao_id', Auth::user()->instituicao_id)->get();
         
         if(!is_null($agendas)) {
-    
+
             foreach($agendas as $agenda) {
-                dd($agenda->visitas->first());
-                $vinculo = 
+
+                $visitas = $agenda->visitas->first();
+                $nome_adotivo = Adotivo::getNomeAbreviadoByVinculoId($visitas->vinculo_id);
+
                 $results[] = [
                     "id"          => $agenda->id,
-                    "title"       => 'Teste 1',
-                    "description" => 'Teste 2',
-                    "color"       => '#27AE60',
+                    "title"       => $nome_adotivo,
+                    "description" => $nome_adotivo,
+                    "color"       => '#3498DB',
                     "date"        => $agenda->getDiaEHorario(),
                 ];
             }

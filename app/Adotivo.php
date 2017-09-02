@@ -173,7 +173,7 @@ class Adotivo extends Model{
         }else {
             $Irmaos= $this->irmaos()->get();    
         }
-        # Desfazer o($) vinculo(s).
+        # Desfazer o(s) vinculo(s).
         foreach($Irmaos as $irmao) {
             $irmao->irmaos()->detach($this->id);
         }
@@ -193,6 +193,30 @@ class Adotivo extends Model{
         $last_id = self::all()->last()->id;
 
         return ($last_id)? str_pad($last_id + 1 , 12, "CASA-00000000", STR_PAD_LEFT) : "CASA-00000001";
+    }
+
+    public static function getNomeAbreviadoByVinculoId(int $vinculo_id) : string 
+    {
+        $nomeAbreviado = ""; 
+
+        $vinculo = Vinculo::where('id', $vinculo_id)->first();
+
+        if(!is_null($vinculo)) {
+            # trim() retirar espaços em branco no começo e fim.
+            #str_split() transforma o array em uma string.
+            $nomeArray = str_split(trim($vinculo->adotivo->nome));
+        
+            for($i = 0; $i < count($nomeArray); $i++) {
+                $nomeAbreviado .= $nomeArray[$i];
+
+                if($nomeArray[$i] == " ") {
+                    $nomeAbreviado .= $nomeArray[$i+1];
+                    break;
+                }
+            }
+            return strtoupper($nomeAbreviado.".");
+        }
+        return $nomeAbreviado;
     }
 
     public function adotantes() {

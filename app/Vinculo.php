@@ -1,5 +1,4 @@
 <?php
-
 namespace Casa;
 
 use Illuminate\Support\Facades\Auth;
@@ -79,5 +78,10 @@ class Vinculo extends Model {
     public function visitas()
     {
         return $this->hasMany('Casa\Visita');
+    }
+
+    public function adotivo()
+    {
+        return $this->belongsTo('Casa\Adotivo', 'adotivo_id');
     }
 }

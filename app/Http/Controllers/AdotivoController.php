@@ -145,6 +145,7 @@ class AdotivoController extends Controller{
      */
 
     public function update(AdotivoRequest  $request, $id) {
+
         $adotivo = Adotivo::findOrFail($id);
         $adotivo->update($request->all());
         $adotivo->altualizarIrmaos($request->irmaosIds);
