@@ -228,13 +228,14 @@
                                     label: 'Reagendar'
                                 }
                             },
-                            title: 'Editar Evento "' + calEvent.title + '"',
+                            title: 'Editar Evento ' + calEvent.title,
                             event: calEvent
                         });
                     }
                 });
                 // Prepares the modal window according to data passed
                 function modal(data) {
+                    limparCampos();
                     // Set modal title
                     $('.modal-title').html(data.title);
                     // Clear buttons except Cancel
@@ -250,9 +251,21 @@
                         var time = data.event.date.split(' ')[1].slice(0, -3);
                         time = time.charAt(0) === '0' ? time.slice(1) : time;
                     }
+                    $("#adotante_id").val(data.event ? data.event.adotante_id : null);
+                    var adotivos = data.event ? data.event.adotivo_id : null;
+                    $('#adotivo_id').val(adotivos).trigger("change");
                     $('#time').val(time);
                     $('#description').val(data.event ? data.event.description : '');
-                    $('#color').val(data.event ? data.event.color : '#3a87ad');
+                    $("#hora_inicio").val(data.event ? data.event.hora_inicio : '');
+                    $("#hora_fim").val(data.event ? data.event.hora_fim : '');
+                    calcularTempoTotal();
+                    if(data.event) {
+                        $("#dia").prop('disabled', false);
+                    }else{
+                        $("#adotante_id").prop('disabled', false);
+                    }
+
+                    $("#dia").val(data.event ? data.event.dia : '');
                     // Create Butttons
                     $.each(data.buttons, function(index, button) {
                         $('.modal-footer').prepend('<button type="button" id="' + button.id  + '" class="btn ' + button.css + '">' + button.label + '</button>')
@@ -370,8 +383,10 @@
 
         function limparCampos() {
             $('#dia').val(null);
+            $("#dia").prop('disabled', true);
             $('#adotivo_id').val('').trigger("change");
             $('#adotante_id').val(null);
+            $("#adotante_id").prop('disabled', true);
             $('#hora_inicio').val(null);
             $('#hora_fim').val(null);
             $('#tempo_total').val('--:--');

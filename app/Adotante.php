@@ -102,7 +102,7 @@ class Adotante extends Model {
   }
   /**
    * Esse metodo retorna se o sexo do adotante é masculino ou
-   * femino
+   * feminino
    * @return string
    */
 

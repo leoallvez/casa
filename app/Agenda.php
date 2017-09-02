@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Agenda extends Model {
 
     public $timestamps = false;
-    //protected $table = 'events';
 
     public function __construct(array $attributes = array()) 
     {
@@ -17,13 +16,6 @@ class Agenda extends Model {
         $this->usuario_id = Auth::id() ?? 1;
         $this->instituicao_id = Auth::user()->instituicao_id ?? 1;
     }
-
-    // protected $fillable = [
-    //     'title',
-    //     'color',
-    //     'date',
-    //     'description',
-    // ];
 
     protected $fillable = [
         'dia',
@@ -40,7 +32,7 @@ class Agenda extends Model {
         return $this->hasMany('Casa\Visita');
     }
 
-    public function agendarVisita(int $adotante_id) 
+    public function agendarVisita(int $adotante_id)
     {
         $adotante = Adotante::find($adotante_id);
 
@@ -48,9 +40,10 @@ class Agenda extends Model {
             
             $this->save();
             $adotivos = $adotante->adotivos->pluck('id');
+
+            #TODO: bug agendando visitas para os adotantes antigo do adotivo
             
-            $vinculos = Vinculo::whereIn('adotivo_id', $adotivos)->get();
-            //$vinculos = $adotante->adotivos;
+            $vinculos = Vinculo::whereIn('adotivo_id', $adotivos)->where("deleted_at", null)->get();
             foreach($vinculos as $vinculo) {
                 $visita = new Visita;
                 $visita->vinculo()->associate($vinculo);
@@ -71,6 +64,8 @@ class Agenda extends Model {
 
             foreach($agendas as $agenda) {
 
+                $agenda->getVisitasVinculos();
+
                 $visitas = $agenda->visitas->first();
                 $nome_adotivo = Adotivo::getNomeAbreviadoByVinculoId($visitas->vinculo_id);
 
@@ -80,10 +75,36 @@ class Agenda extends Model {
                     "description" => $nome_adotivo,
                     "color"       => '#3498DB',
                     "date"        => $agenda->getDiaEHorario(),
+                    "hora_inicio" => $agenda->hora_inicio,
+                    "hora_fim"    => $agenda->hora_fim,
+                    "status"      => $agenda->status,
+                    "dia"         => $agenda->formatarData(),
+                    "adotante_id" => $agenda->getAdotanteId(),
+                    "adotivo_id"  => $agenda->getVisitasVinculos(),
                 ];
             }
         }
         return response()->json($results);
+    }
+
+    /**
+     * formarta data de yyyy-mm-dd para dd/mm/yyyy
+     */
+    private function formatarData() : string {
+        $timestamp = strtotime($this->dia); 
+        return date('d/m/Y', $timestamp);
+    }
+
+    private function getAdotanteId() {
+        $visita = $this->visitas->first();
+        $vinculo = Vinculo::find($visita->vinculo_id);
+        return $vinculo->adotante->id;
+    }
+    /**
+     * Pega o(s) vinculo(s) da(s) visitas(s).
+     */
+    private function getVisitasVinculos() : array {
+        return $this->visitas()->pluck('vinculo_id')->toArray(); 
     }
 
     private function getDiaEHorario() : string {

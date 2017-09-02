@@ -84,4 +84,9 @@ class Vinculo extends Model {
     {
         return $this->belongsTo('Casa\Adotivo', 'adotivo_id');
     }
+
+    public function adotante()
+    {
+        return $this->belongsTo('Casa\Adotante', 'adotante_id');
+    }
 }

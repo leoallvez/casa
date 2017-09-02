@@ -22,17 +22,7 @@ class AgendaController extends Controller {
         $adotantes =  $vinculo->listarAdotantesComViculos();
         $adotivos  =  $vinculo->listarAdotivosComVinculo();
 
-        return view('agenda-visita.agenda', compact('adotantes', 'adotivos'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('agenda.index', compact('adotantes', 'adotivos'));
     }
 
     /**
@@ -50,27 +40,6 @@ class AgendaController extends Controller {
            'status'  => true,
            'message' => 'Visita agendada com sucesso'
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id) {
-        //
     }
 
     /**
@@ -108,9 +77,6 @@ class AgendaController extends Controller {
     }
 
     public function listar() {
-        
-        # TODO: listar apenas a visita da instituição
-        //return Agenda::all();
         return Agenda::listar();
     }    
 

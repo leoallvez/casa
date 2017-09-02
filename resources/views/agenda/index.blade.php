@@ -22,7 +22,7 @@
 	          </div>
 	          <div class="x_content">
 	            <br/>
-                	@include('agenda-visita._calendario')
+                	@include('agenda._calendario')
 	          </div>
 	        </div>
 	      </div>
