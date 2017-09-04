@@ -99,33 +99,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="title">Título</label>
-                        <div class="col-md-4">
-                            <input id="title" name="title" type="text" class="form-control input-md" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="time">Hora</label>
-                        <div class="col-md-4 input-append bootstrap-timepicker">
-                            <input id="time" name="time" type="text" class="form-control input-md" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="description">Descrição</label>
-                        <div class="col-md-4">
-                            <textarea class="form-control" id="description" name="description"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="color">Cor</label>
-                        <div class="col-md-4">
-                            <input id="color" name="color" type="text" class="form-control input-md" readonly="readonly" />
-                            <span class="help-block">Click para mudar cor</span>
-                        </div>
-                    </div>
-                    --}}
                 </form>
             </div>
             <div class="modal-footer">
@@ -281,12 +254,10 @@
                             url: url_base + "/visitas", // your api url
                             method: 'POST', // method is any HTTP method
                             data: {
-                                //dia: $('#dia').val(),
                                 adotante_id: $('#adotante_id').val(),
                                 hora_inicio: $('#hora_inicio').val(),
                                 hora_fim: $('#hora_fim').val(),
                                 status: 'agendado',
-                                //color: $('#color').val(),
                                 dia: currentDate
                             }, // data as js object
                             success: function(data) {
@@ -308,15 +279,15 @@
                 });
                 // Handle click on Update Button
                 $('.modal').on('click', '#update-event',  function(e){
-                    if(validator(['title', 'description'])) {
+                    if(validator(['dia', 'hora_inicio', 'hora_fim'])) {
                         $.ajax({
                             url: url_base + "/visitas/" + currentEvent._id, // your api url
                             method: 'PUT', // method is any HTTP method
                             data: {
-                                title: $('#title').val(),
-                                description: $('#description').val(),
-                                color: $('#color').val(),
-                                date: currentEvent.date.split(' ')[0]  + ' ' +  getTime()
+                                hora_inicio: $('#hora_inicio').val(),
+                                hora_fim: $('#hora_fim').val(),
+                                status: 'reagendado',
+                                dia: $("#dia").val()
                             }, // data as js object
                             success: function(data) {
                                 $('.modal').modal('hide');
@@ -344,9 +315,9 @@
                             $('.modal').modal('hide');
                             $('#calendar').fullCalendar("refetchEvents");    
                             swal(
-                                    'Cancelada',
-                                    JSON.parse(data).message,
-                                    'success'
+                                'Cancelada',
+                                JSON.parse(data).message,
+                                'success'
                             );
                             console.log(data);  
                         },
