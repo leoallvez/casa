@@ -14,6 +14,7 @@
 Auth::routes();
 
 // Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@buscarAdm');
+Route::get('visitas/listar', 'AgendaController@listar');
 
 Route::group(['middleware' => ['auth', 'usuario']], function () {
     # Home.
@@ -34,7 +35,7 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::resource('administradores-sistema', 'AdmSistemaController');
     # Visitas.
     Route::get('visitas/busca-adotivos/adotantes/{id}', 'AgendaController@buscarAdotivos');
-    Route::get('visitas/listar', 'AgendaController@listar');
+    //Route::get('visitas/listar', 'AgendaController@listar');
     Route::resource('visitas', 'AgendaController');
     # Relatórios.
     Route::put('relatorio-adotivo', 'RelatorioAdotivoController@gerar');

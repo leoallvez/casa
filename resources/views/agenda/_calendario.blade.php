@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group"> 
                         <div class="row">
                             <div class="col-md-12">
                                 {!! Form::label('adotivo_id', 'Adotivo(s)') !!}<br>
@@ -60,29 +60,41 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
-                                {!! Form::label('dia', 'Data') !!}
-                                {!! Form::text('dia', null,
+                                {!! Form::label('display_data', 'Data') !!}
+                                {!! Form::text('display_data', null,
                                     [
-                                        'class' => 'form-control',
+                                        'class'       => 'form-control',
+                                        'data-mask'   => '99/99/9999',
                                         'placeholder' => '00/00/0000',
+                                        'id'          => 'display_data',
+                                        'onchange'    => 'converterDataParaBase()',
                                         'disabled'
                                     ])
                                 !!}
+                                {!! Form::hidden('dia', null,
+                                        [
+                                            'class' => 'form-control',
+                                            'id'    => 'hidden_data'
+                                        ]
+                                    )
+                                !!}
                             </div>
+
                             <div class="col-md-3">
                                 {!! Form::label('hora_inicio', 'Hora Inicial') !!}
                                 {!! Form::time('hora_inicio', null,
                                     [
-                                        'class' => 'form-control',
+                                        'class'  => 'form-control',
                                         'onblur' => 'calcularTempoTotal()',
                                     ])
                                 !!}
                             </div>
+
                             <div class="col-md-3">
                                 {!! Form::label('hora_fim', 'Hora Final') !!}
                                 {!! Form::time('hora_fim', null,
                                     [
-                                        'class' => 'form-control',
+                                        'class'  => 'form-control',
                                         'onblur' => 'calcularTempoTotal()',
                                     ])
                                 !!}
@@ -91,13 +103,27 @@
                                 {!! Form::label('tempo_total', 'Tempo Total') !!}
                                 {!! Form::text('tempo_total', '--:--',
                                     [
-                                        'id' => 'tempo_total',
+                                        'id'    => 'tempo_total',
                                         'class' => 'form-control',
                                         'disabled'
                                     ])
                                 !!}
                             </div>
                         </div>
+                    </div>
+                    <div id="observacoes_div" style="display:none">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {!! Form::label('observacoes', 'Motivo') !!}
+                                    {!! Form::textarea('observacoes', null,
+                                        [
+                                            'class' => 'form-control',
+                                        ])
+                                    !!}
+                                </div>
+                            </div>
+                    </div>
                     </div>
                 </form>
             </div>
@@ -163,7 +189,9 @@
                             },
                             title: 'Agendar Visita dia: ' + date.format('DD/MM/Y') // Modal title
                         });
-                        $('#dia').val(date.format('DD/MM/Y'));
+                        $('#display_data').val(date.format('DD/MM/Y'));
+                        //Campo com o name dia.
+                        $('#hidden_data').val(date.format('Y-MM-DD'));
                     },
                     // Event Mouseover
                     eventMouseover: function(calEvent, jsEvent, view) {
@@ -233,12 +261,15 @@
                     $("#hora_fim").val(data.event ? data.event.hora_fim : '');
                     calcularTempoTotal();
                     if(data.event) {
-                        $("#dia").prop('disabled', false);
+                        $("#display_data").prop('disabled', false);
+                        $("#observacoes_div").show();
                     }else{
                         $("#adotante_id").prop('disabled', false);
                     }
 
-                    $("#dia").val(data.event ? data.event.dia : '');
+                    $("#display_data").val(data.event ? data.event.dia_formatado : '');
+                    $("#hidden_data").val(data.event ? data.event.dia_base : '');
+             
                     // Create Butttons
                     $.each(data.buttons, function(index, button) {
                         $('.modal-footer').prepend('<button type="button" id="' + button.id  + '" class="btn ' + button.css + '">' + button.label + '</button>')
@@ -248,7 +279,7 @@
                 }
                 // Handle Click on Add Button
                 $('.modal').on('click', '#add-event',  function(e){
-                    if(validator(['adotante_id', 'dia', 'hora_inicio', 'hora_fim'])) {
+                    if(validator(['adotante_id', 'hidden_data', 'hora_inicio', 'hora_fim'])) {
 
                         $.ajax({
                             url: url_base + "/visitas", // your api url
@@ -279,7 +310,7 @@
                 });
                 // Handle click on Update Button
                 $('.modal').on('click', '#update-event',  function(e){
-                    if(validator(['dia', 'hora_inicio', 'hora_fim'])) {
+                    if(validator(['observacoes','hidden_data', 'hora_inicio', 'hora_fim'])) {
                         $.ajax({
                             url: url_base + "/visitas/" + currentEvent._id, // your api url
                             method: 'PUT', // method is any HTTP method
@@ -287,7 +318,8 @@
                                 hora_inicio: $('#hora_inicio').val(),
                                 hora_fim: $('#hora_fim').val(),
                                 status: 'reagendado',
-                                dia: $("#dia").val()
+                                dia: $("#hidden_data").val(),
+                                observacoes : $("#observacoes").val(),
                             }, // data as js object
                             success: function(data) {
                                 $('.modal').modal('hide');
@@ -339,7 +371,9 @@
                         if($.trim($('#' + element).val()) == '') errors++;
                     });
                     if(errors) {
-                        $('.error').html('Por favor preencher todos os campos');
+                        $('.error').append('<p>Por favor preencher todos o campo 1</p>');
+                        $('.error').append('<p>Por favor preencher todos o campo 2</p>');
+                        $('.error').append('<p>Por favor preencher todos o campo 3</p>');
                         return false;
                     }
                     return true;
@@ -353,14 +387,17 @@
         });
 
         function limparCampos() {
-            $('#dia').val(null);
-            $("#dia").prop('disabled', true);
+            $('#display_data').val(null);
+            $("#display_data").prop('disabled', true);
+            $('#hidden_data').val(null);
             $('#adotivo_id').val('').trigger("change");
             $('#adotante_id').val(null);
             $("#adotante_id").prop('disabled', true);
             $('#hora_inicio').val(null);
             $('#hora_fim').val(null);
+            $("#observacoes").val(null);
             $('#tempo_total').val('--:--');
+            $("#observacoes_div").hide();
         }
 
         function calcularTempoTotal() {
@@ -385,7 +422,6 @@
             }
         }
 
-
         function buscarAdotivos() {
             var id_adotante = $('#adotante_id').val();
 
@@ -401,6 +437,37 @@
                     console.log(data.responseText);
                 }
             });
+        }
+
+        function converterDataParaBase() {
+            var date = $("#display_data").val();
+            if(date != null && date != "") {
+                $("#hidden_data").val(date.split("/").reverse().join("-"));
+            } else {
+                $("#hidden_data").val(null);
+            }
+        }
+
+        function validatorName(element) {
+            var name;
+            switch(element) {
+                case "adoante_id":
+                    name = "adotante";
+                    break;
+                case "display_data":
+                    name = "dia";
+                    break;
+                case "hora_inicio":
+                    name = "hora inicial";
+                    break;
+                case "hora_fim":
+                    name = "hora final";
+                    break;
+                case "observacoes":
+                    name = "observações";
+                    break;
+            }
+            return name;
         }
     </script>
 @endsection

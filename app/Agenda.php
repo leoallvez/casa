@@ -58,7 +58,7 @@ class Agenda extends Model {
     public static function listar() 
     {
         $results = [];
-        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id)->get();
+        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->get();
         
         if(!is_null($agendas)) {
 
@@ -78,7 +78,8 @@ class Agenda extends Model {
                     "hora_inicio" => $agenda->hora_inicio,
                     "hora_fim"    => $agenda->hora_fim,
                     "status"      => $agenda->status,
-                    "dia"         => $agenda->formatarData(),
+                    "dia_formatado" => $agenda->formatarData(),
+                    "dia_base"    => $agenda->dia,
                     "adotante_id" => $agenda->getAdotanteId(),
                     "adotivo_id"  => $agenda->getVisitasVinculos(),
                 ];
