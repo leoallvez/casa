@@ -23,6 +23,7 @@ class CreateAgendasTable extends Migration {
             # FK
             $table->integer('usuario_id');
             $table->integer('instituicao_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

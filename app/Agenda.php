@@ -5,13 +5,19 @@ use Casa\Visita;
 use Casa\Adotante;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Agenda extends Model {
+    use SoftDeletes;
 
     public $timestamps = false;
 
     public function __construct(array $attributes = array()) 
     {
+        if(count($attributes) > 0) {
+            $attributes['status'] = "agendado";
+            $attributes['observacoes'] = null;
+        }
         parent::__construct($attributes);
         $this->usuario_id = Auth::id() ?? 1;
         $this->instituicao_id = Auth::user()->instituicao_id ?? 1;
@@ -96,7 +102,7 @@ class Agenda extends Model {
         return date('d/m/Y', $timestamp);
     }
 
-    private function getAdotanteId() {
+    public function getAdotanteId() {
         $visita = $this->visitas->first();
         $vinculo = Vinculo::find($visita->vinculo_id);
         return $vinculo->adotante->id;

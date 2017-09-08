@@ -51,8 +51,15 @@ class AgendaController extends Controller {
      */
     public function update(Request $request, $id) {
         
-        $agenda = Agenda::find($id);
-        $agenda->update($request->all());
+        $agendaOriginal = Agenda::find($id);
+        $agendaOriginal->update($request->all());
+        $agendaOriginal->delete();
+
+        // $request->status = "agendado";
+        // $request->observacoes = null;
+
+        $agendaNova = new Agenda($request->all());
+        $agendaNova->agendarVisita($agendaOriginal->getAdotanteId());
 
         return json_encode([
             'status'  => true, 
@@ -66,14 +73,16 @@ class AgendaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy(Request $request, $id) {
+        
+        $agenda = Agenda::find($id);
+        $agenda->update($request->all());
+        $agenda->delete();
 
-       Agenda::destroy($id);
-
-       return json_encode([
-           'status'  => true, 
-           'message' => 'Visita cancelada com sucesso' 
-       ]);
+        return json_encode([
+            'status'  => true, 
+            'message' => 'Visita cancelada com sucesso' 
+        ]);
     }
 
     public function listar() {

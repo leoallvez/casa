@@ -226,7 +226,8 @@
                                 update: {
                                     id: 'update-event',
                                     css: 'btn-success',
-                                    label: 'Reagendar'
+                                    label: 'Reagendar',
+                                    onchange: 'limparErros()'
                                 }
                             },
                             title: 'Editar Evento ' + calEvent.title,
@@ -339,24 +340,29 @@
                 });
                 // Handle Click on Delete Button
                 $('.modal').on('click', '#delete-event',  function(e){
-                    $.ajax({
-                        url: url_base + "/visitas/" + currentEvent._id, // your api url
-                        method: 'DELETE', // method is any HTTP method
-                        data: {}, // data as js object
-                        success: function(data) {
-                            $('.modal').modal('hide');
-                            $('#calendar').fullCalendar("refetchEvents");    
-                            swal(
-                                'Cancelada',
-                                JSON.parse(data).message,
-                                'success'
-                            );
-                            console.log(data);  
-                        },
-                        error: function(data) {
-                            console.log(data.responseText);
-                        }
-                    });
+                    if(validator(['observacoes'])) {
+                        $.ajax({
+                            url: url_base + "/visitas/" + currentEvent._id, // your api url
+                            method: 'DELETE', // method is any HTTP method
+                            data: {
+                                status: 'cancelado',
+                                observacoes : $("#observacoes").val()
+                            }, // data as js object
+                            success: function(data) {
+                                $('.modal').modal('hide');
+                                $('#calendar').fullCalendar("refetchEvents");    
+                                swal(
+                                    'Cancelada',
+                                    JSON.parse(data).message,
+                                    'success'
+                                );
+                                console.log(data);  
+                            },
+                            error: function(data) {
+                                console.log(data.responseText);
+                            }
+                        });
+                    }
                 });
                 // Get Formated Time From Timepicker
                 function getTime() {
@@ -365,15 +371,21 @@
                 }
                 // Dead Basic Validation For Inputs
                 function validator(elements) {
+                    limparErros();
                     var errors = 0;
                     console.log(elements);
                     $.each(elements, function(index, element){
-                        if($.trim($('#' + element).val()) == '') errors++;
+                        if($.trim($('#' + element).val()) == '') {
+                            errors++; 
+                            showErro(element);
+                        }
                     });
                     if(errors) {
+                        /**
                         $('.error').append('<p>Por favor preencher todos o campo 1</p>');
                         $('.error').append('<p>Por favor preencher todos o campo 2</p>');
                         $('.error').append('<p>Por favor preencher todos o campo 3</p>');
+                        */
                         return false;
                     }
                     return true;
@@ -398,6 +410,11 @@
             $("#observacoes").val(null);
             $('#tempo_total').val('--:--');
             $("#observacoes_div").hide();
+            $(".error").empty();
+        }
+
+        function limparErros() {
+            $(".error").empty();
         }
 
         function calcularTempoTotal() {
@@ -448,10 +465,14 @@
             }
         }
 
+        function showErro(element) {
+            $('.error').append("<p>Por favor preencher o campo <b>" + validatorName(element) + "</b></p>");    
+        }
+
         function validatorName(element) {
             var name;
             switch(element) {
-                case "adoante_id":
+                case "adotante_id":
                     name = "adotante";
                     break;
                 case "display_data":
@@ -464,7 +485,7 @@
                     name = "hora final";
                     break;
                 case "observacoes":
-                    name = "observações";
+                    name = "motivo";
                     break;
             }
             return name;
