@@ -296,11 +296,19 @@
                                 $('.modal').modal('hide');
                                 limparCampos();
                                 $('#calendar').fullCalendar("refetchEvents");  
-                                swal(
-                                    'Agendado',
-                                    JSON.parse(data).message,
-                                    'success'
-                                );
+                                if(JSON.parse(data).status) {
+                                    swal(
+                                        'Agendado',
+                                        JSON.parse(data).message,
+                                        'success'
+                                    );
+                                } else {
+                                    swal(
+                                        'Não Agendado',
+                                        JSON.parse(data).message,
+                                        'error'
+                                    );
+                                }
                                 console.log(data); // JSON
                             },
                             error: function(data) {
@@ -325,11 +333,19 @@
                             success: function(data) {
                                 $('.modal').modal('hide');
                                 $('#calendar').fullCalendar("refetchEvents"); 
-                                swal(
-                                    'Reagendo',
-                                    JSON.parse(data).message,
-                                    'success'
-                                );
+                                if(JSON.parse(data).status) {
+                                    swal(
+                                        'Reagendo',
+                                        JSON.parse(data).message,
+                                        'success'
+                                    );
+                                } else {
+                                    swal(
+                                        'Não Reagendo',
+                                        JSON.parse(data).message,
+                                        'error'
+                                    );
+                                }
                                 console.log(data);    
                             },
                             error: function(data) {

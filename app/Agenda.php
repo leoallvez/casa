@@ -61,6 +61,40 @@ class Agenda extends Model {
         return false;
     }
 
+    //TODO: refatorar esse código.
+
+    public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) {
+
+        $data = (is_null($data)) ? $this->dia : $data;
+
+        $adotante_id = (is_null($adotante_id)) ? $this->getAdotanteId() : $adotante_id;
+
+        $adotante = Adotante::find($adotante_id);
+
+        $vinculos = $adotante->vinculos()->where('deleted_at', null)->get();
+
+        foreach($vinculos as $vinculo) {
+
+            $visitas = $vinculo->visitas;
+
+            if(!is_null($visitas)) {
+
+                foreach($visitas as $visita) {
+
+                    $agenda = self::where('id', $visita->agenda_id)->first();
+
+                    if(!is_null($agenda)) {
+
+                        if($agenda->dia == $data) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static function listar() 
     {
         $results = [];

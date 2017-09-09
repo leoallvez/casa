@@ -22,6 +22,11 @@ class AgendaController extends Controller {
         $adotantes =  $vinculo->listarAdotantesComViculos();
         $adotivos  =  $vinculo->listarAdotivosComVinculo();
 
+        $agenda = new Agenda;
+
+        $teste = $agenda->adotanteTemVisitaNoDia(24, "2017-09-06");
+
+
         return view('agenda.index', compact('adotantes', 'adotivos'));
     }
 
@@ -34,11 +39,22 @@ class AgendaController extends Controller {
     public function store(Request $request) 
     {
         $agenda = new Agenda($request->all());
-        $agenda->agendarVisita($request->adotante_id);
+        $adotante_id = $request->adotante_id;
+
+        $temVisitaNoDia = $agenda->adotanteTemVisitaNoDia($adotante_id);
+
+        if(!$temVisitaNoDia) {
+            $agenda->agendarVisita($adotante_id);
+
+            return json_encode([
+                'status'  => true,
+                'message' => 'Visita agendada com sucesso',
+            ]);
+        }
 
         return json_encode([
-           'status'  => true,
-           'message' => 'Visita agendada com sucesso'
+            'status'  => false, 
+            'message' => 'Adotante já possui visita agendada para esse dia',
         ]);
     }
 
@@ -52,18 +68,27 @@ class AgendaController extends Controller {
     public function update(Request $request, $id) {
         
         $agendaOriginal = Agenda::find($id);
-        $agendaOriginal->update($request->all());
-        $agendaOriginal->delete();
 
-        // $request->status = "agendado";
-        // $request->observacoes = null;
+        $temVisitaNoDia = $agendaOriginal->adotanteTemVisitaNoDia(null, $request->dia);
+        
+        if(!$temVisitaNoDia) {
 
-        $agendaNova = new Agenda($request->all());
-        $agendaNova->agendarVisita($agendaOriginal->getAdotanteId());
+            $agendaOriginal->update($request->all());
+            $agendaOriginal->delete();
+
+            $agendaNova = new Agenda($request->all());
+            $agendaNova->agendarVisita($agendaOriginal->getAdotanteId());
+
+            return json_encode([
+                'status'  => true, 
+                'message' => 'Visita reagendada com sucesso'
+            ]);
+
+        }
 
         return json_encode([
-            'status'  => true, 
-            'message' => 'Visita reagendada com sucesso'
+            'status'  => false, 
+            'message' => 'Adotante já possui visita agendada para esse dia',
         ]);
     }
 

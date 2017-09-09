@@ -139,8 +139,12 @@ class Adotante extends Model {
     return $this->belongsTo('Casa\CategoriaProfissional', 'categoria_profissional_id');
   }
 
-  public function visitas() {
-    return $this->hasMany('Casa\Visita', 'adotante_id');
+  // public function visitas() {
+  //   return $this->hasMany('Casa\Visita', 'adotante_id');
+  // }
+
+  public function vinculos() {
+      return $this->hasMany('Casa\Vinculo', 'adotante_id');
   }
 
   public function observacoes() {
