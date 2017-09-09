@@ -180,7 +180,7 @@
 
                         clickedDate = date.format('Y-MM-DD');
 
-                        if(isBeforeToday(clickedDate)){
+                        if(todayIsGreaterOrEqual(clickedDate)){
                             // Open modal to add event
                             modal({
                                 // Available buttons when adding
@@ -241,7 +241,7 @@
                                     id: 'update-event',
                                     css: 'btn-success',
                                     label: 'Reagendar',
-                                    onchange: 'limparErros()'
+                                    onchange: 'clearErros()'
                                 }
                             },
                             title: 'Editar Evento ' + calEvent.title,
@@ -251,7 +251,7 @@
                 });
                 // Prepares the modal window according to data passed
                 function modal(data) {
-                    limparCampos();
+                    clearAll();
                     // Set modal title
                     $('.modal-title').html(data.title);
                     // Clear buttons except Cancel
@@ -308,7 +308,7 @@
                             }, // data as js object
                             success: function(data) {
                                 $('.modal').modal('hide');
-                                limparCampos();
+                                clearAll();
                                 $('#calendar').fullCalendar("refetchEvents");  
                                 if(JSON.parse(data).status) {
                                     swal(
@@ -401,7 +401,7 @@
                 }
                 // Dead Basic Validation For Inputs
                 function validator(elements) {
-                    limparErros();
+                    clearErros();
                     var errors = 0;
                     console.log(elements);
                     $.each(elements, function(index, element){
@@ -411,9 +411,9 @@
                         }
                     });
 
-                    var dataSelecinada = $('#hidden_data').val();
-                    if(!isBeforeToday(dataSelecinada)) {
-                        $('.error').append("<p> Impossível agendar visita em uma data antes de hoje! </p>"); 
+                    var selectedDate = $('#hidden_data').val();
+                    if(!todayIsGreaterOrEqual(selectedDate)) {
+                        $('.error').append("<p> A data informada <b>é antes de hoje!</b> </p>"); 
                         errors++;
                     }
 
@@ -421,113 +421,113 @@
 
                     return true;
                 }
-            }); // Fim do script do calendario
+
+                function clearAll() {
+                    $('#display_data').val(null);
+                    $("#display_data").prop('disabled', true);
+                    $('#hidden_data').val(null);
+                    $('#adotivo_id').val('').trigger("change");
+                    $('#adotante_id').val(null);
+                    $("#adotante_id").prop('disabled', true);
+                    $('#hora_inicio').val(null);
+                    $('#hora_fim').val(null);
+                    $("#observacoes").val(null);
+                    $('#tempo_total').val('--:--');
+                    $("#observacoes_div").hide();
+                    $(".error").empty();
+                }
+
+                function clearErros() {
+                    $(".error").empty();
+                }
+
+                function calcularTempoTotal() {
+
+                    var startTime = $('#hora_inicio').val();
+                    var endTime   = $('#hora_fim').val();
+
+                    if(startTime && endTime) {
+
+                        startTime = moment(startTime, "HH:mm");
+                        endTime = moment(endTime, "HH:mm");
+
+                        var duration = moment.duration(endTime.diff(startTime));
+                        var hours = parseInt(duration.asHours());
+                        if(hours < 10) { hours = "0" + hours; }
+                        var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                        if(minutes < 10) { minutes = "0" + minutes; }
+
+                        $('#tempo_total').val(hours + ':' + minutes);
+                    } else {
+                        $('#tempo_total').val('--:--');
+                    }
+                }
+
+                function buscarAdotivos() {
+                    var id_adotante = $('#adotante_id').val();
+
+                    $.ajax({
+                        url: url_base + "/visitas/busca-adotivos/adotantes/"+ id_adotante, 
+                        method: 'GET', // method is any HTTP method
+                        success: function(data) {
+                            var adotivos = JSON.parse(data).adotivos;
+                            $('#adotivo_id').val(adotivos).trigger("change");
+                            console.log(adotivos); // JSON
+                        },
+                        error: function(data) {
+                            console.log(data.responseText);
+                        }
+                    });
+                }
+
+                function converterDataParaBase() {
+                    var date = $("#display_data").val();
+                    if(date != null && date != "") {
+                        $("#hidden_data").val(date.split("/").reverse().join("-"));
+                    } else {
+                        $("#hidden_data").val(null);
+                    }
+                }
+
+                function showErro(element) {
+                    $('.error').append("<p>Por favor preencher o campo <b>" + validatorName(element) + "</b></p>");    
+                }
+
+                function validatorName(element) {
+                    var name;
+                    switch(element) {
+                        case "adotante_id":
+                            name = "adotante";
+                            break;
+                        case "display_data":
+                            name = "dia";
+                            break;
+                        case "hora_inicio":
+                            name = "hora inicial";
+                            break;
+                        case "hora_fim":
+                            name = "hora final";
+                            break;
+                        case "observacoes":
+                            name = "motivo";
+                            break;
+                    }
+                    return name;
+                }
+
+                function todayIsGreaterOrEqual(date) {
+
+                    var today = new Date().format('Y-m-d');
+                    return today < date;
+                }
+            }); // End of calendar script 
     
             $("#adotivo_id").select2({            
                 placeholder: "--",
                 multiple: true
             });
-        });
+        }); //End of Jquery document ready.
 
-        function limparCampos() {
-            $('#display_data').val(null);
-            $("#display_data").prop('disabled', true);
-            $('#hidden_data').val(null);
-            $('#adotivo_id').val('').trigger("change");
-            $('#adotante_id').val(null);
-            $("#adotante_id").prop('disabled', true);
-            $('#hora_inicio').val(null);
-            $('#hora_fim').val(null);
-            $("#observacoes").val(null);
-            $('#tempo_total').val('--:--');
-            $("#observacoes_div").hide();
-            $(".error").empty();
-        }
-
-        function limparErros() {
-            $(".error").empty();
-        }
-
-        function calcularTempoTotal() {
-
-            var startTime = $('#hora_inicio').val();
-            var endTime   = $('#hora_fim').val();
-
-            if(startTime && endTime) {
-
-                startTime = moment(startTime, "HH:mm");
-                endTime = moment(endTime, "HH:mm");
-
-                var duration = moment.duration(endTime.diff(startTime));
-                var hours = parseInt(duration.asHours());
-                if(hours < 10) { hours = "0" + hours; }
-                var minutes = parseInt(duration.asMinutes()) - hours * 60;
-                if(minutes < 10) { minutes = "0" + minutes; }
-
-                $('#tempo_total').val(hours + ':' + minutes);
-            } else {
-                $('#tempo_total').val('--:--');
-            }
-        }
-
-        function buscarAdotivos() {
-            var id_adotante = $('#adotante_id').val();
-
-            $.ajax({
-                url: url_base + "/visitas/busca-adotivos/adotantes/"+ id_adotante, 
-                method: 'GET', // method is any HTTP method
-                success: function(data) {
-                    var adotivos = JSON.parse(data).adotivos;
-                    $('#adotivo_id').val(adotivos).trigger("change");
-                    console.log(adotivos); // JSON
-                },
-                error: function(data) {
-                    console.log(data.responseText);
-                }
-            });
-        }
-
-        function converterDataParaBase() {
-            var date = $("#display_data").val();
-            if(date != null && date != "") {
-                $("#hidden_data").val(date.split("/").reverse().join("-"));
-            } else {
-                $("#hidden_data").val(null);
-            }
-        }
-
-        function showErro(element) {
-            $('.error').append("<p>Por favor preencher o campo <b>" + validatorName(element) + "</b></p>");    
-        }
-
-        function validatorName(element) {
-            var name;
-            switch(element) {
-                case "adotante_id":
-                    name = "adotante";
-                    break;
-                case "display_data":
-                    name = "dia";
-                    break;
-                case "hora_inicio":
-                    name = "hora inicial";
-                    break;
-                case "hora_fim":
-                    name = "hora final";
-                    break;
-                case "observacoes":
-                    name = "motivo";
-                    break;
-            }
-            return name;
-        }
-
-        function isBeforeToday(date) {
-
-            var today = new Date().format('Y-m-d');
-
-            return today < date;
-        }
         
     </script>
 @endsection
