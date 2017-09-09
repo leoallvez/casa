@@ -177,21 +177,34 @@
                     dayClick: function(date, event, view) {
 
                         currentDate = date.format();
-                        // Open modal to add event
-                        modal({
-                            // Available buttons when adding
-                            buttons: {
-                                add: {
-                                    id: 'add-event', // Buttons id
-                                    css: 'btn btn-success', // Buttons class
-                                    label: 'Agendar' // Buttons label
-                                }
-                            },
-                            title: 'Agendar Visita dia: ' + date.format('DD/MM/Y') // Modal title
-                        });
-                        $('#display_data').val(date.format('DD/MM/Y'));
-                        //Campo com o name dia.
-                        $('#hidden_data').val(date.format('Y-MM-DD'));
+
+                        clickedDate = date.format('Y-MM-DD');
+
+                        if(isBeforeToday(clickedDate)){
+                            // Open modal to add event
+                            modal({
+                                // Available buttons when adding
+                                buttons: {
+                                    add: {
+                                        id: 'add-event', // Buttons id
+                                        css: 'btn btn-success', // Buttons class
+                                        label: 'Agendar' // Buttons label
+                                    }
+                                },
+                                title: 'Agendar Visita dia: ' + date.format('DD/MM/Y') // Modal title
+                            });
+                            $('#display_data').val(date.format('DD/MM/Y'));
+                            //Campo com o name dia.
+                            $('#hidden_data').val(date.format('Y-MM-DD'));
+                        } else {
+                            swal(
+                                'Data inválida',
+                                'Impossível agendar visita em uma data antes de hoje!',
+                                'error'
+                            );    
+                        }
+
+                        
                     },
                     // Event Mouseover
                     eventMouseover: function(calEvent, jsEvent, view) {
@@ -214,6 +227,7 @@
                     eventClick: function(calEvent, jsEvent, view) {
                         // Set currentEvent variable according to the event clicked in the calendar
                         currentEvent = calEvent;
+                        
                         // Open modal to edit or delete event
                         modal({
                             // Available buttons when editing
@@ -396,14 +410,15 @@
                             showErro(element);
                         }
                     });
-                    if(errors) {
-                        /**
-                        $('.error').append('<p>Por favor preencher todos o campo 1</p>');
-                        $('.error').append('<p>Por favor preencher todos o campo 2</p>');
-                        $('.error').append('<p>Por favor preencher todos o campo 3</p>');
-                        */
-                        return false;
+
+                    var dataSelecinada = $('#hidden_data').val();
+                    if(!isBeforeToday(dataSelecinada)) {
+                        $('.error').append("<p> Impossível agendar visita em uma data antes de hoje! </p>"); 
+                        errors++;
                     }
+
+                    if(errors) { return false; }
+
                     return true;
                 }
             }); // Fim do script do calendario
@@ -506,5 +521,13 @@
             }
             return name;
         }
+
+        function isBeforeToday(date) {
+
+            var today = new Date().format('Y-m-d');
+
+            return today < date;
+        }
+        
     </script>
 @endsection
