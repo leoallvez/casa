@@ -15,17 +15,12 @@ class AgendaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-
+    public function index() 
+    {
         $vinculo = new Vinculo();
 
         $adotantes =  $vinculo->listarAdotantesComViculos();
         $adotivos  =  $vinculo->listarAdotivosComVinculo();
-
-        $agenda = new Agenda;
-
-        $teste = $agenda->adotanteTemVisitaNoDia(24, "2017-09-06");
-
 
         return view('agenda.index', compact('adotantes', 'adotivos'));
     }
@@ -65,8 +60,8 @@ class AgendaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        
+    public function update(Request $request, $id) 
+    {
         $agendaOriginal = Agenda::find($id);
 
         $temVisitaNoDia = $agendaOriginal->adotanteTemVisitaNoDia(null, $request->dia);
@@ -98,8 +93,8 @@ class AgendaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id) {
-        
+    public function destroy(Request $request, $id) 
+    {
         $agenda = Agenda::find($id);
         $agenda->update($request->all());
         $agenda->delete();
@@ -110,12 +105,13 @@ class AgendaController extends Controller {
         ]);
     }
 
-    public function listar() {
+    public function listar() 
+    {
         return Agenda::listar();
     }    
 
-    public function buscarAdotivos($id) {
-
+    public function buscarAdotivos($id) 
+    {
         if(!is_null($id)) {
             return json_encode([
                 'status'   => true, 

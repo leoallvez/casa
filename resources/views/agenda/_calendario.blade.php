@@ -84,8 +84,9 @@
                                 {!! Form::label('hora_inicio', 'Hora Inicial') !!}
                                 {!! Form::time('hora_inicio', null,
                                     [
-                                        'class'  => 'form-control',
-                                        'onblur' => 'calcularTempoTotal()',
+                                        'class'    => 'form-control',
+                                        //'onblur'   => 'calcularTempoTotal()',
+                                        'onchange' => 'calcularTempoTotal(); validarHorarios(this)',
                                     ])
                                 !!}
                             </div>
@@ -94,8 +95,9 @@
                                 {!! Form::label('hora_fim', 'Hora Final') !!}
                                 {!! Form::time('hora_fim', null,
                                     [
-                                        'class'  => 'form-control',
-                                        'onblur' => 'calcularTempoTotal()',
+                                        'class'    => 'form-control',
+                                        //'onblur'   => 'calcularTempoTotal()',
+                                        'onchange' => 'calcularTempoTotal(); validarHorarios(this)',
                                     ])
                                 !!}
                             </div>
@@ -103,9 +105,9 @@
                                 {!! Form::label('tempo_total', 'Tempo Total') !!}
                                 {!! Form::text('tempo_total', '--:--',
                                     [
-                                        'id'    => 'tempo_total',
-                                        'class' => 'form-control',
-                                        'disabled'
+                                        'id'       => 'tempo_total',
+                                        'class'    => 'form-control',
+                                        'disabled',
                                     ])
                                 !!}
                             </div>
@@ -402,8 +404,9 @@
                 // Dead Basic Validation For Inputs
                 function validator(elements) {
                     clearErros();
+
                     var errors = 0;
-                    console.log(elements);
+
                     $.each(elements, function(index, element){
                         if($.trim($('#' + element).val()) == '') {
                             errors++; 
@@ -412,8 +415,16 @@
                     });
 
                     var selectedDate = $('#hidden_data').val();
+
                     if(!todayIsGreaterOrEqual(selectedDate)) {
                         $('.error').append("<p> A data informada <b>é antes de hoje!</b> </p>"); 
+                        errors++;
+                    }
+
+                    console.log(isValidDate(selectedDate), selectedDate);
+
+                    if(!isValidDate(selectedDate)) {
+                        $('.error').append("<p> A data informada <b>é inválida!</b> </p>"); 
                         errors++;
                     }
 
@@ -439,54 +450,6 @@
 
                 function clearErros() {
                     $(".error").empty();
-                }
-
-                function calcularTempoTotal() {
-
-                    var startTime = $('#hora_inicio').val();
-                    var endTime   = $('#hora_fim').val();
-
-                    if(startTime && endTime) {
-
-                        startTime = moment(startTime, "HH:mm");
-                        endTime = moment(endTime, "HH:mm");
-
-                        var duration = moment.duration(endTime.diff(startTime));
-                        var hours = parseInt(duration.asHours());
-                        if(hours < 10) { hours = "0" + hours; }
-                        var minutes = parseInt(duration.asMinutes()) - hours * 60;
-                        if(minutes < 10) { minutes = "0" + minutes; }
-
-                        $('#tempo_total').val(hours + ':' + minutes);
-                    } else {
-                        $('#tempo_total').val('--:--');
-                    }
-                }
-
-                function buscarAdotivos() {
-                    var id_adotante = $('#adotante_id').val();
-
-                    $.ajax({
-                        url: url_base + "/visitas/busca-adotivos/adotantes/"+ id_adotante, 
-                        method: 'GET', // method is any HTTP method
-                        success: function(data) {
-                            var adotivos = JSON.parse(data).adotivos;
-                            $('#adotivo_id').val(adotivos).trigger("change");
-                            console.log(adotivos); // JSON
-                        },
-                        error: function(data) {
-                            console.log(data.responseText);
-                        }
-                    });
-                }
-
-                function converterDataParaBase() {
-                    var date = $("#display_data").val();
-                    if(date != null && date != "") {
-                        $("#hidden_data").val(date.split("/").reverse().join("-"));
-                    } else {
-                        $("#hidden_data").val(null);
-                    }
                 }
 
                 function showErro(element) {
@@ -518,16 +481,103 @@
                 function todayIsGreaterOrEqual(date) {
 
                     var today = new Date().format('Y-m-d');
-                    return today < date;
+                    return today <= date;
                 }
             }); // End of calendar script 
-    
-            $("#adotivo_id").select2({            
-                placeholder: "--",
-                multiple: true
-            });
+            
         }); //End of Jquery document ready.
 
-        
+        function buscarAdotivos() {
+            var id_adotante = $('#adotante_id').val();
+
+            $.ajax({
+                url: url_base + "/visitas/busca-adotivos/adotantes/"+ id_adotante, 
+                method: 'GET', // method is any HTTP method
+                success: function(data) {
+                    var adotivos = JSON.parse(data).adotivos;
+                    $('#adotivo_id').val(adotivos).trigger("change");
+                    console.log(adotivos); // JSON
+                },
+                error: function(data) {
+                    console.log(data.responseText);
+                }
+            });
+        }
+
+        function converterDataParaBase() {
+            var date = $("#display_data").val();
+            if(date != null && date != "") {
+                $("#hidden_data").val(date.split("/").reverse().join("-"));
+            } else {
+                $("#hidden_data").val(null);
+            }
+        }
+
+        function calcularTempoTotal() {
+
+            var startTime = $('#hora_inicio').val();
+            var endTime   = $('#hora_fim').val();
+
+            if(startTime && endTime) {
+
+                startTime = moment(startTime, "HH:mm");
+                endTime = moment(endTime, "HH:mm");
+
+                var duration = moment.duration(endTime.diff(startTime));
+                var hours = parseInt(duration.asHours());
+                if(hours < 10) { hours = "0" + hours; }
+                var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                if(minutes < 10) { minutes = "0" + minutes; }
+
+                $('#tempo_total').val(hours + ':' + minutes);
+            } else {
+                $('#tempo_total').val('--:--');
+            }
+        }
+
+        //input in ISO format: yyyy-MM-dd
+        function isValidDate(input) {
+            var bits = input.split('-');
+            var d = new Date(bits[0], bits[1] - 1, bits[2]);
+            return d.getFullYear() == bits[0] && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[2]);
+        }
+
+        function horariosValidos(input) {
+            /**
+            var startTime = $('#hora_inicio').val();
+            var endTime   = $('#hora_fim').val();
+
+            if(isNaN($("#tempo_total").val())) {
+                $(input).val("");
+                $('#tempo_total').val('--:--');
+                $('.error').append("<p> Horário de incicio deve ser menor de horário final.</b> </p>"); 
+            }else{
+                //Remover mensagem.
+            }
+            */
+        }
+
+        function validarHorarios(input) {
+            $(".error").empty();
+
+            var startTime = $('#hora_inicio').val();
+            var endTime   = $('#hora_fim').val();
+
+            if(startTime && endTime) {
+                var isValid   = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#tempo_total").val());
+
+                if(!isValid) {
+                    //Remover mensagem de erro.
+                    $(input).val(null);
+                    $('#tempo_total').val('--:--');
+                    $('.error').append("<p class='horario'> Horário de incicio deve ser menor de horário final.</b> </p>"); 
+                }
+            }
+        }
+
+        $("#adotivo_id").select2({            
+            placeholder: "--",
+            multiple: true
+        });
     </script>
 @endsection
