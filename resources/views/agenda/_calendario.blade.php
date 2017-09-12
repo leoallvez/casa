@@ -85,7 +85,6 @@
                                 {!! Form::time('hora_inicio', null,
                                     [
                                         'class'    => 'form-control',
-                                        //'onblur'   => 'calcularTempoTotal()',
                                         'onchange' => 'calcularTempoTotal(); validarHorarios(this)',
                                     ])
                                 !!}
@@ -96,7 +95,6 @@
                                 {!! Form::time('hora_fim', null,
                                     [
                                         'class'    => 'form-control',
-                                        //'onblur'   => 'calcularTempoTotal()',
                                         'onchange' => 'calcularTempoTotal(); validarHorarios(this)',
                                     ])
                                 !!}
@@ -417,14 +415,14 @@
                     var selectedDate = $('#hidden_data').val();
 
                     if(!todayIsGreaterOrEqual(selectedDate)) {
-                        $('.error').append("<p> A data informada <b>é antes de hoje!</b> </p>"); 
+                        showErroMessage("<p> A data informada <b>é antes de hoje!</b></p>"); 
                         errors++;
                     }
 
                     console.log(isValidDate(selectedDate), selectedDate);
 
                     if(!isValidDate(selectedDate)) {
-                        $('.error').append("<p> A data informada <b>é inválida!</b> </p>"); 
+                        showErroMessage("<p> A data informada <b>é inválida!</b></p>"); 
                         errors++;
                     }
 
@@ -452,8 +450,8 @@
                     $(".error").empty();
                 }
 
-                function showErro(element) {
-                    $('.error').append("<p>Por favor preencher o campo <b>" + validatorName(element) + "</b></p>");    
+                function showErro(element) { 
+                    showErroMessage("<p>Por favor preencher o campo <b>" + validatorName(element) +"</b></p>"); 
                 }
 
                 function validatorName(element) {
@@ -542,21 +540,6 @@
             return d.getFullYear() == bits[0] && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[2]);
         }
 
-        function horariosValidos(input) {
-            /**
-            var startTime = $('#hora_inicio').val();
-            var endTime   = $('#hora_fim').val();
-
-            if(isNaN($("#tempo_total").val())) {
-                $(input).val("");
-                $('#tempo_total').val('--:--');
-                $('.error').append("<p> Horário de incicio deve ser menor de horário final.</b> </p>"); 
-            }else{
-                //Remover mensagem.
-            }
-            */
-        }
-
         function validarHorarios(input) {
             $(".error").empty();
 
@@ -567,17 +550,24 @@
                 var isValid   = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#tempo_total").val());
 
                 if(!isValid) {
-                    //Remover mensagem de erro.
                     $(input).val(null);
                     $('#tempo_total').val('--:--');
-                    $('.error').append("<p class='horario'> Horário de incicio deve ser menor de horário final.</b> </p>"); 
+                    showErroMessage("<p> Horário de <b>inicio</b> deve ser menor de horário <b>final.</b> </p>"); 
                 }
             }
+        }
+
+        function showErroMessage(messagem) {
+            $('.error').append( "<div class='alert alert-danger alert-dismissible fade in' role='alert'>" +
+                "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" +
+                messagem +
+            "</div>");
         }
 
         $("#adotivo_id").select2({            
             placeholder: "--",
             multiple: true
         });
+
     </script>
 @endsection
