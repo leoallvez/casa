@@ -31,7 +31,7 @@
                                     [
                                         'class'       => 'form-control',
                                         'placeholder' => 'Selecione Adotante(s)',
-                                        'onchange'    => 'buscarAdotivos()',
+                                        'onchange'    => 'buscarAdotivos(); clearErros();',
                                     ])
                                 !!}
                             </div>
@@ -191,7 +191,7 @@
                                         label: 'Agendar' // Buttons label
                                     }
                                 },
-                                title: 'Agendar Visita dia: ' + date.format('DD/MM/Y') // Modal title
+                                title: 'Agendar visita para o dia: ' + date.format('DD/MM/Y') // Modal title
                             });
                             $('#display_data').val(date.format('DD/MM/Y'));
                             //Campo com o name dia.
@@ -244,7 +244,7 @@
                                     onchange: 'clearErros()'
                                 }
                             },
-                            title: 'Editar Evento ' + calEvent.title,
+                            title: 'Editar visita do dia ' + calEvent.dia_formatado,
                             event: calEvent
                         });
                     }
@@ -446,10 +446,6 @@
                     $(".error").empty();
                 }
 
-                function clearErros() {
-                    $(".error").empty();
-                }
-
                 function showErro(element) { 
                     showErroMessage("<p>Por favor preencher o campo <b>" + validatorName(element) +"</b></p>"); 
                 }
@@ -562,6 +558,11 @@
                 "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" +
                 messagem +
             "</div>");
+        }
+
+        
+        function clearErros() {
+            $(".error").empty();
         }
 
         $("#adotivo_id").select2({            

@@ -49,7 +49,6 @@
     <link href="{{ asset('css/fullcalendar/casa-fullcallendar.css') }}" rel="stylesheet" />
 
     {{--  <link href="{{ asset('css/fullcalendar/theme-fullcalendar.css') }}" rel="stylesheet" />  --}}
-
     <script>
       window.Laravel = <?php echo json_encode([
         'csrfToken' => csrf_token(),
