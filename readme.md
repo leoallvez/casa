@@ -1,27 +1,21 @@
-# Laravel PHP Framework
+<h1>Sistema Casa</h1>
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+<h2>OBJETIVO</h2>
+<p>O objetivo deste projeto é desenvolver um software open source para administrar os processos de adoção de um orfanato, capaz de manter os dados dos adotivos e adotantes, realizar um controle de visitas e fornecer relatórios informando as visitas futuras e realizadas com cada criança para melhor controle do orfanato.</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+<h2>JUSTIFICATIVA</h2>
+<p>Notou-se que muitos aplicativos ou sistemas online desenvolvidos para orfanatos são focados na parte de contribuição, auxiliando as entidades no recebimento de doações e também informando aos doadores para que eles saibam a real necessidade da instituição. Um exemplo de um aplicativo para smartphones e web neste âmbito é o CADA (Carinho, Amor, Dedicação e Ajuda) , um software desenvolvido por um grupo de cinco alunos da  Fundação Centro de Análise Pesquisa e Inovação Tecnológica (FUCAPI) sob a orientação dos professores do Projeto Brazilian Education Program for IOS Development (BEPiD) tendo como prioridade a comunicação entre as entidades e os doadores, criando uma espécie de “catálogo” de instituições e orfanatos, ajudando-os a administrarem as doações recebidas e possibilitando que os doadores acompanhem claramente as ações tomada pela instituição. O aplicativo foi desenvolvido em duas plataformas. A plataforma web foi desenvolvida para a efetuação de cadastro do abrigo no site do CADA. A partir desse cadastro é possível informar quais os produtos que o local mais necessita. A segunda plataforma é um App com notícias do abrigo, pontos de coleta dos orfanatos e informações gerais referentes à doação. No momento as duas plataformas estão passando por alguns ajustes, mas a previsão é que logo o sistema esteja disponível para uso.</p>
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+<p>Atualmente, o único sistema em uso, conhecido e focado no processo de adoção é o Sistema de Controle de Acesso do Conselho Nacional de Justiça  sendo um sistema de informações, que consolida os dados de todas as Varas da Infância e da Juventude referentes a crianças e adolescentes em condições de serem adotados e os pretendentes habilitados à adoção.
+“Todos os juízes, de todo país, têm acesso à relação e perfil de pretendentes e crianças cadastradas no CNA. A retirada do cadastro das crianças e adolescentes pode ocorrer por adoção, pelo fato de terem atingido 18 anos ou por óbito.</p>
 
-## Official Documentation
+<h2>VISÃO GERAL</h2>
+<p>Crianças para Adoção Salvas pelo Afeto (CASA) é um sistema para gerenciamento de cadastros de adotantes e adotados dentro de um orfanato.
+A entrada no sistema é autorizada mediante autenticação por login e senha permitindo o acesso simultâneo de vários usuários ao software.
+O sistema conta com três diferentes níveis de usuários, sendo no primeiro nível os administradores de todo o sistema CASA, responsável pela aprovação ou reprovação das solicitações pendentes, cadastro dos administradores de cada orfanato e de novos administradores do sistema.
+O segundo é o administrador do orfanato responsável pelo cadastro de usuário padrão, gerar relatórios gerenciais, inativar adotante e adotivo, e possuir todos os privilégios do usuário padrão, sendo o seu acesso restrito apenas aos dados do orfanato em que ele estiver cadastrado, ou seja, este usuário não possui total acesso aos dados de todos os orfanatos cadastrados no sistema CASA.
+O terceiro é o usuário padrão, responsável pelo cadastramento e atualização dos adotantes e adotivos, vincular adotantes com adotivos e agendar e registrar visitas.
+O cadastro do orfanato, deve ser solicitado na página inicial do sistema, sendo necessária a inserção de alguns dados, sendo o mais importante o Cadastro Nacional de Pessoa Jurídica (CNPJ) e o e-mail e senha desejada para que o responsável administrativo do orfanato realize o acesso. A partir desse cadastro, a solicitação será encaminhada ao administrador do sistema, que validará os dados e o CNPJ a partir do site de Emissão de Comprovante de Inscrição e de Situação Cadastral . Se os dados forem válidos, será enviado um e-mail ao solicitante que realizou o cadastro informando que ele terá acesso de administrador do sistema do orfanato, caso contrário, será enviado um e-mail informando que a solicitação foi recusada.</p>
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
