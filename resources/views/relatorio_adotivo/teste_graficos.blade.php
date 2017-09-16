@@ -64,23 +64,17 @@
       </div>
     </div>
   </div>
-  {{-- {{ Form::hidden('dimensao', $dimensaoValue) }} --}}
-  {{-- /page content --}}
 @endsection
 
-<script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
-{{-- <script src="https://code.highcharts.com/highcharts.js"></script> --}}
-<script src="{{ asset('js/highcharts/code/highcharts-3d.js') }}"></script>
-{{-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> --}}
-<script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
-{{-- <script src="https://code.highcharts.com/modules/exporting.js"></script> --}}
-
 @section('js')
- <script type="text/javascript"> 
+
+  <script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
+  <script src="{{ asset('js/highcharts/code/highcharts-3d.js') }}"></script>
+  <script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
+  <script type="text/javascript"> 
     var dados = {!! json_encode($dadosStatus) !!};
     var dimensao = {!! $dimensaoValue !!};
     /** Munda a dimensão do graficos */
-
     Highcharts.chart('grafico', {
       chart: {
         type: 'pie',
