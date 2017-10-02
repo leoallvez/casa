@@ -151,19 +151,9 @@ class AdotivoController extends Controller{
 
         $adotivo = Adotivo::findOrFail($id);
 
-        //dd($request->except(['input-chegada', "input-nascimento"]));
-
-        $teste = $adotivo->update($request->all());
-
-        dd($teste);
-
-        if($adotivo->getDirty()) {
-            (new AdotivoLog($adotivo))->save();
-        }
-
-        $adotivo->save();
+        $adotivo->update($request->all());
         //TODO: se não hove mudança não criar log
-        //dd($adotivo->isDirty());
+        (new AdotivoLog($adotivo))->save();
        
         $adotivo->altualizarIrmaos($request->irmaosIds);
         flash(
