@@ -14,8 +14,7 @@ class CreateAdotivosLogs extends Migration {
         Schema::create('adotivos_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->date('data');
-           
-            $table->timestamps();
+            $table->binary('adotivoJSON');
         });
     }
 

@@ -6,6 +6,7 @@ use Casa\Etnia;
 use Casa\Adotivo;
 use Casa\Adotante;
 use Casa\Restricao;
+use Casa\AdotivoLog;
 use Casa\Escolaridade;
 use Casa\AdotivoStatus;
 use Casa\Nacionalidade;
@@ -73,6 +74,8 @@ class AdotivoController extends Controller{
         $adotivo->setUsuario($usuario->id);
 
         $adotivo->save();
+
+        (new AdotivoLog($adotivo))->save();
 
         $adotivo->salvarIrmaos($request->irmaosIds);
 
@@ -147,7 +150,21 @@ class AdotivoController extends Controller{
     public function update(AdotivoRequest  $request, $id) {
 
         $adotivo = Adotivo::findOrFail($id);
-        $adotivo->update($request->all());
+
+        //dd($request->except(['input-chegada', "input-nascimento"]));
+
+        $teste = $adotivo->update($request->all());
+
+        dd($teste);
+
+        if($adotivo->getDirty()) {
+            (new AdotivoLog($adotivo))->save();
+        }
+
+        $adotivo->save();
+        //TODO: se não hove mudança não criar log
+        //dd($adotivo->isDirty());
+       
         $adotivo->altualizarIrmaos($request->irmaosIds);
         flash(
             "Adotivo ".$adotivo->nome." Alterado com Sucesso!",
