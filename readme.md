@@ -14,8 +14,33 @@
 A entrada no sistema é autorizada mediante autenticação por login e senha permitindo o acesso simultâneo de vários usuários ao software.
 O sistema conta com três diferentes níveis de usuários, sendo no primeiro nível os administradores de todo o sistema CASA, responsável pela aprovação ou reprovação das solicitações pendentes, cadastro dos administradores de cada orfanato e de novos administradores do sistema.
 O segundo é o administrador do orfanato responsável pelo cadastro de usuário padrão, gerar relatórios gerenciais, inativar adotante e adotivo, e possuir todos os privilégios do usuário padrão, sendo o seu acesso restrito apenas aos dados do orfanato em que ele estiver cadastrado, ou seja, este usuário não possui total acesso aos dados de todos os orfanatos cadastrados no sistema CASA.
-O terceiro é o usuário padrão, responsável pelo cadastramento e atualização dos adotantes e adotivos, vincular adotantes com adotivos e agendar e registrar visitas.
-O cadastro do orfanato, deve ser solicitado na página inicial do sistema, sendo necessária a inserção de alguns dados, sendo o mais importante o Cadastro Nacional de Pessoa Jurídica (CNPJ) e o e-mail e senha desejada para que o responsável administrativo do orfanato realize o acesso. A partir desse cadastro, a solicitação será encaminhada ao administrador do sistema, que validará os dados e o CNPJ a partir do site de Emissão de Comprovante de Inscrição e de Situação Cadastral . Se os dados forem válidos, será enviado um e-mail ao solicitante que realizou o cadastro informando que ele terá acesso de administrador do sistema do orfanato, caso contrário, será enviado um e-mail informando que a solicitação foi recusada.</p>
+O terceiro é o usuário padrão, responsável pelo cadastramento e atualização dos adotantes e adotivos, vincular adotantes com adotivos e agendar e registrar visitas.</p>
+
+<h2>REQUISITOS TÉCNICOS</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Tecnologia</th>
+    <th>Descrição</th> 
+    <th>Versão</th>
+  </tr>
+  <tr>
+    <td>PHP</td>
+    <td>Linguagem de Programação Server Side</td> 
+    <td>7.1.1</td>
+  </tr>
+  <tr>
+    <td>Laravel</td>
+    <td>Framework Server Side</td> 
+    <td>5.3.31</td>
+  </tr>
+  <tr>
+    <td>MariaDB</td>
+    <td>Sistema de Gerenciamento de Banco de Dados (SGBD)</td> 
+    <td>10.1.25</td>
+  </tr>
+</table>
+
 
 
 
