@@ -33,12 +33,7 @@ class Agenda extends Model {
         'observacoes',
     ];
 
-    public function visitas()
-    {
-        return $this->hasMany('Casa\Visita');
-    }
-
-    public function agendarVisita(int $adotante_id)
+    public function agendarVisita(int $adotante_id) : bool
     {
         $adotante = Adotante::find($adotante_id);
 
@@ -62,8 +57,8 @@ class Agenda extends Model {
     }
 
     //TODO: refatorar esse código.
-
-    public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) {
+    public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) : bool 
+    {
 
         $data = (is_null($data)) ? $this->dia : $data;
 
@@ -95,7 +90,7 @@ class Agenda extends Model {
         return false;
     }
 
-    public static function listar() 
+    public static function listar() : array 
     {
         $results = [];
         $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->get();
@@ -125,7 +120,7 @@ class Agenda extends Model {
                 ];
             }
         }
-        return response()->json($results);
+        return $results;
     }
 
     /**
@@ -136,7 +131,7 @@ class Agenda extends Model {
         return date('d/m/Y', $timestamp);
     }
 
-    public function getAdotanteId() {
+    public function getAdotanteId() : int {
         $visita = $this->visitas->first();
         $vinculo = Vinculo::find($visita->vinculo_id);
         return $vinculo->adotante->id;
@@ -150,5 +145,10 @@ class Agenda extends Model {
 
     private function getDiaEHorario() : string {
         return $this->dia." ".$this->hora_inicio;
+    }
+
+    public function visitas()
+    {
+        return $this->hasMany('Casa\Visita');
     }
 }

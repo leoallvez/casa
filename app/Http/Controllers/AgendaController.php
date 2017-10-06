@@ -107,7 +107,7 @@ class AgendaController extends Controller {
 
     public function listar() 
     {
-        return Agenda::listar();
+        return response()->json(Agenda::listar());
     }    
 
     public function buscarAdotivos($id) 
