@@ -2,6 +2,7 @@
 
 namespace Casa\Http\Controllers;
 
+use Casa\Vinculo;
 use Casa\Adotivo;
 use Casa\Adotante;
 use Illuminate\Http\Request;
@@ -19,7 +20,6 @@ class VinculoController extends Controller {
         /** [description] Listagem do histórico adotantes*/
     	$adotantesHistorico = $adotivo->adotantes()
     	->orderBy('adotantes_adotivos.created_at')
-        
     	->where('adotantes_adotivos.adotivo_id', '=', $id)
     	->where('adotantes_adotivos.deleted_at', '!=', null);;
         /** 
@@ -76,12 +76,7 @@ class VinculoController extends Controller {
             return redirect('vinculos/adotivo/'.$adotivo->id);
         }
 
-        $adotivo->status_id = 3;
-
-        $adotante->has_vinculo = 1;
-
-        $adotivo->adotantes()->save($adotante);
-        $adotivo->save();
+        (new Vinculo())->vincular($adotivo, $adotante);
         flash("Adotivo ".$adotivo->nome." vinculado(a) com Sucesso!", "success");
         return redirect('vinculos/adotivo/'.$adotivo->id);
     }
@@ -90,15 +85,7 @@ class VinculoController extends Controller {
 
         $adotivo = Adotivo::find($request->get('id_adotivo'));
 
-        $adotante = $adotivo->adotantes()->where('adotantes.has_vinculo', '=', 1)->first();
-        $adotivo->status_id = 2;
-        $adotante->has_vinculo = 0;
-        $adotante->save();
-
-        $adotivo->adotantes()
-        ->updateExistingPivot($adotante->id, ['observacoes' => $request->get('observacoes') , 'deleted_at' => date("Y-m-d G:i:s")]);
-        
-        $adotivo->save();
+        (new Vinculo())->desvincular($adotivo, $request);
 
         return json_encode(['status' => true]);
     }

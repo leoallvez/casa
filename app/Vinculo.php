@@ -75,6 +75,26 @@ class Vinculo extends Model {
 
     }
 
+    public function vincular(Adotivo $adotivo, Adotante $adotante) {
+
+            $adotivo->status_id = 3;
+            $adotante->has_vinculo = 1;
+            $adotivo->adotantes()->save($adotante);
+            $adotivo->save();
+    }
+
+    public function desvincular(Adotivo $adotivo, $request) {
+
+        $adotante = $adotivo->adotantes()->where('adotantes.has_vinculo', '=', 1)->first();
+        $adotivo->status_id = 2;
+        $adotante->has_vinculo = 0;
+        $adotante->save();
+        $adotivo->adotantes()
+        ->updateExistingPivot($adotante->id, ['observacoes' => $request->get('observacoes') , 'deleted_at' => date("Y-m-d G:i:s")]);
+        $adotivo->save();
+
+    }
+
     public function visitas()
     {
         return $this->hasMany('Casa\Visita');
