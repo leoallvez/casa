@@ -5,7 +5,13 @@ namespace Casa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Instituicao extends Model {
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class Instituicao extends Model 
+{
 	use SoftDeletes;
 	
 	protected $table = 'instituicoes';
@@ -30,30 +36,51 @@ class Instituicao extends Model {
 		'estado_id'
 	];
 
-	public function setIsAprovada($is_aprovada) {
+	/**
+    * @return void
+    */
+	public function setIsAprovada($is_aprovada) : void
+	{
 		$this->is_aprovada = $is_aprovada;	
 	}
 
-	public function setEmail($email) {
+	/**
+    * @return void
+    */
+	public function setEmail($email) : void
+	{
 		$this->email = $email;
 	}
 
-	public function getAdm() {
-
-		$usuario = Usuario::where('instituicao_id', $this->id)->whereIn('nivel_id', [1,2])->first();
+	/**
+    * @return string
+    */
+	public function getAdm() : string
+	{
+		$usuario = Usuario::where('instituicao_id', $this->id)
+		->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA , UsuarioNivel::ADM_INSTITUICAO])
+		->first();
 
 		return $usuario->name ?? 'Não encontrado';
 	}
 
-	public function adotivos() {
+	/**
+    * [description]
+    * Método(s) do Eloquent 
+    * Definem as relações das models.
+    */
+	public function adotivos() 
+	{
         return $this->hasMany('Casa\Adotivo');
     }
 
-    public function estado() {
+	public function estado() 
+	{
     	return $this->belongsTo('Casa\Estado', 'estado_id');
 	}
 
-	public function usuarios() {
+	public function usuarios() 
+	{
     	return $this->hasMany('Casa\Usuario', 'user_id');
     }
 }

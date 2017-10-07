@@ -1,9 +1,13 @@
 <?php
 
 namespace Casa;
-
 use Illuminate\Database\Eloquent\Model;
 
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
 class SolicitaCadastro extends Model {
 
     protected $fillable = [

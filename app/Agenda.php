@@ -7,7 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Agenda extends Model {
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class Agenda extends Model
+{
     use SoftDeletes;
 
     public $timestamps = false;
@@ -33,6 +39,9 @@ class Agenda extends Model {
         'observacoes',
     ];
 
+    /**
+    * @return boolean
+    */
     public function agendarVisita(int $adotante_id) : bool
     {
         $adotante = Adotante::find($adotante_id);
@@ -56,7 +65,9 @@ class Agenda extends Model {
         return false;
     }
 
-    //TODO: refatorar esse código.
+    /**
+    * @return boolean
+    */
     public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) : bool 
     {
 
@@ -90,6 +101,9 @@ class Agenda extends Model {
         return false;
     }
 
+    /**
+    * @return array
+    */
     public static function listar() : array 
     {
         $results = [];
@@ -105,18 +119,18 @@ class Agenda extends Model {
                 $nome_adotivo = Adotivo::getNomeAbreviadoByVinculoId($visitas->vinculo_id);
 
                 $results[] = [
-                    "id"          => $agenda->id,
-                    "title"       => $nome_adotivo,
-                    "description" => $nome_adotivo,
-                    "color"       => '#3498DB',
-                    "date"        => $agenda->getDiaEHorario(),
-                    "hora_inicio" => $agenda->hora_inicio,
-                    "hora_fim"    => $agenda->hora_fim,
-                    "status"      => $agenda->status,
+                    "id"            => $agenda->id,
+                    "title"         => $nome_adotivo,
+                    "description"   => $nome_adotivo,
+                    "color"         => '#3498DB',
+                    "date"          => $agenda->getDiaEHorario(),
+                    "hora_inicio"   => $agenda->hora_inicio,
+                    "hora_fim"      => $agenda->hora_fim,
+                    "status"        => $agenda->status,
                     "dia_formatado" => $agenda->formatarData(),
-                    "dia_base"    => $agenda->dia,
-                    "adotante_id" => $agenda->getAdotanteId(),
-                    "adotivo_id"  => $agenda->getVisitasVinculos(),
+                    "dia_base"      => $agenda->dia,
+                    "adotante_id"   => $agenda->getAdotanteId(),
+                    "adotivo_id"    => $agenda->getVisitasVinculos(),
                 ];
             }
         }
@@ -124,29 +138,44 @@ class Agenda extends Model {
     }
 
     /**
-     * formarta data de yyyy-mm-dd para dd/mm/yyyy
-     */
+    * Formarta data de yyyy-mm-dd para dd/mm/yyyy
+    * @return string
+    */
     private function formatarData() : string {
         $timestamp = strtotime($this->dia); 
         return date('d/m/Y', $timestamp);
     }
 
+    /**
+    * @return int
+    */
     public function getAdotanteId() : int {
         $visita = $this->visitas->first();
         $vinculo = Vinculo::find($visita->vinculo_id);
         return $vinculo->adotante->id;
     }
+
     /**
-     * Pega o(s) vinculo(s) da(s) visitas(s).
-     */
+    * [description]
+    * Pega o(s) vinculo(s) da(s) visitas(s).
+    * @return array
+    */
     private function getVisitasVinculos() : array {
         return $this->visitas()->pluck('vinculo_id')->toArray(); 
     }
 
+    /**
+    * @return string
+    */
     private function getDiaEHorario() : string {
         return $this->dia." ".$this->hora_inicio;
     }
 
+    /**
+    * [description]
+    * Método(s) do Eloquent 
+    * Definem as relações das models.
+    */
     public function visitas()
     {
         return $this->hasMany('Casa\Visita');

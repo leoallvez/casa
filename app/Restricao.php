@@ -1,13 +1,24 @@
 <?php
 
 namespace Casa;
-
 use Illuminate\Database\Eloquent\Model;
 
-class Restricao extends Model {
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class Restricao extends Model 
+{
     protected $table = 'restricoes';
 
-    public function adotivo() {
+    /**
+    * [description]
+    * Método(s) do Eloquent 
+    * Definem as relações das models.
+    */
+    public function adotivo() 
+    {
         return $this->belongsTo('Casa\Adotivo','restricao_id');
     }
 }
