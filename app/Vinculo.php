@@ -3,7 +3,6 @@ namespace Casa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
 * @package  Casa
 * @author   Leonardo Alves <leoallvez@hotmail.com>
@@ -20,7 +19,7 @@ class Vinculo extends Model
      * Lista todos os adotantes da instituição que posssuem vinculos.
      * @return array de collections
      */
-    public function listarAdotantesComViculos() : array
+    public function listarAdotantesComViculos()
     {
         $adotantes = [];
 
