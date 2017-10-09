@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class InstituicaoTableSeeder extends Seeder {
+class InstituicaoTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $instituicoes = [
         	[
                 //id = 1 

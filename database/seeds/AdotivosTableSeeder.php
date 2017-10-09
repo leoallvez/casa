@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class AdotivosTableSeeder extends Seeder {
+class AdotivosTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+	public function run() 
+	{
     	$adotivos = [
     	    [
 				'matricula'         => 'CASA-00000001',

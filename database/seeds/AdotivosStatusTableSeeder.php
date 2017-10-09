@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class AdotivosStatusTableSeeder extends Seeder {
+class AdotivosStatusTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
      	$status = [
      		['nome' => 'Indisponível para Adoção'],
 	        ['nome' => 'Disponível para Adoção'], 

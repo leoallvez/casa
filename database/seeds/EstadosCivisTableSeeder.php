@@ -8,7 +8,8 @@ class EstadosCivisTableSeeder extends Seeder {
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $estadosCivis = [
         	['nome' => 'Solteiro(a)'],
         	['nome' => 'Casado(a)'],

@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class VinculoTableSeeder extends Seeder {
+class VinculoTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $vinculos = [
     		[
                 'adotante_id'  => 1, 

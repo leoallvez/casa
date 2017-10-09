@@ -10,6 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 */
 class Etnia extends Model 
 {
+    const BRANCO   = 1;
+    const NEGRO    = 2;
+    const INDIGENA = 3;
+    const MULATO   = 4;
+    const CABLOCO  = 5;
+    const CAFUZO   = 6;
+    const PARDO    = 7;
+    
     /**
     * [description]
     * Método(s) do Eloquent 

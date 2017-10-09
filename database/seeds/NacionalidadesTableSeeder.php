@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class NacionalidadesTableSeeder extends Seeder {
+class NacionalidadesTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
     	$nacionalidades = [
             ['nome' => 'Brasileiro'],
     		['nome' => 'Albanês'],

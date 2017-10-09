@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class RestricoesTableSeeder extends Seeder {
+class RestricoesTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
     	$restricoes = [ 
             ['nome' => 'Não'],
     		['nome' => 'Doença tratável'],

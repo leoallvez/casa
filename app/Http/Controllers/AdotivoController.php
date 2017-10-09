@@ -37,7 +37,7 @@ class AdotivoController extends Controller{
         $matricula = Adotivo::gerarMatricula();
 
         $adotantes = Adotante::pluck('nome', 'id');
-        $status    = AdotivoStatus::where('id', '<', 3)->pluck('nome', 'id');
+        $status    = AdotivoStatus::where('id', '<', AdotivoStatus::RECEBENDO_VISITA)->pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
         $nascionalidades = Nacionalidade::pluck('nome', 'id');
         $restricoes = Restricao::pluck('nome', 'id');
@@ -84,17 +84,6 @@ class AdotivoController extends Controller{
             'success'
         );
         return redirect('adotivos');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

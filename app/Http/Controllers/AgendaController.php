@@ -2,14 +2,15 @@
 
 namespace Casa\Http\Controllers;
 
+use Casa\Agenda;
 use Casa\Adotivo;
 use Casa\Vinculo;
 use Casa\Adotante;
-use Casa\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AgendaController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -34,13 +35,10 @@ class AgendaController extends Controller {
     public function store(Request $request) 
     {
         $agenda = new Agenda($request->all());
-        $adotante_id = $request->adotante_id;
 
-        $temVisitaNoDia = $agenda->adotanteTemVisitaNoDia($adotante_id);
+        $agendado = $agenda->agendarVisita($request->adotante_id);
 
-        if(!$temVisitaNoDia) {
-            $agenda->agendarVisita($adotante_id);
-
+        if($agendado) {
             return json_encode([
                 'status'  => true,
                 'message' => 'Visita agendada com sucesso',
@@ -62,23 +60,15 @@ class AgendaController extends Controller {
      */
     public function update(Request $request, $id) 
     {
-        $agendaOriginal = Agenda::find($id);
+        $agenda = Agenda::find($id);
 
-        $temVisitaNoDia = $agendaOriginal->adotanteTemVisitaNoDia(null, $request->dia);
+        $reagendado = $agenda->reagendarVisita($request->all());
         
-        if(!$temVisitaNoDia) {
-
-            $agendaOriginal->update($request->all());
-            $agendaOriginal->delete();
-
-            $agendaNova = new Agenda($request->all());
-            $agendaNova->agendarVisita($agendaOriginal->getAdotanteId());
-
+        if($reagendado) {
             return json_encode([
                 'status'  => true, 
                 'message' => 'Visita reagendada com sucesso'
             ]);
-
         }
 
         return json_encode([
@@ -96,12 +86,18 @@ class AgendaController extends Controller {
     public function destroy(Request $request, $id) 
     {
         $agenda = Agenda::find($id);
-        $agenda->update($request->all());
-        $agenda->delete();
+        $cancelado = $agenda->cancelarVisita($request->observacoes);
+
+        if($cancelado) {
+            return json_encode([
+                'status'  => true, 
+                'message' => 'Visita cancelada com sucesso' 
+            ]);
+        }
 
         return json_encode([
-            'status'  => true, 
-            'message' => 'Visita cancelada com sucesso' 
+            'status'  => false, 
+            'message' => 'Visita cancelada não cancelada',
         ]);
     }
 

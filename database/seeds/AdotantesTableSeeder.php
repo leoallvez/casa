@@ -2,14 +2,16 @@
 
 use Illuminate\Database\Seeder;
 
-class AdotantesTableSeeder extends Seeder {
+class AdotantesTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
     # CPF repetido 204.755.783-68
-    public function run() {
+	public function run() 
+	{
         $adotantes = [
         	[
         		'nome'            => 'Adriane Santiago de Silva',

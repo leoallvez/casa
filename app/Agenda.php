@@ -18,10 +18,14 @@ class Agenda extends Model
 
     public $timestamps = false;
 
+    const AGENDADA   = "agendada";
+    const REAGENDADA = "reagendada";
+    const CANCELADA  = "cancelada";
+
     public function __construct(array $attributes = array()) 
     {
         if(count($attributes) > 0) {
-            $attributes['status'] = "agendado";
+            $attributes['status'] = Agenda::AGENDADA;
             $attributes['observacoes'] = null;
         }
         parent::__construct($attributes);
@@ -46,7 +50,9 @@ class Agenda extends Model
     {
         $adotante = Adotante::find($adotante_id);
 
-        if(!is_null($adotante)) {
+        $temVisitaNoDia = $this->adotanteTemVisitaNoDia($adotante_id);
+
+        if(!$temVisitaNoDia) {
             
             $this->save();
             $adotivos = $adotante->adotivos->pluck('id');
@@ -60,6 +66,42 @@ class Agenda extends Model
                 $visita->agenda()->associate($this);
                 $visita->save();
             }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * @return boolean
+    */
+    public function reagendarVisita(array $atributos) : bool 
+    {
+        $temVisitaNoDia = $this->adotanteTemVisitaNoDia(null, $atributos['dia']);
+
+        if(!$temVisitaNoDia) {
+            
+            $this->observacoes = $atributos['observacoes'];
+            $this->status = Agenda::REAGENDADA;
+            $this->save();
+            $this->delete();
+
+            $novaAgenda = new self($atributos);
+            $novaAgenda->agendarVisita($this->getAdotanteId());
+            
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * @return void
+    */
+    public function cancelarVisita(string $observacoes) : bool
+    {
+        if(!is_null($observacoes)) {
+            $this->status = Agenda::CANCELADA;
+            $this->save();
+            $this->delete();
             return true;
         }
         return false;
