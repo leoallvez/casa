@@ -3,13 +3,15 @@
 namespace Casa\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdotanteRequest extends FormRequest {
+class AdotanteRequest extends FormRequest 
+{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize() 
+    {
         return true;
     }
 
@@ -18,7 +20,8 @@ class AdotanteRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules() 
+    {
 
         $regras = [
             # difereça de 16 com a idade do adotivo
@@ -53,7 +56,8 @@ class AdotanteRequest extends FormRequest {
         return $regras;
     }
 
-    public function messages() {
+    public function messages() 
+    {
         return [
             'nome.regex'                                 => 'O nome deve conter apenas letras e espaços.',
             'estado_civil_id.required'                   => 'O campo estado civil é obrigatório.',

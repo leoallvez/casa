@@ -4,13 +4,15 @@ namespace Casa\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SolicitarCadastroRequest extends FormRequest {
+class SolicitarCadastroRequest extends FormRequest 
+{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize() 
+    {
         return true;
     }
 
@@ -19,7 +21,8 @@ class SolicitarCadastroRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules() 
+    {
         return [
             # Instituição
             'razao_social'          => 'required|regex:/^[\pL\s\-]+$/u',
@@ -40,7 +43,8 @@ class SolicitarCadastroRequest extends FormRequest {
             'password_confirmation' => 'required|min:8'
         ];
     }
-    public function messages() {
+    public function messages() 
+    {
         return [
             # Instituição
             'razao_social.required'          => '* A razão social é obrigatória.',

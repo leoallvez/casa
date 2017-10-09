@@ -11,7 +11,8 @@ class CreateAgendasTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('agendas', function (Blueprint $table) {
+        Schema::create('agendas', function (Blueprint $table) 
+        {
             $table->increments('id');
             $table->date('dia');
             $table->time('hora_inicio');
@@ -33,7 +34,8 @@ class CreateAgendasTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down() 
+    {
         Schema::dropIfExists('agendas');
     }
 }

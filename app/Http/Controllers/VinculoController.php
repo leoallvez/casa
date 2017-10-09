@@ -56,8 +56,8 @@ class VinculoController extends Controller {
         ));   
     }
 
-    public function visualizar($adotivo_id, $adotante_id) {
-    	
+    public function visualizar($adotivo_id, $adotante_id) 
+    {
         $adotivo = Adotivo::find($adotivo_id);
 
         $adotantes = $adotivo->adotantes()
@@ -66,8 +66,8 @@ class VinculoController extends Controller {
         return view('vinculo.visualizar', compact('adotivo', 'adotantes')); 	
     }
 
-    public function vincular(VinculoRequest $request) {
-
+    public function vincular(VinculoRequest $request) 
+    {
         $adotivo = Adotivo::find($request->adotivo_id);
         $adotante = Adotante::find($request->adotante_id);
         # Não podem tem menos 16 anos de diferença.
@@ -81,8 +81,8 @@ class VinculoController extends Controller {
         return redirect('vinculos/adotivo/'.$adotivo->id);
     }
 
-    public function desvincular(Request $request) {
-
+    public function desvincular(Request $request) 
+    {
         $adotivo = Adotivo::find($request->get('id_adotivo'));
 
         (new Vinculo())->desvincular($adotivo, $request);

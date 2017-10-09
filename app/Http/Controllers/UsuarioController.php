@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\UserStoreRequest;
 use Casa\Http\Requests\UserUpdateRequest;
 
-class UsuarioController extends Controller {
+class UsuarioController extends Controller 
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index() 
+    {
         $usuarios = Usuario::list();
 
         return view('usuario.index', compact('usuarios'));
@@ -27,7 +29,8 @@ class UsuarioController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create() 
+    {
         $niveis = UsuarioNivel::all()->pluck('nome', 'id');
 
         return view('usuario.create', compact('niveis'));
@@ -39,8 +42,8 @@ class UsuarioController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request) {
-
+    public function store(UserStoreRequest $request) 
+    {
         $usuario = new Usuario($request->except(['password']));
 
         $usuario->save();
@@ -56,7 +59,8 @@ class UsuarioController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id) 
+    {
         $usuario = Usuario::findOrfail($id);
 
         $niveis = UsuarioNivel::list();
@@ -71,8 +75,8 @@ class UsuarioController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id) {
-
+    public function update(UserUpdateRequest $request, $id) 
+    {
         $usuario = Usuario::findOrfail($id);
         $usuario->setSenha($request->password);
         $usuario->update($request->except(['password']));
@@ -93,16 +97,16 @@ class UsuarioController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        
+    public function destroy($id) 
+    {
         Usuario::destroy($id);
         
         flash('Usuário Inativado com Sucesso', 'danger');
         return json_encode(['status' => true]);
     }
 
-    public function buscar(Request $request) {
-
+    public function buscar(Request $request) 
+    {
         $usuarios = Usuario::fetch($request->inputBusca);
        
         $inputBusca = $request->inputBusca;
@@ -110,7 +114,8 @@ class UsuarioController extends Controller {
         return view('usuario.index', compact('usuarios', 'inputBusca'));
     }
 
-    public function findUsers($id) {
+    public function findUsers($id) 
+    {
         # Serão pesquisados apenas usuario padrões e adm instituição.
         $adm = Usuario::where('id', $id)
         ->whereIn('nivel_id', [2,3])

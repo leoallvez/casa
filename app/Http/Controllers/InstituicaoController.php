@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\InstituicaoRequest;
 
-class InstituicaoController extends Controller {
+class InstituicaoController extends Controller 
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index() 
+    {
         $instituicoes = Instituicao::where('is_aprovada', true)
         ->where('id', '<>', 1)
         ->orderBy('razao_social')
@@ -30,7 +32,8 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id) 
+    {
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
@@ -47,7 +50,8 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id) 
+    {
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
@@ -72,8 +76,8 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InstituicaoRequest $request, $id) {
-
+    public function update(InstituicaoRequest $request, $id) 
+    {
         $instituicao = Instituicao::findOrfail($id);
 
         # atualizar ADM da instuição.
@@ -107,7 +111,8 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id) 
+    {
         Instituicao::findOrFail($id)->delete();
 
         Usuario::where('instituicao_id', $id)->delete();
@@ -116,7 +121,8 @@ class InstituicaoController extends Controller {
         return json_encode(['status' => true]);
     }
 
-    public function buscar(Request $request) {
+    public function buscar(Request $request) 
+    {
         # Retirar os espaços do incios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
 

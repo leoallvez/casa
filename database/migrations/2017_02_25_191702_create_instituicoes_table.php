@@ -11,8 +11,10 @@ class CreateInstituicoesTable extends Migration
      *
      * @return void
      */
-    public function up() {
-        Schema::create('instituicoes', function (Blueprint $table) {
+    public function up()
+    {
+        Schema::create('instituicoes', function (Blueprint $table) 
+        {
             $table->increments('id');
             $table->string('razao_social')->index();
             $table->boolean('is_aprovada');
@@ -39,7 +41,8 @@ class CreateInstituicoesTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down() 
+    {
         Schema::dropIfExists('instituicoes');
     }
 }

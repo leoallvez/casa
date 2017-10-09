@@ -10,7 +10,8 @@ class AdotivoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize() 
+    {
         return true;
     }
 
@@ -19,7 +20,8 @@ class AdotivoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() {
+    public function rules() 
+    {
         # 'nascimento'  => depois: 18 anos atras.
         # 'data_chegada' => depois: nascimento.
         return [

@@ -14,13 +14,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\AdotivoRequest;
 
-class AdotivoController extends Controller{
+class AdotivoController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index() 
+    {
         $adotivos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(10);
@@ -33,7 +35,8 @@ class AdotivoController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create() 
+    {
         $matricula = Adotivo::gerarMatricula();
 
         $adotantes = Adotante::pluck('nome', 'id');
@@ -63,10 +66,9 @@ class AdotivoController extends Controller{
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdotivoRequest $request) {
-
+    public function store(AdotivoRequest $request) 
+    {
         $adotivo = new Adotivo($request->all());
-
         #Usuário logado no sistema.
         $usuario = Auth::user();
 
@@ -92,7 +94,8 @@ class AdotivoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id) 
+    {
         $adotivo   = Adotivo::findOrFail($id);
         $adotantes = Adotante::all()->pluck('nome', 'id');
         $status    = AdotivoStatus::pluck('nome', 'id');
@@ -136,8 +139,8 @@ class AdotivoController extends Controller{
      * @return \Illuminate\Http\Response
      */
 
-    public function update(AdotivoRequest  $request, $id) {
-
+    public function update(AdotivoRequest  $request, $id) 
+    {
         $adotivo = Adotivo::findOrFail($id);
 
         $adotivo->update($request->all());
@@ -159,14 +162,16 @@ class AdotivoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id) 
+    {
         Adotivo::destroy($id);
 
         flash("Adotivo Inativado(a) com Sucesso", 'danger');
         return json_encode(['status' => true]);
     }
 
-    public function buscar(Request $request) {
+    public function buscar(Request $request) 
+    {
         # Retirar os espaços do incios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
         
