@@ -6,6 +6,7 @@ use Casa\User;
 use Casa\Estado;
 use Casa\Usuario;
 use Casa\Instituicao;
+use Casa\UsuarioNivel;
 use Casa\SolicitaCadastro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -19,7 +20,7 @@ class SolicitaCadastroController extends Controller
      */
     public function index() 
     {
-        $solicitacoes = Instituicao::where('is_aprovada', '=', 'false')->paginate(10);
+        $solicitacoes = Instituicao::where('is_aprovada', false)->paginate(10);
 
         return view('solicitacao.index', compact('solicitacoes'));
     }
@@ -54,7 +55,7 @@ class SolicitaCadastroController extends Controller
         $usuario->setInstituicao($instituicao->id);
         $usuario->setEmail($request->email_adminstrador);
         $usuario->setSenha($request->password);
-        $usuario->setNivel(4);
+        $usuario->setNivel(UsuarioNivel::CANDIDATO);
         $usuario->save();
 
         flash('Solicitação enviada com sucesso e será analisada pelo administrador do sistema!', 'success');
@@ -86,7 +87,7 @@ class SolicitaCadastroController extends Controller
         $instituicao->save();
         # Usuário.
         $usuario = Usuario::where('instituicao_id', '=', $id)->first();
-        $usuario->setNivel(2);
+        $usuario->setNivel(UsuarioNivel::ADM_INSTITUICAO);
         $usuario->save();
 
         flash('Instituição '.$instituicao->razao_social.' aprovada com sucesso!', 'success');

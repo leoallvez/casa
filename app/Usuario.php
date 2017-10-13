@@ -36,7 +36,7 @@ class Usuario extends Model
     public function __construct(array $attributes = array(), $password = null) 
     {
         parent::__construct($attributes);
-        $this->instituicao_id = 1; // Auth::user()->instituicao_id;
+        $this->instituicao_id = Auth::user()->instituicao_id;
         $password = $password ?? 'casa'.date('Y');
         $this->password = Hash::make($password);
         $this->nivel_id = $nivel_id ?? UsuarioNivel::PADRAO;
@@ -74,9 +74,9 @@ class Usuario extends Model
      * logado no sistema.
      * @return Colletion de Usuario.
      */
-    public static function list() 
+    public static function listar() 
     {
-        $usuarios = self::where('nivel_id','=', UsuarioNivel::PADRAO)
+        $usuarios = self::where('nivel_id', UsuarioNivel::PADRAO)
         ->where('instituicao_id', Auth::user()->instituicao_id);
 
         return $usuarios->orderBy('name')->paginate(10);
@@ -85,9 +85,9 @@ class Usuario extends Model
     /**
     * @return 
     */
-    public static function fetch($inputBusca, $nivel = UsuarioNivel::PADRAO) 
+    public static function buscar($inputBusca, $nivelUsuario = UsuarioNivel::PADRAO) 
     {
-        $usuarios = self::where('nivel_id','=', $nivel)
+        $usuarios = self::where('nivel_id','=', $nivelUsuario)
         ->where('instituicao_id', Auth::user()->instituicao_id);
         #Retirar os espaços do incios e fim da string.
         $inputBusca = trim($inputBusca);

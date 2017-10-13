@@ -65,6 +65,33 @@ class Instituicao extends Model
 	}
 
 	/**
+    * @return void
+    */
+	public function atualizar(array $request) : void
+	{
+		$admAtual = Usuario::find($request['adm_id']);
+		
+		if($admAtual->id == $request['old_adm_id']) {
+			$admAtual->update($request);
+		} else {
+			# Atualizar novo ADM.
+			$admAtual->update([
+				'nivel_id' => UsuarioNivel::ADM_INSTITUICAO, 
+				'cargo'    => $request['cargo']
+			]);
+			# Atualizar ADM antigo como usuário padrão.
+			$admAntigo = Usuario::find($request['old_adm_id']);
+
+			$admAntigo->update(['nivel_id' => UsuarioNivel::PADRAO]);
+			# Anativar ADM antigo.
+			if(array_key_exists("inativar_old_adm", $request)) {
+				$admAntigo->delete();
+			}
+		}
+		$this->update($request);
+	}
+
+	/**
     * [description]
     * Método(s) do Eloquent 
     * Definem as relações das models.

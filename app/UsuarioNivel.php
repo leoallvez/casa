@@ -18,9 +18,9 @@ class UsuarioNivel extends Model
     const CANDIDATO        = 4;
 
     /**
-    * @return
+    * @return array
     */
-    public static function list()
+    public static function listar()
     {
         return self::where('id', '<>', self::CANDIDATO)->pluck('nome', 'id');
     }

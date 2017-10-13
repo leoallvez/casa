@@ -17,14 +17,14 @@ class AdmSistema extends Usuario
     /**
      * @return Colletion de Usuario.
      */
-    public static function list() 
+    public static function listar() 
     {
         $adm = self::where('nivel_id','=', UsuarioNivel::ADM_SISTEMA);
         return $adm->orderBy('name')->paginate(10);
     }
 
-    public static function fetch($request, $nivel = UsuarioNivel::ADM_SISTEMA) 
+    public static function buscar($request, $nivel = UsuarioNivel::ADM_SISTEMA) 
     {
-        return parent::fetch($request, $nivel);
+        return parent::buscar($request, $nivel);
     }
 }

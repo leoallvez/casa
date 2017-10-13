@@ -72,7 +72,7 @@ class SolicitarCadastroRequest extends FormRequest
             'password.min'                   => '* A Senha deve ter no mínimo 8 caracteres.',
             'password.confirmed'             => '* A Senha e a confirmação não conferem.',
             'password_confirmation.required' => '* É obrigatório confirmar a senha.',
-            'password_confirmation.min'                   => '* A confirmação da senha deve ter no mínimo 8 caracteres.'
+            'password_confirmation.min'      => '* A confirmação da senha deve ter no mínimo 8 caracteres.'
         ];
     }
 }

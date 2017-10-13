@@ -16,9 +16,9 @@ class AdotivoLog extends Model
     public $timestamps = false;
     protected $table = "adotivos_logs";
     
-    public function __construct(Adotivo $adotante) 
+    public function __construct(Adotivo $adotivo) 
     {
-        $this->adotivoJSON = $adotante->toJson();
+        $this->adotivoJSON = $adotivo->toJson();
         $this->data = date('Y-m-d');
     }
 }

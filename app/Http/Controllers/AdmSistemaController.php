@@ -19,7 +19,7 @@ class AdmSistemaController extends Controller
      */
     public function index() 
     {
-        $adms = AdmSistema::list();
+        $adms = AdmSistema::listar();
         return view('adm-sistema.index', compact('adms'));
     }
     /**
@@ -60,7 +60,7 @@ class AdmSistemaController extends Controller
     {
         $adm = AdmSistema::findOrfail($id);
 
-        $niveis = UsuarioNivel::list();
+        $niveis = UsuarioNivel::listar();
 
         return view('adm-sistema.edit', compact('adm','niveis'));
     }

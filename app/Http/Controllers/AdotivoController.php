@@ -172,7 +172,7 @@ class AdotivoController extends Controller
 
     public function buscar(Request $request) 
     {
-        # Retirar os espaços do incios e fim da string.
+        # Retirar os espaços do inicios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
         
         $adotivos = Adotivo::where('nome', 'like', '%'.$request->inputBusca.'%')

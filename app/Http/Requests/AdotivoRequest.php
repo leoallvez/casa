@@ -25,9 +25,9 @@ class AdotivoRequest extends FormRequest
         # 'nascimento'  => depois: 18 anos atras.
         # 'data_chegada' => depois: nascimento.
         return [
-            'nome'            => 'required|regex:/^[\pL\s\-]+$/u',
-            'nascimento'      => 'required|date|min:10|after:18 years ago|before:today',
-            'data_chegada'    => 'required|date|after:nascimento|before:tomorrow',
+            'nome'         => 'required|regex:/^[\pL\s\-]+$/u',
+            'nascimento'   => 'required|date|min:10|after:18 years ago|before:today',
+            'data_chegada' => 'required|date|after:nascimento|before:tomorrow',
         ];
     }
 

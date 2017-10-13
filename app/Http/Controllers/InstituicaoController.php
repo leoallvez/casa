@@ -4,6 +4,7 @@ namespace Casa\Http\Controllers;
 use Casa\User;
 use Casa\Estado;
 use Casa\Usuario;
+use Casa\UsuarioNivel;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,8 @@ class InstituicaoController extends Controller
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [1,2])->first();
+        ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])->first();
+
         $estados = Estado::all()->pluck('UF', 'id');
         $disabled = true;
 
@@ -55,7 +57,7 @@ class InstituicaoController extends Controller
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [1,2])
+        ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])
         ->orderBy('name')
         ->first();
 
@@ -80,30 +82,13 @@ class InstituicaoController extends Controller
     {
         $instituicao = Instituicao::findOrfail($id);
 
-        # atualizar ADM da instuição.
-        $adm = Usuario::find($request->adm_id);
-
-        if($adm->id == $request->old_adm_id) {
-            $adm->update($request->all());
-        } else {
-            # Atualizar novo ADM.
-            $adm->update(['nivel_id' => 2, 'cargo' => $request->cargo]);
-            # Atualizar ADM antigo como usuário padrão.
-            $adm_old = Usuario::find($request->old_adm_id);
-
-            $adm_old->update(['nivel_id' => 3]);
-            # Anativar ADM antigo.
-            if(!is_null($request->inativar_old_adm)) {
-                $adm_old->delete();
-            }
-        }
-        #TODO: Altualizar Email
-        $instituicao->update($request->all());
+        $instituicao->atualizar($request->all());
 
         flash('Instituicao Alterada com Sucesso!', 'success');
         
         return redirect('instituicao');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -19,7 +19,7 @@ class UsuarioController extends Controller
      */
     public function index() 
     {
-        $usuarios = Usuario::list();
+        $usuarios = Usuario::listar();
 
         return view('usuario.index', compact('usuarios'));
     }
@@ -63,7 +63,7 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::findOrfail($id);
 
-        $niveis = UsuarioNivel::list();
+        $niveis = UsuarioNivel::listar();
 
         return view('usuario.edit', compact('usuario','niveis'));
     }
@@ -107,7 +107,7 @@ class UsuarioController extends Controller
 
     public function buscar(Request $request) 
     {
-        $usuarios = Usuario::fetch($request->inputBusca);
+        $usuarios = Usuario::buscar($request->inputBusca);
        
         $inputBusca = $request->inputBusca;
 
@@ -118,7 +118,7 @@ class UsuarioController extends Controller
     {
         # Serão pesquisados apenas usuario padrões e adm instituição.
         $adm = Usuario::where('id', $id)
-        ->whereIn('nivel_id', [2,3])
+        ->whereIn('nivel_id', [UsuarioNivel::ADM_INSTITUICAO , UsuarioNivel::PADRAO])
         ->first();
 
         if(!is_null($adm)) {

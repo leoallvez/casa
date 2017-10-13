@@ -63,6 +63,7 @@ class VinculoController extends Controller {
         $adotantes = $adotivo->adotantes()
     	->where('adotantes_adotivos.adotante_id', '=', $adotante_id)
         ->first();
+        
         return view('vinculo.visualizar', compact('adotivo', 'adotantes')); 	
     }
 
