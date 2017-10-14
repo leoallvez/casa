@@ -99,7 +99,7 @@ class AdmSistemaController extends Controller
     
     public function buscar(Request $request) 
     {
-        $adms = AdmSistema::fetch($request->inputBusca);
+        $adms = AdmSistema::buscar($request->inputBusca);
 
         $inputBusca = $request->inputBusca;
 

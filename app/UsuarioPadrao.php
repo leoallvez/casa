@@ -16,7 +16,7 @@ class UsuarioPadrao extends Model
     public static function listar() 
     {
         $adm = self::where('nivel_id','=', UsuarioNivel::PADRAO);
-        return $adm->orderBy('name')->paginate(10);
+        return $adm->orderBy('name')->paginate(config('app.list_size'));
     }
 
     /**

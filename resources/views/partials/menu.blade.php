@@ -55,12 +55,11 @@
       @endif
 
       @if(Auth::user()->isAdmInstituicao())
-        <li><a><i class="fa fa-list-alt"></i>Relatórios<span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="{{ action("RelatorioAdotivoController@index") }}">Adotivo</a></li>
-            <li><a href="{{ action("RelatorioAdotanteController@index") }}">Adotante</a></li>
-            <li><a href="{{ action("RelatorioOrfanatoController@index") }}">Orfanatos</a></li>
-          </ul>
+        <li>
+          <a href="{{ action("RelatorioAdotivoController@index") }}">
+            <i class="fa fa-list-alt"></i>
+            Relatórios
+          </a>
         </li>
       @endif
     </ul>

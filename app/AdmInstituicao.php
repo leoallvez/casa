@@ -16,7 +16,7 @@ class AdmInstituicao extends Model
     public static function listar() 
     {
         $adm = self::where('nivel_id','=', UsuarioNivel::ADM_INSTITUICAO);
-        return $adm->orderBy('name')->paginate(10);
+        return $adm->orderBy('name')->paginate(config('app.list_size'));
     }
 
     public static function buscar($request, $nivel = UsuarioNivel::ADM_INSTITUICAO) 

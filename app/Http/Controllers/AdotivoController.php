@@ -25,7 +25,7 @@ class AdotivoController extends Controller
     {
         $adotivos = Adotivo::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         return view('adotivo.index', compact('adotivos'));
     }
@@ -178,7 +178,7 @@ class AdotivoController extends Controller
         $adotivos = Adotivo::where('nome', 'like', '%'.$request->inputBusca.'%')
         ->where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         $inputBusca = $request->inputBusca;
 

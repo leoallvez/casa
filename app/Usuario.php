@@ -95,7 +95,7 @@ class Usuario extends Model
         $usuarios = $usuarios->where('name', 'like', '%'.$inputBusca.'%')
         ->orWhere('cpf','=', setMascara($inputBusca, '###.###.###-##'))
         ->orderBy('name')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         return $usuarios;
     }

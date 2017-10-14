@@ -21,7 +21,7 @@ class VinculoController extends Controller {
     	$adotantesHistorico = $adotivo->adotantes()
     	->orderBy('adotantes_adotivos.created_at')
     	->where('adotantes_adotivos.adotivo_id', '=', $id)
-    	->where('adotantes_adotivos.deleted_at', '!=', null);;
+    	->where('adotantes_adotivos.deleted_at', '!=', null);
         /** 
          * Caso o adotivo tenha vínculo trazer o id do adotivo, 
          * senão null. 
@@ -40,7 +40,7 @@ class VinculoController extends Controller {
         
         $adotantes = $adotantes->diff($adotantesHistorico->get());
 
-        $adotantesHistorico = $adotantesHistorico->paginate(10); 
+        $adotantesHistorico = $adotantesHistorico->paginate(config('app.list_size')); 
         /** Nome de adotate com conjuge caso tenha. */
     	foreach ($adotantes as $adotante) {
     		$adotante->nome = $adotante->getNomeEnomeConjuge(); 

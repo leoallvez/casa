@@ -113,7 +113,7 @@ class SolicitaCadastroController extends Controller
         ->where('razao_social', 'like', '%'.$request->inputBusca.'%')
         ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'))
         ->orderBy('razao_social')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         return view('solicitacao.index', compact('solicitacoes'));
     }

@@ -26,7 +26,7 @@ class AdotanteController extends Controller
     {
         $adotantes = Adotante::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
         return view('adotante.index', compact('adotantes'));
     }
 
@@ -149,7 +149,7 @@ class AdotanteController extends Controller
         ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
         ->orWhere('cpf','=', setMascara($request->inputBusca, '###.###.###-##'))
         ->orderBy('nome')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         $inputBusca = $request->inputBusca;
 

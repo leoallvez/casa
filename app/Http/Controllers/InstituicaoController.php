@@ -22,7 +22,7 @@ class InstituicaoController extends Controller
         $instituicoes = Instituicao::where('is_aprovada', true)
         ->where('id', '<>', 1)
         ->orderBy('razao_social')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         return view('instituicao.index', compact('instituicoes'));
     }
@@ -119,7 +119,7 @@ class InstituicaoController extends Controller
             ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'));
         } 
 
-        $instituicoes = $instituicoes->orderBy('razao_social')->paginate(10);
+        $instituicoes = $instituicoes->orderBy('razao_social')->paginate(config('app.list_size'));
 
         $inputBusca = $request->inputBusca;
 
