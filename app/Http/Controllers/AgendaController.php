@@ -6,6 +6,7 @@ use Casa\Agenda;
 use Casa\Adotivo;
 use Casa\Vinculo;
 use Casa\Adotante;
+use Casa\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,10 +21,12 @@ class AgendaController extends Controller
     {
         $vinculo = new Vinculo();
 
-        $adotantes =  $vinculo->listarAdotantesComViculos();
-        $adotivos  =  $vinculo->listarAdotivosComVinculo();
+        $adotantes = $vinculo->listarAdotantesComViculos();
+        $adotivos  = $vinculo->listarAdotivosComVinculo();
 
-        return view('agenda.index', compact('adotantes', 'adotivos'));
+        $instituicao = Instituicao::whereId(Auth::user()->instituicao_id)->first();
+
+        return view('agenda.agendar', compact('adotantes', 'adotivos', 'instituicao'));
     }
 
     /**

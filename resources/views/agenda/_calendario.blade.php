@@ -85,7 +85,7 @@
                                 {!! Form::time('hora_inicio', null,
                                     [
                                         'class'    => 'form-control',
-                                        'onchange' => 'calcularTempoTotal(); validarHorarios(this)',
+                                        'onchange' => "calcularTempoTotal(); validarHorarios(this); validarHorarioDeVisita(this, '$instituicao->hora_inicio_visita' , '$instituicao->hora_fim_visita')",
                                     ])
                                 !!}
                             </div>
@@ -95,7 +95,7 @@
                                 {!! Form::time('hora_fim', null,
                                     [
                                         'class'    => 'form-control',
-                                        'onchange' => 'calcularTempoTotal(); validarHorarios(this)',
+                                        'onchange' => "calcularTempoTotal(); validarHorarios(this); validarHorarioDeVisita(this, '$instituicao->hora_inicio_visita' , '$instituicao->hora_fim_visita')",
                                     ])
                                 !!}
                             </div>
@@ -550,6 +550,16 @@
                     $('#tempo_total').val('--:--');
                     showErroMessage("<p> Horário de <b>inicio</b> deve ser menor de horário <b>final.</b> </p>"); 
                 }
+            }
+        }
+
+        function validarHorarioDeVisita(input, inicio_visita, fim_visita) {
+
+            var horario = $(input).val();
+
+            if(horario && (horario < inicio_visita || horario > fim_visita)) {
+                $(input).val(null);
+                showErroMessage("<p> Horário de visitas <b> das " + inicio_visita +" até "+ fim_visita +"</b></p>"); 
             }
         }
 

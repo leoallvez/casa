@@ -33,7 +33,9 @@ class Instituicao extends Model
 		'cidade',
 		'email',
 		'observacoes',
-		'estado_id'
+		'estado_id',
+		"hora_inicio_visita",
+		"hora_fim_visita",
 	];
 
 	/**
@@ -67,7 +69,7 @@ class Instituicao extends Model
 	/**
     * @return void
     */
-	public function atualizar(array $request) 
+	public function atualizar(array $request)
 	{
 		$admAtual = Usuario::find($request['adm_id']);
 		

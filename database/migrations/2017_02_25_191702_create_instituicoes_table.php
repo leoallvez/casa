@@ -28,9 +28,10 @@ class CreateInstituicoesTable extends Migration
             $table->string('cidade');
             $table->string('email');
             $table->text('observacoes')->nullable();
+            $table->string('hora_inicio_visita')->default("08:00");
+            $table->string('hora_fim_visita')->default("18:00");
             #FK
             $table->integer('estado_id');
-
             $table->timestamps();
             $table->softDeletes();
         });

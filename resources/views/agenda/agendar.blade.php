@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Agenda de Visitas
+	Agendar Visitas
 @endsection
 
 @section('content')
