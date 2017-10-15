@@ -67,7 +67,7 @@ class Instituicao extends Model
 	/**
     * @return void
     */
-	public function atualizar(array $request) : void
+	public function atualizar(array $request) 
 	{
 		$admAtual = Usuario::find($request['adm_id']);
 		
