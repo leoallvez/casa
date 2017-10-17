@@ -543,12 +543,13 @@
             var endTime   = $('#hora_fim').val();
 
             if(startTime && endTime) {
+
                 var isValid   = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#tempo_total").val());
 
                 if(!isValid) {
                     $(input).val(null);
                     $('#tempo_total').val('--:--');
-                    showErroMessage("<p> Horário de <b>inicio</b> deve ser menor de horário <b>final.</b> </p>"); 
+                    showErroMessage("<p>Horário de <b>inicio</b> deve ser menor de horário <b>final.</b></p>"); 
                 }
             }
         }
@@ -559,7 +560,8 @@
 
             if(horario && (horario < inicio_visita || horario > fim_visita)) {
                 $(input).val(null);
-                showErroMessage("<p> Horário de visitas <b> das " + inicio_visita +" até "+ fim_visita +"</b></p>"); 
+                $('#tempo_total').val('--:--');
+                showErroMessage("<p>Horário de visitas <b> das " + inicio_visita +" até "+ fim_visita +".</b></p>"); 
             }
         }
 

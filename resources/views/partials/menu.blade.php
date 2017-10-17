@@ -50,7 +50,7 @@
         <li><a><i class="fa fa-calendar"></i>Agenda de Visitas<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{ action("AgendaController@index") }}">Agendar</a></li>
-              <li><a href="#">Registrar</a></li>
+              <li><a href="{{ action("AgendaController@registrarListar") }}">Registrar</a></li>
             </ul>
         </li>
       @endif

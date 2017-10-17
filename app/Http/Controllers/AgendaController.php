@@ -3,6 +3,7 @@
 namespace Casa\Http\Controllers;
 
 use Casa\Agenda;
+use Casa\Visita;
 use Casa\Adotivo;
 use Casa\Vinculo;
 use Casa\Adotante;
@@ -18,7 +19,7 @@ class AgendaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() 
-    {
+    {        
         $vinculo = new Vinculo();
 
         $adotantes = $vinculo->listarAdotantesComViculos();
@@ -119,4 +120,15 @@ class AgendaController extends Controller
         }
         return  json_encode(['status'  => false]);
     }   
+
+    public function registrarListar() 
+    {
+        $visitas = Visita::all();
+        //TODO: 
+        //dd($visitas->agenda->hora_inicio);
+    
+
+
+        return view('agenda.registrar', compact('visitas')); 
+    }
 }
