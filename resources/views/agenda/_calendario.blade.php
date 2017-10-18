@@ -274,6 +274,7 @@
                     $('#description').val(data.event ? data.event.description : '');
                     $("#hora_inicio").val(data.event ? data.event.hora_inicio : '');
                     $("#hora_fim").val(data.event ? data.event.hora_fim : '');
+                    $('#hidden_data').val(data.event ? data.event.date : '');
                     calcularTempoTotal();
                     if(data.event) {
                         $("#display_data").prop('disabled', false);
@@ -572,7 +573,6 @@
             "</div>");
         }
 
-        
         function clearErros() {
             $(".error").empty();
         }

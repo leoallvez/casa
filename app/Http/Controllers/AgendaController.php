@@ -123,12 +123,8 @@ class AgendaController extends Controller
 
     public function registrarListar() 
     {
+        //TODO: Listar apenas as visitas agendadas antes de hoje com status agendado.
         $visitas = Visita::all();
-        //TODO: 
-        //dd($visitas->agenda->hora_inicio);
-    
-
-
         return view('agenda.registrar', compact('visitas')); 
     }
 }

@@ -22,6 +22,22 @@ class Agenda extends Model
     const REAGENDADA = "reagendada";
     const CANCELADA  = "cancelada";
 
+    protected $fillable = [
+        'dia',
+        'hora_inicio',
+        'hora_fim',
+        'status',
+        'opiniao_adotantes',
+        'opiniao_adotivos',
+        'observacoes',
+    ];
+
+    protected $dates = [
+        'created_at',
+        'nascimento',
+        'conjuge_nascimento'
+      ];
+
     public function __construct(array $attributes = array()) 
     {
         if(count($attributes) > 0) {
@@ -32,16 +48,6 @@ class Agenda extends Model
         $this->usuario_id = Auth::id() ?? 1;
         $this->instituicao_id = Auth::user()->instituicao_id ?? 1;
     }
-
-    protected $fillable = [
-        'dia',
-        'hora_inicio',
-        'hora_fim',
-        'status',
-        'opiniao_adotantes',
-        'opiniao_adotivos',
-        'observacoes',
-    ];
 
     /**
     * @return boolean

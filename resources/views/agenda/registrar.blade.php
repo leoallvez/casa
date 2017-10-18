@@ -31,21 +31,30 @@
                 <table class="table table-hover table-general">
                   <thead>
                     <tr>
-                      <th>Dia</th>
+                      <th>Adotivo</th>
+                      <th>Adotante</th>
+                      <th>Dia da Visita</th>
                       <th>Hora Inicial</th>
                       <th>Hora Final</th>
                       <th>Status</th>
+                      <th>Ação</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($visitas as $visita)
                       <tr>
-                        <td>{{ $visita->agenda->dia }}</td>
-                        <td>{{ $visita->agenda->hora_inicio}}</td>
-                        <td>{{ $visita->agenda->hora_fim }}</td>
+                        <td>{{ str_limit($visita->vinculo->adotivo->nome, 25) }}</td>
+                        <td>{{ str_limit($visita->vinculo->adotante->nome,25) }}</td>
+                        <td>{{ date('d/m/Y',strtotime($visita->agenda->dia))}}</td>
+                        <td>{{ substr($visita->agenda->hora_inicio, 0, 5) }}</td>
+                        <td>{{ substr($visita->agenda->hora_fim, 0, 5) }}</td>
                         <td>{{ $visita->agenda->status }}</td>
                         <td>
-                        <!--Botãoes-->
+                          <a href="#"
+                            class="btn btn-info btn-xs">
+                            <i class="fa fa-file-text-o"></i>
+                            Registrar
+                          </a>
                         </td>
                       </tr>
                     @endforeach
