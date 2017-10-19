@@ -36,7 +36,7 @@ class Agenda extends Model
         'created_at',
         'nascimento',
         'conjuge_nascimento'
-      ];
+    ];
 
     public function __construct(array $attributes = array()) 
     {
@@ -118,7 +118,6 @@ class Agenda extends Model
     */
     public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) : bool 
     {
-
         $data = (is_null($data)) ? $this->dia : $data;
 
         $adotante_id = (is_null($adotante_id)) ? $this->getAdotanteId() : $adotante_id;
@@ -155,7 +154,7 @@ class Agenda extends Model
     public static function listar() : array 
     {
         $results = [];
-        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->get();
+        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->where('dia','>=', date('Y-m-d'))->get();
         
         if(!is_null($agendas)) {
 
@@ -189,7 +188,8 @@ class Agenda extends Model
     * Formarta data de yyyy-mm-dd para dd/mm/yyyy
     * @return string
     */
-    private function formatarData() : string {
+    private function formatarData() : string 
+    {
         $timestamp = strtotime($this->dia); 
         return date('d/m/Y', $timestamp);
     }
@@ -197,7 +197,8 @@ class Agenda extends Model
     /**
     * @return int
     */
-    public function getAdotanteId() : int {
+    public function getAdotanteId() : int 
+    {
         $visita = $this->visitas->first();
         $vinculo = Vinculo::find($visita->vinculo_id);
         return $vinculo->adotante->id;
@@ -208,14 +209,16 @@ class Agenda extends Model
     * Pega o(s) vinculo(s) da(s) visitas(s).
     * @return array
     */
-    private function getVisitasVinculos() : array {
+    private function getVisitasVinculos() : array 
+    {
         return $this->visitas()->pluck('vinculo_id')->toArray(); 
     }
 
     /**
     * @return string
     */
-    private function getDiaEHorario() : string {
+    private function getDiaEHorario() : string 
+    {
         return $this->dia." ".$this->hora_inicio;
     }
 
