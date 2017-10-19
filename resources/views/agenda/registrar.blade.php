@@ -26,7 +26,7 @@
             @include('mensagens.alerta_div')
             @if($visitas->count() > 0)
               <div class="table-responsive">
-                <p>Listagem das visitas cadastradas antes de hoje.</p>
+                <p>Listagem das visitas agendada antes de {{ date('d/m/Y') }}</p>
                 {{-- start list --}}
                 <table class="table table-hover table-general">
                   <thead>
@@ -36,7 +36,6 @@
                       <th>Dia da Visita</th>
                       <th>Hora Inicial</th>
                       <th>Hora Final</th>
-                      <th>Status</th>
                       <th>Ação</th>
                     </tr>
                   </thead>
@@ -48,7 +47,6 @@
                         <td>{{ date('d/m/Y',strtotime($visita->agenda->dia))}}</td>
                         <td>{{ substr($visita->agenda->hora_inicio, 0, 5) }}</td>
                         <td>{{ substr($visita->agenda->hora_fim, 0, 5) }}</td>
-                        <td>{{ $visita->agenda->status }}</td>
                         <td>
                           <a href="#"
                             class="btn btn-info btn-xs">
