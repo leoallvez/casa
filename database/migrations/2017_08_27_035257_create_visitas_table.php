@@ -18,6 +18,7 @@ class CreateVisitasTable extends Migration
             $table->increments('id');
             $table->integer('agenda_id');
             $table->integer('vinculo_id');
+            $table->boolean('isRegistada')->default(false);;
             $table->timestamps();
         });
     }
