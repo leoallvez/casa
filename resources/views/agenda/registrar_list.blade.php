@@ -64,7 +64,7 @@
               Não foram encontrados registros na base de dados!
             @endif
           </div>
-          {{--  {{ $instituicoes->links() }}  --}}
+          {{--  {{ $visitas->links() }}  --}}
         </div>
       </div>
     </div>

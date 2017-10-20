@@ -140,6 +140,14 @@ class AgendaController extends Controller
 
         $visitas = $collection;
 
-        return view('agenda.registrar', compact('visitas')); 
+        return view('agenda.registrar_list', compact('visitas')); 
+    }
+
+    public function registrar($id)
+    {
+        $visita = Visita::find($id);
+        $agenda = $visita->agenda;
+        
+        return view('agenda.registrar_list', compact('agenda'));   
     }
 }
