@@ -60,11 +60,15 @@ class VinculoController extends Controller {
     {
         $adotivo = Adotivo::find($adotivo_id);
 
-        $adotantes = $adotivo->adotantes()
+        $adotante = $adotivo->adotantes()
     	->where('adotantes_adotivos.adotante_id', '=', $adotante_id)
         ->first();
+
+        $vinculo = Vinculo::where("adotivo_id", $adotivo_id)->where("adotante_id", $adotante_id)->first();
+
+        $visitas = $vinculo->visitas;
         
-        return view('vinculo.visualizar', compact('adotivo', 'adotantes')); 	
+        return view('vinculo.visualizar', compact('adotivo', 'adotante', 'visitas')); 	
     }
 
     public function vincular(VinculoRequest $request) 
