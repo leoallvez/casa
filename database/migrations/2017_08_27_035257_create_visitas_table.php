@@ -18,7 +18,9 @@ class CreateVisitasTable extends Migration
             $table->increments('id');
             $table->integer('agenda_id');
             $table->integer('vinculo_id');
-            $table->boolean('isRegistada')->default(false);;
+            $table->boolean('is_registada')->default(false);
+            $table->text('opiniao_adotivo')->nullable();
+            $table->text('opiniao_adotante')->nullable();
             $table->timestamps();
         });
     }

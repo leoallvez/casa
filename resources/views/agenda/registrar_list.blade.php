@@ -48,7 +48,7 @@
                         <td>{{ substr($visita->agenda->hora_inicio, 0, 5) }}</td>
                         <td>{{ substr($visita->agenda->hora_fim, 0, 5) }}</td>
                         <td>
-                          <a href="#"
+                          <a href="{{ action('AgendaController@registrarGet', $visita->id) }}"
                             class="btn btn-info btn-xs">
                             <i class="fa fa-file-text-o"></i>
                             Registrar

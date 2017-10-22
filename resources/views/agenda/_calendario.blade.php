@@ -85,7 +85,10 @@
                                 {!! Form::time('hora_inicio', null,
                                     [
                                         'class'    => 'form-control',
-                                        'onchange' => "calcularTempoTotal(); validarHorarios(this); validarHorarioDeVisita(this, '$instituicao->hora_inicio_visita' , '$instituicao->hora_fim_visita')",
+                                        'onchange' => "calcularTempoTotal(); 
+                                        validarHorarios(this); 
+                                        validarHorarioDeVisita(this, '$instituicao->hora_inicio_visita' , '$instituicao->hora_fim_visita');
+                                        visitaTemMeiaHoraOuMais(this);",
                                     ])
                                 !!}
                             </div>
@@ -95,7 +98,10 @@
                                 {!! Form::time('hora_fim', null,
                                     [
                                         'class'    => 'form-control',
-                                        'onchange' => "calcularTempoTotal(); validarHorarios(this); validarHorarioDeVisita(this, '$instituicao->hora_inicio_visita' , '$instituicao->hora_fim_visita')",
+                                        'onchange' => "calcularTempoTotal(); 
+                                        validarHorarios(this); 
+                                        validarHorarioDeVisita(this, '$instituicao->hora_inicio_visita' , '$instituicao->hora_fim_visita');
+                                        visitaTemMeiaHoraOuMais(this);",
                                     ])
                                 !!}
                             </div>
@@ -180,22 +186,30 @@
 
                         clickedDate = date.format('Y-MM-DD');
 
-                        if(todayIsGreaterOrEqual(clickedDate)){
+                        if(todayIsGreaterOrEqual(clickedDate)) {
                             // Open modal to add event
-                            modal({
-                                // Available buttons when adding
-                                buttons: {
-                                    add: {
-                                        id: 'add-event', // Buttons id
-                                        css: 'btn btn-success', // Buttons class
-                                        label: 'Agendar' // Buttons label
-                                    }
-                                },
-                                title: 'Agendar visita para o dia: ' + date.format('DD/MM/Y') // Modal title
-                            });
-                            $('#display_data').val(date.format('DD/MM/Y'));
-                            //Campo com o name dia.
-                            $('#hidden_data').val(date.format('Y-MM-DD'));
+                            if(daysDiff(clickedDate) <= 60) {
+                                modal({
+                                    // Available buttons when adding
+                                    buttons: {
+                                        add: {
+                                            id: 'add-event', // Buttons id
+                                            css: 'btn btn-success', // Buttons class
+                                            label: 'Agendar' // Buttons label
+                                        }
+                                    },
+                                    title: 'Agendar visita para o dia: ' + date.format('DD/MM/Y') // Modal title
+                                });
+                                $('#display_data').val(date.format('DD/MM/Y'));
+                                //Campo com o name dia.
+                                $('#hidden_data').val(date.format('Y-MM-DD'));
+                            } else {
+                                swal(
+                                    'Data inválida',
+                                    'Só é possível agendar visita em uma data que seja no máximo daqui 60 dias!',
+                                    'error'
+                                );   
+                            }
                         } else {
                             swal(
                                 'Data inválida',
@@ -203,8 +217,6 @@
                                 'error'
                             );    
                         }
-
-                        
                     },
                     // Event Mouseover
                     eventMouseover: function(calEvent, jsEvent, view) {
@@ -333,7 +345,7 @@
                     }
                 });
                 // Handle click on Update Button
-                $('.modal').on('click', '#update-event',  function(e){
+                $('.modal').on('click', '#update-event',  function(e) {
                     if(validator(['observacoes','hidden_data', 'hora_inicio', 'hora_fim'])) {
                         $.ajax({
                             url: url_base + "/visitas/" + currentEvent._id, // your api url
@@ -370,7 +382,7 @@
                     }
                 });
                 // Handle Click on Delete Button
-                $('.modal').on('click', '#delete-event',  function(e){
+                $('.modal').on('click', '#delete-event',  function(e) {
                     if(validator(['observacoes'])) {
                         $.ajax({
                             url: url_base + "/visitas/" + currentEvent._id, // your api url
@@ -420,7 +432,7 @@
                         errors++;
                     }
 
-                    console.log(isValidDate(selectedDate), selectedDate);
+                    //console.log("VALIDAÇÃO: "+isValidDate(selectedDate), selectedDate, daysDiff(selectedDate));
 
                     if(!isValidDate(selectedDate)) {
                         showErroMessage("<p> A data informada <b>é inválida!</b></p>"); 
@@ -450,6 +462,14 @@
                 function showErro(element) { 
                     showErroMessage("<p>Por favor preencher o campo <b>" + validatorName(element) +"</b></p>"); 
                 }
+                
+                function daysDiff(future_date) {
+                    var today = new Date();
+                    var date_to_reply = new Date(future_date);
+                    var timeinmilisec = date_to_reply.getTime() - today.getTime();
+
+                    return Math.ceil(timeinmilisec / (1000 * 60 * 60 * 24));
+                }
 
                 function validatorName(element) {
                     var name;
@@ -478,6 +498,8 @@
                     var today = new Date().format('Y-m-d');
                     return today <= date;
                 }
+
+
             }); // End of calendar script 
             
         }); //End of Jquery document ready.
@@ -505,6 +527,27 @@
                 $("#hidden_data").val(date.split("/").reverse().join("-"));
             } else {
                 $("#hidden_data").val(null);
+            }
+        }
+
+        function visitaTemMeiaHoraOuMais(input) {
+
+            var total_time = $('#tempo_total').val();
+
+            if(total_time != "--:--") {
+
+                var hms = total_time + ":00";  
+                var a = hms.split(':'); // split it at the colons
+                // minutes are worth 60 seconds. Hours are worth 60 minutes.
+                var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+
+                console.log("seconds: " + seconds);
+                // 3600 segudos equivalem a uma hora.
+                if(seconds < 3600) {
+                    $(input).val(null);
+                    $('#tempo_total').val('--:--');
+                    showErroMessage("<p>Visita deve ter pelo menos <b>uma hora <b>ou mais</b></p>"); 
+                }
             }
         }
 
@@ -547,7 +590,7 @@
 
                 var isValid   = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#tempo_total").val());
 
-                if(!isValid) {
+                if(!isValid || startTime == endTime) {
                     $(input).val(null);
                     $('#tempo_total').val('--:--');
                     showErroMessage("<p>Horário de <b>inicio</b> deve ser menor de horário <b>final.</b></p>"); 

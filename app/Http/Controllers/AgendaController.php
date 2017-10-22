@@ -10,6 +10,7 @@ use Casa\Adotante;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Casa\Http\Requests\RegistraVisitaRequest;
 
 class AgendaController extends Controller
 {
@@ -132,7 +133,7 @@ class AgendaController extends Controller
 
             foreach($agenda->visitas as $visita) {
       
-                if(!$visita->isRegistada) {
+                if(!$visita->is_registada) {
                     $collection->prepend($visita);
                 }
             }
@@ -143,11 +144,24 @@ class AgendaController extends Controller
         return view('agenda.registrar_list', compact('visitas')); 
     }
 
-    public function registrar($id)
+    public function registrarGet($id)
     {
         $visita = Visita::find($id);
         $agenda = $visita->agenda;
         
-        return view('agenda.registrar_list', compact('agenda'));   
+        return view('agenda.registrar', compact('visita','agenda'));   
+    }
+
+    public function registrarPost(RegistraVisitaRequest $request, $id)
+    {
+        Visita::find($id)->update($request->all());
+
+        flash(
+            "Visita Registrada com sucesso.",
+            'success'
+        );
+
+        return redirect('visitas/registra/listar');
+
     }
 }

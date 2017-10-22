@@ -14,8 +14,26 @@ class Visita extends Model
 {
     protected $fillable = [
     	'agenda_id',
-    	'vinculo_id',
+        'vinculo_id',
+        'opiniao_adotante',
+        'opiniao_adotivo',
+        'is_registada',
     ];
+
+    public function getAdotanteNome() : string
+    {
+        return $this->vinculo->adotante->nome;
+    }
+
+    public function getAdotanteConjugeNome() 
+    {
+        return $this->vinculo->adotante->conjuge_nome;
+    }
+
+    public function getAdotivoNome() : string
+    {
+        return $this->vinculo->adotivo->nome;
+    }
     
     /**
     * [description]

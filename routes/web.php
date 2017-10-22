@@ -37,9 +37,11 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     # Visitas Registrar
     Route::get('visitas/listar', 'AgendaController@listar');
     Route::get('visitas/registra/listar', 'AgendaController@registrarListar');
-    Route::get('visitas/registra', 'AgendaController@registrar');
+    Route::get('visitas/registra/{id}', 'AgendaController@registrarGet');
+    Route::put('visitas/registra/{id}', 'AgendaController@registrarPost');
     Route::resource('visitas', 'AgendaController');
-    # Relatórios.
+    # Relatórios. 
+    
     Route::put('relatorio-adotivo', 'RelatorioAdotivoController@gerar');
     Route::resource('relatorio-adotivo',  'RelatorioAdotivoController');
     Route::resource('relatorio-adotante', 'RelatorioAdotanteController');

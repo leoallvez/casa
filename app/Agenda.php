@@ -188,10 +188,17 @@ class Agenda extends Model
     * Formarta data de yyyy-mm-dd para dd/mm/yyyy
     * @return string
     */
-    private function formatarData() : string 
+    public function formatarData() : string 
     {
         $timestamp = strtotime($this->dia); 
         return date('d/m/Y', $timestamp);
+    }
+
+    
+
+    public function calcularTempoTotal() 
+    {
+        return date('H:i', strtotime($this->hora_fim) - strtotime($this->hora_inicio));
     }
 
     /**
