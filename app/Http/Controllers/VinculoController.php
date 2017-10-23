@@ -44,15 +44,27 @@ class VinculoController extends Controller {
         /** Nome de adotate com conjuge caso tenha. */
     	foreach ($adotantes as $adotante) {
     		$adotante->nome = $adotante->getNomeEnomeConjuge(); 
-    	}
-     
-    	$adotantes = $adotantes->pluck('nome', 'id');
-   
+        }
+        
+        $vinculoAtual = Vinculo::where("adotivo_id", $adotivo->id)
+        ->where("adotante_id", $idAdotanteVinculo)->first();
+
+        $visitas = null;
+        if(!is_null($vinculoAtual)) {
+                  
+            $visitas = $vinculoAtual->visitas()
+            ->where("is_registada", true)
+            ->get();
+        }
+
+        $adotantes = $adotantes->pluck('nome', 'id');
+  
 		return view('vinculo.index', compact(
             'adotivo', 
             'adotantesHistorico', 
             'adotantes', 
-            'idAdotanteVinculo'
+            'idAdotanteVinculo',
+            'visitas'
         ));   
     }
 
