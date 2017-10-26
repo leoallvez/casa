@@ -11,7 +11,8 @@ class CreateIrmaosTable extends Migration
      *
      * @return void
      */
-    public function up() {
+    public function up() 
+    {
         Schema::create('irmaos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('adotivo_id');
@@ -24,7 +25,8 @@ class CreateIrmaosTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down() 
+    {
         Schema::dropIfExists('irmaos');
     }
 }

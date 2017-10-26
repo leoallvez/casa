@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Agenda de Visitas
+	Agendar Visitas
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 	  <div>
 	    <div class="page-title">
 	      <div class="title_left">
-	        <h3>Agenda de Visitas</h3>
+	        <h3>Agendar Visitas</h3>
 	      </div>
 	    </div>
 	    <div class="clearfix"></div>

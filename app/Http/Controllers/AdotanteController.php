@@ -15,17 +15,18 @@ use Casa\Http\Requests\VinculoRequest;
 use Casa\Http\Requests\AdotanteRequest;
 
 
-class AdotanteController extends Controller {
+class AdotanteController extends Controller 
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-
+    public function index() 
+    {
         $adotantes = Adotante::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
         return view('adotante.index', compact('adotantes'));
     }
 
@@ -34,7 +35,8 @@ class AdotanteController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create() 
+    {
         $estadosCivis = EstadoCivil::pluck('nome', 'id');
         $estados = Estado::pluck('nome', 'id');
         $escolaridades = Escolaridade::pluck('nome', 'id');
@@ -56,8 +58,8 @@ class AdotanteController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdotanteRequest $request) {
-
+    public function store(AdotanteRequest $request) 
+    {
         Adotante::validarConjuge($request);
 
         $adotante = new Adotante($request->all());
@@ -80,7 +82,8 @@ class AdotanteController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id) 
+    {
         $adotante = Adotante::findOrFail($id);
         $estadosCivis = EstadoCivil::all()->pluck('nome', 'id');
         $estados = Estado::all()->pluck('nome', 'id');
@@ -110,8 +113,8 @@ class AdotanteController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdotanteRequest $request, $id) {
-
+    public function update(AdotanteRequest $request, $id) 
+    {
         $adotante = Adotante::findOrFail($id);
 
         Adotante::validarConjuge($request);
@@ -129,15 +132,16 @@ class AdotanteController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-        
+    public function destroy($id)
+    {
         Adotante::destroy($id);
 
         flash("Adotante inativado(a) com Sucesso", 'danger');
         return json_encode(['status' => true]);
     }
 
-    public function buscar(Request $request) {
+    public function buscar(Request $request) 
+    {
         # Retirar os espaços do incios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
 
@@ -145,7 +149,7 @@ class AdotanteController extends Controller {
         ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
         ->orWhere('cpf','=', setMascara($request->inputBusca, '###.###.###-##'))
         ->orderBy('nome')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         $inputBusca = $request->inputBusca;
 

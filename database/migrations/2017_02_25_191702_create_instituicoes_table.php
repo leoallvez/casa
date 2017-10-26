@@ -11,8 +11,10 @@ class CreateInstituicoesTable extends Migration
      *
      * @return void
      */
-    public function up() {
-        Schema::create('instituicoes', function (Blueprint $table) {
+    public function up()
+    {
+        Schema::create('instituicoes', function (Blueprint $table) 
+        {
             $table->increments('id');
             $table->string('razao_social')->index();
             $table->boolean('is_aprovada');
@@ -26,9 +28,10 @@ class CreateInstituicoesTable extends Migration
             $table->string('cidade');
             $table->string('email');
             $table->text('observacoes')->nullable();
+            $table->string('hora_inicio_visita')->default("08:00");
+            $table->string('hora_fim_visita')->default("18:00");
             #FK
             $table->integer('estado_id');
-
             $table->timestamps();
             $table->softDeletes();
         });
@@ -39,7 +42,8 @@ class CreateInstituicoesTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down() 
+    {
         Schema::dropIfExists('instituicoes');
     }
 }

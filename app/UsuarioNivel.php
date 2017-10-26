@@ -1,18 +1,37 @@
 <?php
 
 namespace Casa;
-
 use Illuminate\Database\Eloquent\Model;
 
-class UsuarioNivel extends Model {
-
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class UsuarioNivel extends Model 
+{
     protected $table = 'niveis_usuarios';
+    # Nivies de usuários
+    const ADM_SISTEMA      = 1;
+    const ADM_INSTITUICAO  = 2;
+    const PADRAO           = 3;
+    const CANDIDATO        = 4;
 
-    public function usuarios() {
-    	return $this->hasMany('Casa\Usuario', 'user_id');
+    /**
+    * @return array
+    */
+    public static function listar()
+    {
+        return self::where('id', '<>', self::CANDIDATO)->pluck('nome', 'id');
     }
 
-    public static function list() {
-        return self::where('id', '<>', 4)->pluck('nome', 'id');
+    /**
+    * [description]
+    * Método(s) do Eloquent 
+    * Definem as relações das models.
+    */
+    public function usuarios() 
+    {
+    	return $this->hasMany('Casa\Usuario', 'user_id');
     }
 }

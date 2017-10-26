@@ -9,7 +9,8 @@ class EtniasTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
     	$etnias = [
     		['nome' => 'Branco(a)'], 
             ['nome' => 'Negro(a)'], 

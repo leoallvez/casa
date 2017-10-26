@@ -10,7 +10,8 @@ class AdotivoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize() 
+    {
         return true;
     }
 
@@ -19,13 +20,14 @@ class AdotivoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() {
+    public function rules() 
+    {
         # 'nascimento'  => depois: 18 anos atras.
         # 'data_chegada' => depois: nascimento.
         return [
-            'nome'            => 'required|regex:/^[\pL\s\-]+$/u',
-            'nascimento'      => 'required|date|min:10|after:18 years ago|before:today',
-            'data_chegada'    => 'required|date|after:nascimento|before:tomorrow',
+            'nome'         => 'required|regex:/^[\pL\s\-]+$/u',
+            'nascimento'   => 'required|date|min:10|after:18 years ago|before:today',
+            'data_chegada' => 'required|date|after:nascimento|before:tomorrow',
         ];
     }
 

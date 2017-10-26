@@ -13,10 +13,14 @@ class CreateVisitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('visitas', function (Blueprint $table) {
+        Schema::create('visitas', function (Blueprint $table) 
+        {
             $table->increments('id');
             $table->integer('agenda_id');
             $table->integer('vinculo_id');
+            $table->boolean('is_registada')->default(false);
+            $table->text('opiniao_adotivo')->nullable();
+            $table->text('opiniao_adotante')->nullable();
             $table->timestamps();
         });
     }
@@ -26,7 +30,8 @@ class CreateVisitasTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down() 
+    {
         Schema::dropIfExists('visitas');
     }
 }

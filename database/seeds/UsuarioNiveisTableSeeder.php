@@ -9,7 +9,8 @@ class UsuarioNiveisTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
     	$niveis = [
     		['nome' => 'Administrador Sistema'],
     		['nome' => 'Administrador Instituição'],

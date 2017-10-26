@@ -309,6 +309,49 @@
         </div>
     </div>
 </fieldset>
+@if(Request::is('instituicao/*/edit'))
+            
+    <fieldset>
+        <legend><h3>Horário de Visitas</h3></legend>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    {!! Form::label('hora_inicio_visita', 'Hora Inicial') !!}
+                    {!! Form::time('hora_inicio_visita', null,
+                        [
+                            'class'    => 'form-control',
+                            'onchange' => "calcularTempoTotal(); validarHorarios(this);",
+                        ])
+                    !!}
+                </div>
+                <p>
+                <span class='validacao-text'> 
+                    {{ $errors->first('hora_inicio_visita') }}
+                </span>
+            </p>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    {!! Form::label('hora_fim_visita', 'Hora Final') !!}
+                    {!! Form::time('hora_fim_visita', null,
+                        [
+                            'class'    => 'form-control',
+                            'onchange' => "calcularTempoTotal(); validarHorarios(this);",
+                        ])
+                    !!}
+                </div>
+                <p>
+                <span class='validacao-text'> 
+                    {{ $errors->first('hora_fim_visita') }}
+                </span>
+            </p>
+            </div>
+        </div>
+    </fieldset>
+@endif
+            
 <br>
 @if($disabled)
     <div class="form-group">

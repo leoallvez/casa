@@ -10,15 +10,16 @@ use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\UserStoreRequest;
 use Casa\Http\Requests\UserUpdateRequest;
 
-class AdmSistemaController extends Controller {
+class AdmSistemaController extends Controller 
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $adms = AdmSistema::list();
-
+    public function index() 
+    {
+        $adms = AdmSistema::listar();
         return view('adm-sistema.index', compact('adms'));
     }
     /**
@@ -26,7 +27,8 @@ class AdmSistemaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create() 
+    {
         $niveis = UsuarioNivel::all()->pluck('nome', 'id');
         
         return view('adm-sistema.create', compact('niveis'));
@@ -38,8 +40,8 @@ class AdmSistemaController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request) {
-
+    public function store(UserStoreRequest $request) 
+    {
         $adm = new AdmSistema($request->except(['password']));
         $adm->save();
 
@@ -54,10 +56,11 @@ class AdmSistemaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id) 
+    {
         $adm = AdmSistema::findOrfail($id);
 
-        $niveis = UsuarioNivel::list();
+        $niveis = UsuarioNivel::listar();
 
         return view('adm-sistema.edit', compact('adm','niveis'));
     }
@@ -69,8 +72,8 @@ class AdmSistemaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id) {
-
+    public function update(UserUpdateRequest $request, $id) 
+    {
         $adm = AdmSistema::findOrfail($id);
         $adm->setSenha($request->password);
         $adm->update($request->except(['password']));
@@ -86,17 +89,17 @@ class AdmSistemaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        
+    public function destroy($id) 
+    {
         AdmSistema::destroy($id);
         
         flash('Administrador do Sistema Inativado com Sucesso', 'danger');
         return json_encode(['status' => true]);
     }
     
-    public function buscar(Request $request) {
-
-        $adms = AdmSistema::fetch($request->inputBusca);
+    public function buscar(Request $request) 
+    {
+        $adms = AdmSistema::buscar($request->inputBusca);
 
         $inputBusca = $request->inputBusca;
 

@@ -9,7 +9,8 @@ class EscolaridadesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $escolaridades = [
         	['nome' => 'Não Alfabetizado'],
         	['nome' => 'Ensino Fundamental Incompleto'],

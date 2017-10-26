@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class EstadosCivisTableSeeder extends Seeder {
+class EstadosCivisTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $estadosCivis = [
         	['nome' => 'Solteiro(a)'],
         	['nome' => 'Casado(a)'],

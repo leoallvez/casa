@@ -7,7 +7,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Adotivo extends Model{
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class Adotivo extends Model
+{
     use SoftDeletes;
 
     protected $dates = [
@@ -30,12 +36,15 @@ class Adotivo extends Model{
       'escolaridade_id',
       'nacionalidade_id'
     ];
+
     /**
      * Retorna um array contendo outro array com nome do status e
      * a quantidade de adotivo nesse status.
      * @return array of array
      */
-    public static function getQuantidadePorStatus() {
+    public static function getQuantidadePorStatus() : array
+    {
+        $dados = []; 
         $status = AdotivoStatus::all();
 
         foreach ($status as $s) {
@@ -54,14 +63,31 @@ class Adotivo extends Model{
         }
         return $dados;
     }
-    public function setStatus(int $status_id) {
+
+    /**
+     * 
+     * @return void
+     */
+    public function setStatus(int $status_id) : void
+    {
         $this->status_id = $status_id;
     }
-    public function setInstituicao(int $id) {
+
+    /**
+     * 
+     * @return void
+     */
+    public function setInstituicao(int $id) : void
+    {
         $this->instituicao_id = $id;
     }
 
-    public function setUsuario(int $id) {
+    /**
+     * 
+     * @return void
+     */
+    public function setUsuario(int $id) : void
+    {
             $this->usuario_id = $id;
     }
 
@@ -69,7 +95,8 @@ class Adotivo extends Model{
      * Esse metodo retornar uma String com a idade de um adotivo.
      * @return string
      */
-    public function calcularIdade() {
+    public function calcularIdade() : string
+    {
         $anos    = $this->nascimento->diffInYears(Carbon::now());
         $meses   = $this->nascimento->diffInMonths(Carbon::now());
         $semanas = $this->nascimento->diffInWeeks(Carbon::now());
@@ -105,7 +132,8 @@ class Adotivo extends Model{
      * retorna true, caso contrario false.
      * @return boolean
      */
-    public function has16AnosDeDiferenca(Adotante $adotante) {
+    public function has16AnosDeDiferenca(Adotante $adotante) : bool
+    {
         $adotante_difference = $this->nascimento->diffInYears($adotante->nascimento);
         # Adotante pode não ter conjuge.
         if(!is_null($adotante->conjuge_nascimento)) {
@@ -115,16 +143,28 @@ class Adotivo extends Model{
         return $adotante_difference >= 16;
     }
 
-    public function getSexo() {
+    /**
+     * @return string
+     */
+    public function getSexo() : string
+    {
         return ($this->sexo == 'M') ? 'Masculino' : 'Feminino';
     }
 
-    public function getIrmaosIds() {
+    /**
+     * @return array
+     */
+
+    public function getIrmaosIds() : array
+    {
        return  $this->irmaos()->getRelatedIds()->toArray();
     }
 
-    public function salvarIrmaos($irmaosIds) {
-    
+    /**
+     * @return void
+     */
+    public function salvarIrmaos(array $irmaosIds = []) : void
+    {
         if(isset($irmaosIds)) {
 
             $irmaos = Adotivo::whereIn('id',$irmaosIds)->get();
@@ -138,8 +178,11 @@ class Adotivo extends Model{
         }
     }
 
-    public function altualizarIrmaos($irmaosIds) {
-
+    /**
+     * @return void
+     */
+    public function altualizarIrmaos($irmaosIds) : void
+    {
         if(isset($irmaosIds)) {
             $this->removerVinculoNosIrmaos($irmaosIds);
             $this->realizarVinculoNosIrmaos($irmaosIds);
@@ -149,12 +192,15 @@ class Adotivo extends Model{
             $this->irmaos()->sync([]);
         }
     }
+
     /**
      * Realiza o vinculos do adotivo em seu(s) irmão(s)
      * que tem o id no array.
      * Caso já exista o vinculo não o modifica.
-    */
-    private function realizarVinculoNosIrmaos(array $irmaosIds) {
+     * @return void
+     */
+    private function realizarVinculoNosIrmaos(array $irmaosIds) : void
+    {
         $irmaos = Adotivo::whereIn('id',$irmaosIds)->get();
         foreach($irmaos as $irmao) {
             $irmao->irmaos()->sync([$this->id]);
@@ -165,8 +211,10 @@ class Adotivo extends Model{
      * estão na base mas que não que tem o id no array.
      * Caso o array seja vazio remove todo os vinculos
      * os irmãos na qual tem o adotivo.
+     * @return void
     */
-    private function removerVinculoNosIrmaos(array $irmaosIds = []) {
+    private function removerVinculoNosIrmaos(array $irmaosIds = []) : void
+    {
         if(count($irmaosIds) > 0) {
             # Pegar todos irmãos que não tem seu id no array
             $Irmaos= $this->irmaos()->where('irmaos.id','<>', $irmaosIds)->get();
@@ -179,8 +227,11 @@ class Adotivo extends Model{
         }
     }
 
-    public function hasAdotantes() {
-
+    /**
+     * @return boolean
+     */
+    public function hasAdotantes() : bool
+    {
        $result = $this->adotantes()
        ->where('adotantes_adotivos.deleted_at', '=', null)
        ->get();
@@ -188,13 +239,19 @@ class Adotivo extends Model{
        return count($result) > 0;
     }
 
-    public static function gerarMatricula() {
-
+    /**
+     * @return string
+     */
+    public static function gerarMatricula() : string
+    {
         $last_id = self::all()->last()->id;
 
         return ($last_id)? str_pad($last_id + 1 , 12, "CASA-00000000", STR_PAD_LEFT) : "CASA-00000001";
     }
 
+    /**
+     * @return string
+     */
     public static function getNomeAbreviadoByVinculoId(int $vinculo_id) : string 
     {
         $nomeAbreviado = ""; 
@@ -219,32 +276,44 @@ class Adotivo extends Model{
         return $nomeAbreviado;
     }
 
-    public function adotantes() {
+   /**
+    * [description]
+    * Método(s) do Eloquent 
+    * Definem as relações das models.
+    */
+    public function adotantes() 
+    {
     	return $this->belongsToMany('Casa\Adotante', 'adotantes_adotivos')
         ->withPivot('created_at', 'deleted_at');
     }
 
-    public function status() {
+    public function status() 
+    {
         return $this->belongsTo('Casa\AdotivoStatus', 'status_id');
     }
 
-    public function etnia() {
+    public function etnia()
+    {
         return $this->belongsTo('Casa\Etnia');
     }
 
-    public function nacionalidade() {
+    public function nacionalidade()
+    {
         return $this->belongsTo('Casa\Nacionalidade');
     }
 
-    public function instituicao() {
+    public function instituicao() 
+    {
         return $this->belongsTo('Casa\Instituicao');
     }
 
-    public function visitas() {
+    public function visitas() 
+    {
         return $this->hasMany('Casa\Visita', 'adotivo_id');
     }
 
-    public function restricao() {
+    public function restricao() 
+    {
         return $this->hasOne(
             'Casa\Restricao',
             'id',
@@ -252,7 +321,8 @@ class Adotivo extends Model{
         );
     }
 
-    public function irmaos() {
+    public function irmaos() 
+    {
         return $this->belongsToMany(
             'Casa\Adotivo',
             'irmaos',

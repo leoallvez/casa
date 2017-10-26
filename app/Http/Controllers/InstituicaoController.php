@@ -4,22 +4,25 @@ namespace Casa\Http\Controllers;
 use Casa\User;
 use Casa\Estado;
 use Casa\Usuario;
+use Casa\UsuarioNivel;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\InstituicaoRequest;
 
-class InstituicaoController extends Controller {
+class InstituicaoController extends Controller 
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index() 
+    {
         $instituicoes = Instituicao::where('is_aprovada', true)
         ->where('id', '<>', 1)
         ->orderBy('razao_social')
-        ->paginate(10);
+        ->paginate(config('app.list_size'));
 
         return view('instituicao.index', compact('instituicoes'));
     }
@@ -30,11 +33,13 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id) 
+    {
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [1,2])->first();
+        ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])->first();
+
         $estados = Estado::all()->pluck('UF', 'id');
         $disabled = true;
 
@@ -47,11 +52,12 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id) 
+    {
         $instituicao = Instituicao::findOrfail($id);
         
         $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [1,2])
+        ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])
         ->orderBy('name')
         ->first();
 
@@ -72,34 +78,17 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InstituicaoRequest $request, $id) {
-
+    public function update(InstituicaoRequest $request, $id) 
+    {
         $instituicao = Instituicao::findOrfail($id);
 
-        # atualizar ADM da instuição.
-        $adm = Usuario::find($request->adm_id);
-
-        if($adm->id == $request->old_adm_id) {
-            $adm->update($request->all());
-        } else {
-            # Atualizar novo ADM.
-            $adm->update(['nivel_id' => 2, 'cargo' => $request->cargo]);
-            # Atualizar ADM antigo como usuário padrão.
-            $adm_old = Usuario::find($request->old_adm_id);
-
-            $adm_old->update(['nivel_id' => 3]);
-            # Anativar ADM antigo.
-            if(!is_null($request->inativar_old_adm)) {
-                $adm_old->delete();
-            }
-        }
-        #TODO: Altualizar Email
-        $instituicao->update($request->all());
+        $instituicao->atualizar($request->all());
 
         flash('Instituicao Alterada com Sucesso!', 'success');
         
         return redirect('instituicao');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -107,7 +96,8 @@ class InstituicaoController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id) 
+    {
         Instituicao::findOrFail($id)->delete();
 
         Usuario::where('instituicao_id', $id)->delete();
@@ -116,7 +106,8 @@ class InstituicaoController extends Controller {
         return json_encode(['status' => true]);
     }
 
-    public function buscar(Request $request) {
+    public function buscar(Request $request) 
+    {
         # Retirar os espaços do incios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
 
@@ -128,7 +119,7 @@ class InstituicaoController extends Controller {
             ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'));
         } 
 
-        $instituicoes = $instituicoes->orderBy('razao_social')->paginate(10);
+        $instituicoes = $instituicoes->orderBy('razao_social')->paginate(config('app.list_size'));
 
         $inputBusca = $request->inputBusca;
 

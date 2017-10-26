@@ -9,7 +9,8 @@ class EstadosTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $estados = [
             ["UF" => "SP", "nome" => "São Paulo"],
             ["UF" => "AC", "nome" => "Acre"],

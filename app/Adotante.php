@@ -5,8 +5,16 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Adotante extends Model {
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class Adotante extends Model
+{
   use SoftDeletes;
+
+  const TEM_VINCULO = true;
 
   protected $dates = [
     'created_at',
@@ -49,22 +57,31 @@ class Adotante extends Model {
     'categoria_profissional_id'
   ];
 
-  public function setInstituicao(int $id) {
+  /**
+   * @return void
+   */
+  public function setInstituicao(int $id) : void
+  {
     $this->instituicao_id = $id;
   }
 
-  public function setUsuario(int $id) {
+   /**
+   * @return void
+   */
+  public function setUsuario(int $id) : void
+  {
     $this->usuario_id = $id;
   }
 
   /**
-   * Esse metódo altera o nome o conjuge para nulo caso seja alterado o estado civil
+   * Altera o nome o conjuge para nulo caso seja alterado o estado civil
    * para um valor diferende de casado ou únião estável.
    * @param type $request
-   * @return type
+   * @return void
    */
-  public static function validarConjuge(&$request) {
-    if($request['estado_civil_id'] != 2 && $request['estado_civil_id'] != 6) {
+  public static function validarConjuge(&$request) : void
+  {
+    if($request['estado_civil_id'] != EstadoCivil::CASADO && $request['estado_civil_id'] != EstadoCivil::UNIAO_ESTAVEL) {
 
       $conjugeAtributos = [
         'conjuge_rg',
@@ -80,74 +97,101 @@ class Adotante extends Model {
         $request[$atributo] = null;
       }
     }
-
   }
 
-  public function setHasVinculo(bool $value) {
+   /**
+   * @return void
+   */
+  public function setHasVinculo(bool $value) : void
+  {
     $this->has_vinculo = $value;
   }
 
   /**
-   * Esse metodo retorna a idade de um adotante
+   * Retorna a idade de um adotante
    * @return int
    */
-  public function getIdade() {
+  public function getIdade() : int
+  {
     # Diferença entre a data de nascimento e do dia de hoje.
     return $this->nascimento->diffInYears(Carbon::now());
   }
-  public function getNomeEnomeConjuge() {
+
+  /**
+     * Método(s) do Eloquent 
+     * Definem as relações das models.
+     */
+  public function getNomeEnomeConjuge() : string
+  {
     $result = $this->nome;
     $result .= (isset($this->conjuge_nome) && $this->conjuge_nome != "" )? " --- ".$this->conjuge_nome : null;
-    return  $result ;
+    return  $result;
   }
+
   /**
    * Esse metodo retorna se o sexo do adotante é masculino ou
    * feminino
    * @return string
    */
-
-  public function getSexo() {
+  public function getSexo() : string
+  {
     return ($this->sexo == 'M')? 'Masculino' : 'Feminino';
   }
 
-  public function hasAdotivos() {
+  /**
+  * @return bool
+  */
+  public function hasAdotivos() : bool 
+  {
     return $this->has_vinculo;
   }
 
-  public function hasConjuge() {
-    return ($this->estado_civil_id == 2 || $this->estado_civil_id == 6);
+  /**
+  * @return bool
+  */
+  public function hasConjuge() : bool
+  {
+    return ($this->estado_civil_id == EstadoCivil::CASADO || $this->estado_civil_id == EstadoCivil::UNIAO_ESTAVEL);
   }
 
-  public function adotivos() {
+  /**
+  * [description]
+  * Método(s) do Eloquent 
+  * Definem as relações das models.
+  */
+  public function adotivos()
+  {
     return $this->belongsToMany('Casa\Adotivo', 'adotantes_adotivos')
     ->withPivot('created_at', 'deleted_at');
   }
 
-  public function estado() {
+  public function estado() 
+  {
   	return $this->belongsTo('Casa\Estado', 'estado_id');
   }
 
-  public function estadoCivil() {
+  public function estadoCivil() 
+  {
   	return $this->belongsTo('Casa\EstadoCivil', 'estado_civil_id');
   }
 
-  public function escolaridade() {
+  public function escolaridade() 
+  {
     return $this->belongsTo('Casa\Escolaridade', 'escolaridade_id');
   }
 
-  public function categoriaProfissional() {
+  public function categoriaProfissional() 
+  {
     return $this->belongsTo('Casa\CategoriaProfissional', 'categoria_profissional_id');
   }
 
-  // public function visitas() {
-  //   return $this->hasMany('Casa\Visita', 'adotante_id');
-  // }
-
-  public function vinculos() {
+  public function vinculos() 
+  {
       return $this->hasMany('Casa\Vinculo', 'adotante_id');
   }
 
-  public function observacoes() {
+  public function observacoes() 
+  {
     return $this->belongsToMany(Adotivo::class, 'adotantes_adotivos')
     ->withPivot('observacoes')
     ->orderBy('id', 'desc')

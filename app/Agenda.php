@@ -7,21 +7,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Agenda extends Model {
+/**
+* @package  Casa
+* @author   Leonardo Alves <leoallvez@hotmail.com>
+* @access   public
+*/
+class Agenda extends Model
+{
     use SoftDeletes;
 
     public $timestamps = false;
 
-    public function __construct(array $attributes = array()) 
-    {
-        if(count($attributes) > 0) {
-            $attributes['status'] = "agendado";
-            $attributes['observacoes'] = null;
-        }
-        parent::__construct($attributes);
-        $this->usuario_id = Auth::id() ?? 1;
-        $this->instituicao_id = Auth::user()->instituicao_id ?? 1;
-    }
+    const AGENDADA   = "agendada";
+    const REAGENDADA = "reagendada";
+    const CANCELADA  = "cancelada";
 
     protected $fillable = [
         'dia',
@@ -33,16 +32,33 @@ class Agenda extends Model {
         'observacoes',
     ];
 
-    public function visitas()
+    protected $dates = [
+        'created_at',
+        'nascimento',
+        'conjuge_nascimento'
+    ];
+
+    public function __construct(array $attributes = array()) 
     {
-        return $this->hasMany('Casa\Visita');
+        if(count($attributes) > 0) {
+            $attributes['status'] = Agenda::AGENDADA;
+            $attributes['observacoes'] = null;
+        }
+        parent::__construct($attributes);
+        $this->usuario_id = Auth::id() ?? 1;
+        $this->instituicao_id = Auth::user()->instituicao_id ?? 1;
     }
 
-    public function agendarVisita(int $adotante_id)
+    /**
+    * @return boolean
+    */
+    public function agendarVisita(int $adotante_id) : bool
     {
         $adotante = Adotante::find($adotante_id);
 
-        if(!is_null($adotante)) {
+        $temVisitaNoDia = $this->adotanteTemVisitaNoDia($adotante_id);
+
+        if(!$temVisitaNoDia) {
             
             $this->save();
             $adotivos = $adotante->adotivos->pluck('id');
@@ -61,10 +77,47 @@ class Agenda extends Model {
         return false;
     }
 
-    //TODO: refatorar esse código.
+    /**
+    * @return boolean
+    */
+    public function reagendarVisita(array $atributos) : bool 
+    {
+        $temVisitaNoDia = $this->adotanteTemVisitaNoDia(null, $atributos['dia']);
 
-    public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) {
+        if(!$temVisitaNoDia) {
+            
+            $this->observacoes = $atributos['observacoes'];
+            $this->status = Agenda::REAGENDADA;
+            $this->save();
+            $this->delete();
 
+            $novaAgenda = new self($atributos);
+            $novaAgenda->agendarVisita($this->getAdotanteId());
+            
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * @return void
+    */
+    public function cancelarVisita(string $observacoes) : bool
+    {
+        if(!is_null($observacoes)) {
+            $this->status = Agenda::CANCELADA;
+            $this->save();
+            $this->delete();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * @return boolean
+    */
+    public function adotanteTemVisitaNoDia(int $adotante_id = null , string $data = null) : bool 
+    {
         $data = (is_null($data)) ? $this->dia : $data;
 
         $adotante_id = (is_null($adotante_id)) ? $this->getAdotanteId() : $adotante_id;
@@ -95,10 +148,13 @@ class Agenda extends Model {
         return false;
     }
 
-    public static function listar() 
+    /**
+    * @return array
+    */
+    public static function listar() : array 
     {
         $results = [];
-        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->get();
+        $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->where('dia','>=', date('Y-m-d'))->get();
         
         if(!is_null($agendas)) {
 
@@ -110,45 +166,76 @@ class Agenda extends Model {
                 $nome_adotivo = Adotivo::getNomeAbreviadoByVinculoId($visitas->vinculo_id);
 
                 $results[] = [
-                    "id"          => $agenda->id,
-                    "title"       => $nome_adotivo,
-                    "description" => $nome_adotivo,
-                    "color"       => '#3498DB',
-                    "date"        => $agenda->getDiaEHorario(),
-                    "hora_inicio" => $agenda->hora_inicio,
-                    "hora_fim"    => $agenda->hora_fim,
-                    "status"      => $agenda->status,
+                    "id"            => $agenda->id,
+                    "title"         => $nome_adotivo,
+                    "description"   => $nome_adotivo,
+                    "color"         => '#3498DB',
+                    "date"          => $agenda->getDiaEHorario(),
+                    "hora_inicio"   => $agenda->hora_inicio,
+                    "hora_fim"      => $agenda->hora_fim,
+                    "status"        => $agenda->status,
                     "dia_formatado" => $agenda->formatarData(),
-                    "dia_base"    => $agenda->dia,
-                    "adotante_id" => $agenda->getAdotanteId(),
-                    "adotivo_id"  => $agenda->getVisitasVinculos(),
+                    "dia_base"      => $agenda->dia,
+                    "adotante_id"   => $agenda->getAdotanteId(),
+                    "adotivo_id"    => $agenda->getVisitasVinculos(),
                 ];
             }
         }
-        return response()->json($results);
+        return $results;
     }
 
     /**
-     * formarta data de yyyy-mm-dd para dd/mm/yyyy
-     */
-    private function formatarData() : string {
+    * Formarta data de yyyy-mm-dd para dd/mm/yyyy
+    * @return string
+    */
+    public function formatarData() : string 
+    {
         $timestamp = strtotime($this->dia); 
         return date('d/m/Y', $timestamp);
     }
 
-    public function getAdotanteId() {
+    
+
+    public function calcularTempoTotal() 
+    {
+        return date('H:i', strtotime($this->hora_fim) - strtotime($this->hora_inicio));
+    }
+
+    /**
+    * @return int
+    */
+    public function getAdotanteId() : int 
+    {
         $visita = $this->visitas->first();
         $vinculo = Vinculo::find($visita->vinculo_id);
         return $vinculo->adotante->id;
     }
+
     /**
-     * Pega o(s) vinculo(s) da(s) visitas(s).
-     */
-    private function getVisitasVinculos() : array {
+    * [description]
+    * Pega o(s) vinculo(s) da(s) visitas(s).
+    * @return array
+    */
+    private function getVisitasVinculos() : array 
+    {
         return $this->visitas()->pluck('vinculo_id')->toArray(); 
     }
 
-    private function getDiaEHorario() : string {
+    /**
+    * @return string
+    */
+    private function getDiaEHorario() : string 
+    {
         return $this->dia." ".$this->hora_inicio;
+    }
+
+    /**
+    * [description]
+    * Método(s) do Eloquent 
+    * Definem as relações das models.
+    */
+    public function visitas()
+    {
+        return $this->hasMany('Casa\Visita');
     }
 }

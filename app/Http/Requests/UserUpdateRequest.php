@@ -2,13 +2,15 @@
 namespace Casa\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdateRequest extends FormRequest {
+class UserUpdateRequest extends FormRequest 
+{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize() 
+    {
         return true;
     }
 
@@ -17,7 +19,8 @@ class UserUpdateRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules() 
+    {
         return [
             //
             'name'     => 'required|regex:/^[\pL\s\-]+$/u',
@@ -28,7 +31,8 @@ class UserUpdateRequest extends FormRequest {
         ];
     }
 
-    public function messages() {
+    public function messages() 
+    {
         return [
             'name.required'      => 'O campo nome é obrigatório.',
             'name.regex'         => 'O nome deve conter apenas letras e espaços.',

@@ -11,7 +11,8 @@ class VinculoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize() 
+    {
         return true;
     }
 
@@ -20,13 +21,15 @@ class VinculoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() {
+    public function rules() 
+    {
         return [
             'adotante_id' => 'required'
         ];
     }
 
-    public function messages() {
+    public function messages() 
+    {
         return [ 
             'adotante_id.required' => 'É obrigatório informar o adotante.'
         ];

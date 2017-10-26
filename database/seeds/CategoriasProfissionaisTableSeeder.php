@@ -9,7 +9,8 @@ class CategoriasProfissionaisTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $categorias = [
         	['nome' => 'Empregado(a) de empresa do setor privado'],
         	['nome' => 'Empregado(a) de organização não-governamental'],

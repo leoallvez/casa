@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class InstituicaoTableSeeder extends Seeder {
+class InstituicaoTableSeeder extends Seeder 
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $instituicoes = [
         	[
                 //id = 1 
@@ -24,7 +26,7 @@ class InstituicaoTableSeeder extends Seeder {
         		'cidade'          => 'São Paulo',
         		'email'           => 'contato@casa.com.br',
         		'estado_id'       => 1,
-                'created_at'      => date('Y-m-d')
+                'created_at'      => "2017-09-05"
         	],
             [
                 //id = 2
@@ -40,7 +42,7 @@ class InstituicaoTableSeeder extends Seeder {
                 'cidade'          => 'São Paulo',
                 'email'           => 'contato@esperanca.com.br',
                 'estado_id'       => 1,
-                'created_at'      => date('Y-m-d')
+                'created_at'      => "2017-09-05"
             ],
 
             // Solicitação de Cadastro
@@ -58,7 +60,7 @@ class InstituicaoTableSeeder extends Seeder {
                 'cidade'          => 'Natal',
                 'email'           => 'contato@luz.com.br',
                 'estado_id'       => 21,
-                'created_at'      => date('Y-m-d')
+                'created_at'      => "2017-09-05"
             ],
             [
                 //id = 4
@@ -74,7 +76,7 @@ class InstituicaoTableSeeder extends Seeder {
                 'cidade'          => 'Bebedouro',
                 'email'           => 'contato@santa-clara.com.br',
                 'estado_id'       => 1,
-                'created_at'      => date('Y-m-d')
+                'created_at'      => "2017-09-05"
             ],
             [
                 //id = 5
@@ -90,7 +92,7 @@ class InstituicaoTableSeeder extends Seeder {
                 'cidade'          => 'Catanduva',
                 'email'           => 'contato@centro-educacional.com.br',
                 'estado_id'       => 1,
-                'created_at'      => date('Y-m-d')
+                'created_at'      => "2017-09-05"
             ]
         ];
         DB::table('instituicoes')->insert($instituicoes);

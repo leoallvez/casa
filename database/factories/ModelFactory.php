@@ -11,7 +11,8 @@
 |
 */
 
-$factory->define(Casa\User::class, function (Faker\Generator $faker) {
+$factory->define(Casa\User::class, function (Faker\Generator $faker) 
+{
     static $password;
 
     return [
