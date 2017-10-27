@@ -36,6 +36,7 @@
                       <th>Dia da Visita</th>
                       <th>Hora Inicial</th>
                       <th>Hora Final</th>
+                      <th>Tempo Total</th>
                       <th>Ação</th>
                     </tr>
                   </thead>
@@ -47,6 +48,7 @@
                         <td>{{ date('d/m/Y',strtotime($visita->agenda->dia))}}</td>
                         <td>{{ substr($visita->agenda->hora_inicio, 0, 5) }}</td>
                         <td>{{ substr($visita->agenda->hora_fim, 0, 5) }}</td>
+                        <td>{{ $visita->agenda->calcularTempoTotal() }}</td>
                         <td>
                           <a href="{{ action('AgendaController@registrarGet', $visita->id) }}"
                             class="btn btn-info btn-xs">

@@ -9,7 +9,7 @@
 	  <div>
 	    <div class="page-title">
 	      <div class="title_left">
-	        <h3>Vizualizar Histórico de Vínculos</h3>
+	        <h3>Visualizar Histórico de Vínculos</h3>
 	      </div>
 	    </div>
 	    <div class="clearfix"></div>

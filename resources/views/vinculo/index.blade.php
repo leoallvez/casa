@@ -106,25 +106,25 @@
                     <div class="x_content">
                       <div class="row">
                         {!! Form::open(['action' => 'VinculoController@vincular', 'method' => 'PATCH']) !!}
-                        <div class="col-md-10">
-                          {!! Form::label('adotante_id', 'Adotante(s)') !!}
-                          {!! Form::select(
-                            'adotante_id',
-                            $adotantes,
-                            $idAdotanteVinculo ?? null,
-                            [
-                              'class' => 'form-control',
-                              'placeholder' => 'Selecione Adotante(s)',
-                              $adotivo->hasAdotantes() ? 'disabled' : null,
-                              'style'=> 'width: 100%'
-                            ])
-                            !!}
-                            <br>
-                            <p>
-                              <span class='validacao-text'>
-                                {{ $errors->first('adotante_id') }}
-                              </span>
-                            </p>
+                          <div class="col-md-10">
+                            {!! Form::label('adotante_id', 'Adotante(s)') !!}
+                              {!! Form::select(
+                                'adotante_id',
+                                $adotantes,
+                                $idAdotanteVinculo ?? null,
+                                [
+                                  'class' => 'form-control',
+                                  'placeholder' => 'Selecione Adotante(s)',
+                                  $adotivo->hasAdotantes() ? 'disabled' : null,
+                                  'style'=> 'width: 100%'
+                                ])
+                              !!}
+                              <br>
+                              <p>
+                                <span class='validacao-text'>
+                                  {{ $errors->first('adotante_id') }}
+                                </span>
+                              </p>
                             {!! Form::hidden('adotivo_id', $adotivo->id ) !!}
                           </div>
                           <br>
@@ -138,80 +138,79 @@
                               {!! Form::submit('Víncular', ['class' => 'btn btn-success', 'style'=>'margin: 5%']) !!}
                             @endif
                           </div>
-                          {!! Form::close() !!}
+                        {!! Form::close() !!}
                         </div>
                       </div>
+                      @if(!is_null($visitas))
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Visitas</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapse">
+                              <ul class="list-unstyled timeline">
+                                @if(!$visitas->isEmpty())
+                                    @foreach($visitas as $visita)
+                                        <li>
+                                            <div class="block">
+                                                <div class="byline">
+                                                    <h4>
+                                                        <span>
+                                                            Das<b> {{ substr($visita->agenda->hora_inicio, 0, 5) }} </b> às 
+                                                            <b> {{ substr($visita->agenda->hora_fim, 0, 5) }}</b>, tempo total 
+                                                            <b>{{ $visita->agenda->calcularTempoTotal() }}</b>.
+                                                        </span>
+                                                    </h4>
+                                                </div><br>
+                                                <div class="tags">
+                                                    <a href="" class="tag">
+                                                        <span><b>{{ $visita->agenda->formatarData() }}</b></span>
+                                                    </a>
+                                                </div>
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                      <a>Opinião Adotante(s)</a>
+                                                    </h2><br>
+                                                    <p class="excerpt">
+                                                        {{ $visita->opiniao_adotante }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="block">
+                                                <div class="tags">
+                                                    <a href="" class="tag">
+                                                        <span><b>{{ $visita->agenda->formatarData() }}</b></span>
+                                                    </a>
+                                                </div>
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                        <a>Opinião Adotivo</a>
+                                                    </h2><br>
+                                                    <p class="excerpt">
+                                                        {{ $visita->opiniao_adotivo }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <p>Nenhuma visita registrada para esse vínculo.</p>
+                                @endif
+                              </ul>    
+                            </div>
+                          </div>
+                        </div>
+                      @endif
                     </div>
                   </div>
-                  <!-- Here -->
-                  @if(!is_null($visitas))
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div class="x_panel">
-                          <div class="x_title">
-                              <h2>Visitas</h2>
-                              <ul class="nav navbar-right panel_toolbox">
-                                  <li>
-                                      <a class="collapse-link">
-                                          <i class="fa fa-chevron-up"></i>
-                                      </a>
-                                  </li>
-                              </ul>
-                              <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content collapse">
-                              <ul class="list-unstyled timeline">
-                                  @if(!$visitas->isEmpty())
-                                      @foreach($visitas as $visita)
-                                          <li>
-                                              <div class="block">
-                                                  <div class="byline">
-                                                      <h4>
-                                                          <span>
-                                                              Das<b> {{ substr($visita->agenda->hora_inicio, 0, 5) }} </b> às 
-                                                              <b> {{ substr($visita->agenda->hora_fim, 0, 5) }}</b>, tempo total 
-                                                              <b>{{ $visita->agenda->calcularTempoTotal() }}</b>.
-                                                          </span>
-                                                      </h4>
-                                                  </div><br>
-                                                  <div class="tags">
-                                                      <a href="" class="tag">
-                                                          <span><b>{{ $visita->agenda->formatarData() }}</b></span>
-                                                      </a>
-                                                  </div>
-                                                  <div class="block_content">
-                                                      <h2 class="title">
-                                                        <a>Opinião Adotante(s)</a>
-                                                      </h2><br>
-                                                      <p class="excerpt">
-                                                          {{ $visita->opiniao_adotante }}
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                              <div class="block">
-                                                  <div class="tags">
-                                                      <a href="" class="tag">
-                                                          <span><b>{{ $visita->agenda->formatarData() }}</b></span>
-                                                      </a>
-                                                  </div>
-                                                  <div class="block_content">
-                                                      <h2 class="title">
-                                                          <a>Opinião Adotivo</a>
-                                                      </h2><br>
-                                                      <p class="excerpt">
-                                                          {{ $visita->opiniao_adotivo }}
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                          </li>
-                                      @endforeach
-                                  @else
-                                      <p>Nenhuma visita registrada para esse vínculo.</p>
-                                  @endif
-                              </ul>    
-                          </div>
-                      </div>
-                    </div>
-                  @endif
                 </div>
               </div>
             </div>
