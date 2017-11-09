@@ -181,7 +181,7 @@ class Adotivo extends Model
     /**
      * @return void
      */
-    public function altualizarIrmaos($irmaosIds) : void
+    public function atualizarIrmaos($irmaosIds) : void
     {
         if(isset($irmaosIds)) {
             $this->removerVinculoNosIrmaos($irmaosIds);

@@ -96,7 +96,7 @@ class AgendaController extends Controller
         if($cancelado) {
             return json_encode([
                 'status'  => true, 
-                'message' => 'Visita cancelada com sucesso' 
+                'message' => 'Visita cancelada com sucesso',
             ]);
         }
 
@@ -111,12 +111,12 @@ class AgendaController extends Controller
         return response()->json(Agenda::listar());
     }    
 
-    public function buscarAdotivos($id) 
+    public function buscarAdotivos($adotante_id) 
     {
-        if(!is_null($id)) {
+        if(!is_null($adotante_id)) {
             return json_encode([
                 'status'   => true, 
-                'adotivos' => (new Vinculo)->getAdotivosByAdotantesId($id),
+                'adotivos' => (new Vinculo)->getAdotivosByAdotantesId($adotante_id),
             ]);
         }
         return  json_encode(['status'  => false]);

@@ -77,7 +77,7 @@ class AdotivoController extends Controller
 
         $adotivo->save();
 
-        (new AdotivoLog($adotivo))->save();
+        //(new AdotivoLog($adotivo))->save();
 
         $adotivo->salvarIrmaos($request->irmaosIds);
 
@@ -141,13 +141,13 @@ class AdotivoController extends Controller
 
     public function update(AdotivoRequest  $request, $id) 
     {
-        $adotivo = Adotivo::findOrFail($id);
+        $adotivo = Adotivo::findOrfail($id);
 
         $adotivo->update($request->all());
-        //TODO: se não hove mudança não criar log
-        (new AdotivoLog($adotivo))->save();
+        //TODO: se não hove mudança não criar log.
+        //(new AdotivoLog($adotivo))->save();
        
-        $adotivo->altualizarIrmaos($request->irmaosIds);
+        $adotivo->atualizarIrmaos($request->irmaosIds);
         flash(
             "Adotivo ".$adotivo->nome." Alterado com Sucesso!",
             "success"

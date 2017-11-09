@@ -11,7 +11,6 @@ use Casa\Nacionalidade;
 use Illuminate\Http\Request;
 use Casa\CategoriaProfissional;
 use Illuminate\Support\Facades\Auth;
-use Casa\Http\Requests\VinculoRequest;
 use Casa\Http\Requests\AdotanteRequest;
 
 
