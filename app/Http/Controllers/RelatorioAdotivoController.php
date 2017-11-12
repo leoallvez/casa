@@ -21,7 +21,17 @@ class RelatorioAdotivoController extends Controller
         $dadosStatus = Adotivo::getQuantidadePorStatus();
         $dimensaoValue = true;
 
-        return view('relatorio_adotivo.teste_graficos', compact('status','etnias', 'dadosStatus', 'dimensaoValue'));   
+        $adotivos = Adotivo::all();
+
+        $idades[0] = "Menos de 1 ano";
+        $idades[1] = "1 ano";
+        for($i = 2; $i < 18; $i++) {
+            $idades[$i] = $i." anos";    
+        }
+        $idades[] = "18 anos ou mais";
+
+        return view('relatorio_adotivo.index', 
+            compact('status','etnias', 'dadosStatus', 'dimensaoValue', 'adotivos', 'idades'));   
     }
 
     /**
@@ -41,6 +51,7 @@ class RelatorioAdotivoController extends Controller
         else
             $dimensaoValue = 0;    
 
-        return view('relatorio_adotivo.teste_graficos', compact('status','etnias', 'dadosStatus', 'dimensaoValue'));    
+        return view('relatorio_adotivo.index', 
+            compact('status','etnias', 'dadosStatus', 'dimensaoValue'));    
     }
 }

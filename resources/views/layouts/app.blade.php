@@ -139,14 +139,14 @@
         {{-- Page content --}}
       </div>
       {{-- Footer content --}}
-      @if(!Request::is('relatorio-adotivo'))
+      {{--  @if(!Request::is('relatorio-adotivo'))  --}}
         <footer class="pull-botton" id="rodape">
           <div class="pull-right">
             <span class="logo">{{ config('app.name', 'Casa') }}</span> {{ date('Y') }}
           </div>
           <div class="clearfix"></div>
         </footer>
-      @endif
+      {{--  @endif  --}}
     {{-- Footer content --}}
     </div>
     {{-- Vue Js--}}
