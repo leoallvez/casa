@@ -42,7 +42,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '763.878.508-86',
                 'conjuge_rg'                        => '012.018.591-15',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Melissa Barcelos',
@@ -75,7 +75,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => null,
                 'conjuge_rg'                        => null,
                 'conjuge_sexo'                      => null,
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                             => 'Fernando Silva Prado',
@@ -108,7 +108,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '520.135.145-06',
                 'conjuge_rg'                        => '729.198.542-08',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Bento de Albuquerque Santiago',
@@ -141,7 +141,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '242.506.858-96',
                 'conjuge_rg'                        => '285.713.323-55',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Pedro Costa Lima',
@@ -174,7 +174,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '868.255.240-03',
                 'conjuge_rg'                        => '785.316.332-06',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Mariana Cecília Ribeiro',
@@ -207,7 +207,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '901.075.829-02',
                 'conjuge_rg'                        => '265.591.761-85',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Juliana Catarina Cecília Ribeiro',
@@ -240,7 +240,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '334.403.169-47',
                 'conjuge_rg'                        => '351.523.756-99',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Sônia Fernades Silva',
@@ -273,7 +273,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '334.403.169-47',
                 'conjuge_rg'                        => '262.247.155-64',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Luciano Fabiano Lima',
@@ -306,7 +306,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '428.147.627-02',
                 'conjuge_rg'                        => '836.774.518-33',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Fabiana de Paula Alves',
@@ -339,7 +339,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '647.722.828-90',
                 'conjuge_rg'                        => '194.483.626-84',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Adriana Lima Ferreira',
@@ -372,7 +372,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '528.180.264-07',
                 'conjuge_rg'                        => '826.514.145-90',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Maria de Silva Costa Lima',
@@ -405,7 +405,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '444.532.153-20',
                 'conjuge_rg'                        => '374.771.858-23',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Juliana Pereira da Costa',
@@ -438,7 +438,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => null,
                 'conjuge_rg'                        => null,
                 'conjuge_sexo'                      => null,
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
                 [
                 'nome'                              => 'Renato Luís da Silva',
@@ -471,7 +471,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '461.511.789-20',
                 'conjuge_rg'                        => '137.236.672-52',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Katia Ferreira Silvado',
@@ -504,7 +504,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '812.877.359-32',
                 'conjuge_rg'                        => '887.197.319-49',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Felipe Almeida Silva',
@@ -537,7 +537,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '615.826.574-83',
                 'conjuge_rg'                        => '183.641.730-65',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Milena Maria Silvado',
@@ -570,7 +570,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '844.178.130-35',
                 'conjuge_rg'                        => '861.875.177-41',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Amanda Thais Vicente',
@@ -603,7 +603,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '921.995.450-83',
                 'conjuge_rg'                        => '543.557.531-15',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Janaina Silva da Costa',
@@ -636,7 +636,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '156.340.724-84',
                 'conjuge_rg'                        => '712.518.455-33',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Viviane Solange',
@@ -669,7 +669,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '382.763.611-61',
                 'conjuge_rg'                        => '631.157.868-91',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Andreia Almeida Silva',
@@ -702,7 +702,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '724.138.746-58',
                 'conjuge_rg'                        => '723.233.442-77',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Luisa Ferreira Braga',
@@ -735,7 +735,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '360.134.660-50',
                 'conjuge_rg'                        => '451.987.443-28',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Pedro Lima Silva',
@@ -768,7 +768,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '684.548.712-09',
                 'conjuge_rg'                        => '522.867.061-07',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Zelia Novaes',
@@ -801,7 +801,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => null,
                 'conjuge_rg'                        => null,
                 'conjuge_sexo'                      => null,
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
                 [
                 'nome'                              => 'Julia Ferraz de Novaes',
@@ -834,7 +834,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '456.973.915-60',
                 'conjuge_rg'                        => '021.734.733-95',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Bruna Miranda Lima',
@@ -867,7 +867,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '573.146.327-15',
                 'conjuge_rg'                        => '414.118.592-27',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Gustavo Novaes de Lima',
@@ -900,7 +900,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '898.874.581-71',
                 'conjuge_rg'                        => '025.245.404-99',
                 'conjuge_sexo'                      => 'F',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Gabriela Lucas de Santiago',
@@ -933,7 +933,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '211.963.873-03',
                 'conjuge_rg'                        => '973.370.263-31',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Tereza Mariana',
@@ -966,7 +966,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '533.571.209-09',
                 'conjuge_rg'                        => '318.812.458-96',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Bianca Lima da Silva',
@@ -999,7 +999,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '427.978.281-43',
                 'conjuge_rg'                        => '545.791.969-29',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => true,
+                'tem_vinculo'                       => true,
             ],
             [
                 'nome'                              => 'Cintia Fernada da Silva',
@@ -1032,7 +1032,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '828.688.484-19',
                 'conjuge_rg'                        => '200.643.775-55',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Luana Bianca Silvado',
@@ -1065,7 +1065,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '589.753.113-76',
                 'conjuge_rg'                        => '264.635.436-32',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ],
             [
                 'nome'                              => 'Leonora Carlar Lima',
@@ -1098,7 +1098,7 @@ class AdotantesTableSeeder extends Seeder
                 'conjuge_cpf'                       => '675.113.766-49',
                 'conjuge_rg'                        => '810.897.851-35',
                 'conjuge_sexo'                      => 'M',
-                'has_vinculo'                       => false,
+                'tem_vinculo'                       => false,
             ]
         ];
         DB::table('adotantes')->insert($adotantes);

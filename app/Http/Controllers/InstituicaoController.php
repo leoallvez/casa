@@ -19,7 +19,7 @@ class InstituicaoController extends Controller
      */
     public function index() 
     {
-        $instituicoes = Instituicao::where('is_aprovada', true)
+        $instituicoes = Instituicao::where('esta_aprovada', true)
         ->where('id', '<>', 1)
         ->orderBy('razao_social')
         ->paginate(config('app.list_size'));
@@ -82,7 +82,7 @@ class InstituicaoController extends Controller
     {
         $instituicao = Instituicao::findOrfail($id);
 
-        $instituicao->atualizar($request->all());
+        $instituicao->atualizarAdm($request->all());
 
         flash('Instituicao Alterada com Sucesso!', 'success');
         
@@ -111,7 +111,7 @@ class InstituicaoController extends Controller
         # Retirar os espaços do incios e fim da string.
         $request->inputBusca = trim($request->inputBusca);
 
-        $instituicoes = Instituicao::where('is_aprovada', true)
+        $instituicoes = Instituicao::where('esta_aprovada', true)
         ->where('id', '<>', 1);
 
         if(!empty($request->inputBusca)) {

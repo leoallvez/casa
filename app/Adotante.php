@@ -2,6 +2,7 @@
 
 namespace Casa;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -102,9 +103,9 @@ class Adotante extends Model
    /**
    * @return void
    */
-  public function setHasVinculo(bool $value) : void
+  public function setTemVinculo(bool $value) : void
   {
-    $this->has_vinculo = $value;
+    $this->tem_vinculo = $value;
   }
 
   /**
@@ -128,6 +129,15 @@ class Adotante extends Model
     return  $result;
   }
 
+  public function buscar($valor_de_busca) {
+
+    return self::where('nome', 'like', '%'.$valor_de_busca.'%')
+          ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
+          ->orWhere('cpf','=', setMascara($valor_de_busca, '###.###.###-##'))
+          ->orderBy('nome')
+          ->paginate(config('app.list_size'));
+  }
+
   /**
    * Esse metodo retorna se o sexo do adotante é masculino ou
    * feminino
@@ -143,7 +153,7 @@ class Adotante extends Model
   */
   public function hasAdotivos() : bool 
   {
-    return $this->has_vinculo;
+    return $this->tem_vinculo;
   }
 
   /**

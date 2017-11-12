@@ -2877,7 +2877,7 @@ Stack trace:
 #45 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #46 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #47 {main}  
-[2017-04-08 15:39:56] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'adotante.has_vinculo' in 'where clause' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:333
+[2017-04-08 15:39:56] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'adotante.tem_vinculo' in 'where clause' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:333
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(333): PDO->prepare('select `adotant...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'select `adotant...', Array)
@@ -2934,7 +2934,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'adotante.has_vinculo' in 'where clause' (SQL: select `adotantes`.*, `adotantes_adotivos`.`adotivo_id` as `pivot_adotivo_id`, `adotantes_adotivos`.`adotante_id` as `pivot_adotante_id`, `adotantes_adotivos`.`created_at` as `pivot_created_at`, `adotantes_adotivos`.`deleted_at` as `pivot_deleted_at` from `adotantes` inner join `adotantes_adotivos` on `adotantes`.`id` = `adotantes_adotivos`.`adotante_id` where `adotantes_adotivos`.`adotivo_id` = 33 and `adotante`.`has_vinculo` = 1 and `adotantes`.`deleted_at` is null) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'adotante.tem_vinculo' in 'where clause' (SQL: select `adotantes`.*, `adotantes_adotivos`.`adotivo_id` as `pivot_adotivo_id`, `adotantes_adotivos`.`adotante_id` as `pivot_adotante_id`, `adotantes_adotivos`.`created_at` as `pivot_created_at`, `adotantes_adotivos`.`deleted_at` as `pivot_deleted_at` from `adotantes` inner join `adotantes_adotivos` on `adotantes`.`id` = `adotantes_adotivos`.`adotante_id` where `adotantes_adotivos`.`adotivo_id` = 33 and `adotante`.`tem_vinculo` = 1 and `adotantes`.`deleted_at` is null) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('select `adotant...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(351): Illuminate\Database\Connection->run('select `adotant...', Array, Object(Closure))
@@ -5099,7 +5099,7 @@ Stack trace:
 #11 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(163): Illuminate\Foundation\Http\Kernel->gatherRouteMiddleware(Object(Illuminate\Http\Request))
 #12 C:\laragon\www\Casa2\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #13 {main}  
-[2017-04-08 22:57:09] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","has_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-08 22:57:09] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","tem_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php(68): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Indirect modifi...', 'C:\\laragon\\www\\...', 68, Array)
 #1 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
@@ -5147,7 +5147,7 @@ Stack trace:
 #43 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
-[2017-04-08 22:58:56] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","has_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-08 22:58:56] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","tem_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php(68): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Indirect modifi...', 'C:\\laragon\\www\\...', 68, Array)
 #1 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
@@ -5195,7 +5195,7 @@ Stack trace:
 #43 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
-[2017-04-08 22:58:59] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","has_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-08 22:58:59] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","tem_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php(68): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Indirect modifi...', 'C:\\laragon\\www\\...', 68, Array)
 #1 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
@@ -5243,7 +5243,7 @@ Stack trace:
 #43 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
-[2017-04-08 22:59:40] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","has_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-08 22:59:40] local.ERROR: ErrorException: Indirect modification of overloaded property Casa\Adotante::${"id":10,"nome":"Fabiana de Paula Alves","sexo":"F","nascimento":"1969-06-06 00:00:00","cpf":"024.315.324-45","rg":"41.555.409-9","endereco":"Rua Tom\u00e1s Gomes","endereco_numero":"187","complemento":"Casa 2","cep":"97120-451","bairro":"Vila Lapa","cidade":"S\u00e3o Paulo","telefone":"(96) 2514-0000","celular":"(96) 99118-7654","email":"fabiana@yahoo.com","tem_vinculo":1,"conjuge_nome":"Bruno de Gomes Alves","conjuge_sexo":null,"conjuge_nascimento":null,"conjuge_cpf":null,"conjuge_rg":null,"conjuge_escolaridade_id":null,"conjuge_nascionalidade_id":1,"conjuge_categoria_profissional_id":null,"estado_id":1,"usuario_id":4,"estado_civil_id":2,"instituicao_id":1,"nacionalidade_id":1,"escolaridade_id":null,"categoria_profissional_id":null,"deleted_at":null,"created_at":"2017-04-02 00:00:00","updated_at":"2017-04-08 21:47:55","pivot":{"adotivo_id":33,"adotante_id":10,"created_at":"2017-02-01 00:00:00","deleted_at":"2017-02-10 00:00:00"}} has no effect in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php(68): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Indirect modifi...', 'C:\\laragon\\www\\...', 68, Array)
 #1 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
@@ -5784,7 +5784,7 @@ Stack trace:
 #45 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #46 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #47 {main}  
-[2017-04-08 23:46:26] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:46:26] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -5841,7 +5841,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:46:26, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:46:26, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -5895,7 +5895,7 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-08 23:46:27] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:46:27] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -5952,7 +5952,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:46:27, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:46:27, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6006,7 +6006,7 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-08 23:46:29] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:46:29] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6063,7 +6063,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:46:29, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:46:29, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6117,7 +6117,7 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-08 23:48:11] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:48:11] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6173,7 +6173,7 @@ Stack trace:
 #51 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #52 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:48:11, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:48:11, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6226,7 +6226,7 @@ Stack trace:
 #48 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #49 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 {main}  
-[2017-04-08 23:48:26] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:48:26] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6282,7 +6282,7 @@ Stack trace:
 #51 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #52 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:48:26, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:48:26, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6335,7 +6335,7 @@ Stack trace:
 #48 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #49 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 {main}  
-[2017-04-08 23:50:28] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:50:28] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6392,7 +6392,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:50:28, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:50:28, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6446,7 +6446,7 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-08 23:51:00] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:51:00] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6503,7 +6503,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:51:00, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:51:00, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6557,7 +6557,7 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-08 23:51:03] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:51:03] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6614,7 +6614,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:51:03, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:51:03, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6668,7 +6668,7 @@ Stack trace:
 #49 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #50 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #51 {main}  
-[2017-04-08 23:52:05] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
+[2017-04-08 23:52:05] local.ERROR: PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:476
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(476): PDO->prepare('insert into `ad...')
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(763): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `ad...', Array)
@@ -6725,7 +6725,7 @@ Stack trace:
 #52 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #53 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'has_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `has_vinculo`) values (19, 14, 2017-04-08 23:52:05, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tem_vinculo' in 'field list' (SQL: insert into `adotantes_adotivos` (`adotante_id`, `adotivo_id`, `created_at`, `tem_vinculo`) values (19, 14, 2017-04-08 23:52:05, 0)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `ad...', Array, Object(Closure))
@@ -6827,9 +6827,9 @@ Stack trace:
 #43 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
-[2017-04-09 01:37:05] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Casa\Adotante::setHasVinculo() must be an instance of Casa\boolean, integer given, called in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php on line 55 in C:\laragon\www\Casa2\app\Adotante.php:79
+[2017-04-09 01:37:05] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Casa\Adotante::setTemVinculo() must be an instance of Casa\boolean, integer given, called in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php on line 55 in C:\laragon\www\Casa2\app\Adotante.php:79
 Stack trace:
-#0 C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php(55): Casa\Adotante->setHasVinculo(1)
+#0 C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php(55): Casa\Adotante->setTemVinculo(1)
 #1 [internal function]: Casa\Http\Controllers\VinculoController->vincular(Object(Illuminate\Http\Request))
 #2 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
 #3 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(44): Illuminate\Routing\Controller->callAction('vincular', Array)
@@ -6875,7 +6875,7 @@ Stack trace:
 #43 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #44 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #45 {main}  
-[2017-04-09 01:44:56] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:55
+[2017-04-09 01:44:56] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:55
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->vincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -6922,7 +6922,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 01:49:22] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-09 01:49:22] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -6969,7 +6969,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 02:13:00] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-09 02:13:00] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7016,7 +7016,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 02:13:49] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
+[2017-04-09 02:13:49] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:68
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7339,7 +7339,7 @@ Stack trace:
 #48 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #49 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 {main}  
-[2017-04-09 04:25:32] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:25:32] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7386,7 +7386,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:25:37] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:25:37] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7433,7 +7433,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:25:45] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:25:45] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7480,7 +7480,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:26:00] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:26:00] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7527,7 +7527,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:26:12] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:26:12] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7615,7 +7615,7 @@ Stack trace:
 #11 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(163): Illuminate\Foundation\Http\Kernel->gatherRouteMiddleware(Object(Illuminate\Http\Request))
 #12 C:\laragon\www\Casa2\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #13 {main}  
-[2017-04-09 04:29:18] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:29:18] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7662,7 +7662,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:31:12] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:31:12] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7709,7 +7709,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:31:37] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:31:37] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7756,7 +7756,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:34:39] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:34:39] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7803,7 +7803,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:34:43] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:34:43] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7850,7 +7850,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:34:47] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:34:47] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -7897,7 +7897,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:35:38] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:35:38] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -8055,7 +8055,7 @@ Stack trace:
 #48 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #49 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 {main}  
-[2017-04-09 04:40:38] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:40:38] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -8102,7 +8102,7 @@ Stack trace:
 #42 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #43 C:\laragon\www\Casa2\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 {main}  
-[2017-04-09 04:40:53] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setHasVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
+[2017-04-09 04:40:53] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function setTemVinculo() on null in C:\laragon\www\Casa2\app\Http\Controllers\VinculoController.php:76
 Stack trace:
 #0 [internal function]: Casa\Http\Controllers\VinculoController->desvincular(Object(Illuminate\Http\Request))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
@@ -17644,7 +17644,7 @@ Stack trace:
 #2 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(938): spl_autoload_call('Casa\\Adotante')
 #3 C:\laragon\www\Casa2\app\Adotivo.php(135): Illuminate\Database\Eloquent\Model->belongsToMany('Casa\\Adotante', 'adotantes_adoti...')
 #4 C:\laragon\www\Casa2\app\Adotivo.php(127): Casa\Adotivo->adotantes()
-#5 C:\laragon\www\Casa2\storage\framework\views\51b3bfa6e6948aee5a565b651ca5e12c8627e7ea.php(75): Casa\Adotivo->hasAdotantes()
+#5 C:\laragon\www\Casa2\storage\framework\views\51b3bfa6e6948aee5a565b651ca5e12c8627e7ea.php(75): Casa\Adotivo->temAdotantes()
 #6 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(42): include('C:\\laragon\\www\\...')
 #7 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\\laragon\\www\\...', Array)
 #8 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\View.php(149): Illuminate\View\Engines\CompilerEngine->get('C:\\laragon\\www\\...', Array)
@@ -17751,7 +17751,7 @@ Stack trace:
 #2 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(938): spl_autoload_call('Casa\\Adotante')
 #3 C:\laragon\www\Casa2\app\Adotivo.php(135): Illuminate\Database\Eloquent\Model->belongsToMany('Casa\\Adotante', 'adotantes_adoti...')
 #4 C:\laragon\www\Casa2\app\Adotivo.php(127): Casa\Adotivo->adotantes()
-#5 C:\laragon\www\Casa2\storage\framework\views\51b3bfa6e6948aee5a565b651ca5e12c8627e7ea.php(75): Casa\Adotivo->hasAdotantes()
+#5 C:\laragon\www\Casa2\storage\framework\views\51b3bfa6e6948aee5a565b651ca5e12c8627e7ea.php(75): Casa\Adotivo->temAdotantes()
 #6 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(42): include('C:\\laragon\\www\\...')
 #7 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\\laragon\\www\\...', Array)
 #8 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\View.php(149): Illuminate\View\Engines\CompilerEngine->get('C:\\laragon\\www\\...', Array)
@@ -17858,7 +17858,7 @@ Stack trace:
 #2 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(938): spl_autoload_call('Casa\\Adotante')
 #3 C:\laragon\www\Casa2\app\Adotivo.php(135): Illuminate\Database\Eloquent\Model->belongsToMany('Casa\\Adotante', 'adotantes_adoti...')
 #4 C:\laragon\www\Casa2\app\Adotivo.php(127): Casa\Adotivo->adotantes()
-#5 C:\laragon\www\Casa2\storage\framework\views\51b3bfa6e6948aee5a565b651ca5e12c8627e7ea.php(75): Casa\Adotivo->hasAdotantes()
+#5 C:\laragon\www\Casa2\storage\framework\views\51b3bfa6e6948aee5a565b651ca5e12c8627e7ea.php(75): Casa\Adotivo->temAdotantes()
 #6 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(42): include('C:\\laragon\\www\\...')
 #7 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\\laragon\\www\\...', Array)
 #8 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\View\View.php(149): Illuminate\View\Engines\CompilerEngine->get('C:\\laragon\\www\\...', Array)
@@ -18891,7 +18891,7 @@ Stack trace:
 #21 C:\laragon\www\Casa2\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #22 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'complemento' cannot be null (SQL: insert into `instituicoes` (`bairro`, `cep`, `cidade`, `cnpj`, `complemento`, `email`, `endereco`, `endereco_numero`, `estado_id`, `is_aprovada`, `razao_social`, `telefone`) values (Vila Renato, 12345-125, São Paulo, 73.332.363/0001-06, Próximo a estação de trêm, contato@casa.com.br, Rua da Alegria, 166, 1, 1, Casa Sistemas, (11) 3333-5555), (Vila Renato, 12345-123, São Paulo, 31.218.703/0001-14, Próximo a estação de trêm, contato@esperança.com.br, Rua da Glória, 123, 1, 1, Lar da Esperança, (11) 4444-5555), (Pajuçara, 39402-827, Natal, 67.511.217/0001-37, , contato@luz.com.br, Travessa Lauré, 123, 21, 0, Raio de Luz, (22) 4444-5555), (Jardim São Francisco, 14702-114, Bebedouro, 27.124.548/0001-08, , contato@santa-clara.com.br, Rua João Mateus de Moraes, 4A, 1, 0, Casa de Santa Clara, (11) 5444-1234), (Jardim do Bosque, 15805-045, Catanduva, 55.826.461/0001-00, Rua sem saída, contato@centro-educacional.com.br, Rua Santa Rita do Passa Quatro, 1300, 1, 0, Centro Educacional à Criança e Adolescente, (11) 4781-0842)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'complemento' cannot be null (SQL: insert into `instituicoes` (`bairro`, `cep`, `cidade`, `cnpj`, `complemento`, `email`, `endereco`, `endereco_numero`, `estado_id`, `esta_aprovada`, `razao_social`, `telefone`) values (Vila Renato, 12345-125, São Paulo, 73.332.363/0001-06, Próximo a estação de trêm, contato@casa.com.br, Rua da Alegria, 166, 1, 1, Casa Sistemas, (11) 3333-5555), (Vila Renato, 12345-123, São Paulo, 31.218.703/0001-14, Próximo a estação de trêm, contato@esperança.com.br, Rua da Glória, 123, 1, 1, Lar da Esperança, (11) 4444-5555), (Pajuçara, 39402-827, Natal, 67.511.217/0001-37, , contato@luz.com.br, Travessa Lauré, 123, 21, 0, Raio de Luz, (22) 4444-5555), (Jardim São Francisco, 14702-114, Bebedouro, 27.124.548/0001-08, , contato@santa-clara.com.br, Rua João Mateus de Moraes, 4A, 1, 0, Casa de Santa Clara, (11) 5444-1234), (Jardim do Bosque, 15805-045, Catanduva, 55.826.461/0001-00, Rua sem saída, contato@centro-educacional.com.br, Rua Santa Rita do Passa Quatro, 1300, 1, 0, Centro Educacional à Criança e Adolescente, (11) 4781-0842)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `in...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `in...', Array, Object(Closure))
@@ -19142,7 +19142,7 @@ Stack trace:
 #21 C:\laragon\www\Casa2\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #22 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 3 (SQL: insert into `instituicoes` (`bairro`, `cep`, `cidade`, `cnpj`, `complemento`, `email`, `endereco`, `endereco_numero`, `estado_id`, `is_aprovada`, `razao_social`, `telefone`) values (Vila Renato, 12345-125, São Paulo, 73.332.363/0001-06, Próximo a estação de trêm, contato@casa.com.br, Rua da Alegria, 166, 1, 1, Casa Sistemas, (11) 3333-5555), (Vila Renato, 12345-123, São Paulo, 31.218.703/0001-14, Próximo a estação de trêm, contato@esperança.com.br, Rua da Glória, 123, 1, 1, Lar da Esperança, (11) 4444-5555), (Pajuçara, 39402-827, Natal, 67.511.217/0001-37, , 2017-06-09, contato@luz.com.br, Travessa Lauré, 123, 21, 0, Raio de Luz, (22) 4444-5555), (Jardim São Francisco, 14702-114, Bebedouro, 27.124.548/0001-08, , 2017-06-09, contato@santa-clara.com.br, Rua João Mateus de Moraes, 4A, 1, 0, Casa de Santa Clara, (11) 5444-1234), (Jardim do Bosque, 15805-045, Catanduva, 55.826.461/0001-00, Rua sem saída, 2017-06-09, contato@centro-educacional.com.br, Rua Santa Rita do Passa Quatro, 1300, 1, 0, Centro Educacional à Criança e Adolescente, (11) 4781-0842)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 3 (SQL: insert into `instituicoes` (`bairro`, `cep`, `cidade`, `cnpj`, `complemento`, `email`, `endereco`, `endereco_numero`, `estado_id`, `esta_aprovada`, `razao_social`, `telefone`) values (Vila Renato, 12345-125, São Paulo, 73.332.363/0001-06, Próximo a estação de trêm, contato@casa.com.br, Rua da Alegria, 166, 1, 1, Casa Sistemas, (11) 3333-5555), (Vila Renato, 12345-123, São Paulo, 31.218.703/0001-14, Próximo a estação de trêm, contato@esperança.com.br, Rua da Glória, 123, 1, 1, Lar da Esperança, (11) 4444-5555), (Pajuçara, 39402-827, Natal, 67.511.217/0001-37, , 2017-06-09, contato@luz.com.br, Travessa Lauré, 123, 21, 0, Raio de Luz, (22) 4444-5555), (Jardim São Francisco, 14702-114, Bebedouro, 27.124.548/0001-08, , 2017-06-09, contato@santa-clara.com.br, Rua João Mateus de Moraes, 4A, 1, 0, Casa de Santa Clara, (11) 5444-1234), (Jardim do Bosque, 15805-045, Catanduva, 55.826.461/0001-00, Rua sem saída, 2017-06-09, contato@centro-educacional.com.br, Rua Santa Rita do Passa Quatro, 1300, 1, 0, Centro Educacional à Criança e Adolescente, (11) 4781-0842)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `in...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `in...', Array, Object(Closure))
@@ -19216,7 +19216,7 @@ Stack trace:
 #21 C:\laragon\www\Casa2\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #22 {main}
 
-Next Illuminate\Database\QueryException: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 3 (SQL: insert into `instituicoes` (`bairro`, `cep`, `cidade`, `cnpj`, `complemento`, `email`, `endereco`, `endereco_numero`, `estado_id`, `is_aprovada`, `razao_social`, `telefone`) values (Vila Renato, 12345-125, São Paulo, 73.332.363/0001-06, Próximo a estação de trêm, contato@casa.com.br, Rua da Alegria, 166, 1, 1, Casa Sistemas, (11) 3333-5555), (Vila Renato, 12345-123, São Paulo, 31.218.703/0001-14, Próximo a estação de trêm, contato@esperança.com.br, Rua da Glória, 123, 1, 1, Lar da Esperança, (11) 4444-5555), (Pajuçara, 39402-827, Natal, 67.511.217/0001-37, , 2017-06-09, contato@luz.com.br, Travessa Lauré, 123, 21, 0, Raio de Luz, (22) 4444-5555), (Jardim São Francisco, 14702-114, Bebedouro, 27.124.548/0001-08, , 2017-06-09, contato@santa-clara.com.br, Rua João Mateus de Moraes, 4A, 1, 0, Casa de Santa Clara, (11) 5444-1234), (Jardim do Bosque, 15805-045, Catanduva, 55.826.461/0001-00, Rua sem saída, 2017-06-09, contato@centro-educacional.com.br, Rua Santa Rita do Passa Quatro, 1300, 1, 0, Centro Educacional à Criança e Adolescente, (11) 4781-0842)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
+Next Illuminate\Database\QueryException: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 3 (SQL: insert into `instituicoes` (`bairro`, `cep`, `cidade`, `cnpj`, `complemento`, `email`, `endereco`, `endereco_numero`, `estado_id`, `esta_aprovada`, `razao_social`, `telefone`) values (Vila Renato, 12345-125, São Paulo, 73.332.363/0001-06, Próximo a estação de trêm, contato@casa.com.br, Rua da Alegria, 166, 1, 1, Casa Sistemas, (11) 3333-5555), (Vila Renato, 12345-123, São Paulo, 31.218.703/0001-14, Próximo a estação de trêm, contato@esperança.com.br, Rua da Glória, 123, 1, 1, Lar da Esperança, (11) 4444-5555), (Pajuçara, 39402-827, Natal, 67.511.217/0001-37, , 2017-06-09, contato@luz.com.br, Travessa Lauré, 123, 21, 0, Raio de Luz, (22) 4444-5555), (Jardim São Francisco, 14702-114, Bebedouro, 27.124.548/0001-08, , 2017-06-09, contato@santa-clara.com.br, Rua João Mateus de Moraes, 4A, 1, 0, Casa de Santa Clara, (11) 5444-1234), (Jardim do Bosque, 15805-045, Catanduva, 55.826.461/0001-00, Rua sem saída, 2017-06-09, contato@centro-educacional.com.br, Rua Santa Rita do Passa Quatro, 1300, 1, 0, Centro Educacional à Criança e Adolescente, (11) 4781-0842)) in C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php:770
 Stack trace:
 #0 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(726): Illuminate\Database\Connection->runQueryCallback('insert into `in...', Array, Object(Closure))
 #1 C:\laragon\www\Casa2\vendor\laravel\framework\src\Illuminate\Database\Connection.php(481): Illuminate\Database\Connection->run('insert into `in...', Array, Object(Closure))

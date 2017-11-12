@@ -30,7 +30,7 @@ class CreateAdotantesTable extends Migration
             $table->string('telefone');
             $table->string('celular');
             $table->string('email');
-            $table->boolean('has_vinculo')->default(false);
+            $table->boolean('tem_vinculo')->default(false);
             # Conjuge.
             $table->string('conjuge_nome')->nullable()->index();
             $table->char('conjuge_sexo', 1)->nullable();

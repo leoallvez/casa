@@ -69,6 +69,8 @@ class AdotanteController extends Controller
         $adotante->setInstituicao($usuario->instituicao_id);
         $adotante->setUsuario($usuario->id);
 
+        //$adotante->criarConjuge($request);
+
         $adotante->save();
 
         flash("Adotante ".$adotante->nome." Incluído com Sucesso!", "success");
@@ -114,12 +116,12 @@ class AdotanteController extends Controller
      */
     public function update(AdotanteRequest $request, $id) 
     {
-        $adotante = Adotante::findOrFail($id);
+        $adotante = Adotante::find($id);
 
         Adotante::validarConjuge($request);
         $adotante->update($request->all());
 
-        $adotivos = $request->adotivos;
+        //$adotivos = $request->adotivos;
 
         flash("Adotante ".$adotante->nome." Alterado com Sucesso!", "success");
         return redirect('adotantes');
@@ -142,15 +144,9 @@ class AdotanteController extends Controller
     public function buscar(Request $request) 
     {
         # Retirar os espaços do incios e fim da string.
-        $request->inputBusca = trim($request->inputBusca);
+        $inputBusca = trim($request->inputBusca);
 
-        $adotantes = Adotante::where('nome', 'like', '%'.$request->inputBusca.'%')
-        ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
-        ->orWhere('cpf','=', setMascara($request->inputBusca, '###.###.###-##'))
-        ->orderBy('nome')
-        ->paginate(config('app.list_size'));
-
-        $inputBusca = $request->inputBusca;
+        $adotantes = (new Adotante)->buscar($request->inputBusca);
 
         return view('adotante.index', compact('adotantes', 'inputBusca'));
     }

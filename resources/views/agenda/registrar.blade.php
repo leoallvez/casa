@@ -22,7 +22,7 @@
 	          </div>
 	          <div class="x_content">
 	            <br/>
-            	{!! Form::model($visita, ['method' => 'PUT', 'action' => ['AgendaController@registrarPost', $visita->id]]) !!}
+            	{!! Form::model($visita, ['method' => 'PUT', 'action' => ['AgendaController@registrarVisitaPost', $visita->id]]) !!}
                 	@include('agenda._form', ['nomeBotaoSubmit' => 'Registrar'])
               {!! Form::close() !!}
 	          </div>

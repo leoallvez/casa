@@ -115,7 +115,7 @@
                                 [
                                   'class' => 'form-control',
                                   'placeholder' => 'Selecione Adotante(s)',
-                                  $adotivo->hasAdotantes() ? 'disabled' : null,
+                                  $adotivo->temAdotantes() ? 'disabled' : null,
                                   'style'=> 'width: 100%'
                                 ])
                               !!}
@@ -129,7 +129,7 @@
                           </div>
                           <br>
                           <div class="col-md-2">
-                            @if($adotivo->hasAdotantes())
+                            @if($adotivo->temAdotantes())
                               {{-- {!! Form::button('Desassociar', ['class' => 'btn btn-danger']) !!} --}}
                               <a href="#" class="btn btn-danger" style="margin: 5%" v-on:click="desvincular({!! $adotivo->id !!})">
                                 Desvincular

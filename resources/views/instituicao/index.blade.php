@@ -61,7 +61,7 @@
                         </td>
                         <td>{{ $instituicao->cnpj }}</td>
                         <td>{{ $instituicao->telefone }}</td>
-                        <td>{{ str_limit($instituicao->getAdm(), 30) }}</td>
+                        <td>{{ str_limit($instituicao->getAdm()->name, 30) }}</td>
                         <td>
                           <a href="{{ action('InstituicaoController@edit', $instituicao->id) }}" class="btn btn-info btn-xs">
                             <i class="fa fa-pencil"></i>

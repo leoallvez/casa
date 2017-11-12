@@ -77,7 +77,7 @@ class AdotivoController extends Controller
 
         $adotivo->save();
 
-        //(new AdotivoLog($adotivo))->save();
+        (new AdotivoLog($adotivo))->save();
 
         $adotivo->salvarIrmaos($request->irmaosIds);
 
@@ -141,11 +141,11 @@ class AdotivoController extends Controller
 
     public function update(AdotivoRequest  $request, $id) 
     {
-        $adotivo = Adotivo::findOrfail($id);
+        $adotivo = Adotivo::find($id);
 
         $adotivo->update($request->all());
         //TODO: se não hove mudança não criar log.
-        //(new AdotivoLog($adotivo))->save();
+        (new AdotivoLog($adotivo))->save();
        
         $adotivo->atualizarIrmaos($request->irmaosIds);
         flash(
@@ -173,14 +173,9 @@ class AdotivoController extends Controller
     public function buscar(Request $request) 
     {
         # Retirar os espaços do inicios e fim da string.
-        $request->inputBusca = trim($request->inputBusca);
+        $inputBusca = trim($request->inputBusca);
         
-        $adotivos = Adotivo::where('nome', 'like', '%'.$request->inputBusca.'%')
-        ->where('instituicao_id', Auth::user()->instituicao_id)
-        ->orderBy('nome')
-        ->paginate(config('app.list_size'));
-
-        $inputBusca = $request->inputBusca;
+        $adotivos = (new Adotivo())->buscar($inputBusca);
 
         return view('adotivo.index', compact('adotivos', 'inputBusca'));
     }

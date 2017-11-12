@@ -50,7 +50,7 @@
                         <td>{{ substr($visita->agenda->hora_fim, 0, 5) }}</td>
                         <td>{{ $visita->agenda->calcularTempoTotal() }}</td>
                         <td>
-                          <a href="{{ action('AgendaController@registrarGet', $visita->id) }}"
+                          <a href="{{ action('AgendaController@registrarVisitaGet', $visita->id) }}"
                             class="btn btn-info btn-xs">
                             <i class="fa fa-file-text-o"></i>
                             Registrar

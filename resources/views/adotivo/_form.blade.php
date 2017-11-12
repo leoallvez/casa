@@ -168,7 +168,7 @@
 </div>
 <br>
 
-@if(isset($adotivo) && $adotivo->hasAdotantes())
+@if(isset($adotivo) && $adotivo->temAdotantes())
     <div class="row">
         <div class="col-md-12 col-xs-12">
             {!! Form::label(null ,'Adotante(s)') !!}<br>

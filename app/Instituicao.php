@@ -21,7 +21,7 @@ class Instituicao extends Model
     ];
 
 	protected $fillable = [
-		'is_aprovada',
+		'esta_aprovada',
 		'razao_social',
 		'cnpj',
 		'telefone',
@@ -41,9 +41,9 @@ class Instituicao extends Model
 	/**
     * @return void
     */
-	public function setIsAprovada($is_aprovada) : void
+	public function setEstaAprovada($esta_aprovada) : void
 	{
-		$this->is_aprovada = $is_aprovada;	
+		$this->esta_aprovada = $esta_aprovada;	
 	}
 
 	/**
@@ -57,31 +57,31 @@ class Instituicao extends Model
 	/**
     * @return string
     */
-	public function getAdm() : string
+	public function getAdm()
 	{
 		$usuario = Usuario::where('instituicao_id', $this->id)
 		->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA , UsuarioNivel::ADM_INSTITUICAO])
 		->first();
 
-		return $usuario->name ?? 'Não encontrado';
+		return $usuario;
 	}
 
 	/**
     * @return void
     */
-	public function atualizar(array $request)
+	public function atualizarAdm(array $request)
 	{
 		$admAtual = Usuario::find($request['adm_id']);
 		
 		if($admAtual->id == $request['old_adm_id']) {
 			$admAtual->update($request);
 		} else {
-			# Atualizar novo ADM.
+			# atualizarAdm novo ADM.
 			$admAtual->update([
 				'nivel_id' => UsuarioNivel::ADM_INSTITUICAO, 
 				'cargo'    => $request['cargo']
 			]);
-			# Atualizar ADM antigo como usuário padrão.
+			# atualizarAdm ADM antigo como usuário padrão.
 			$admAntigo = Usuario::find($request['old_adm_id']);
 
 			$admAntigo->update(['nivel_id' => UsuarioNivel::PADRAO]);

@@ -78,7 +78,7 @@ class Vinculo extends Model
     public function vincular(Adotivo $adotivo, Adotante $adotante) : void 
     {
         $adotivo->status_id = AdotivoStatus::RECEBENDO_VISITA;
-        $adotante->has_vinculo = Adotante::TEM_VINCULO;
+        $adotante->tem_vinculo = Adotante::TEM_VINCULO;
         $adotivo->adotantes()->save($adotante);
         $adotivo->save();
     }
@@ -90,10 +90,10 @@ class Vinculo extends Model
     public function desvincular(Adotivo $adotivo, $request) : void
     {
         $adotante = $adotivo->adotantes()
-        ->where('adotantes.has_vinculo', '=', Adotante::TEM_VINCULO)->first();
+        ->where('adotantes.tem_vinculo', '=', Adotante::TEM_VINCULO)->first();
 
         $adotivo->status_id = AdotivoStatus::DISPONIVEL_PARA_ADOCAO;
-        $adotante->has_vinculo = (!Adotante::TEM_VINCULO);
+        $adotante->tem_vinculo = (!Adotante::TEM_VINCULO);
         $adotante->save();
 
         $adotivo->adotantes()

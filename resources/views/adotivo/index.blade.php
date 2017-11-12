@@ -73,7 +73,7 @@
                       </td>
                       <td style="padding: 2%">
                         {!!
-                          $adotivo->hasAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
+                          $adotivo->temAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
                         !!}
                       </td>
                       <td>{{ $adotivo->getSexo() }}</td>
@@ -99,7 +99,7 @@
                           Vínculos
                         </a>
                         @if(Auth::user()->isAdmInstituicao())
-                          @if(!$adotivo->hasAdotantes())
+                          @if(!$adotivo->temAdotantes())
                             <a href="#" class="btn btn-danger btn-xs"
                               v-on:click="excluir({!! $adotivo->id !!})">
                               <i class="fa fa-trash-o"></i>

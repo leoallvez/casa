@@ -4,6 +4,7 @@ namespace Casa;
 use Carbon\Carbon;
 use Casa\AdotivoStatus;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -132,7 +133,7 @@ class Adotivo extends Model
      * retorna true, caso contrario false.
      * @return boolean
      */
-    public function has16AnosDeDiferenca(Adotante $adotante) : bool
+    public function tem16AnosDeDiferenca(Adotante $adotante) : bool
     {
         $adotante_difference = $this->nascimento->diffInYears($adotante->nascimento);
         # Adotante pode não ter conjuge.
@@ -230,7 +231,7 @@ class Adotivo extends Model
     /**
      * @return boolean
      */
-    public function hasAdotantes() : bool
+    public function temAdotantes() : bool
     {
        $result = $this->adotantes()
        ->where('adotantes_adotivos.deleted_at', '=', null)
@@ -274,6 +275,14 @@ class Adotivo extends Model
             return strtoupper($nomeAbreviado.".");
         }
         return $nomeAbreviado;
+    }
+
+    public function buscar($valor_de_busca) 
+    {
+        return self::where('nome', 'like', '%'.$valor_de_busca.'%')
+        ->where('instituicao_id', Auth::user()->instituicao_id)
+        ->orderBy('nome')
+        ->paginate(config('app.list_size'));
     }
 
    /**

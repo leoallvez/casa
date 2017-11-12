@@ -37,8 +37,8 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     # Visitas Registrar
     Route::get('visitas/listar', 'AgendaController@listar');
     Route::get('visitas/registra/listar', 'AgendaController@registrarListar');
-    Route::get('visitas/registra/{id}', 'AgendaController@registrarGet');
-    Route::put('visitas/registra/{id}', 'AgendaController@registrarPost');
+    Route::get('visitas/registra/{id}', 'AgendaController@registrarVisitaGet');
+    Route::put('visitas/registra/{id}', 'AgendaController@registrarVisitaPost');
     Route::resource('visitas', 'AgendaController');
     # Relatórios. 
     

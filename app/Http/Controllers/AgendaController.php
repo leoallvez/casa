@@ -144,7 +144,7 @@ class AgendaController extends Controller
         return view('agenda.registrar_list', compact('visitas')); 
     }
 
-    public function registrarGet($id)
+    public function registrarVisitaGet($id)
     {
         $visita = Visita::find($id);
         $agenda = $visita->agenda;
@@ -152,7 +152,7 @@ class AgendaController extends Controller
         return view('agenda.registrar', compact('visita','agenda'));   
     }
 
-    public function registrarPost(RegistraVisitaRequest $request, $id)
+    public function registrarVisitaPost(RegistraVisitaRequest $request, $id)
     {
         Visita::find($id)->update($request->all());
 

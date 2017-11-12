@@ -27,7 +27,7 @@ class VinculoController extends Controller {
          * senão null. 
         */
         $idAdotanteVinculo = $adotivo->adotantes()
-        ->where('adotantes.has_vinculo','=', 1)
+        ->where('adotantes.tem_vinculo','=', 1)
         ->first()['id'];
 
     	$adotantes = Adotante::orderBy('nome')
@@ -88,12 +88,13 @@ class VinculoController extends Controller {
         $adotivo = Adotivo::find($request->adotivo_id);
         $adotante = Adotante::find($request->adotante_id);
         # Não podem tem menos 16 anos de diferença.
-        if(!$adotivo->has16AnosDeDiferenca($adotante)) {
+        if(!$adotivo->tem16AnosDeDiferenca($adotante)) {
             flash("Adotivo tem diferença de idade inferior a 16 anos com o adotante ou seu conjuge", 'danger');
             return redirect('vinculos/adotivo/'.$adotivo->id);
         }
 
         (new Vinculo())->vincular($adotivo, $adotante);
+        
         flash("Adotivo ".$adotivo->nome." vinculado(a) com Sucesso!", "success");
         return redirect('vinculos/adotivo/'.$adotivo->id);
     }

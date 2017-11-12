@@ -20,7 +20,7 @@ class SolicitaCadastroController extends Controller
      */
     public function index() 
     {
-        $solicitacoes = Instituicao::where('is_aprovada', false)->paginate(10);
+        $solicitacoes = Instituicao::where('esta_aprovada', false)->paginate(10);
 
         return view('solicitacao.index', compact('solicitacoes'));
     }
@@ -47,7 +47,7 @@ class SolicitaCadastroController extends Controller
     {
         # Instituição.
         $instituicao = new Instituicao($request->all());
-        $instituicao->setIsAprovada(false);
+        $instituicao->setEstaAprovada(false);
         $instituicao->setEmail($request->email_instituicao);
         $instituicao->save();
         # Usuário.
@@ -82,13 +82,15 @@ class SolicitaCadastroController extends Controller
     public function aprovar($id) 
     {
         # Instituição.
-        $instituicao = Instituicao::findOrfail($id);
-        $instituicao->setIsAprovada(true);
+        $instituicao = Instituicao::find($id);
+        $instituicao->setEstaAprovada(true);
         $instituicao->save();
         # Usuário.
         $usuario = Usuario::where('instituicao_id', '=', $id)->first();
         $usuario->setNivel(UsuarioNivel::ADM_INSTITUICAO);
+
         $usuario->save();
+        //$usuario->enviarEmailDeConfirmacao();
 
         flash('Instituição '.$instituicao->razao_social.' aprovada com sucesso!', 'success');
         return redirect('solicitar-cadastro');
@@ -96,20 +98,22 @@ class SolicitaCadastroController extends Controller
 
     public function reprovar(SolicitarCadastroReprovarRequest $request, $id) 
     {
-        $instituicao = Instituicao::findOrfail($id);  
+        $instituicao = Instituicao::find($id);  
         $usuario = Usuario::where('instituicao_id', '=', $id)->first();
-        flash('Instituição '.$instituicao->razao_social.' reprovada com sucesso!', 'success');
+       
         # Enviar E-mail. $request->motivo_reprovacao.
         $instituicao->delete();
         # Excluíndo fisicamente usuário da base de dados. 
         $usuario->forceDelete(); 
+
+        flash('Instituição '.$instituicao->razao_social.' reprovada com sucesso!', 'success');
 
         return redirect('solicitar-cadastro');
     }
 
     public function buscar(Request $request) 
     {
-        $solicitacoes = Instituicao::where('is_aprovada', '=', 'false')
+        $solicitacoes = Instituicao::where('esta_aprovada', '=', 'false')
         ->where('razao_social', 'like', '%'.$request->inputBusca.'%')
         ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'))
         ->orderBy('razao_social')

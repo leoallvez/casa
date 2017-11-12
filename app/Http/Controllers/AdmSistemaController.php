@@ -19,7 +19,8 @@ class AdmSistemaController extends Controller
      */
     public function index() 
     {
-        $adms = AdmSistema::listar();
+        $adms = AdmSistema::listar(UsuarioNivel::ADM_SISTEMA);
+        
         return view('adm-sistema.index', compact('adms'));
     }
     /**
@@ -99,7 +100,7 @@ class AdmSistemaController extends Controller
     
     public function buscar(Request $request) 
     {
-        $adms = AdmSistema::buscar($request->inputBusca);
+        $adms = AdmSistema::buscar($request->inputBusca, UsuarioNivel::ADM_SISTEMA);
 
         $inputBusca = $request->inputBusca;
 

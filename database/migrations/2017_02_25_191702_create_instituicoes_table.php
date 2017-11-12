@@ -17,7 +17,7 @@ class CreateInstituicoesTable extends Migration
         {
             $table->increments('id');
             $table->string('razao_social')->index();
-            $table->boolean('is_aprovada');
+            $table->boolean('esta_aprovada');
             $table->string('cnpj')->index();
             $table->string('telefone');
             $table->string('endereco');
