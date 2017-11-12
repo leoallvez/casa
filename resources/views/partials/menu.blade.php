@@ -59,7 +59,7 @@
         <li>
           <a href="{{ action("RelatorioAdotivoController@index") }}">
             <i class="fa fa-list-alt"></i>
-            Relatórios
+            Relatório
           </a>
         </li>
       @endif
