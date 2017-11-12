@@ -74,7 +74,7 @@
           {{--  {!! Form::close() !!}  --}}
         
         <div class="content title_right">
-          
+          <h2>Quantidade de registros encontrados: 109</h2>
         </div>
       </div>
       <div class="clearfix"></div>
