@@ -17,6 +17,7 @@ class CreateAdotivosLogs extends Migration
             $table->increments('id');
             $table->date('data');
             $table->binary('adotivoJSON');
+            $table->integer('adotivo_id');
         });
     }
 

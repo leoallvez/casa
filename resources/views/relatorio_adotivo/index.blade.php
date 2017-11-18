@@ -94,9 +94,9 @@
               <div id="x" class="tab-content">
                 <!-- Mostrar gráfico-->
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_grafico" aria-labelledby="home-tab">
-                  <div id="grafico-status" style="height: 80%; width: 100%; margin: 0 auto"></div>
-                  <div id="grafico-sexo" style="height: 80%; width: 100%; "></div>
-                  <div id="grafico-etnias" style="height: 80%; width: 100%; "></div>
+                  <div id="grafico-status"></div>
+                  <div id="grafico-sexo"></div>
+                  <div id="grafico-etnias"></div>
 
                   <div class="form-group">
                       {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
