@@ -4,6 +4,7 @@ namespace Casa\Http\Controllers;
 
 use Casa\Etnia;
 use Casa\Adotivo;
+use Casa\AdotivoLog;
 use Casa\AdotivoStatus;
 use Illuminate\Http\Request;
 
@@ -42,16 +43,35 @@ class RelatorioAdotivoController extends Controller
      */
     public function gerar(Request $request) 
     {
-        // $adotivos = Adotivo::orderBy('nome')->paginate(10);
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
         $dadosStatus = Adotivo::getQuantidadePorStatus();
-        if($request->dimensao_select == 1)
-            $dimensaoValue = 1;
-        else
-            $dimensaoValue = 0;    
+        $dimensaoValue = true;
+
+        $adotivos = Adotivo::all();
+
+        $idades[0] = "Menos de 1 ano";
+        $idades[1] = "1 ano";
+        for($i = 2; $i < 18; $i++) {
+            $idades[$i] = $i." anos";    
+        }
+        $idades[] = "18 anos ou mais";
+
+        $resultados = AdotivoLog::pesquisar($request); 
+ 
+        $adotivos = collect();
+
+        foreach($resultados as $log) {
+
+            $adotivo = new Adotivo(json_decode($log->adotivoJSON, true));
+
+            $adotivos->prepend($adotivo);
+        }
+ 
+        $dadosStatus = Adotivo::getQuantidadePorStatus();
+  
 
         return view('relatorio_adotivo.index', 
-            compact('status','etnias', 'dadosStatus', 'dimensaoValue'));    
+            compact('status','etnias', 'dadosStatus', 'dimensaoValue', 'adotivos', 'idades'));   
     }
 }

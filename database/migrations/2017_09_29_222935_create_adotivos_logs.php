@@ -18,6 +18,12 @@ class CreateAdotivosLogs extends Migration
             $table->date('data');
             $table->binary('adotivoJSON');
             $table->integer('adotivo_id');
+            $table->char('adotivo_sexo', 1);
+            $table->integer('adotivo_etnia_id');
+            $table->integer('adotivo_status_id');
+            $table->integer('adotivo_idade');
+            # FK
+            $table->integer('instituicao_id');
         });
     }
 

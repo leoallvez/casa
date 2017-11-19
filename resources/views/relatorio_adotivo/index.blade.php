@@ -12,20 +12,19 @@
         <div class="col-md-9">
           <h3>{!! Html::linkAction('RelatorioAdotivoController@index','Relatório de Adotivos') !!}</h3>
           <br>
-              {{--  <div class="col-md-2"></div>  --}}
-            {{--  {!! Form::open(['method' => 'PUT','action' => 'RelatorioAdotivoController@gerar']) !!}  --}}
+            {!! Form::open(['method' => 'PUT','action' => 'RelatorioAdotivoController@gerar']) !!}
             <div class="row">
               <div class="col-md-8">
                 <div class="input-group input-daterange">
                     <div class="input-group-addon">Periodo de </div>
-                    {!! Form::date('name', \Carbon\Carbon::now(),
+                    {!! Form::date('data_inicio', \Carbon\Carbon::now(),
                       [
                         'class'       => 'form-control',
                         'placeholder' => 'Todas Etnias'
                       ])
                     !!}
                     <div class="input-group-addon">até</div>
-                    {!! Form::date('name', \Carbon\Carbon::now(),
+                    {!! Form::date('data_fim', \Carbon\Carbon::now(),
                       [
                         'class'       => 'form-control',
                         'placeholder' => 'Todas Etnias'
@@ -71,7 +70,7 @@
                   {!! Form::submit('Gerar', ['class' => ' form-control btn btn-success btn-sm']) !!}
               </div>
             </div>
-          {{--  {!! Form::close() !!}  --}}
+          {!! Form::close() !!}
         
         <div class="content title_right">
           <h2>Quantidade de registros encontrados: 109</h2>
@@ -113,7 +112,6 @@
                         <thead>
                           <tr>
                             <th>Nome</th>
-                            <th>Vínculo?</th>
                             <th>Sexo</th>
                             <th>Idade</th>
                             <th>Etnia</th>
@@ -129,11 +127,6 @@
                               <small>
                                 Cadastrado: {{ $adotivo->created_at->format('d/m/Y') }}
                               </small>
-                            </td>
-                            <td style="padding: 2%">
-                              {!!
-                                $adotivo->temAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
-                              !!}
                             </td>
                             <td>{{ $adotivo->getSexo() }}</td>
                             <td style="padding-right: -5px">

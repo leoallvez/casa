@@ -1,5 +1,6 @@
 <?php
-
+use Casa\Adotivo;
+use Casa\AdotivoLog;
 use Illuminate\Database\Seeder;
 
 class AdotivosTableSeeder extends Seeder 
@@ -715,6 +716,12 @@ class AdotivosTableSeeder extends Seeder
 	    		'created_at'        => "2017-09-05",
     		]
     	];
-    	DB::table('adotivos')->insert($adotivos);
+		DB::table('adotivos')->insert($adotivos);
+		# Gerar logs.
+		foreach(Adotivo::all() as $adotivo) {
+			$log = new AdotivoLog();
+			$log->setAll($adotivo);
+			$log->salvar();
+		}
     }
 }

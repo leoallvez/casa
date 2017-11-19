@@ -29,13 +29,15 @@ class Adotivo extends Model
       'etnia_id',
       'status_id',
       'matricula',
+      'created_at',
+      'updated_at',
       'nascimento',
       'usuario_id',
       'restricao_id',
       'data_chegada',
       'instituicao_id',
       'escolaridade_id',
-      'nacionalidade_id'
+      'nacionalidade_id',
     ];
 
     /**
@@ -164,7 +166,7 @@ class Adotivo extends Model
     /**
      * @return void
      */
-    public function salvarIrmaos(array $irmaosIds = []) : void
+    public function salvarIrmaos($irmaosIds = []) : void
     {
         if(isset($irmaosIds)) {
 
@@ -283,6 +285,11 @@ class Adotivo extends Model
         ->where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(config('app.list_size'));
+    }
+
+    public function getIdadeAsInt() : int
+    {
+        return $this->nascimento->diffInYears(Carbon::now());
     }
 
    /**

@@ -1,11 +1,12 @@
 <?php
 
 namespace Casa;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 /**
-* Responsável por criar os logs dos adotivos.
+* Responsável por criar, atualizae e busca 
+* os logs dos adotivos pesquisados no relatório.
 * @package  Casa
 * @author   Leonardo Alves <leoallvez@hotmail.com>
 * @access   public
@@ -15,12 +16,26 @@ class AdotivoLog extends Model
 {
     public $timestamps = false;
     protected $table = "adotivos_logs";
-    
-    public function __construct(Adotivo $adotivo) 
+
+    protected $fillable = [
+        'adotivo_status_id',
+        'adotivo_etnia_id',
+        'adotivo_idade',
+        'adotivoJSON',
+        'adotivo_id',
+        'data',
+    ];
+
+    public function setAll(Adotivo $adotivo) : void
     {
-        $this->adotivoJSON = $adotivo->toJson();
-        $this->adotivo_id = $adotivo->id;
-        $this->data = date('Y-m-d');
+        $this->adotivo_status_id = $adotivo->status_id;
+        $this->adotivo_etnia_id  = $adotivo->etnia_id ;
+        $this->instituicao_id    = Auth::user()->instituicao_id ?? 2; //TODO: remover o 2 de teste.
+        $this->adotivo_idade     = $adotivo->getIdadeAsInt();
+        $this->adotivo_sexo      = $adotivo->sexo;
+        $this->adotivoJSON       = $adotivo->toJson();
+        $this->adotivo_id        = $adotivo->id;
+        $this->data              = date('Y-m-d');
     }
 
     public function salvar() 
@@ -28,19 +43,52 @@ class AdotivoLog extends Model
         $this->save();
     }
 
-    public function altualizarOuSalvar() : boolean
+    public function altualizarOuSalvar() : void
     {
-        $lastAdotivoLog = self::where('adotivo_id', $this->adotivo_id)
-        ->where('data', date('Y-m-d'))
-        ->last();
-        //Fazer update.
-        if(!is_null($lastAdotivoLog)) {
-            $lastAdotivoLog->adotivoJSON = $this->adotivoJSON; 
-            $lastAdotivoLog->update();
-            return true;
+        $adotivoLogHoje = self::getAdotivoLogHoje();
+        // Caso o adotivo tiver log na data de hoje atualizar
+        if(!is_null($adotivoLogHoje)) {
+            $this->id = $adotivoLogHoje->id;
+            $adotivoLogHoje = $this;
+            $adotivoLogHoje->update();
+        } else {
+            // Senão criar um log novo.
+            $this->save();
         }
-        //Fazer o create.
-        $this->salve();
-        return false;
+    }
+
+    private function getAdotivoLogHoje()
+    {
+        return self::where('adotivo_id', $this->adotivo_id)->where('data', date('Y-m-d'))->get()->last();
+    }
+
+    public static function pesquisar($request) 
+    {
+        $resultado = self::where('instituicao_id', Auth::user()->instituicao_id);
+
+        if(isset($request->data_inicio) && isset($request->data_fim) ){
+            
+            $resultado = $resultado->whereBetween('data', 
+                [$request->data_inicio, $request->data_fim]
+            );  
+        }
+
+        if(isset($request->sexo)) {
+            $resultado = $resultado->where('adotivo_sexo', $request->sexo);    
+        }
+
+        if(isset($request->idade)) {
+            $resultado = $resultado->where('adotivo_idade', $request->idade);    
+        }
+
+        if(isset($request->etnia)) {
+            $resultado = $resultado->where('adotivo_etnia_id', $request->etnia);    
+        }
+
+        if(isset($request->status)) {
+            $resultado = $resultado->where('adotivo_status_id', $request->status);    
+        }
+
+        return $resultado->get();
     }
 }
