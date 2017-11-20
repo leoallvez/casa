@@ -17,22 +17,20 @@ class RelatorioAdotivoController extends Controller
      */
     public function index(Request $request) 
     {
+        //dd($objeto);
+        # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
-        $dadosStatus = Adotivo::getQuantidadePorStatus();
-        $dimensaoValue = true;
-
         $adotivos = Adotivo::all();
+        $idades = getIdadesHelper();
 
-        $idades[0] = "Menos de 1 ano";
-        $idades[1] = "1 ano";
-        for($i = 2; $i < 18; $i++) {
-            $idades[$i] = $i." anos";    
-        }
-        $idades[] = "18 anos ou mais";
+        # Valores para os gráficos
+        $dadosStatus = quantidadePorStatusHelper($adotivos);
+        $dadosSexo   = porcentagemAdotivoSexoHelper($adotivos);
+        $dadosEtnias = quantidadePorEtniaHelper($adotivos);
 
         return view('relatorio_adotivo.index', 
-            compact('status','etnias', 'dadosStatus', 'dimensaoValue', 'adotivos', 'idades'));   
+            compact('status', 'etnias', 'adotivos', 'idades', 'dadosStatus', 'dadosSexo', 'dadosEtnias'));     
     }
 
     /**
@@ -43,35 +41,32 @@ class RelatorioAdotivoController extends Controller
      */
     public function gerar(Request $request) 
     {
+        # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
-        $dadosStatus = Adotivo::getQuantidadePorStatus();
-        $dimensaoValue = true;
+        $idades = getIdadesHelper();
 
-        $adotivos = Adotivo::all();
-
-        $idades[0] = "Menos de 1 ano";
-        $idades[1] = "1 ano";
-        for($i = 2; $i < 18; $i++) {
-            $idades[$i] = $i." anos";    
-        }
-        $idades[] = "18 anos ou mais";
-
+    
+        #Busca nos logs de acordo com os filtros escolhidos.
         $resultados = AdotivoLog::pesquisar($request); 
- 
-        $adotivos = collect();
+        
+        $adotivos = logsToAdotivosHelper($resultados);
 
-        foreach($resultados as $log) {
+        $dadosStatus = null;
+        $dadosSexo   = null;
+        $dadosEtnias = null;
 
-            $adotivo = new Adotivo(json_decode($log->adotivoJSON, true));
-
-            $adotivos->prepend($adotivo);
+        if(!$adotivos->isEmpty()) {
+            # Valores para os gráficos
+            $dadosStatus = (!isset($request->status)) ? quantidadePorStatusHelper($adotivos)    : null;
+            $dadosSexo   = (!isset($request->sexo))   ? porcentagemAdotivoSexoHelper($adotivos) : null;
+            $dadosEtnias = (!isset($request->etnia))  ? quantidadePorEtniaHelper($adotivos)     : null;
         }
- 
-        $dadosStatus = Adotivo::getQuantidadePorStatus();
   
-
         return view('relatorio_adotivo.index', 
-            compact('status','etnias', 'dadosStatus', 'dimensaoValue', 'adotivos', 'idades'));   
+            compact('status', 'etnias', 'adotivos', 'idades', 'dadosStatus', 'dadosSexo', 'dadosEtnias'));   
     }
 }
+
+ 
+

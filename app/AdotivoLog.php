@@ -26,8 +26,10 @@ class AdotivoLog extends Model
         'data',
     ];
 
-    public function setAll(Adotivo $adotivo) : void
+    public function setAll(Adotivo $adotivo, $data = null) : void
     {
+        $data = $data ?? date('Y-m-d');
+        
         $this->adotivo_status_id = $adotivo->status_id;
         $this->adotivo_etnia_id  = $adotivo->etnia_id ;
         $this->instituicao_id    = Auth::user()->instituicao_id ?? 2; //TODO: remover o 2 de teste.
@@ -35,7 +37,7 @@ class AdotivoLog extends Model
         $this->adotivo_sexo      = $adotivo->sexo;
         $this->adotivoJSON       = $adotivo->toJson();
         $this->adotivo_id        = $adotivo->id;
-        $this->data              = date('Y-m-d');
+        $this->data              = $data;
     }
 
     public function salvar() 

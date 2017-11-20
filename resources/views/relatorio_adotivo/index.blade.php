@@ -17,7 +17,7 @@
               <div class="col-md-8">
                 <div class="input-group input-daterange">
                     <div class="input-group-addon">Periodo de </div>
-                    {!! Form::date('data_inicio', \Carbon\Carbon::now(),
+                    {!! Form::date('data_inicio', \Carbon\Carbon::now()->subYears(1),
                       [
                         'class'       => 'form-control',
                         'placeholder' => 'Todas Etnias'
@@ -73,7 +73,11 @@
           {!! Form::close() !!}
         
         <div class="content title_right">
-          <h2>Quantidade de registros encontrados: 109</h2>
+          @if($adotivos->count() > 0)
+            <h2>Quantidade de registros encontrados: {{ $adotivos->count() }}</h2>
+          @else
+            <h2>Nenhum registro encontrado</h2>  
+          @endif
         </div>
       </div>
       <div class="clearfix"></div>
@@ -93,18 +97,27 @@
               <div id="x" class="tab-content">
                 <!-- Mostrar gráfico-->
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_grafico" aria-labelledby="home-tab">
-                  <div id="grafico-status"></div>
-                  <div id="grafico-sexo"></div>
-                  <div id="grafico-etnias"></div>
-
-                  <div class="form-group">
-                      {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
-                  </div>
+                  @if(!$adotivos->isEmpty())
+                    @if(!is_null($dadosStatus))
+                      <div id="grafico-status"></div>
+                    @endif
+                    @if(!is_null($dadosSexo))
+                      <div id="grafico-sexo"></div>
+                    @endif
+                    @if(!is_null($dadosEtnias))
+                      <div id="grafico-etnias"></div>
+                    @endif
+                    <div class="form-group">
+                        {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                  @else
+                     Não foram encontrados registros na base de dados!
+                  @endif
                 </div>
                 <!-- Mostrar listagem-->
                 <div role="tabpanel" class="tab-pane fade" id="tab_listagem" aria-labelledby="profile-tab">
 
-                  @if($adotivos->count() > 0)
+                  @if(!$adotivos->isEmpty())
                     <div class="table-responsive">
                       <p>Listagem dos adotivo ativos.</p>
                       {{-- start list --}}
@@ -145,12 +158,12 @@
                       </table>
                       {{-- end project list --}}
                     </div>
+                    <div class="form-group">
+                      {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
+                    </div>
                   @else
                     Não foram encontrados registros na base de dados!
                   @endif
-                  <div class="form-group">
-                      {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
-                  </div>
                 </div>
               </div>
             </div>       
@@ -166,188 +179,182 @@
   <script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
   <script src="{{ asset('js/highcharts/code/highcharts-3d.js') }}"></script>
   <script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
+
   <script type="text/javascript"> 
-    var dados = {!! json_encode($dadosStatus) !!};
-    var dimensao = {!! $dimensaoValue !!};
-    /** Munda a dimensão do graficos */
-    Highcharts.chart('grafico-status', {
-      chart: {
-        type: 'pie',
-        options3d: {
-          enabled: dimensao,
-          alpha: 45
-        }
-      },
-      title: {
-        text: 'Quantidade de adotivos por status',
-        style: {
-          'fontSize' : '20px',
-          'color' : '#00BFFF',
-          'fontWeight' : 'bold',
-        }
-      },
-      subtitle: {
-        text: '',
-        style: {
-          'fontSize' : '20px',
-        }
-      },
-      plotOptions: {
-        pie: {
-          innerSize: 100,
-        depth: 45,
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-                distance: 50,
-                filter: {
-                    property: 'percentage',
-                    operator: '>',
-                    value: 4
-                }
-            }
-        }
-    },
-      series: [{
-        name: 'Quantidate de adotivos',
-        data: dados,
-        dataLabels: {
-          style: {'fontSize': '10px', 'fontFamily': 'Verdana' }
-        }
-      }]
-    });
+ 
+    // GRÁFICO DE STATUS DOS ADOTIVOS
+    @if(!is_null($dadosStatus))
 
-    Highcharts.chart('grafico-sexo', {
-      chart: {
-        type: 'column',
-        options3d: {
-          enabled: dimensao,
-          alpha: 0
-        }
-      },
-      colors: ["#ff0080", "#00bfff"],
-      title: {
-        text: 'Porcentagem por sexo',
-        style: {
-          'fontSize' : '20px',
-          'color' : '#00BFFF',
-          'fontWeight' : 'bold',
-        }
-      },
-      subtitle: {
-        text: '',
-        style: {
-          'fontSize' : '20px',
-        }
-      },
-      plotOptions: {
-        pie: {
-        innerSize: 100,
-        depth: 45
-        }
-      },
-      xAxis: {
-        type: 'category'
-    },
-    yAxis: {
+      var dadosStatus   = {!! json_encode($dadosStatus) !!};
+
+      Highcharts.chart('grafico-status', {
+        chart: {
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45
+          }
+        },
         title: {
-            text: 'Porcentagem por sexo'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y:.1f}%'
-            }
-        }
-    },
-    series: [{
-      name: 'Porcentagem',
-      colorByPoint: true,
-      data: [
-        {
-          name: 'Feminino',
-          y: 56.33,
-          drilldown: 'Feminino'
-        }, 
-        {
-            name: 'Masculino',
-            y: 24.03,
-            drilldown: 'Masculino'
-        }
-        ]
-      }]
-    });
-
-     Highcharts.chart('grafico-etnias', {
-      chart: {
-        type: 'pie',
-        options3d: {
-          enabled: false,
-          alpha: 0
-        }
-      },
-    
-      title: {
-        text: 'Porcentagem por etnias',
-        style: {
-          'fontSize' : '20px',
-          'color' : '#00BFFF',
-          'fontWeight' : 'bold',
-        }
-      },
-      subtitle: {
-        text: '',
-        style: {
-          'fontSize' : '20px',
-        }
-      },
-      plotOptions: {
-        pie: {
+          text: 'Adotivos por status',
+          style: {
+            'fontSize' : '20px',
+            'color' : '#00BFFF',
+            'fontWeight' : 'bold',
+          }
+        },
+        subtitle: {
+          text: '',
+          style: {
+            'fontSize' : '20px',
+          }
+        },
+        plotOptions: {
+          pie: {
+            innerSize: 100,
+          depth: 45,
             allowPointSelect: true,
             cursor: 'pointer',
             dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-                distance: 20,
-                filter: {
-                    property: 'percentage',
-                    operator: '>',
-                    value: 4
+              enabled: true,
+              format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+              distance: 50,
+              filter: {
+                property: 'percentage',
+                operator: '>',
+                value: 4
+              }
+            }
+          }
+        },
+        series: [{
+          name: 'Quantidate de adotivos',
+          data: dadosStatus,
+          dataLabels: {
+            style: {'fontSize': '10px', 'fontFamily': 'Verdana' }
+          }
+        }]
+      });
+    @endif
+    // GRÁFICO DE SEXO DOS ADOTIVOS
+    @if(!is_null($dadosSexo))
+
+      var dadosSexo   = {!! json_encode($dadosSexo) !!};
+
+      Highcharts.chart('grafico-sexo', {
+        chart: {
+          type: 'column',
+          options3d: {
+            enabled: true,
+            alpha: 0
+          }
+        },
+        colors: ["#ff0080", "#00bfff"],
+        title: {
+          text: 'Porcentagem de adotivos por sexo',
+          style: {
+            'fontSize' : '20px',
+            'color' : '#00BFFF',
+            'fontWeight' : 'bold',
+          }
+        },
+        subtitle: {
+          text: '',
+          style: {
+            'fontSize' : '20px',
+          }
+        },
+        plotOptions: {
+          pie: {
+          innerSize: 100,
+          depth: 45
+          }
+        },
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          title: {
+            text: 'Porcentagem de adotivos por sexo'
+          }
+
+        },
+        legend: {
+          enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%'
                 }
             }
-        }
-    },
-  
-    yAxis: {
-      title: {
-          text: 'Porcentagem por etnias'
-      }
-    },
-    legend: {
-        enabled: true
-    },
-    series: [{
-      name: 'Brands',
-        data: [
-            { name: 'Branco(a)', y: 14.33 },
-            { name: 'Negro(a)', y: 14.03 },
-            { name: 'Indígena', y: 14.38 },
-            { name: 'Mulato(a)', y: 14.77 },
-            { name: 'Caboclo(a)', y: 14.91 },
-            { name: 'Cafuzo(a)', y: 14.2 },
-            { name: 'Pardo(a)', y: 14.2 }
-        ]
-      }]
-    });
+        },
+        series: [{
+          name: 'Porcentagem',
+          colorByPoint: true,
+          data: dadosSexo 
+        }]
+      });
+    @endif
+    // GRÁFICO DE ETNIAS
+    @if(!is_null($dadosEtnias))
+
+      var dadosEtnia  = {!! json_encode($dadosEtnias) !!};
+
+      Highcharts.chart('grafico-etnias', {
+        chart: {
+          type: 'pie',
+          options3d: {
+            enabled: false,
+            alpha: 0
+          }
+        },
+        title: {
+          text: 'Porcentagem de adotivos por etnias',
+          style: {
+            'fontSize' : '20px',
+            'color' : '#00BFFF',
+            'fontWeight' : 'bold',
+          }
+        },
+        subtitle: {
+          text: '',
+          style: {
+            'fontSize' : '20px',
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+              distance: 20,
+              filter: {
+                property: 'percentage',
+                operator: '>',
+                value: 4
+              }
+            }
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Porcentagem por etnias'
+          }
+        },
+        legend: {
+          enabled: true
+        },
+        series: [{
+          name: 'Quantidade de adotivos',
+          data: dadosEtnia
+        }]
+      });
+    @endif
   </script>
 @endsection 
 

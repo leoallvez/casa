@@ -720,7 +720,7 @@ class AdotivosTableSeeder extends Seeder
 		# Gerar logs.
 		foreach(Adotivo::all() as $adotivo) {
 			$log = new AdotivoLog();
-			$log->setAll($adotivo);
+			$log->setAll($adotivo, $adotivo->created_at);
 			$log->salvar();
 		}
     }
