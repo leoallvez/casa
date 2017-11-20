@@ -58,7 +58,7 @@ O sistema conta com uma versão online: http://casa-sistema.com.br que possui al
     <td>casa2017</td>
   </tr>
   <tr>
-    <td>Administrador do Instituição</td>
+    <td>Administrador da Instituição</td>
     <td>adm@esperanca.com.br</td> 
     <td>casa2017</td>
   </tr>
