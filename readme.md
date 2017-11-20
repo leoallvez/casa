@@ -42,5 +42,33 @@ O terceiro é o usuário padrão, responsável pelo cadastramento e atualizaçã
 </table>
 
 
+<h2>Acessos para Teste</h2>
+
+O sistema conta com uma versão online: http://casa-sistema.com.br que possui alguns usuário de teste cadastrados no sistema.
+
+<table style="width:100%">
+  <tr>
+    <th>Nível de usuario</th>
+    <th>E-mail</th> 
+    <th>Senha</th>
+  </tr>
+  <tr>
+    <td>Administrador do Sistema</td>
+    <td>adm@casa.com.br</td> 
+    <td>casa2017</td>
+  </tr>
+  <tr>
+    <td>Administrador do Instituição</td>
+    <td>adm@esperanca.com.br</td> 
+    <td>casa2017</td>
+  </tr>
+  <tr>
+    <td>Usuário Padrão</td>
+    <td>padrao@esperanca.com.br</td> 
+    <td>casa2017 </td>
+  </tr>
+</table>
+
+
 
 
