@@ -21,7 +21,7 @@ class RelatorioAdotivoController extends Controller
         # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
-        $adotivos = Adotivo::all();
+        $adotivos = Adotivo::all(); //TODO: pegar do logs
         $idades = getIdadesHelper();
 
         # Valores para os gráficos

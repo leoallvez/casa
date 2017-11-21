@@ -119,7 +119,6 @@
 
                   @if(!$adotivos->isEmpty())
                     <div class="table-responsive">
-                      <p>Listagem dos adotivo ativos.</p>
                       {{-- start list --}}
                       <table class="table table-hover table-general">
                         <thead>
