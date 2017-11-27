@@ -44,7 +44,7 @@ O terceiro é o usuário padrão, responsável pelo cadastramento e atualizaçã
 
 <h2>ACESSOS PARA CONHECER O SISTEMA</h2>
 
-O sistema conta com uma versão online: http://casa-sistema.com.br que possui alguns usuário de teste cadastrados no sistema.
+O sistema conta com uma versão online: http://casa-sistema.com.br que possui alguns usuários de teste cadastrados no sistema.
 
 <table style="width:100%">
   <tr>
