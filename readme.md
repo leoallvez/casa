@@ -31,6 +31,8 @@ Crianças para Adoção Salvas pelo Afeto (CASA) é um sistema para gerenciament
 
 A entrada no sistema é autorizada mediante autenticação por login e senha permitindo o acesso simultâneo de vários usuários ao software.
 
+![Tela de Login](public/img/tela-login.png)
+
 O sistema conta com três diferentes níveis de usuários, sendo no primeiro nível os administradores de todo o sistema CASA, responsável pela aprovação ou reprovação das solicitações pendentes, cadastro dos administradores de cada orfanato e de novos administradores do sistema.
 
 O segundo é o administrador do orfanato responsável pelo cadastro de usuário padrão, gerar relatórios gerenciais, inativar adotante e adotivo, e possuir todos os privilégios do usuário padrão, sendo o seu acesso restrito apenas aos dados do orfanato em que ele estiver cadastrado, ou seja, este usuário não possui total acesso aos dados de todos os orfanatos cadastrados no sistema CASA.
