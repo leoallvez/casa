@@ -106,7 +106,18 @@ O sistema conta com uma versão online: http://casa-sistema.com.br que possui al
 
   `php artisan key:generate`
 
-- Em seguida você deve configurar o arquivo .env e, depois, rodar as migrations com:
+- Em seguida você deve configurar o arquivo .env colocando informaçõs sobre o nome do Banco, Usuário e Senha.
+
+  ```
+  DB_CONNECTION=<MEU_SGBD>
+  DB_HOST=<IP_AONDE_O_BANCO_SE_ENCONTRA>
+  DB_PORT=<PORTA_DO_BANCO>
+  DB_DATABASE=<NOME_DO_BANCO>
+  DB_USERNAME=<USERNAME>
+  DB_PASSWORD=<SENHA>
+  ```
+
+- Depois, rode as migrations com:
 
   `php artisan migrate --seed`
 
@@ -116,9 +127,9 @@ O sistema conta com uma versão online: http://casa-sistema.com.br que possui al
 
 ## Contribuindo
 
-- Coloca esse projeto nos seus favoritos com um Star
-- Faça um Fork do projeto
-- Clone o repositório no seu computador
-- Contribua no código ou na documentação do Projeto
-- Crie um commit com as mudanças
-- Faça um Pull Request (PR)
+- :star2: Coloca esse projeto nos seus favoritos com um Star
+- :fork_and_knife: Faça um Fork do projeto
+- :computer: Clone o repositório para o seu computador
+- :wrench: Contribua no código ou na documentação do Projeto
+- :point_right: Crie um commit com as mudanças e faça um Pull Request (PR)
+- :tada: Veja seu Pull Request ser aprovado e repita o ciclo!
