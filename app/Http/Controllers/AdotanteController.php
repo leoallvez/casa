@@ -144,9 +144,7 @@ class AdotanteController extends Controller
     public function buscar(Request $request) 
     {
         # Retirar os espaços do incios e fim da string.
-        $inputBusca = trim($request->inputBusca);
-
-        $adotantes = (new Adotante)->buscar($request->inputBusca);
+        $adotantes = (new Adotante)->buscar(trim($request->inputBusca));
 
         return view('adotante.index', compact('adotantes', 'inputBusca'));
     }

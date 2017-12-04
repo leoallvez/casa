@@ -43,7 +43,7 @@ function getIdadesHelper() : array
   $idades[1] = "1 ano";
 
   for($i = 2; $i < 18; $i++) {
-      $idades[$i] = $i." anos";    
+    $idades[$i] = $i." anos";    
   }
 
   $idades[] = "18 anos ou mais";
@@ -83,12 +83,12 @@ function porcentagemAdotivoSexoHelper($adotivos) : array
   $f = new \stdClass();
   $f->name = "Feminino";
   $f->y = porcentagem($total, $sexoFeminino);
-  $f->drilldown = "Feminino";
+  #$f->drilldown = "Feminino";
 
   $m = new \stdClass();
   $m->name = "Masculino";
   $m->y = porcentagem($total, $sexoMasculino);
-  $m->drilldown = "Masculino";
+  #$m->drilldown = "Masculino";
 
   return [$f, $m];
 }

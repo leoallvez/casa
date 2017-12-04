@@ -82,9 +82,8 @@ class UsuarioController extends Controller
         $usuario->update($request->except(['password']));
 
         flash('Informações Alteradas com Sucesso!', 'success');
-
-        /** Se for um usuário comum  ou for adm de instituição*/
-        if(Auth::user()->isAdmInsOrUsuarioPadrao()) {
+        #Se for um usuário comum  ou for adm de instituição
+        if(Auth::user()->id == $id) {
             return redirect('/');
         }
 
@@ -117,13 +116,14 @@ class UsuarioController extends Controller
     public function findUsers($id) 
     {
         # Serão pesquisados apenas usuario padrões e adm instituição.
-        $adm = Usuario::where('id', $id)
-        ->whereIn('nivel_id', [UsuarioNivel::ADM_INSTITUICAO , UsuarioNivel::PADRAO])
-        ->first();
+        $usuarios = [UsuarioNivel::ADM_INSTITUICAO , UsuarioNivel::PADRAO];
+
+        $adm = Usuario::where('id', $id)->whereIn('nivel_id', $usuarios)->first();
 
         if(!is_null($adm)) {
             return response()->json(['status' => true, 'adm' => $adm], 200);
         }
+
         return response()->json(['status' => false], 204);
     }
 }

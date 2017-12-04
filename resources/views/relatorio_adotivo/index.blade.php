@@ -16,27 +16,28 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="input-group input-daterange">
-                    <div class="input-group-addon">Periodo de </div>
+                    <div class="input-group-addon">Período de </div>
                     {!! Form::date('data_inicio', \Carbon\Carbon::now()->subYears(1),
                       [
-                        'class'       => 'form-control',
-                        'placeholder' => 'Todas Etnias'
+                        'class' => 'form-control',
+                        'id'    => 'data_inicio',
                       ])
                     !!}
                     <div class="input-group-addon">até</div>
                     {!! Form::date('data_fim', \Carbon\Carbon::now(),
                       [
-                        'class'       => 'form-control',
-                        'placeholder' => 'Todas Etnias'
+                        'class' => 'form-control',
+                        'id'    => 'data_fim',
                       ])
                     !!}
                 </div>
               </div>
               <div class="col-md-4">
-                  {!! Form::select('sexo',['F' => 'Femino', 'M' => 'Masculino'], null, 
+                  {!! Form::select('sexo',['F' => 'Feminino', 'M' => 'Masculino'], null, 
                       [
                         'class'       => 'form-control',
-                        'placeholder' => 'Ambos Sexo'
+                        'placeholder' => 'Ambos Sexo',
+                        'id'          => 'sexo',
                       ])
                   !!}
               </div>
@@ -46,7 +47,8 @@
                 {!! Form::select('etnia', $etnias, null, 
                     [
                       'class'       => 'form-control',
-                      'placeholder' => 'Todas Etnias'
+                      'placeholder' => 'Todas Etnias',
+                      'id'          => 'etnia',
                     ])
                 !!}
               </div>
@@ -54,7 +56,8 @@
                 {!! Form::select('status', $status, null, 
                     [
                       'class'       => 'form-control',
-                      'placeholder' => 'Todos Status'
+                      'placeholder' => 'Todos Status',
+                      'id'          => 'status',
                     ])
                 !!}
               </div>
@@ -62,7 +65,8 @@
                 {!! Form::select('idade', $idades, null, 
                     [
                       'class'       => 'form-control',
-                      'placeholder' => 'Todas Idades'
+                      'placeholder' => 'Todas Idades',
+                      'id'          => 'idade',
                     ])
                 !!}
               </div>
@@ -94,21 +98,59 @@
                   <a href="#tab_listagem" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Listagem</a>
                 </li>
               </ul>
-              <div id="x" class="tab-content">
+              <div id="printing-area" class="tab-content">
                 <!-- Mostrar gráfico-->
+                <div id="display_filtro" style="display: none">
+                  <h1>Relatório</h1><br>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Período Inicial</th>
+                        <th scope="col">Período Final</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Etnia</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Idade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>
+                          <b><span id="periodo_inicio"></span></b>
+                        </th>
+                        <td>
+                          <b><span id="periodo_fim"></span></b>
+                        </td>
+                        <td>
+                          <b><span id="span_sexo"></span></b>
+                        </td>
+                        <td>
+                          <b><span id="span_etnia"></span></b>
+                        </td>
+                        <td>
+                          <b><span id="span_status"></span></b>
+                        </td>
+                        <td>
+                          <b><span id="span_idade"></span></b>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_grafico" aria-labelledby="home-tab">
+                  
                   @if(!$adotivos->isEmpty())
                     @if(!is_null($dadosStatus))
-                      <div id="grafico-status"></div>
+                      <div id="grafico-status"></div><br>
                     @endif
                     @if(!is_null($dadosSexo))
-                      <div id="grafico-sexo"></div>
+                      <div id="grafico-sexo"></div><br>
                     @endif
                     @if(!is_null($dadosEtnias))
-                      <div id="grafico-etnias"></div>
+                      <div id="grafico-etnias"></div><br>
                     @endif
                     <div class="form-group">
-                        {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
+                        {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary', 'onclick' => 'print(this)']) !!}
                     </div>
                   @else
                      Não foram encontrados registros na base de dados!
@@ -158,7 +200,7 @@
                       {{-- end project list --}}
                     </div>
                     <div class="form-group">
-                      {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary']) !!}
+                      {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary', 'onclick' => 'print(this)']) !!}
                     </div>
                   @else
                     Não foram encontrados registros na base de dados!
@@ -178,9 +220,34 @@
   <script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
   <script src="{{ asset('js/highcharts/code/highcharts-3d.js') }}"></script>
   <script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
+  <script src="{{ asset('js/jquery.print.min.js') }}"></script>
 
   <script type="text/javascript"> 
- 
+    $( document ).ready(function() {
+
+      $("#periodo_inicio").html(reformatDate($("#data_inicio").val()));
+      $("#periodo_fim").html(reformatDate($("#data_fim").val()));
+      $("#span_sexo").html($("#sexo option:selected").text());
+      $("#span_status").html($("#status option:selected").text());
+      $("#span_etnia").html($("#etnia option:selected").text());
+      $("#span_idade").html($("#idade option:selected").text());
+    });
+
+
+    function reformatDate(dateStr) {
+      dArr = dateStr.split("-");  // ex input "2010-01-18"
+      return dArr[2]+ "/" +dArr[1]+ "/" +dArr[0].substring(2); //ex out: "18/01/10"
+    }
+
+
+    function print(button) {
+      var button = $(button);
+      $("#display_filtro").show();
+      button.hide();
+      $("#printing-area").print();
+      $("#display_filtro").hide();
+      button.show();
+    }
     // GRÁFICO DE STATUS DOS ADOTIVOS
     @if(!is_null($dadosStatus))
 
@@ -197,21 +264,15 @@
         title: {
           text: 'Adotivos por status',
           style: {
-            'fontSize' : '20px',
+            'fontSize' : '30px',
             'color' : '#00BFFF',
-            'fontWeight' : 'bold',
-          }
-        },
-        subtitle: {
-          text: '',
-          style: {
-            'fontSize' : '20px',
+            'fontWeight' : 'bold'
           }
         },
         plotOptions: {
           pie: {
             innerSize: 100,
-          depth: 45,
+            depth: 45,
             allowPointSelect: true,
             cursor: 'pointer',
             dataLabels: {
@@ -230,7 +291,7 @@
           name: 'Quantidate de adotivos',
           data: dadosStatus,
           dataLabels: {
-            style: {'fontSize': '10px', 'fontFamily': 'Verdana' }
+            style: {'fontSize': '16px', 'fontFamily': 'Verdana' }
           }
         }]
       });
@@ -248,25 +309,22 @@
             alpha: 0
           }
         },
+        tooltip: {
+          pointFormat: '<b>{series.name}</b><br><b>{point.y:.1f}%</b>',
+        },
         colors: ["#ff0080", "#00bfff"],
         title: {
           text: 'Porcentagem de adotivos por sexo',
           style: {
-            'fontSize' : '20px',
+            'fontSize' : '30px',
             'color' : '#00BFFF',
             'fontWeight' : 'bold',
           }
         },
-        subtitle: {
-          text: '',
-          style: {
-            'fontSize' : '20px',
-          }
-        },
         plotOptions: {
           pie: {
-          innerSize: 100,
-          depth: 45
+            innerSize: 100,
+            depth: 45,
           }
         },
         xAxis: {
@@ -276,31 +334,33 @@
           title: {
             text: 'Porcentagem de adotivos por sexo'
           }
-
         },
         legend: {
           enabled: false
         },
         plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.1f}%'
-                }
+          series: {
+            borderWidth: 0,
+            dataLabels: {
+              enabled: true,
+              format: '{point.y:.1f}%'
             }
+          }
         },
         series: [{
           name: 'Porcentagem',
           colorByPoint: true,
-          data: dadosSexo 
+          data: dadosSexo ,
+          dataLabels: {
+            style: {'fontSize': '20px', 'fontFamily': 'Verdana' }
+          }
         }]
       });
     @endif
     // GRÁFICO DE ETNIAS
     @if(!is_null($dadosEtnias))
 
-      var dadosEtnia  = {!! json_encode($dadosEtnias) !!};
+      var dadosEtnia = {!! json_encode($dadosEtnias) !!};
 
       Highcharts.chart('grafico-etnias', {
         chart: {
@@ -313,7 +373,7 @@
         title: {
           text: 'Porcentagem de adotivos por etnias',
           style: {
-            'fontSize' : '20px',
+            'fontSize' : '30px',
             'color' : '#00BFFF',
             'fontWeight' : 'bold',
           }
@@ -321,7 +381,7 @@
         subtitle: {
           text: '',
           style: {
-            'fontSize' : '20px',
+            'fontSize' : '25px',
           }
         },
         plotOptions: {
@@ -350,7 +410,13 @@
         },
         series: [{
           name: 'Quantidade de adotivos',
-          data: dadosEtnia
+          data: dadosEtnia,
+          style: {
+            'fontSize' : '30px'
+          },
+          dataLabels: {
+            style: {'fontSize': '16px', 'fontFamily': 'Verdana' }
+          }
         }]
       });
     @endif
