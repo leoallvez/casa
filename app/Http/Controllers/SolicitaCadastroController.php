@@ -102,7 +102,7 @@ class SolicitaCadastroController extends Controller
         $usuario = Usuario::where('instituicao_id', '=', $id)->first();
        
         # Enviar E-mail. $request->motivo_reprovacao.
-        $instituicao->delete();
+        $instituicao->forceDelete();
         # Excluíndo fisicamente usuário da base de dados. 
         $usuario->forceDelete(); 
 

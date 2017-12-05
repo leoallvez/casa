@@ -7,6 +7,7 @@ use Casa\Adotivo;
 use Casa\AdotivoLog;
 use Casa\AdotivoStatus;
 use Illuminate\Http\Request;
+use Casa\Http\Requests\RelatorioAdotivoRequest;
 
 class RelatorioAdotivoController extends Controller 
 {
@@ -39,13 +40,12 @@ class RelatorioAdotivoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function gerar(Request $request) 
+    public function gerar(RelatorioAdotivoRequest $request) 
     {
         # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
         $idades = getIdadesHelper();
-
     
         #Busca nos logs de acordo com os filtros escolhidos.
         $resultados = AdotivoLog::pesquisar($request); 

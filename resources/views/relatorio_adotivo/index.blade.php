@@ -14,6 +14,19 @@
           <br>
             {!! Form::open(['method' => 'PUT','action' => 'RelatorioAdotivoController@gerar']) !!}
             <div class="row">
+              @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <span class="flash-message">
+                      {{--  {!! session('flash_notification.message') !!}  --}}
+                      <ul>
+                        @foreach($errors->all() as $error)
+                          <li>{{$error}}</li>
+                        @endforeach
+                      </ul>
+                    </span>
+                  </div>
+              @endif
               <div class="col-md-8">
                 <div class="input-group input-daterange">
                     <div class="input-group-addon">Período de </div>
@@ -23,6 +36,7 @@
                         'id'    => 'data_inicio',
                       ])
                     !!}
+                    
                     <div class="input-group-addon">até</div>
                     {!! Form::date('data_fim', \Carbon\Carbon::now(),
                       [
@@ -31,6 +45,7 @@
                       ])
                     !!}
                 </div>
+               
               </div>
               <div class="col-md-4">
                   {!! Form::select('sexo',['F' => 'Feminino', 'M' => 'Masculino'], null, 
@@ -236,7 +251,7 @@
 
     function reformatDate(dateStr) {
       dArr = dateStr.split("-");  // ex input "2010-01-18"
-      return dArr[2]+ "/" +dArr[1]+ "/" +dArr[0].substring(2); //ex out: "18/01/10"
+      return dArr[2]+ "/" +dArr[1]+ "/" +dArr[0]; //ex out: "18/01/10"
     }
 
 
