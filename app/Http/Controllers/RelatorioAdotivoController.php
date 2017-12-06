@@ -16,19 +16,19 @@ class RelatorioAdotivoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) 
+    public function index() 
     {
-        //dd($objeto);
         # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
-        $adotivos = Adotivo::all(); //TODO: pegar do logs
+        $adotivos = collect([]);
+        //$adotivos = Adotivo::all(); //TODO: pegar do logs
         $idades = getIdadesHelper();
 
         # Valores para os gráficos
-        $dadosStatus = quantidadePorStatusHelper($adotivos);
-        $dadosSexo   = porcentagemAdotivoSexoHelper($adotivos);
-        $dadosEtnias = quantidadePorEtniaHelper($adotivos);
+        $dadosStatus = null;
+        $dadosSexo   = null;
+        $dadosEtnias = null;
 
         return view('relatorio_adotivo.index', 
             compact('status', 'etnias', 'adotivos', 'idades', 'dadosStatus', 'dadosSexo', 'dadosEtnias'));     

@@ -15,78 +15,77 @@
             {!! Form::open(['method' => 'PUT','action' => 'RelatorioAdotivoController@gerar']) !!}
             <div class="row">
               @if ($errors->any())
-                  <div class="alert alert-danger alert-dismissible fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <span class="flash-message">
-                      {{--  {!! session('flash_notification.message') !!}  --}}
-                      <ul>
-                        @foreach($errors->all() as $error)
-                          <li>{{$error}}</li>
-                        @endforeach
-                      </ul>
-                    </span>
-                  </div>
+                <div class="alert alert-danger alert-dismissible fade in">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <span class="flash-message">
+                    <ul>
+                      @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                      @endforeach
+                    </ul>
+                  </span>
+                </div>
               @endif
               <div class="col-md-8">
                 <div class="input-group input-daterange">
-                    <div class="input-group-addon">Período de </div>
-                    {!! Form::date('data_inicio', \Carbon\Carbon::now()->subYears(1),
-                      [
-                        'class' => 'form-control',
-                        'id'    => 'data_inicio',
-                      ])
-                    !!}
-                    
-                    <div class="input-group-addon">até</div>
-                    {!! Form::date('data_fim', \Carbon\Carbon::now(),
-                      [
-                        'class' => 'form-control',
-                        'id'    => 'data_fim',
-                      ])
-                    !!}
+                  <div class="input-group-addon">Período de </div>
+                  {!! Form::date('data_inicio', \Carbon\Carbon::now()->subYears(1),
+                    [
+                      'class' => 'form-control',
+                      'id'    => 'data_inicio',
+                    ])
+                  !!}
+                  
+                  <div class="input-group-addon">até</div>
+                  {!! Form::date('data_fim', \Carbon\Carbon::now(),
+                    [
+                      'class' => 'form-control',
+                      'id'    => 'data_fim',
+                    ])
+                  !!}
                 </div>
                
               </div>
               <div class="col-md-4">
-                  {!! Form::select('sexo',['F' => 'Feminino', 'M' => 'Masculino'], null, 
-                      [
-                        'class'       => 'form-control',
-                        'placeholder' => 'Ambos Sexo',
-                        'id'          => 'sexo',
-                      ])
-                  !!}
+                {!! Form::select('sexo',['F' => 'Feminino', 'M' => 'Masculino'], null, 
+                  [
+                    'class'       => 'form-control',
+                    'placeholder' => 'Ambos Sexo',
+                    'id'          => 'sexo',
+                  ])
+                !!}
               </div>
             </div>
             <div class="row">
               <div class="col-md-3">
                 {!! Form::select('etnia', $etnias, null, 
-                    [
-                      'class'       => 'form-control',
-                      'placeholder' => 'Todas Etnias',
-                      'id'          => 'etnia',
-                    ])
+                  [
+                    'class'       => 'form-control',
+                    'placeholder' => 'Todas Etnias',
+                    'id'          => 'etnia',
+                  ])
                 !!}
               </div>
               <div class="col-md-4">
                 {!! Form::select('status', $status, null, 
-                    [
-                      'class'       => 'form-control',
-                      'placeholder' => 'Todos Status',
-                      'id'          => 'status',
-                    ])
+                  [
+                    'class'       => 'form-control',
+                    'placeholder' => 'Todos Status',
+                    'id'          => 'status',
+                  ])
                 !!}
               </div>
               <div class="col-md-3">
-                {!! Form::select('idade', $idades, null, 
-                    [
-                      'class'       => 'form-control',
-                      'placeholder' => 'Todas Idades',
-                      'id'          => 'idade',
-                    ])
+              {!! Form::select('idade', $idades, null, 
+                  [
+                    'class'       => 'form-control',
+                    'placeholder' => 'Todas Idades',
+                    'id'          => 'idade',
+                  ])
                 !!}
               </div>
               <div class="col-md-2">
-                  {!! Form::submit('Gerar', ['class' => ' form-control btn btn-success btn-sm']) !!}
+                {!! Form::submit('Gerar', ['class' => ' form-control btn btn-success btn-sm']) !!}
               </div>
             </div>
           {!! Form::close() !!}
@@ -126,6 +125,8 @@
                         <th scope="col">Etnia</th>
                         <th scope="col">Status</th>
                         <th scope="col">Idade</th>
+                        <th scope="col">Quantidade de registros</th>
+                        <th scope="col">Data relatório</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -148,6 +149,12 @@
                         <td>
                           <b><span id="span_idade"></span></b>
                         </td>
+                        <td>
+                          <b>{{ $adotivos->count() }}</br>
+                        </th>
+                        <td>
+                          <b>{{ date('d/m/Y') }}</b>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -165,7 +172,7 @@
                       <div id="grafico-etnias"></div><br>
                     @endif
                     <div class="form-group">
-                        {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary', 'onclick' => 'print(this)']) !!}
+                      {!! Form::button('Imprimir', ['class' => 'btn btn-primary', 'return onclick' => 'print(this)']) !!}
                     </div>
                   @else
                      Não foram encontrados registros na base de dados!
@@ -215,7 +222,7 @@
                       {{-- end project list --}}
                     </div>
                     <div class="form-group">
-                      {!! Html::link('#','Imprimir', ['class' => 'btn btn-primary', 'onclick' => 'print(this)']) !!}
+                      {!! Form::button('Imprimir', ['class' => 'btn btn-primary', 'return onclick' => 'print(this)']) !!}
                     </div>
                   @else
                     Não foram encontrados registros na base de dados!

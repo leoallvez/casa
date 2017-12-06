@@ -15,13 +15,13 @@ class CreateAdotivosLogs extends Migration
     {
         Schema::create('adotivos_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('data');
+            $table->date('data')->index();
             $table->binary('adotivoJSON');
             $table->integer('adotivo_id');
-            $table->char('adotivo_sexo', 1);
-            $table->integer('adotivo_etnia_id');
-            $table->integer('adotivo_status_id');
-            $table->integer('adotivo_idade');
+            $table->char('adotivo_sexo', 1)->index();
+            $table->integer('adotivo_etnia_id')->index();
+            $table->integer('adotivo_status_id')->index();
+            $table->integer('adotivo_idade')->index();
             # FK
             $table->integer('instituicao_id');
         });
