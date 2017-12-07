@@ -18,10 +18,15 @@ class RelatorioAdotivoController extends Controller
      */
     public function index() 
     {
+        $buscaRealizada = false;
         # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
         $adotivos = collect([]);
+
+        $status = collect(['' => "Todos Status"] +  $status->all());
+        $etnias = collect(['' => "Todas Etnias"] +  $etnias->all());
+
         //$adotivos = Adotivo::all(); //TODO: pegar do logs
         $idades = getIdadesHelper();
 
@@ -31,7 +36,8 @@ class RelatorioAdotivoController extends Controller
         $dadosEtnias = null;
 
         return view('relatorio_adotivo.index', 
-            compact('status', 'etnias', 'adotivos', 'idades', 'dadosStatus', 'dadosSexo', 'dadosEtnias'));     
+            compact('status', 'etnias', 'adotivos', 'idades', 
+                    'dadosStatus', 'dadosSexo', 'dadosEtnias', 'buscaRealizada'));     
     }
 
     /**
@@ -42,13 +48,17 @@ class RelatorioAdotivoController extends Controller
      */
     public function gerar(RelatorioAdotivoRequest $request) 
     {
+        $buscaRealizada = true;
         # Valores para os drop down list.
         $status = AdotivoStatus::all()->pluck('nome', 'id');
         $etnias = Etnia::all()->pluck('nome', 'id');
         $idades = getIdadesHelper();
+
+        $status = collect(['' => "Todos Status"] +  $status->all());
+        $etnias = collect(['' => "Todas Etnias"] +  $etnias->all());
     
         #Busca nos logs de acordo com os filtros escolhidos.
-        $resultados = AdotivoLog::pesquisar($request); 
+        $resultados = AdotivoLog::pesquisar($request->all()); 
         
         $adotivos = logsToAdotivosHelper($resultados);
 
@@ -58,13 +68,14 @@ class RelatorioAdotivoController extends Controller
 
         if(!$adotivos->isEmpty()) {
             # Valores para os gráficos
-            $dadosStatus = (!isset($request->status)) ? quantidadePorStatusHelper($adotivos)    : null;
-            $dadosSexo   = (!isset($request->sexo))   ? porcentagemAdotivoSexoHelper($adotivos) : null;
-            $dadosEtnias = (!isset($request->etnia))  ? quantidadePorEtniaHelper($adotivos)     : null;
+            $dadosStatus = (empty($request['status'])) ? quantidadePorStatusHelper($adotivos)    : null;
+            $dadosSexo   = (empty($request['sexo']))   ? porcentagemAdotivoSexoHelper($adotivos) : null;
+            $dadosEtnias = (empty($request['etnia']))  ? quantidadePorEtniaHelper($adotivos)     : null;
         }
   
         return view('relatorio_adotivo.index', 
-            compact('status', 'etnias', 'adotivos', 'idades', 'dadosStatus', 'dadosSexo', 'dadosEtnias'));   
+            compact('status', 'etnias', 'adotivos', 'idades', 
+                    'dadosStatus', 'dadosSexo', 'dadosEtnias', 'buscaRealizada'));   
     }
 }
 

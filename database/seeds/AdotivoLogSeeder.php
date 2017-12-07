@@ -15,7 +15,7 @@ class AdotivoLogSeeder extends Seeder
     {
         $id = 51;
 
-        while($id < 2000) {
+        while($id < 1000) {
 
             foreach(Adotivo::all() as $adotivo) {
                 

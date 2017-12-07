@@ -66,30 +66,33 @@ class AdotivoLog extends Model
 
     public static function pesquisar($request) 
     {
+
         $resultado = self::where('instituicao_id', Auth::user()->instituicao_id);
 
-        if(isset($request->data_inicio) && isset($request->data_fim) ){
+        if(!empty($request['data_inicio']) && !empty($request['data_fim']) ){
             
             $resultado = $resultado->whereBetween('data', 
-                [$request->data_inicio, $request->data_fim]
+                [$request['data_inicio'], $request['data_fim']]
             );  
         }
 
-        if(isset($request->sexo)) {
-            $resultado = $resultado->where('adotivo_sexo', $request->sexo);    
+        if(!empty($request['sexo'])) {
+            $resultado = $resultado->where('adotivo_sexo', $request['sexo']);    
         }
 
-        if(isset($request->idade)) {
-            $resultado = $resultado->where('adotivo_idade', $request->idade);    
+        if(!empty($request['idade'])) {
+            $resultado = $resultado->where('adotivo_idade', $request['idade']);    
         }
 
-        if(isset($request->etnia)) {
-            $resultado = $resultado->where('adotivo_etnia_id', $request->etnia);    
+        if(!empty($request['etnia'])) {
+            $resultado = $resultado->where('adotivo_etnia_id', $request['etnia']);    
         }
 
-        if(isset($request->status)) {
-            $resultado = $resultado->where('adotivo_status_id', $request->status);    
+        if(!empty($request['status'])) {
+            $resultado = $resultado->where('adotivo_status_id', $request['status']);    
         }
+
+        //dd( $resultado->get());//
 
         return $resultado->get();
     }

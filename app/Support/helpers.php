@@ -39,8 +39,9 @@ function setMascara($val, $mask )
 
 function getIdadesHelper() : array
 {
-  $idades[0] = "Menos de 1 ano";
-  $idades[1] = "1 ano";
+  $idades[''] = "Todas Idades";
+  $idades[0]  = "Menos de 1 ano";
+  $idades[1]  = "1 ano";
 
   for($i = 2; $i < 18; $i++) {
     $idades[$i] = $i." anos";    

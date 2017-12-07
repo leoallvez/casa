@@ -47,7 +47,7 @@
                
               </div>
               <div class="col-md-4">
-                {!! Form::select('sexo',['F' => 'Feminino', 'M' => 'Masculino'], null, 
+                {!! Form::select('sexo',['' => 'Ambos Sexo', 'F' => 'Feminino', 'M' => 'Masculino'], null, 
                   [
                     'class'       => 'form-control',
                     'placeholder' => 'Ambos Sexo',
@@ -175,7 +175,11 @@
                       {!! Form::button('Imprimir', ['class' => 'btn btn-primary', 'return onclick' => 'print(this)']) !!}
                     </div>
                   @else
-                     Não foram encontrados registros na base de dados!
+                    @if($buscaRealizada)
+                      Não foram encontrados registros na base de dados!
+                    @else
+                      Selecione os filtros e click em gerar.
+                    @endif
                   @endif
                 </div>
                 <!-- Mostrar listagem-->
@@ -225,7 +229,11 @@
                       {!! Form::button('Imprimir', ['class' => 'btn btn-primary', 'return onclick' => 'print(this)']) !!}
                     </div>
                   @else
-                    Não foram encontrados registros na base de dados!
+                    @if($buscaRealizada)
+                      Não foram encontrados registros na base de dados!
+                    @else
+                      Selecione os filtros e click em gerar.
+                    @endif
                   @endif
                 </div>
               </div>
