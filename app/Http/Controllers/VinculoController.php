@@ -28,7 +28,11 @@ class VinculoController extends Controller {
         */
         $idAdotanteVinculo = $adotivo->adotantes()
         ->where('adotantes.tem_vinculo','=', 1)
+        ->where('adotantes_adotivos.adotivo_id','=', $id)
+        ->where('adotantes_adotivos.deleted_at','=', null)
         ->first()['id'];
+
+        //dd($idAdotanteVinculo);
 
     	$adotantes = Adotante::orderBy('nome')
         ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
@@ -48,6 +52,8 @@ class VinculoController extends Controller {
         
         $vinculoAtual = Vinculo::where("adotivo_id", $adotivo->id)
         ->where("adotante_id", $idAdotanteVinculo)->first();
+
+        //dd( $vinculoAtual);
 
         $visitas = null;
         if(!is_null($vinculoAtual)) {

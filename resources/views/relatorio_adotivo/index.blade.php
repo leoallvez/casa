@@ -93,7 +93,7 @@
         <div class="content title_right">
           @if($adotivos->count() > 0)
             <h2>Quantidade de registros encontrados: {{ $adotivos->count() }}</h2>
-          @else
+          @elseif($buscaRealizada)
             <h2>Nenhum registro encontrado</h2>  
           @endif
         </div>
