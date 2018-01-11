@@ -35,7 +35,6 @@ function buscarIdEstado(uf) {
     for(var i = 1; i < 28; i++) {
         estados[siglas[i-1]] = i;
     }
-
     return estados[uf];
 }
 

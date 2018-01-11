@@ -17,6 +17,8 @@
     <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
     {{-- Custom Theme Style --}}
     <link href="{{ asset('assets/build/css/custom.min.css') }}" rel="stylesheet" />
+    {{-- Sweet Alert --}}
+    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
     <link href="{{ asset('css/casa.css') }}" rel="stylesheet" />
     <!--
