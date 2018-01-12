@@ -142,7 +142,20 @@
     </div>
 </div>
 
+@section('style')
+    
+    <link href="{{ asset('css/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media='print'/>
+    <link href="{{ asset('css/fullcalendar/casa-fullcallendar.css') }}" rel="stylesheet" />
+@endsection
+
 @section('calendar-js')
+    {{--FullCalendar--}}
+    <script src="{{ asset('js/fullcalendar/bootstrapValidator.min.js') }}"></script>
+    <script src="{{ asset('js/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('js/fullcalendar/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="{{ asset('js/fullcalendar/pt-br.js') }}"></script>
+    <script src="{{ asset('js/fullcalendar/bootstrap-timepicker.min.js') }}"></script>
     <script type="text/javascript">
         var url_base = "{{ url('/') }}";
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     {{-- Meta, title, CSS, favicons, etc. --}}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,23 +12,21 @@
     {{-- Icon --}}
     <link rel="shortcut icon" href="{{ asset('img/casa.png') }}" >
     {{-- Bootstrap --}}
-    <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}
-    <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+      <link href="{{ asset('css/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
     {{-- NProgress --}}
-    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet" />
     {{-- Custom Theme Style --}}
-    <link href="{{ asset('assets/build/css/custom.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
     <link href="{{ asset('css/casa.css') }}" rel="stylesheet" />
     {{-- Sweet Alert --}}
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{-- Select 2 --}}
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
-    <!-- FullCalendar -->
-    <link href="{{ asset('css/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media='print'/>
-    <link href="{{ asset('css/fullcalendar/casa-fullcallendar.css') }}" rel="stylesheet" />
+    @yield('style')
+
     <!--
     <script>
       window.Laravel = <?php echo json_encode([
@@ -133,7 +131,7 @@
     {{-- Sweet Alert --}}
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     {{-- jQuery --}}
-    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- JQuery Mark--}}
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     {{-- Select2 --}}
@@ -142,22 +140,15 @@
     <script src="{{ asset('js/casa.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
-    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    {{-- bootstrap-progressbar --}}
-    <script src="{{ asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     {{-- Custom Theme Scripts --}}
-    <script src="{{ asset('assets/build/js/custom.min.js') }}"></script>
+    <script src="{{ asset('js/custom.min.js') }}"></script>
     {{-- DateJS --}}
-    <script src="{{ asset('assets/vendors/DateJS/build/date.js') }}"></script>
+    <script src="{{ asset('js/date.js') }}"></script>
     {{-- Bootstrap-daterangepicker --}}
-    <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    {{--FullCalendar--}}
-    <script src="{{ asset('js/fullcalendar/bootstrapValidator.min.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/bootstrap-colorpicker.min.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/pt-br.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('daterangepicker.js') }}"></script>
+ 
     @yield('calendar-js')
   </body>
 </html>
