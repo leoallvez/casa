@@ -12,11 +12,11 @@
     {{-- Icon --}}
     <link rel="shortcut icon" href="{{ asset('img/casa.png') }}" >
     {{-- Bootstrap --}}
-    <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}
-    <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
     {{-- Custom Theme Style --}}
-    <link href="{{ asset('assets/build/css/custom.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet" />
     {{-- Sweet Alert --}}
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
@@ -67,15 +67,15 @@
     {{-- Sweet Alert --}}
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     {{-- jQuery --}}
-    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- JQuery Mark--}}
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     {{-- Casa Js --}}
     <script src="{{ asset('js/casa.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
-    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     {{-- Custom Theme Scripts --}}
-    <script src="{{ asset('assets/build/js/custom.min.js') }}"></script>
+    <script src="{{ asset('js/custom.min.js') }}"></script>
   </body>
 </html>

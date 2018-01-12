@@ -147,7 +147,7 @@
     <script src="{{ asset('js/date.js') }}"></script>
     {{-- Bootstrap-daterangepicker --}}
     <script src="{{ asset('js/moment.min.js') }}"></script>
-    <script src="{{ asset('daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
  
     @yield('calendar-js')
   </body>
