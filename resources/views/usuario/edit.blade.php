@@ -24,8 +24,8 @@
                 <br/>
                 {!! Form::model($usuario, 
                     [
-                        'method' => 'PATCH', 
-                        'action' => ['UsuarioController@update', $usuario->id]
+                      'method' => 'PATCH', 
+                      'action' => ['UsuarioController@update', $usuario->id]
                     ]) 
                 !!}
                     @include('usuario._form', ['nomeBotaoSubmit' => 'Alterar'])

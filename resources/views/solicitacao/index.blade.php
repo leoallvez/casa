@@ -11,10 +11,6 @@
       <div class="page-title">
         <div class="title_left">
           <h3>{!! Html::linkAction('SolicitaCadastroController@index','Solicitações Pendentes') !!}</h3>
-          {{-- <a class="btn btn-success btn-sm" href="{{ action('AdotanteController@create') }}">
-            <i class="fa fa-plus-circle"></i> 
-            Incluir Adotante
-          </a> --}}
         </div>
         <div class="title_right">
           <div class="col-md-9 col-sm-5 col-xs-12 form-group pull-right top_search">

@@ -509,28 +509,7 @@
 </div>
 
 @section('js')
-  <script type="text/javascript">
-  
-    function limparNomeConjuge() {		 
-        $('.conjuge').val('');
-    }		
-    
-    $(function() {		
-        $('#estado_civil_id').change(function() {		
-            if($('#estado_civil_id').val()  == 2 || $('#estado_civil_id').val() == 6) {		
-                $('#conjuge').show();		
-            } else {		
-                $('#conjuge').hide();		
-            }		
-        });		
-    });		
-    
-    function converteData(input, hidden) {		
-        var date = $(input).val();		
-        date = date.split("/").reverse().join("-");		
-        $(hidden).val(date);		
-    }		
-    
+  <script type="text/javascript">		
     $( document ).ready(function() {		
         @if(Request::old('estado_civil_id') != null)		
             var estado_civil = {{ Request::old('estado_civil_id') }};		
@@ -545,5 +524,6 @@
         }		
     });
   </script>
+  <script src="{{ asset('js/casa/adotante-form.js') }}"></script>
   <script src="{{ asset('js/buscar_cep.js') }}"></script> 
 @endsection

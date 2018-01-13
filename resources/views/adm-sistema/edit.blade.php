@@ -23,12 +23,12 @@
               <div class="x_content">
                 <br/>
                 {!! Form::model($adm, 
-                    [
-                        'method' => 'PATCH', 
-                        'action' => ['AdmSistemaController@update', $adm->id]
-                    ]) 
+                  [
+                    'method' => 'PATCH', 
+                    'action' => ['AdmSistemaController@update', $adm->id]
+                  ]) 
                 !!}
-                    @include('adm-sistema._form', ['nomeBotaoSubmit' => 'Alterar'])
+                  @include('adm-sistema._form', ['nomeBotaoSubmit' => 'Alterar'])
                 {!! Form::close() !!}
               </div>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Administradores do Sistema
+  Administradores do Sistema
 @endsection
 
 @section('content')

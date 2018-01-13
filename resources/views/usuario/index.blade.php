@@ -22,8 +22,8 @@
             <div class="input-group">
               {!! Form::text('inputBusca', $inputBusca ?? null,
                 [
-                    'class'       => 'form-control',
-                    'placeholder' => 'Pesquisar usuários por nome ou CPF',
+                  'class'       => 'form-control',
+                  'placeholder' => 'Pesquisar usuários por nome ou CPF',
                 ])
               !!}
               <span class="input-group-btn">
@@ -97,7 +97,7 @@
       </div>
     </div>
   </div>
-  {{-- /page content --}}
+  {{--page content--}}
 @endsection
 
 @section('js')

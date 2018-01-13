@@ -1,5 +1,3 @@
-<link href="{{ asset('assets/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet" />
-
 <div class="row">
     <div class="col-md-2 col-xs-12">
         {!! Form::label('matricula-diplay', 'Número de Matrícula') !!}
@@ -188,8 +186,6 @@
     {!! Form::submit($nomeBotaoSubmit, ['class' => 'btn btn-success']) !!}
 </div>
 
-{{--Switchery--}}
-<script src="{{ asset('assets/vendors/switchery/dist/switchery.min.js') }}"></script>
 @section('js')
     <script type="text/javascript">
 
@@ -201,15 +197,15 @@
       
         $(document).ready(function() {
 
-          $("#irmaos").select2({            
-            language: {
+            $("#irmaos").select2({            
+                language: {
                 noResults: function() {
                     return "Irmã(o) não encontrada(o)!";
                 }
             }
-          });
+            });
 
-          $("#irmaos").select2({
+            $("#irmaos").select2({
                 placeholder: "Selecione irmão(s)",
                 maximumSelectionLength: 10,
                 language: {
@@ -220,7 +216,7 @@
                         return "Só é possível incluir 10 irmãos no máximo!";
                     }
                 }
-          });
+            });
         });
     </script>
 @endsection
