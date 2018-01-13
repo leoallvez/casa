@@ -247,9 +247,9 @@
 
 @section('js')
 
-  <script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
-  <script src="{{ asset('js/highcharts/code/highcharts-3d.js') }}"></script>
-  <script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
+  <script src="{{ asset('js/highcharts/highcharts.js') }}"></script>
+  <script src="{{ asset('js/highcharts/highcharts-3d.js') }}"></script>
+  <script src="{{ asset('js/highcharts/exporting.js') }}"></script>
   <script src="{{ asset('js/jquery.print.min.js') }}"></script>
 
   <script type="text/javascript"> 
