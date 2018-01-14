@@ -87,48 +87,13 @@
       </div>
     </div>
   </div>
-  {{-- /page content --}}
+  {{--Page Content--}}
 @endsection
 
 @section('js')
   <script type="text/javascript">
-    Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#_token').getAttribute('content');
-
-    var app = new Vue({
-      el: '#app',
-      methods: {
-        excluir(instituicao_id) {
-          swal({
-            title: "Tem certeza?",
-            text: "A instituição e todos os seus usuários serão inativados!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Sim",
-            cancelButtonText: "Cancelar",
-            showLoaderOnConfirm: true,
-            closeOnConfirm: false,
-            closeOnCancel: false
-          }, function(isConfirm) {
-            if (isConfirm) {
-              var resource = app.$resource("{{ url('instituicao{/id}') }}");
-              resource.remove({id: instituicao_id }).then((response) => {
-                swal({
-                  title: "Inativada!",
-                  text: "Instituição foi Inativada!",
-                  type: "success"
-                }, function() {
-                  window.location.reload();
-                });
-              }, (response) => {
-                //Colocar uma mensagem de erro aqui Aqui
-              });
-            } else {
-              swal("Cancelado", "Instituição ainda ativa!", "error");
-            }
-          });
-        }
-      }
-    });
-  </script>;
+    var url = '{{ url('instituicao{/id}') }}';
+  </script>
+  <script src="{{ asset('js/casa/index.js') }}"></script>
 @endsection
+

@@ -121,6 +121,6 @@
 @section('js')
   <script type="text/javascript">
     var url = '{{ url('adotantes{/id}') }}';
-  </script>;
-  <script src="{{ asset('js/casa/adotante-index.js') }}"></script>
+  </script>
+  <script src="{{ asset('js/casa/index.js') }}"></script>
 @endsection

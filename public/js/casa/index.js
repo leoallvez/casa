@@ -3,10 +3,10 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#_token').getA
 var app = new Vue({
     el: '#app',
     methods: {
-        excluir(id_adotante) {
+        excluir(elementId) {
             swal({
                 title: "Tem certeza?",
-                text: "O adotante será inativado!",
+                text: "O registro será inativado!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -18,29 +18,28 @@ var app = new Vue({
             }, function (isConfirm) {
                 if (isConfirm) {
                     var resource = app.$resource(url);
-                    resource.remove({ id: id_adotante }).then((response) => {
+                    resource.remove({ id: elementId }).then((response) => {
                         swal({
                             title: "Inativado!",
-                            text: "Adotante foi Inativado!",
+                            text: "Registro foi Inativado!",
                             type: "success"
                         }, function () {
                             window.location.reload();
                         });
                     }, (response) => {
-                        //Colocar uma mensagem de erro aqui Aqui
+                        swal("ERRO", "Não foi possível excluir o registro !", "error");
                     });
                 } else {
-                    swal("Cancelado", "Adotante ainda ativo!", "error");
+                    swal("Cancelado", "Registro ainda ativo!", "error");
                 }
             });
         },
+        //Mensagens
         alertaNaoExcluir() {
             swal({
                 title: "Atenção",
-                text: "Não é possivel inativar adotante por possuir vínculo com um ou mais adotivos.",
+                text: "Não é possivel inativar o registo, pois o mesmo pois possui vínculo(s).",
                 type: "error"
-            }, function () {
-                // window.location.reload();
             });
         }
     }

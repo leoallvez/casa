@@ -95,12 +95,12 @@
       </div>
     </div>
   </div>
-  {{-- /page content --}}
+  {{--Page content--}}
 @endsection
 
 @section('js')
   <script type="text/javascript">
     var url = '{{ url('administradores-sistema{/id}') }}'
   </script>
-  <script src="{{ asset('js/casa/adm-sistema-index.js') }}"></script>
+  <script src="{{ asset('js/casa/index.js') }}"></script>
 @endsection

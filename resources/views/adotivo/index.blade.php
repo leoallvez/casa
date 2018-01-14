@@ -118,7 +118,7 @@
                     @endforeach
                   </tbody>
                 </table>
-                {{-- end project list --}}
+                {{--End project list --}}
               </div>
             @else
               Não foram encontrados registros na base de dados!
@@ -129,12 +129,12 @@
       </div>
     </div>
   </div>
-  {{-- /page content --}}
+  {{--page content--}}
 @endsection
 
 @section('js')
   <script type="text/javascript">
     var url = '{{ url('adotivos{/id}') }}';
   </script>
-  <script src="{{ asset('js/casa/adotivo-index.js') }}"></script>
+  <script src="{{ asset('js/casa/index.js') }}"></script>
 @endsection
