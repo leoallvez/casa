@@ -100,13 +100,13 @@
                         </a>
                         @if(Auth::user()->isAdmInstituicao())
                           @if(!$adotivo->temAdotantes())
-                            <a href="#" class="btn btn-danger btn-xs"
+                            <a href="javascript:void(0)" class="btn btn-danger btn-xs"
                               v-on:click="excluir({!! $adotivo->id !!})">
                               <i class="fa fa-trash-o"></i>
                               Inativar
                             </a>
                           @else
-                            <a href="#" class="btn btn-danger btn-xs"
+                            <a href="javascript:void(0)" class="btn btn-danger btn-xs"
                               v-on:click="alertaNaoExcluir()">
                               <i class="fa fa-trash-o"></i>
                               Inativar

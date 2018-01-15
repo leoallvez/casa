@@ -88,12 +88,12 @@
                           </a>
                           @if(Auth::user()->isAdmInstituicao())
                             @if(!$adotante->hasAdotivos())
-                              <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotante->id !!})">
+                              <a href="javascript:void(0)" class="btn btn-danger btn-xs" v-on:click="excluir({!! $adotante->id !!})">
                                 <i class="fa fa-trash-o"></i>
                                 Inativar
                               </a>
                             @else
-                              <a href="#" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
+                              <a href="javascript:void(0)" class="btn btn-danger btn-xs" v-on:click="alertaNaoExcluir()">
                                 <i class="fa fa-trash-o"></i>
                                 Inativar
                               </a>

@@ -77,7 +77,7 @@
                           <i class="fa fa-pencil"></i>
                           Alterar
                         </a>
-                        <a href="#" class="btn btn-danger btn-xs" v-on:click="excluir({!! $usuario->id !!})">
+                        <a href="javascript:void(0)" class="btn btn-danger btn-xs" v-on:click="excluir({!! $usuario->id !!})">
                           <i class="fa fa-trash-o"></i>
                           Inativar
                         </a>
