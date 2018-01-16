@@ -35,7 +35,7 @@
                     </a>
                   </li>
                   <li role="presentation" class="">
-                    <a href="#vinculo_atual" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
+                    <a href="#tab_vinculo_atual" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
                       Vínculo Atual
                     </a>
                   </li>
@@ -98,7 +98,7 @@
                     @endif
                     {{ $adotantesHistorico->links() }}
                   </div>
-                  <div role="tabpanel" class="tab-pane fade" id="vinculo_atual" aria-labelledby="profile-tab">
+                  <div role="tabpanel" class="tab-pane fade" id="tab_vinculo_atual" aria-labelledby="profile-tab">
                     <div class="x_title">
                       <h3>Vínculo Atual</h3>
                       <div class="clearfix"></div>
@@ -131,7 +131,7 @@
                           <div class="col-md-2">
                             @if($adotivo->temAdotantes())
                               {{-- {!! Form::button('Desassociar', ['class' => 'btn btn-danger']) !!} --}}
-                              <a href="#" class="btn btn-danger" style="margin: 5%" v-on:click="desvincular({!! $adotivo->id !!})">
+                              <a href="javascript:void(0)" class="btn btn-danger" style="margin: 5%" v-on:click="desvincular({!! $adotivo->id !!})">
                                 Desvincular
                               </a>
                             @else
@@ -222,6 +222,9 @@
 
     @section('js')
       <script type="text/javascript">
+        
+        var url_base = "{{ url('/') }}";
+
         Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#_token').getAttribute('content');
 
         var app = new Vue({
@@ -261,15 +264,18 @@
                         return false
                       }
                       var body = { id_adotivo: id_adotivo, observacoes: inputValue };
-                      //console.log(body);
+                  
                       app.$http.put("{{ url('vinculos/desvincular/') }}", body).then((response) => {
                         console.log(response);
+                        
                         swal({
                           title: "Desvinculado!",
                           text: "Adotivo e adotante(s) foram desvinculados!",
                           type: "success"
                         }, function() {
-                          window.location.reload();
+                          //window.location.reload();
+
+                          window.location = url_base + '/vinculos/adotivo/' + id_adotivo + "/#tab_vinculo_atual" ;
                         });
                       }, (response) => {
                         //Colocar uma mensagem de erro aqui.
@@ -291,6 +297,10 @@
               }
             }
           });
+          
+          if(window.location.hash == "#tab_vinculo_atual") {
+            $('a[href="#tab_vinculo_atual"]').tab('show');
+          }
         });
       </script>
     @endsection
