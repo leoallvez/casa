@@ -253,7 +253,8 @@
   <script src="{{ asset('js/jquery.print.min.js') }}"></script>
 
   <script type="text/javascript"> 
-    $( document ).ready(function() {
+
+    $(document).ready(function() {
 
       $("#periodo_inicio").html(reformatDate($("#data_inicio").val()));
       $("#periodo_fim").html(reformatDate($("#data_fim").val()));
@@ -281,7 +282,7 @@
     // GRÁFICO DE STATUS DOS ADOTIVOS
     @if(!is_null($dadosStatus))
 
-      var dadosStatus   = {!! json_encode($dadosStatus) !!};
+      var dadosStatus = {!! json_encode($dadosStatus) !!};
 
       Highcharts.chart('grafico-status', {
         chart: {
@@ -329,7 +330,7 @@
     // GRÁFICO DE SEXO DOS ADOTIVOS
     @if(!is_null($dadosSexo))
 
-      var dadosSexo   = {!! json_encode($dadosSexo) !!};
+      var dadosSexo = {!! json_encode($dadosSexo) !!};
 
       Highcharts.chart('grafico-sexo', {
         chart: {
@@ -387,6 +388,7 @@
         }]
       });
     @endif
+
     // GRÁFICO DE ETNIAS
     @if(!is_null($dadosEtnias))
 

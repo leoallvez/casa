@@ -147,11 +147,11 @@
                             <div class="x_title">
                                 <h2>Visitas</h2>
                                 <ul class="nav navbar-right panel_toolbox">
-                                    <li>
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                    </li>
+                                  <li>
+                                    <a class="collapse-link">
+                                      <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                  </li>
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
@@ -163,46 +163,46 @@
                                             <div class="block">
                                                 <div class="byline">
                                                     <h4>
-                                                        <span>
-                                                            Das<b> {{ substr($visita->agenda->hora_inicio, 0, 5) }} </b> às 
-                                                            <b> {{ substr($visita->agenda->hora_fim, 0, 5) }}</b>, tempo total 
-                                                            <b>{{ $visita->agenda->calcularTempoTotal() }}</b>.
-                                                        </span>
+                                                      <span>
+                                                        Das<b> {{ substr($visita->agenda->hora_inicio, 0, 5) }} </b> às 
+                                                        <b> {{ substr($visita->agenda->hora_fim, 0, 5) }}</b>, tempo total 
+                                                        <b>{{ $visita->agenda->calcularTempoTotal() }}</b>.
+                                                      </span>
                                                     </h4>
                                                 </div><br>
                                                 <div class="tags">
                                                     <a href="" class="tag">
-                                                        <span><b>{{ $visita->agenda->formatarData() }}</b></span>
+                                                      <span><b>{{ $visita->agenda->formatarData() }}</b></span>
                                                     </a>
                                                 </div>
                                                 <div class="block_content">
-                                                    <h2 class="title">
-                                                      <a>Opinião Adotante(s)</a>
-                                                    </h2><br>
-                                                    <p class="excerpt">
-                                                        {{ $visita->opiniao_adotante }}
-                                                    </p>
+                                                  <h2 class="title">
+                                                    <a>Opinião Adotante(s)</a>
+                                                  </h2><br>
+                                                  <p class="excerpt">
+                                                      {{ $visita->opiniao_adotante }}
+                                                  </p>
                                                 </div>
                                             </div>
                                             <div class="block">
                                                 <div class="tags">
-                                                    <a href="" class="tag">
-                                                        <span><b>{{ $visita->agenda->formatarData() }}</b></span>
-                                                    </a>
+                                                  <a href="" class="tag">
+                                                      <span><b>{{ $visita->agenda->formatarData() }}</b></span>
+                                                  </a>
                                                 </div>
                                                 <div class="block_content">
-                                                    <h2 class="title">
-                                                        <a>Opinião Adotivo</a>
-                                                    </h2><br>
-                                                    <p class="excerpt">
-                                                        {{ $visita->opiniao_adotivo }}
-                                                    </p>
+                                                  <h2 class="title">
+                                                    <a>Opinião Adotivo</a>
+                                                  </h2><br>
+                                                  <p class="excerpt">
+                                                    {{ $visita->opiniao_adotivo }}
+                                                  </p>
                                                 </div>
                                             </div>
                                         </li>
                                     @endforeach
                                 @else
-                                    <p>Nenhuma visita registrada para esse vínculo.</p>
+                                  <p>Nenhuma visita registrada para esse vínculo.</p>
                                 @endif
                               </ul>    
                             </div>
@@ -222,85 +222,9 @@
 
     @section('js')
       <script type="text/javascript">
-        
         var url_base = "{{ url('/') }}";
-
-        Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#_token').getAttribute('content');
-
-        var app = new Vue({
-          el: '#app',
-          methods: {
-            desvincular(id_adotivo) {
-              swal({
-                title: "Tem certeza?",
-                text: "O vínculo entre adotivo e adontate(s) será desfeito!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Sim",
-                cancelButtonText: "Cancelar",
-                closeOnConfirm: false,
-                closeOnCancel: false
-              }, function(isConfirm) {
-                if (isConfirm) {
-                  var placeholder = "placeholder='Digite o motivo para o fim do vínculo'";
-                  swal({
-                    title: "Informe o motivo do fim do vínculo!",
-                    text: "<textarea class='form-control sweet-alert-textarea' rows='12' "+placeholder+" id='text-motivo'></textarea><br>",
-                    html: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Desvincular",
-                    cancelButtonText: "Cancelar",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    showLoaderOnConfirm: false
-                  }, function(isConfirm) {
-                    if(isConfirm) {
-                      var inputValue = $('#text-motivo').val();
-                      if (inputValue === false) return false;
-                      if (inputValue === "") {
-                        swal.showInputError("É obrigatório informar o motivo!");
-                        return false
-                      }
-                      var body = { id_adotivo: id_adotivo, observacoes: inputValue };
-                  
-                      app.$http.put("{{ url('vinculos/desvincular/') }}", body).then((response) => {
-                        console.log(response);
-                        
-                        swal({
-                          title: "Desvinculado!",
-                          text: "Adotivo e adotante(s) foram desvinculados!",
-                          type: "success"
-                        }, function() {
-                          //window.location.reload();
-
-                          window.location = url_base + '/vinculos/adotivo/' + id_adotivo + "/#tab_vinculo_atual" ;
-                        });
-                      }, (response) => {
-                        //Colocar uma mensagem de erro aqui.
-                      });
-                    }
-                  }); /** Fim do primeiro if isConfirm */
-                } else {
-                  swal("Cancelado", "Adotivo e adotante(s) ainda estão associados!", "error");
-                }
-              });
-            }
-          }
-        });
-        $(document).ready(function() {
-          $("#adotante_id").select2({
-            language: {
-              noResults: function() {
-                return "Adotante não encontrado!";
-              }
-            }
-          });
-          
-          if(window.location.hash == "#tab_vinculo_atual") {
-            $('a[href="#tab_vinculo_atual"]').tab('show');
-          }
-        });
+        var url_request = "{{ url('vinculos/desvincular/') }}";
       </script>
+
+      <script src="{{ asset('js/casa/vinculo-index.js') }}"></script>
     @endsection

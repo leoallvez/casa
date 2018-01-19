@@ -22,7 +22,7 @@
 	          </div>
 	          <div class="x_content">
 	            <br/>
-                	@include('instituicao._form')
+                @include('instituicao._form')
 	          </div>
 	        </div>
 	      </div>
