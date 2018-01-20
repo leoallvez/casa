@@ -10,7 +10,7 @@
     {{-- CSRF Token --}}
     <meta id="_token" name="csrf-token" content="{{ csrf_token() }}">
     {{-- Icon --}}
-    <link rel="shortcut icon" href="{{ asset('img/casa.png') }}" >
+    <link rel="shortcut icon" href="{{ asset('img/casa-logo.png') }}" >
     {{-- Bootstrap --}}
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}
@@ -35,7 +35,7 @@
           <div class="container">
             <div class="navbar">
               <a class="navbar-brand" href="{{ url('/') }}" style="width: 200px">
-                <img src="{{ asset('img/casa.png') }}" style="display: inline-block; margin-top: -20px">
+                <img src="{{ asset('img/casa-logo.png') }}" style="display: inline-block; margin-top: -20px">
                 <span class="login-logo-font" style="display: inline-block; ">
                   {{ config('app.name', 'Casa') }}
                 </span>

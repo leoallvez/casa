@@ -10,7 +10,7 @@
     {{-- CSRF Token --}}
     <meta id="_token" name="csrf-token" content="{{ csrf_token() }}">
     {{-- Icon --}}
-    <link rel="shortcut icon" href="{{ asset('img/casa.png') }}" >
+    <link rel="shortcut icon" href="{{ asset('img/casa-logo.png') }}" >
     {{-- Bootstrap --}}
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}
@@ -42,7 +42,7 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="{{ action('HomeController@index') }}" class="site_title">
-                <img src="{{ asset('img/casa-black.png') }}" style="padding: 7%">
+                <img src="{{ asset('img/casa-logo.png') }}" class="logo-img">
                 <span class="logo">{{ config('app.name', 'Casa') }}</span>
               </a>
             </div>
@@ -120,7 +120,7 @@
           @if(Request::is('visitas')) Para mudanças nos horários de visitas mande um e-mail para <b>contato@casa-sistema.com.br</b> @endif
         </div>
         <div class="pull-right">
-          <span class="logo">{{ config('app.name', 'Casa') }}</span> {{ date('Y') }}
+          <span class="logo">{{ config('app.name', 'Casa')." " }}</span> • <b>{{ date('Y') }}</b>
         </div>
         <div class="clearfix"></div>
       </footer>

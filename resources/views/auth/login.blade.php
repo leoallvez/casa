@@ -13,7 +13,7 @@
                     @include('mensagens.alerta_div')
                     <div class="panel panel-default login">
                         <div class="panel-heading login-heading">
-                            <img src="{{ asset('img/casa.png') }}" class="login-logo-img">
+                            <img src="{{ asset('img/casa-logo.png') }}" class="login-logo-img">
                             <span class="login-logo-font" style="display: inline-block; font-size: 300%;">
                                 {{ config('app.name', 'Casa') }}
                             </span>
