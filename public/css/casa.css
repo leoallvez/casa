@@ -165,6 +165,12 @@
     padding: 2%;
   }
 
+  .logo-img-externo {
+    height: 60px;
+    width: 60px;
+    padding: 2%;
+  }
+
   .login-logo-img {
     display: inline-block; 
     margin-left: 4%;

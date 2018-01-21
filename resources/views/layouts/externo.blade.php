@@ -35,7 +35,7 @@
           <div class="container">
             <div class="navbar">
               <a class="navbar-brand" href="{{ url('/') }}" style="width: 200px">
-                <img src="{{ asset('img/casa-logo.png') }}" style="display: inline-block; margin-top: -20px">
+                <img src="{{ asset('img/casa-logo.png') }}" style="display: inline-block; margin-top: -20px" class="logo-img-externo">
                 <span class="login-logo-font" style="display: inline-block; ">
                   {{ config('app.name', 'Casa') }}
                 </span>

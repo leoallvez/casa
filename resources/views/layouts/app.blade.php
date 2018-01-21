@@ -120,7 +120,7 @@
           @if(Request::is('visitas')) Para mudanças nos horários de visitas mande um e-mail para <b>contato@casa-sistema.com.br</b> @endif
         </div>
         <div class="pull-right">
-          <span class="logo">{{ config('app.name', 'Casa')." " }}</span> • <b>{{ date('Y') }}</b>
+          <span class="logo">{{ config('app.name', 'Casa')." " }}</span> 1.0 • <b>{{ date('Y') }}</b>
         </div>
         <div class="clearfix"></div>
       </footer>
