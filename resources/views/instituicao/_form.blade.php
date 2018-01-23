@@ -368,7 +368,7 @@
   <script>
     var url = "{{ url('/').'/usuarios/buscar-adm/' }}";
   </script>
-  <script src="{{ asset('js/buscar_cep.js') }}"></script> 
-  <script src="{{ asset('js/buscar_adm.js') }}"></script> 
-  <script src="{{ asset('js/casa/instituicao-form.js') }}"></script> 
+  <script src="{{ asset('js/min/buscar_cep.min.js') }}"></script> 
+  <script src="{{ asset('js/min/buscar_adm.min.js') }}"></script> 
+  <script src="{{ asset('js/min/casa/instituicao-form.min.js') }}"></script> 
 @endsection

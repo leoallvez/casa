@@ -226,5 +226,5 @@
         var url_request = "{{ url('vinculos/desvincular/') }}";
       </script>
 
-      <script src="{{ asset('js/casa/vinculo-index.js') }}"></script>
+      <script src="{{ asset('js/casa/min/vinculo-index.min.js') }}"></script>
     @endsection

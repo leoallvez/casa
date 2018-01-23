@@ -94,6 +94,6 @@
   <script type="text/javascript">
     var url = '{{ url('instituicao{/id}') }}';
   </script>
-  <script src="{{ asset('js/casa/index.js') }}"></script>
+  <script src="{{ asset('js/min/casa/index.min.js') }}"></script>
 @endsection
 

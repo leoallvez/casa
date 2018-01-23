@@ -187,5 +187,5 @@
 </div>
 
 @section('js')
-    <script src="{{ asset('js/casa/adotivo-form.js') }}"></script>
+    <script src="{{ asset('js/casa/min/adotivo-form.min.js') }}"></script>
 @endsection

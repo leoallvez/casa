@@ -122,5 +122,5 @@
   <script type="text/javascript">
     var url = '{{ url('adotantes{/id}') }}';
   </script>
-  <script src="{{ asset('js/casa/index.js') }}"></script>
+  <script src="{{ asset('js/casa/min/index.min.js') }}"></script>
 @endsection

@@ -104,5 +104,5 @@
   <script type="text/javascript">
     var url = '{{ url('usuarios{/id}') }}';
   </script>
-  <script src="{{ asset('js/casa/index.js') }}"></script>
+  <script src="{{ asset('js/casa/min/index.min.js') }}"></script>
 @endsection

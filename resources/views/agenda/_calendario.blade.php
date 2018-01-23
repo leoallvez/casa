@@ -159,5 +159,5 @@
     <script type="text/javascript">
         var url_base = "{{ url('/') }}";
     </script>
-    <script src="{{ asset('js/casa/calendario-visitas.js') }}"></script>
+    <script src="{{ asset('js/casa/min/calendario-visitas.min.js') }}"></script>
 @endsection

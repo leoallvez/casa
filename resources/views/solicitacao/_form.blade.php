@@ -364,5 +364,5 @@
 </div>
 
 @section('js')
-  <script src="{{ asset('js/buscar_cep.js') }}"></script> 
+  <script src="{{ asset('js/casa/min/buscar_cep.min.js') }}"></script> 
 @endsection

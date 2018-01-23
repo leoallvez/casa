@@ -20,7 +20,7 @@
     {{-- Custom Theme Style --}}
     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
-    <link href="{{ asset('css/casa.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/casa/min/casa.min.css') }}" rel="stylesheet" />
     {{-- Sweet Alert --}}
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{-- Select 2 --}}
@@ -137,7 +137,7 @@
     {{-- Select2 --}}
     <script src="{{ asset('js/select2.min.js') }}"></script>
     {{-- Casa Js --}}
-    <script src="{{ asset('js/casa.js') }}"></script>
+    <script src="{{ asset('js/casa/min/casa.min.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

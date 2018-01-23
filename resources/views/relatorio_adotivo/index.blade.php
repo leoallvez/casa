@@ -255,7 +255,7 @@
   <script src="{{ asset('js/highcharts/highcharts-3d.js') }}"></script>
   <script src="{{ asset('js/highcharts/exporting.js') }}"></script>
   <script src="{{ asset('js/jquery.print.min.js') }}"></script>
-  <script src="{{ asset('js/casa/relatorio-index.js') }}"></script>
+  <script src="{{ asset('js/casa/min/relatorio-index.min.js') }}"></script>
 
 @endsection 
 

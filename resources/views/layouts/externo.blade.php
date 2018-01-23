@@ -20,7 +20,7 @@
     {{-- Sweet Alert --}}
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
-    <link href="{{ asset('css/casa.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/casa/min/casa.min.css') }}" rel="stylesheet" />
     <!--
     <script>
       window.Laravel = <?php echo json_encode([
@@ -71,7 +71,7 @@
     {{-- JQuery Mark--}}
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     {{-- Casa Js --}}
-    <script src="{{ asset('js/casa.js') }}"></script>
+    <script src="{{ asset('js/casa/min/casa.min.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
