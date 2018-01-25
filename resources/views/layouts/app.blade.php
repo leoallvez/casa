@@ -19,13 +19,13 @@
     <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet" />
     {{-- Custom Theme Style --}}
     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet" />
-    {{--CSS Casa CSS --}}
-    <link href="{{ asset('css/casa/dev/bahia.css') }}" rel="stylesheet" />
     {{-- Sweet Alert --}}
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{-- Select 2 --}}
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     @yield('style')
+    {{--CSS Casa CSS --}}
+    <link href="{{ asset('css/casa/min/casa.min.css') }}" rel="stylesheet" />
 
     <!--
     <script>
@@ -120,7 +120,7 @@
           @if(Request::is('visitas')) Para mudanças nos horários de visitas mande um e-mail para <b>contato@casa-sistema.com.br</b> @endif
         </div>
         <div class="pull-right">
-          <span class="logo">{{ config('app.name', 'Casa')." " }}</span> 1.0 • <b>{{ date('Y') }}</b>
+          <span class="logo">{{ config('app.name', 'Casa')." " }}</span> • <b>{{ date('Y') }}</b>
         </div>
         <div class="clearfix"></div>
       </footer>

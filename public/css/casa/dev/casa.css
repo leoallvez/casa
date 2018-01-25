@@ -285,10 +285,41 @@
 
   }
 
-  /**Calendário*/
+  /**Full Calendar*/
 
-  .fc th {
-    padding: 10px 0px;
-    vertical-align: middle;
-    background: #b10e0e !important;
+    .fc th,
+    .fc-unthemed .fc-popover .fc-header {
+    background:#1ABB9C;
+    color: #fff;
   }
+
+  .fc-title{
+
+    font-size: 1.2em;
+  }
+
+  .fc th a{
+    color: #fff !important;
+  }
+
+  .fc-unthemed td.fc-today {
+    background: #E0FFFF;
+    color: #fff !important;
+    border-color: #ddd;
+  }
+
+.fc button {
+  background:#1ABB9C;
+  color: #fff;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  height: 2.1em;
+  padding: 1 .6em;
+  font-size: 1.1em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+
