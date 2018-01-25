@@ -20,7 +20,7 @@
     {{-- Custom Theme Style --}}
     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet" />
     {{--CSS Casa CSS --}}
-    <link href="{{ asset('css/casa/min/casa.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/casa/dev/bahia.css') }}" rel="stylesheet" />
     {{-- Sweet Alert --}}
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" />
     {{-- Select 2 --}}

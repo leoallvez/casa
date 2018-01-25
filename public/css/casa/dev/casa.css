@@ -284,3 +284,11 @@
     }
 
   }
+
+  /**Calendário*/
+
+  .fc th {
+    padding: 10px 0px;
+    vertical-align: middle;
+    background: #b10e0e !important;
+  }
