@@ -31,6 +31,7 @@
                                     [
                                         'class'       => 'form-control',
                                         'placeholder' => 'Selecione Adotante(s)',
+                                        'style'    => 'width: 100%',
                                         'onchange'    => 'buscarAdotivos(); clearErros();',
                                     ])
                                 !!}
@@ -159,5 +160,5 @@
     <script type="text/javascript">
         var url_base = "{{ url('/') }}";
     </script>
-    <script src="{{ asset('js/casa/min/calendario-visitas.min.js') }}"></script>
+    <script src="{{ asset('js/casa/dev/calendario-visitas.js') }}"></script>
 @endsection

@@ -197,7 +197,7 @@ class Adotante extends Model
 
   public function vinculos() 
   {
-      return $this->hasMany('Casa\Vinculo', 'adotante_id');
+    return $this->hasMany('Casa\Vinculo', 'adotante_id');
   }
 
   public function observacoes() 

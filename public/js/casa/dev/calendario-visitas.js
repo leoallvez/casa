@@ -72,7 +72,11 @@ $(document).ready(function () {
             },
             // Event Mouseover
             eventMouseover: function (calEvent, jsEvent, view) {
-                var tooltip = '<div class="event-tooltip">' + calEvent.description + '</div>';
+                var tooltip = '<div class="event-tooltip">'
+                                + 'Inicío: ' + calEvent.hora_inicio + '<br>'
+                                + 'Fim: ' + calEvent.hora_fim 
+                            + '</div>';
+                            
                 $("body").append(tooltip);
                 $(this).mouseover(function (e) {
                     $(this).css('z-index', 10000);
@@ -91,7 +95,6 @@ $(document).ready(function () {
             eventClick: function (calEvent, jsEvent, view) {
                 // Set currentEvent variable according to the event clicked in the calendar
                 currentEvent = calEvent;
-
                 // Open modal to edit or delete event
                 modal({
                     // Available buttons when editing
@@ -131,7 +134,9 @@ $(document).ready(function () {
                 var time = data.event.date.split(' ')[1].slice(0, -3);
                 time = time.charAt(0) === '0' ? time.slice(1) : time;
             }
-            $("#adotante_id").val(data.event ? data.event.adotante_id : null);
+            
+            var adotates = data.event ? data.event.adotante_id : null;
+            $('#adotante_id').val(adotates).trigger("change");
             var adotivos = data.event ? data.event.adotivo_id : null;
             $('#adotivo_id').val(adotivos).trigger("change");
             $('#time').val(time);
@@ -283,8 +288,6 @@ $(document).ready(function () {
                 showErroMessage("<p> A data informada <b>é antes de hoje!</b></p>");
                 errors++;
             }
-
-            //console.log("VALIDAÇÃO: "+isValidDate(selectedDate), selectedDate, daysDiff(selectedDate));
 
             if (!isValidDate(selectedDate)) {
                 showErroMessage("<p> A data informada <b>é inválida!</b></p>");
@@ -476,3 +479,14 @@ $("#adotivo_id").select2({
     placeholder: "--",
     multiple: true
 });
+
+$("#adotante_id").select2({
+    placeholder: "Selecione Adotante(s)",
+    "language": {
+        "noResults": function () {
+            return "Adotante(s) não e";
+        }
+    }
+});
+
+
