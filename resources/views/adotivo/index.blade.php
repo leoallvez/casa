@@ -54,10 +54,12 @@
                     <tr>
                       <th>Nome</th>
                       <th>Vínculo?</th>
-                      <th>Sexo</th>
-                      <th>Idade</th>
-                      <th>Etnia</th>
-                      <th>Status</th>
+
+                      <th class="hidden-in-mobile">Sexo</th>
+                      <th class="hidden-in-mobile">Idade</th>
+                      <th class="hidden-in-mobile">Etnia</th>
+                      <th class="hidden-in-mobile">Status</th>
+
                       <th>Ação</th>
                     </tr>
                   </thead>
@@ -76,8 +78,9 @@
                           $adotivo->temAdotantes() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
                         !!}
                       </td>
-                      <td>{{ $adotivo->getSexo() }}</td>
-                      <td style="padding-right: -5px">
+      
+                      <td class="hidden-in-mobile">{{ $adotivo->getSexo() }}</td>
+                      <td class="hidden-in-mobile" style="padding-right: -5px">
                         {{ $adotivo->calcularIdade() }}
                         <br>
                         <small>
@@ -85,8 +88,8 @@
                           {{ $adotivo->nascimento->format('d/m/Y') }}
                         </small>
                       </td>
-                      <td>{{ $adotivo->etnia->nome }}</td>
-                      <td><a>{{ $adotivo->status->nome }}</a></td>
+                      <td class="hidden-in-mobile">{{ $adotivo->etnia->nome }}</td>
+                      <td class="hidden-in-mobile"><a>{{ $adotivo->status->nome }}</a></td>
                       <td>
                         <a href="{{ action('AdotivoController@edit', $adotivo->id) }}"
                           class="btn btn-info btn-xs">

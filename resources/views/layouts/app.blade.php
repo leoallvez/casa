@@ -25,7 +25,7 @@
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     @yield('style')
     {{--CSS Casa CSS --}}
-    <link href="{{ asset('css/casa/min/casa.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/casa/dev/casa.css') }}" rel="stylesheet" />
 
     <!--
     <script>
