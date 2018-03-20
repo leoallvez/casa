@@ -36,7 +36,7 @@
       </div>
       <div class="clearfix"></div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="x_panel">
             <div class="x_title">
               <h2>Lista</h2>
@@ -53,9 +53,9 @@
                   <thead>
                     <tr>
                       <th>Nome</th>
-                      <th>Cargo</th>
-                      <th>Nível</th>
-                      <th>E-mail</th>
+                      <th class="hidden-in-mobile">Cargo</th>
+                      <th class="hidden-in-mobile">Nível</th>
+                      <th class="hidden-in-mobile">E-mail</th>
                       <th>CPF</th>
                       <th>Ações</th>
                     </tr>
@@ -68,9 +68,9 @@
                         <br>
                         <small>Cadastrado: {{ $usuario->created_at->format('d/m/Y') }}</small>
                       </td>
-                      <td>{{ $usuario->cargo }}</td>
-                      <td>{{ $usuario->nivel->nome }}</td>
-                      <td>{{ $usuario->email }}</td>
+                      <td class="hidden-in-mobile">{{ $usuario->cargo }}</td>
+                      <td class="hidden-in-mobile">{{ $usuario->nivel->nome }}</td>
+                      <td class="hidden-in-mobile">{{ $usuario->email }}</td>
                       <td>{{ $usuario->cpf }}</td>
                       <td>
                         <a href="{{ action('UsuarioController@edit', $usuario->id) }}" class="btn btn-info btn-xs">

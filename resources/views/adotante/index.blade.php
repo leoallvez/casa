@@ -36,7 +36,7 @@
       </div>
       <div class="clearfix"></div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="x_panel">
             <div class="x_title">
               <h2>Lista</h2>
@@ -53,9 +53,9 @@
                     <tr>
                       <th>Nome</th>
                       <th>Vínculo?</th>
-                      <th>Estado Civil</th>
-                      <th>Idade</th>
-                      <th>CPF</th>
+                      <th class="hidden-in-mobile">Estado Civil</th>
+                      <th class="hidden-in-mobile">Idade</th>
+                      <th class="hidden-in-mobile">CPF</th>
                       <th>Ação</th>
                     </tr>
                   </thead>
@@ -72,15 +72,15 @@
                             $adotante->hasAdotivos() ? "<i class='fa fa-check-circle fa-lg'></i>" : "<i class='fa fa-circle-thin fa-lg'></i>"
                           !!}
                         </td>
-                        <td>
+                        <td class="hidden-in-mobile">
                           {{ $adotante->estadoCivil->nome }}
                           <br>
                           @if( $adotante->hasConjuge())
                             <small>Conjuge: {{ str_limit($adotante->conjuge_nome, 40) }}</small>
                           @endif
                         </td>
-                        <td>{{ $adotante->getIdade() }} Anos</td>
-                        <td>{{ $adotante->cpf }}</td>
+                        <td class="hidden-in-mobile">{{ $adotante->getIdade() }} Anos</td>
+                        <td class="hidden-in-mobile">{{ $adotante->cpf }}</td>
                         <td>
                           <a href="{{ action('AdotanteController@edit', $adotante->id) }}" class="btn btn-info btn-xs">
                             <i class="fa fa-pencil"></i>

@@ -22,7 +22,7 @@
       </div>
       <div class="clearfix"></div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="x_panel">
             {{-- <pre> @{{ $data | json }}</pre> --}}
             @include('mensagens.alerta_div')
@@ -55,9 +55,9 @@
                             <tr>
                               <th>Vínculo</th>
                               <th>Nome</th>
-                              <th>Estado Civil</th>
-                              <th>Data inicial</th>
-                              <th>Data Final</th>
+                              <th class="hidden-in-mobile">Estado Civil</th>
+                              <th class="hidden-in-mobile">Data inicial</th>
+                              <th class="hidden-in-mobile">Data Final</th>
                               <th>Ações</th>
                             </tr>
                           </thead>
@@ -71,15 +71,15 @@
                                   <br>
                                   <small>Cadastrado: {{ $adotante->created_at->format('d/m/Y') }}</small>
                                 </td>
-                                <td>
+                                <td class="hidden-in-mobile">
                                   {{ $adotante->estadoCivil->nome }}
                                   <br>
                                   @if($adotante->hasConjuge())
                                     <small>Conjuge: {{ str_limit($adotante->conjuge_nome, 40) }}</small>
                                   @endif
                                 </td>
-                                <td> {{ date('d/m/Y',strtotime( $adotante->pivot->created_at )) }} </td>
-                                <td> {{ date('d/m/Y',strtotime( $adotante->pivot->deleted_at )) }} </td>
+                                <td class="hidden-in-mobile"> {{ date('d/m/Y',strtotime( $adotante->pivot->created_at )) }} </td>
+                                <td class="hidden-in-mobile"> {{ date('d/m/Y',strtotime( $adotante->pivot->deleted_at )) }} </td>
                                 <td>
                                   <a href="{{ action('VinculoController@visualizar', [$adotivo->id, $adotante->id] ) }}"
                                     class="btn btn-info btn-xs">
