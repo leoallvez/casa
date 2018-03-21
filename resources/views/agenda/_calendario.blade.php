@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
-                <div id='calendar'></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 column">
+            <div id='calendar'></div>
         </div>
     </div>
 </div>
@@ -22,16 +22,16 @@
                 <form id="crud-form">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 {!! Form::label('adotante_id', 'Adotante(s)') !!}
                                 {!! Form::select(
                                     'adotante_id',
                                     $adotantes,
                                     null,
                                     [
+                                        'style'       => 'width: 100%',
                                         'class'       => 'form-control',
                                         'placeholder' => 'Selecione Adotante(s)',
-                                        'style'    => 'width: 100%',
                                         'onchange'    => 'buscarAdotivos(); clearErros();',
                                     ])
                                 !!}
@@ -41,7 +41,7 @@
 
                     <div class="form-group"> 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 {!! Form::label('adotivo_id', 'Adotivo(s)') !!}<br>
                                 {!! Form::select(
                                     'adotivo_id',
@@ -60,7 +60,7 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 {!! Form::label('display_data', 'Data') !!}
                                 {!! Form::text('display_data', null,
                                     [
@@ -81,7 +81,7 @@
                                 !!}
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 {!! Form::label('hora_inicio', 'Hora Inicial') !!}
                                 {!! Form::time('hora_inicio', null,
                                     [
@@ -94,7 +94,7 @@
                                 !!}
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 {!! Form::label('hora_fim', 'Hora Final') !!}
                                 {!! Form::time('hora_fim', null,
                                     [
@@ -106,7 +106,7 @@
                                     ])
                                 !!}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 {!! Form::label('tempo_total', 'Tempo Total') !!}
                                 {!! Form::text('tempo_total', '--:--',
                                     [
@@ -130,7 +130,7 @@
                                     !!}
                                 </div>
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </form>
             </div>
