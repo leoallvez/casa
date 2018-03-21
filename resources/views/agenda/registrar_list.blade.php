@@ -12,9 +12,9 @@
         <div class="title_left">
           <h3> Agenda Registrar</h3>
         </div>
-        </div>
       </div>
-      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="x_panel">
@@ -32,23 +32,47 @@
                   <thead>
                     <tr>
                       <th>Adotivo</th>
-                      <th>Adotante</th>
-                      <th>Dia da Visita</th>
-                      <th>Hora Inicial</th>
-                      <th>Hora Final</th>
-                      <th>Tempo Total</th>
-                      <th>Ação</th>
+                      <th class="hidden-in-mobile">
+                        Adotante
+                      </th>
+                      <th>
+                        Dia da Visita
+                      </th>
+                      <th class="hidden-in-mobile">
+                        Hora Inicial
+                      </th>
+                      <th class="hidden-in-mobile">
+                        Hora Final
+                      </th>
+                      <th class="hidden-in-mobile">
+                        Tempo Total
+                      </th>
+                      <th>
+                        Ação
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($visitas as $visita)
                       <tr>
-                        <td>{{ str_limit($visita->vinculo->adotivo->nome, 25) }}</td>
-                        <td>{{ str_limit($visita->vinculo->adotante->nome,25) }}</td>
-                        <td>{{ date('d/m/Y',strtotime($visita->agenda->dia))}}</td>
-                        <td>{{ substr($visita->agenda->hora_inicio, 0, 5) }}</td>
-                        <td>{{ substr($visita->agenda->hora_fim, 0, 5) }}</td>
-                        <td>{{ $visita->agenda->calcularTempoTotal() }}</td>
+                        <td>
+                          {{ str_limit($visita->vinculo->adotivo->nome, 25) }}
+                        </td>
+                        <td class="hidden-in-mobile">
+                          {{ str_limit($visita->vinculo->adotante->nome,25) }}
+                        </td>
+                        <td>
+                          {{ date('d/m/Y',strtotime($visita->agenda->dia))}}
+                        </td>
+                        <td class="hidden-in-mobile">
+                          {{ substr($visita->agenda->hora_inicio, 0, 5) }}
+                        </td>
+                        <td class="hidden-in-mobile">
+                          {{ substr($visita->agenda->hora_fim, 0, 5) }}
+                        </td>
+                        <td class="hidden-in-mobile">
+                          {{ $visita->agenda->calcularTempoTotal() }}
+                        </td>
                         <td>
                           <a href="{{ action('AgendaController@registrarVisitaGet', $visita->id) }}"
                             class="btn btn-info btn-xs">
