@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
               <div class="input-group input-daterange">
-                <div class="input-group-addon">Período de </div>
+                <div class="input-group-addon">De</div>
                 {!! Form::date('data_inicio', \Carbon\Carbon::now()->subYears(1),
                   [
                     'class' => 'form-control',
@@ -184,6 +184,13 @@
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_grafico" aria-labelledby="home-tab">
                   
                   @if(!$adotivos->isEmpty())
+                    <div class="form-group">
+                      {!! Form::button('Imprimir', ['class' => 'btn btn-default pull-right', 'return onclick' => 'print(this)']) !!}
+                    </div>
+
+                    <br />
+                    <div class="ln_solid"></div>
+                  
                     @if(!is_null($dadosStatus))
                       <div id="grafico-status"></div><br>
                     @endif
@@ -193,9 +200,7 @@
                     @if(!is_null($dadosEtnias))
                       <div id="grafico-etnias"></div><br>
                     @endif
-                    <div class="form-group">
-                      {!! Form::button('Imprimir', ['class' => 'btn btn-primary', 'return onclick' => 'print(this)']) !!}
-                    </div>
+                    
                   @else
                     @if($buscaRealizada)
                       Não foram encontrados registros na base de dados!
@@ -208,6 +213,11 @@
                 <div role="tabpanel" class="tab-pane fade" id="tab_listagem" aria-labelledby="profile-tab">
 
                   @if(!$adotivos->isEmpty())
+                    <div class="form-group">
+                      {!! Form::button('Imprimir', ['class' => 'btn btn-default pull-right', 'return onclick' => 'print(this)']) !!}
+                    </div>
+                    <br />
+                    <div class="ln_solid"></div>
                     <div class="table-responsive">
                       {{-- start list --}}
                       <table class="table table-hover table-general">
@@ -251,9 +261,7 @@
                       </table>
                       {{-- end project list --}}
                     </div>
-                    <div class="form-group">
-                      {!! Form::button('Imprimir', ['class' => 'btn btn-primary', 'return onclick' => 'print(this)']) !!}
-                    </div>
+                    
                   @else
                     @if($buscaRealizada)
                       Não foram encontrados registros na base de dados!
@@ -279,7 +287,7 @@
 
   <script src="{{ asset('js/highcharts/highcharts.js') }}"></script>
   <script src="{{ asset('js/highcharts/highcharts-3d.js') }}"></script>
-  <script src="{{ asset('js/highcharts/exporting.js') }}"></script>
+  {{--  <script src="{{ asset('js/highcharts/exporting.js') }}"></script>  --}}
   <script src="{{ asset('js/jquery.print.min.js') }}"></script>
   <script src="{{ asset('js/casa/min/relatorio-index.min.js') }}"></script>
 

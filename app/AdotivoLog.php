@@ -92,8 +92,6 @@ class AdotivoLog extends Model
             $resultado = $resultado->where('adotivo_status_id', $request['status']);    
         }
 
-        //dd( $resultado->get());//
-
         return $resultado->get();
     }
 }
