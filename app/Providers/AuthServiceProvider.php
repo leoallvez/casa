@@ -3,6 +3,7 @@
 namespace Casa\Providers;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('has_access', function ($user, $element) 
+        {
+            if(!is_null($element)){
+                return $user->instituicao_id == $element->instituicao_id;
+            }
+            return false;
+        });
     }
 }

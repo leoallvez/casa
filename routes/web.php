@@ -16,6 +16,8 @@ Auth::routes();
 // Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@buscarAdm');
 
 Route::group(['middleware' => ['auth', 'usuario']], function () {
+    # Acesso negado
+    Route::get('acesso-negado', 'AcessoNegadoController@index');
     # Home.
     Route::get('home', 'HomeController@index');
     Route::get('/', 'HomeController@index');

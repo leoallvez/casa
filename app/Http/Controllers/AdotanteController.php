@@ -11,6 +11,7 @@ use Casa\Nacionalidade;
 use Illuminate\Http\Request;
 use Casa\CategoriaProfissional;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Casa\Http\Requests\AdotanteRequest;
 
 
@@ -26,6 +27,7 @@ class AdotanteController extends Controller
         $adotantes = Adotante::where('instituicao_id', Auth::user()->instituicao_id)
         ->orderBy('nome')
         ->paginate(config('app.list_size'));
+        
         return view('adotante.index', compact('adotantes'));
     }
 
@@ -69,8 +71,6 @@ class AdotanteController extends Controller
         $adotante->setInstituicao($usuario->instituicao_id);
         $adotante->setUsuario($usuario->id);
 
-        //$adotante->criarConjuge($request);
-
         $adotante->save();
 
         flash("Adotante ".$adotante->nome." Incluído com Sucesso!", "success");
@@ -85,26 +85,30 @@ class AdotanteController extends Controller
      */
     public function edit($id) 
     {
-        $adotante = Adotante::findOrFail($id);
-        $estadosCivis = EstadoCivil::all()->pluck('nome', 'id');
-        $estados = Estado::all()->pluck('nome', 'id');
+        $adotante = Adotante::find($id);
 
-        $escolaridades = Escolaridade::all()->pluck('nome', 'id');
-        $categoriasProfissionais = CategoriaProfissional::all()->pluck('nome', 'id');
-        $nascionalidades = Nacionalidade::pluck('nome', 'id');
+        if (Gate::allows('has_access', $adotante)) {
+            $estadosCivis = EstadoCivil::all()->pluck('nome', 'id');
+            $estados = Estado::all()->pluck('nome', 'id');
 
-        return view('adotante.edit',
-            compact(
-                'adotante',
-                'estadosCivis',
-                'estados',
-                'adotivos',
-                'adotivosProcessoIds',
-                'escolaridades',
-                'categoriasProfissionais',
-                'nascionalidades'
-            )
-        );
+            $escolaridades = Escolaridade::all()->pluck('nome', 'id');
+            $categoriasProfissionais = CategoriaProfissional::all()->pluck('nome', 'id');
+            $nascionalidades = Nacionalidade::pluck('nome', 'id');
+
+            return view('adotante.edit',
+                compact(
+                    'adotante',
+                    'estadosCivis',
+                    'estados',
+                    'adotivos',
+                    'adotivosProcessoIds',
+                    'escolaridades',
+                    'categoriasProfissionais',
+                    'nascionalidades'
+                )
+            );
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -118,13 +122,15 @@ class AdotanteController extends Controller
     {
         $adotante = Adotante::find($id);
 
-        Adotante::validarConjuge($request);
-        $adotante->update($request->all());
+        if (Gate::allows('has_access', $adotante)) {
 
-        //$adotivos = $request->adotivos;
+            Adotante::validarConjuge($request);
+            $adotante->update($request->all());
 
-        flash("Adotante ".$adotante->nome." Alterado com Sucesso!", "success");
-        return redirect('adotantes');
+            flash("Adotante ".$adotante->nome." Alterado com Sucesso!", "success");
+            return redirect('adotantes');
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -135,10 +141,15 @@ class AdotanteController extends Controller
      */
     public function destroy($id)
     {
-        Adotante::destroy($id);
+        $adotante = Adotante::findOrFail($id);
 
-        flash("Adotante inativado(a) com Sucesso", 'danger');
-        return json_encode(['status' => true]);
+        if (Gate::allows('has_access', $adotante)) {
+
+            $adotante->destroy($id);
+            flash("Adotante inativado(a) com Sucesso", 'danger');
+            return json_encode(['status' => true]);
+        }
+        return json_encode(['status' => false, 'message' => 'Acesso negado!']);
     }
 
     public function buscar(Request $request) 
