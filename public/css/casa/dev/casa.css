@@ -165,6 +165,17 @@
     padding: 2%;
   }
 
+  .access-denied {
+    height: 250px;
+    width: 250px;
+    padding: 2%;
+  }
+
+ .jumbotron{
+    background: #d9534f;
+    color: #FFF;
+  }
+
   .logo-img-externo {
     height: 60px;
     width: 60px;

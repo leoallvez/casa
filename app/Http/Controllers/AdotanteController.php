@@ -141,7 +141,7 @@ class AdotanteController extends Controller
      */
     public function destroy($id)
     {
-        $adotante = Adotante::findOrFail($id);
+        $adotante = Adotante::find($id);
 
         if (Gate::allows('has_access', $adotante)) {
 

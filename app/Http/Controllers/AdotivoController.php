@@ -12,6 +12,7 @@ use Casa\AdotivoStatus;
 use Casa\Nacionalidade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Casa\Http\Requests\AdotivoRequest;
 
 class AdotivoController extends Controller
@@ -98,39 +99,44 @@ class AdotivoController extends Controller
      */
     public function edit($id) 
     {
-        $adotivo   = Adotivo::findOrFail($id);
-        $adotantes = Adotante::all()->pluck('nome', 'id');
-        $status    = AdotivoStatus::pluck('nome', 'id');
-        $etnias    = Etnia::pluck('nome', 'id');
-        $nascionalidades = Nacionalidade::pluck('nome', 'id');
+        $adotivo = Adotivo::find($id);
 
-        $adotante   = $adotivo->adotantes()->first();
-        $restricoes = Restricao::pluck('nome', 'id');
+        if (Gate::allows('has_access', $adotivo)) {
 
-        $conditions = [
-                        ['instituicao_id','=', Auth::user()->instituicao_id ], 
-                        ['id','<>', $adotivo->id],
-                     ];
+            $adotantes = Adotante::all()->pluck('nome', 'id');
+            $status    = AdotivoStatus::pluck('nome', 'id');
+            $etnias    = Etnia::pluck('nome', 'id');
+            $nascionalidades = Nacionalidade::pluck('nome', 'id');
 
-        $irmaos = Adotivo::where($conditions)
-        ->orderBy('nome')
-        ->pluck('nome', 'id');
+            $adotante   = $adotivo->adotantes()->first();
+            $restricoes = Restricao::pluck('nome', 'id');
 
-        $irmaosIds = $adotivo->getIrmaosIds();
+            $conditions = [
+                            ['instituicao_id','=', Auth::user()->instituicao_id ], 
+                            ['id','<>', $adotivo->id],
+                        ];
 
-        return view('adotivo.edit',
-            compact(
-                'adotivo',
-                'adotantes',
-                'adotante',
-                'status',
-                'etnias',
-                'nascionalidades',
-                'restricoes',
-                'irmaos',
-                'irmaosIds'
-            )
-        );
+            $irmaos = Adotivo::where($conditions)
+            ->orderBy('nome')
+            ->pluck('nome', 'id');
+
+            $irmaosIds = $adotivo->getIrmaosIds();
+
+            return view('adotivo.edit',
+                compact(
+                    'adotivo',
+                    'adotantes',
+                    'adotante',
+                    'status',
+                    'etnias',
+                    'nascionalidades',
+                    'restricoes',
+                    'irmaos',
+                    'irmaosIds'
+                )
+            );
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -145,19 +151,23 @@ class AdotivoController extends Controller
     {
         $adotivo = Adotivo::find($id);
 
-        $adotivo->update($request->all());
-      
-        $log = new AdotivoLog();
-        $log->setAll($adotivo);
-        $log->altualizarOuSalvar();
+        if (Gate::allows('has_access', $adotivo)) {
 
-        $adotivo->atualizarIrmaos($request->irmaosIds);
-        flash(
-            "Adotivo ".$adotivo->nome." Alterado com Sucesso!",
-            "success"
-        );
+            $adotivo->update($request->all());
+        
+            $log = new AdotivoLog();
+            $log->setAll($adotivo);
+            $log->altualizarOuSalvar();
 
-        return redirect('adotivos');
+            $adotivo->atualizarIrmaos($request->irmaosIds);
+            flash(
+                "Adotivo ".$adotivo->nome." Alterado com Sucesso!",
+                "success"
+            );
+
+            return redirect('adotivos');
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -168,10 +178,15 @@ class AdotivoController extends Controller
      */
     public function destroy($id) 
     {
-        Adotivo::destroy($id);
+        $adotivo = Adotivo::find($id);
 
-        flash("Adotivo Inativado(a) com Sucesso", 'danger');
-        return json_encode(['status' => true]);
+        if (Gate::allows('has_access', $adotivo)) {
+
+            $adotivo->destroy($id);
+            flash("Adotivo Inativado(a) com Sucesso", 'danger');
+            return json_encode(['status' => true]);
+        }
+        return json_encode(['status' => false, 'message' => 'Acesso negado!']);
     }
 
     public function buscar(Request $request) 
