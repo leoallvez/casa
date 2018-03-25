@@ -6,6 +6,7 @@ use Casa\User;
 use Casa\AdmSistema;
 use Casa\UsuarioNivel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\UserStoreRequest;
 use Casa\Http\Requests\UserUpdateRequest;
@@ -59,11 +60,15 @@ class AdmSistemaController extends Controller
      */
     public function edit($id) 
     {
-        $adm = AdmSistema::findOrfail($id);
+        $adm = AdmSistema::find($id);
 
-        $niveis = UsuarioNivel::listar();
+        if (Gate::allows('has_access', $adm)) {
 
-        return view('adm-sistema.edit', compact('adm','niveis'));
+            $niveis = UsuarioNivel::listar();
+            
+            return view('adm-sistema.edit', compact('adm','niveis'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -75,13 +80,18 @@ class AdmSistemaController extends Controller
      */
     public function update(UserUpdateRequest $request, $id) 
     {
-        $adm = AdmSistema::findOrfail($id);
-        $adm->setSenha($request->password);
-        $adm->update($request->except(['password']));
+        $adm = AdmSistema::find($id);
 
-        flash('Administrador do Sistema Alterado com Sucesso!', 'success');
+        if (Gate::allows('has_access', $adm)) {
+            $adm->setSenha($request->password);
+            $adm->update($request->except(['password']));
 
-        return redirect('administradores-sistema');
+            flash('Administrador do Sistema Alterado com Sucesso!', 'success');
+
+            return redirect('administradores-sistema');
+        }
+
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -92,10 +102,13 @@ class AdmSistemaController extends Controller
      */
     public function destroy($id) 
     {
-        AdmSistema::destroy($id);
+        $adm = AdmSistema::find($id);
         
-        flash('Administrador do Sistema Inativado com Sucesso', 'danger');
-        return json_encode(['status' => true]);
+        if (Gate::allows('has_access', $adm)) {
+            $adm->destroy();
+            flash('Administrador do Sistema Inativado com Sucesso', 'danger');
+            return json_encode(['status' => true]);
+        }
     }
     
     public function buscar(Request $request) 

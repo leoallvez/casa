@@ -6,6 +6,7 @@ use Casa\User;
 use Casa\Usuario;
 use Casa\UsuarioNivel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\UserStoreRequest;
 use Casa\Http\Requests\UserUpdateRequest;
@@ -61,11 +62,16 @@ class UsuarioController extends Controller
      */
     public function edit($id) 
     {
-        $usuario = Usuario::findOrfail($id);
+        $usuario = Usuario::find($id);
 
-        $niveis = UsuarioNivel::listar();
+        if (Gate::allows('has_access', $usuario)) {
 
-        return view('usuario.edit', compact('usuario','niveis'));
+            $niveis = UsuarioNivel::listar();
+
+            return view('usuario.edit', compact('usuario','niveis'));
+        }
+
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -77,17 +83,21 @@ class UsuarioController extends Controller
      */
     public function update(UserUpdateRequest $request, $id) 
     {
-        $usuario = Usuario::findOrfail($id);
-        $usuario->setSenha($request->password);
-        $usuario->update($request->except(['password']));
+        $usuario = Usuario::find($id);
 
-        flash('Informações Alteradas com Sucesso!', 'success');
-        #Se for um usuário comum  ou for adm de instituição
-        if(Auth::user()->id == $id) {
-            return redirect('/');
+        if (Gate::allows('has_access', $usuario)) {
+            $usuario->setSenha($request->password);
+            $usuario->update($request->except(['password']));
+
+            flash('Informações Alteradas com Sucesso!', 'success');
+            #Se for um usuário comum  ou for adm de instituição
+            if(Auth::user()->id == $id) {
+                return redirect('/');
+            }
+
+            return redirect('usuarios');
         }
-
-        return redirect('usuarios');
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -98,10 +108,17 @@ class UsuarioController extends Controller
      */
     public function destroy($id) 
     {
-        Usuario::destroy($id);
         
-        flash('Usuário Inativado com Sucesso', 'danger');
-        return json_encode(['status' => true]);
+        $usuario = Usuario::find($id);
+        
+        if (Gate::allows('has_access', $usuario)) {
+
+            $usuario->destroy();
+            flash('Usuário Inativado com Sucesso', 'danger');
+            return json_encode(['status' => true]);
+        }
+    
+        return json_encode(['status' => false, 'message' => 'Acesso negado!']);
     }
 
     public function buscar(Request $request) 
@@ -120,10 +137,11 @@ class UsuarioController extends Controller
 
         $adm = Usuario::where('id', $id)->whereIn('nivel_id', $usuarios)->first();
 
-        if(!is_null($adm)) {
+        if (Gate::allows('has_access', $adm)) {
+
             return response()->json(['status' => true, 'adm' => $adm], 200);
         }
-
+        
         return response()->json(['status' => false], 204);
     }
 }
