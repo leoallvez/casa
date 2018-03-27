@@ -7,6 +7,7 @@ use Casa\Usuario;
 use Casa\UsuarioNivel;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\InstituicaoRequest;
 
@@ -19,12 +20,15 @@ class InstituicaoController extends Controller
      */
     public function index() 
     {
-        $instituicoes = Instituicao::where('esta_aprovada', true)
-        ->where('id', '<>', 1)
-        ->orderBy('razao_social')
-        ->paginate(config('app.list_size'));
+        if (Gate::allows('is_system_administrator')) {
+            $instituicoes = Instituicao::where('esta_aprovada', true)
+            ->where('id', '<>', 1)
+            ->orderBy('razao_social')
+            ->paginate(config('app.list_size'));
 
-        return view('instituicao.index', compact('instituicoes'));
+            return view('instituicao.index', compact('instituicoes'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -35,15 +39,18 @@ class InstituicaoController extends Controller
      */
     public function show($id) 
     {
-        $instituicao = Instituicao::findOrfail($id);
-        
-        $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])->first();
+        if (Gate::allows('is_system_administrator')) {
+            $instituicao = Instituicao::findOrfail($id);
+            
+            $adm = User::where('instituicao_id', '=', $instituicao->id)
+            ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])->first();
 
-        $estados = Estado::all()->pluck('UF', 'id');
-        $disabled = true;
+            $estados = Estado::all()->pluck('UF', 'id');
+            $disabled = true;
 
-        return view('instituicao.edit', compact('instituicao', 'adm', 'estados', 'disabled'));
+            return view('instituicao.edit', compact('instituicao', 'adm', 'estados', 'disabled'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -54,21 +61,24 @@ class InstituicaoController extends Controller
      */
     public function edit($id) 
     {
-        $instituicao = Instituicao::findOrfail($id);
-        
-        $adm = User::where('instituicao_id', '=', $instituicao->id)
-        ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])
-        ->orderBy('name')
-        ->first();
+        if (Gate::allows('is_system_administrator')) {
+            $instituicao = Instituicao::findOrfail($id);
+            
+            $adm = User::where('instituicao_id', '=', $instituicao->id)
+            ->whereIn('nivel_id', [UsuarioNivel::ADM_SISTEMA, UsuarioNivel::ADM_INSTITUICAO])
+            ->orderBy('name')
+            ->first();
 
-        $usuarios = User::where('instituicao_id', '=', $instituicao->id)
-        ->where('deleted_at', null)
-        ->pluck('name', 'id');
+            $usuarios = User::where('instituicao_id', '=', $instituicao->id)
+            ->where('deleted_at', null)
+            ->pluck('name', 'id');
 
-        $estados = Estado::all()->pluck('nome', 'id');
-        $disabled = false;
+            $estados = Estado::all()->pluck('nome', 'id');
+            $disabled = false;
 
-        return view('instituicao.edit', compact('instituicao', 'adm', 'usuarios', 'estados', 'disabled'));
+            return view('instituicao.edit', compact('instituicao', 'adm', 'usuarios', 'estados', 'disabled'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -80,14 +90,18 @@ class InstituicaoController extends Controller
      */
     public function update(InstituicaoRequest $request, $id) 
     {
-        $instituicao = Instituicao::findOrfail($id);
+        if (Gate::allows('is_system_administrator')) {
+            $instituicao = Instituicao::findOrfail($id);
 
-        $instituicao->atualizarAdm($request->all());
+            $instituicao->atualizarAdm($request->all());
 
-        flash('Instituicao Alterada com Sucesso!', 'success');
-        
-        return redirect('instituicao');
+            flash('Instituicao Alterada com Sucesso!', 'success');
+            
+            return redirect('instituicao');
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
+
 
 
     /**
@@ -98,31 +112,37 @@ class InstituicaoController extends Controller
      */
     public function destroy($id) 
     {
-        Instituicao::findOrFail($id)->delete();
+        if (Gate::allows('is_system_administrator')) {
+            Instituicao::findOrFail($id)->delete();
 
-        Usuario::where('instituicao_id', $id)->delete();
+            Usuario::where('instituicao_id', $id)->delete();
 
-        flash("Instituição inativada com Sucesso", 'danger');
-        return json_encode(['status' => true]);
+            flash("Instituição inativada com Sucesso", 'danger');
+            return json_encode(['status' => true]);
+        }
+        return json_encode(['status' => false, 'message' => 'Acesso negado!']);
     }
 
     public function buscar(Request $request) 
     {
-        # Retirar os espaços do incios e fim da string.
-        $request->inputBusca = trim($request->inputBusca);
+        if (Gate::allows('is_system_administrator')) {
+            # Retirar os espaços do incios e fim da string.
+            $request->inputBusca = trim($request->inputBusca);
 
-        $instituicoes = Instituicao::where('esta_aprovada', true)
-        ->where('id', '<>', 1);
+            $instituicoes = Instituicao::where('esta_aprovada', true)
+            ->where('id', '<>', 1);
 
-        if(!empty($request->inputBusca)) {
-            $instituicoes = $instituicoes->where('razao_social', 'like', '%'.$request->inputBusca.'%')
-            ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'));
-        } 
+            if(!empty($request->inputBusca)) {
+                $instituicoes = $instituicoes->where('razao_social', 'like', '%'.$request->inputBusca.'%')
+                ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'));
+            } 
 
-        $instituicoes = $instituicoes->orderBy('razao_social')->paginate(config('app.list_size'));
+            $instituicoes = $instituicoes->orderBy('razao_social')->paginate(config('app.list_size'));
 
-        $inputBusca = $request->inputBusca;
+            $inputBusca = $request->inputBusca;
 
-        return view('instituicao.index', compact('instituicoes', 'inputBusca'));
+            return view('instituicao.index', compact('instituicoes', 'inputBusca'));
+        }
+        return json_encode(['status' => false, 'message' => 'Acesso negado!']);
     }
 }

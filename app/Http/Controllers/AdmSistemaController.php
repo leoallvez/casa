@@ -20,9 +20,12 @@ class AdmSistemaController extends Controller
      */
     public function index() 
     {
-        $adms = AdmSistema::listar(UsuarioNivel::ADM_SISTEMA);
-        
-        return view('adm-sistema.index', compact('adms'));
+        if (Gate::allows('is_system_administrator')) {
+            $adms = AdmSistema::listar(UsuarioNivel::ADM_SISTEMA);
+            
+            return view('adm-sistema.index', compact('adms'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
     /**
      * Show the form for creating a new resource.
@@ -31,9 +34,12 @@ class AdmSistemaController extends Controller
      */
     public function create() 
     {
-        $niveis = UsuarioNivel::all()->pluck('nome', 'id');
-        
-        return view('adm-sistema.create', compact('niveis'));
+        if (Gate::allows('is_system_administrator')) {
+            $niveis = UsuarioNivel::all()->pluck('nome', 'id');
+            
+            return view('adm-sistema.create', compact('niveis'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     /**
@@ -60,10 +66,9 @@ class AdmSistemaController extends Controller
      */
     public function edit($id) 
     {
-        $adm = AdmSistema::find($id);
+        if (Gate::allows('is_system_administrator')) {
 
-        if (Gate::allows('has_access', $adm)) {
-
+            $adm = AdmSistema::find($id);
             $niveis = UsuarioNivel::listar();
             
             return view('adm-sistema.edit', compact('adm','niveis'));
@@ -80,9 +85,9 @@ class AdmSistemaController extends Controller
      */
     public function update(UserUpdateRequest $request, $id) 
     {
-        $adm = AdmSistema::find($id);
+        if (Gate::allows('is_system_administrator')) {
 
-        if (Gate::allows('has_access', $adm)) {
+            $adm = AdmSistema::find($id);
             $adm->setSenha($request->password);
             $adm->update($request->except(['password']));
 
@@ -102,21 +107,25 @@ class AdmSistemaController extends Controller
      */
     public function destroy($id) 
     {
-        $adm = AdmSistema::find($id);
-        
-        if (Gate::allows('has_access', $adm)) {
-            $adm->destroy();
+        if (Gate::allows('is_system_administrator')) {
+            $adm = AdmSistema::find($id);
+            
+            $adm->destroy($id);
             flash('Administrador do Sistema Inativado com Sucesso', 'danger');
             return json_encode(['status' => true]);
         }
+        return json_encode(['status' => false, 'message' => 'Acesso negado!']);
     }
     
     public function buscar(Request $request) 
     {
-        $adms = AdmSistema::buscar($request->inputBusca, UsuarioNivel::ADM_SISTEMA);
+        if (Gate::allows('is_system_administrator')) {
+            $adms = AdmSistema::buscar($request->inputBusca, UsuarioNivel::ADM_SISTEMA);
 
-        $inputBusca = $request->inputBusca;
+            $inputBusca = $request->inputBusca;
 
-        return view('adm-sistema.index', compact('adms', 'inputBusca'));
+            return view('adm-sistema.index', compact('adms', 'inputBusca'));
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 }

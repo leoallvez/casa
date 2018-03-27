@@ -2,6 +2,7 @@
 
 namespace Casa\Providers;
 
+use Casa\UsuarioNivel;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -32,6 +33,12 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->instituicao_id == $element->instituicao_id;
             }
             return false;
+        });
+
+
+        Gate::define('is_system_administrator', function ($user) 
+        {
+            return $user->nivel_id == UsuarioNivel::ADM_SISTEMA;
         });
     }
 }

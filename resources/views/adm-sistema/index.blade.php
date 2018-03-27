@@ -102,5 +102,5 @@
   <script type="text/javascript">
     var url = '{{ url('administradores-sistema{/id}') }}'
   </script>
-  <script src="{{ asset('js/casa/min/index.minjs') }}"></script>
+  <script src="{{ asset('js/casa/min/index.min.js') }}"></script>
 @endsection
