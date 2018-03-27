@@ -82,46 +82,52 @@ class VinculoController extends Controller {
     {
         $adotivo = Adotivo::find($adotivo_id);
         $adotante = $adotivo->adotantes()
-            ->where('adotantes_adotivos.adotante_id', '=', $adotante_id)
-            ->first();
+        ->where('adotantes_adotivos.adotante_id', '=', $adotante_id)
+        ->first();
 
-            if (Gate::allows('has_access',  $adotivo) && Gate::allows('has_access', $adotante)) {
+        if (Gate::allows('has_access',  $adotivo)) {
 
+            $vinculo = Vinculo::where("adotivo_id", $adotivo_id)->where("adotante_id", $adotante_id)->first();
 
-                $vinculo = Vinculo::where("adotivo_id", $adotivo_id)->where("adotante_id", $adotante_id)->first();
-
-                $visitas = $vinculo->visitas;
-                
-                return view('vinculo.visualizar', compact('adotivo', 'adotante', 'visitas')); 	
-            }
+            $visitas = $vinculo->visitas;
+            
+            return view('vinculo.visualizar', compact('adotivo', 'adotante', 'visitas')); 	
+        }
         return redirect()->action('AcessoNegadoController@index');
     }
 
     public function vincular(VinculoRequest $request) 
     {
         $adotivo = Adotivo::find($request->adotivo_id);
-        $adotante = Adotante::find($request->adotante_id);
-        # Não podem tem menos 16 anos de diferença.
-        if(!$adotivo->tem16AnosDeDiferenca($adotante)) {
+        if (Gate::allows('has_access',  $adotivo)) {
+            $adotante = Adotante::find($request->adotante_id);
+            # Não podem tem menos 16 anos de diferença.
+            if(!$adotivo->tem16AnosDeDiferenca($adotante)) {
+                
+                flash("Adotivo tem diferença de idade inferior a 16 anos com o adotante ou seu conjuge", 'danger');
+                
+                return redirect('vinculos/adotivo/'.$adotivo->id."#tab_vinculo_atual");
+            }
+
+            (new Vinculo())->vincular($adotivo, $adotante);
             
-            flash("Adotivo tem diferença de idade inferior a 16 anos com o adotante ou seu conjuge", 'danger');
-            
+            flash("Adotivo ".$adotivo->nome." vinculado(a) com Sucesso!", "success");
+
             return redirect('vinculos/adotivo/'.$adotivo->id."#tab_vinculo_atual");
         }
-
-        (new Vinculo())->vincular($adotivo, $adotante);
-        
-        flash("Adotivo ".$adotivo->nome." vinculado(a) com Sucesso!", "success");
-
-        return redirect('vinculos/adotivo/'.$adotivo->id."#tab_vinculo_atual");
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     public function desvincular(Request $request) 
     {
         $adotivo = Adotivo::find($request->get('id_adotivo'));
+        if (Gate::allows('has_access',  $adotivo)) {
+            
+            (new Vinculo())->desvincular($adotivo, $request);
 
-        (new Vinculo())->desvincular($adotivo, $request);
-
-        return json_encode(['status' => true]);
+            return json_encode(['status' => true]);
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
+
 }
