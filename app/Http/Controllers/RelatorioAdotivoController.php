@@ -24,10 +24,9 @@ class RelatorioAdotivoController extends Controller
         $etnias = Etnia::all()->pluck('nome', 'id');
         $adotivos = collect([]);
 
-        $status = collect(['' => "Todos Status"] +  $status->all());
-        $etnias = collect(['' => "Todas Etnias"] +  $etnias->all());
+        $status = collect(['' => "Todos Status"] + $status->all());
+        $etnias = collect(['' => "Todas Etnias"] + $etnias->all());
 
-        //$adotivos = Adotivo::all(); //TODO: pegar do logs
         $idades = getIdadesHelper();
 
         # Valores para os gráficos

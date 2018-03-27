@@ -9,6 +9,7 @@ use Casa\Vinculo;
 use Casa\Adotante;
 use Casa\Instituicao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Casa\Http\Requests\RegistraVisitaRequest;
 
@@ -91,18 +92,21 @@ class AgendaController extends Controller
     public function destroy(Request $request, $id) 
     {
         $agenda = Agenda::find($id);
-        $cancelado = $agenda->cancelarVisita($request->observacoes);
+        
+        if (Gate::allows('has_access', $agenda)) {
+            $cancelado = $agenda->cancelarVisita($request->observacoes);
 
-        if($cancelado) {
-            return json_encode([
-                'status'  => true, 
-                'message' => 'Visita cancelada com sucesso',
-            ]);
+            if($cancelado) {
+                return json_encode([
+                    'status'  => true, 
+                    'message' => 'Visita cancelada com sucesso',
+                ]);
+            }
         }
 
         return json_encode([
             'status'  => false, 
-            'message' => 'Visita cancelada não cancelada',
+            'message' => 'Erro: Visita não cancelada',
         ]);
     }
 
@@ -147,21 +151,29 @@ class AgendaController extends Controller
     public function registrarVisitaGet($id)
     {
         $visita = Visita::find($id);
-        $agenda = $visita->agenda;
-        
-        return view('agenda.registrar', compact('visita','agenda'));   
+
+        if (Gate::allows('has_access', $visita)) {
+            $agenda = $visita->agenda;
+            
+            return view('agenda.registrar', compact('visita','agenda'));  
+        } 
+
+        return redirect()->action('AcessoNegadoController@index');
     }
 
     public function registrarVisitaPost(RegistraVisitaRequest $request, $id)
     {
-        Visita::find($id)->update($request->all());
+        $visita = Visita::find($id);
+        if (Gate::allows('has_access', $visita)) {
+            $visita->update($request->all());
 
-        flash(
-            "Visita Registrada com sucesso.",
-            'success'
-        );
+            flash(
+                "Visita Registrada com sucesso.",
+                'success'
+            );
 
-        return redirect('visitas/registra/listar');
-
+            return redirect('visitas/registra/listar');
+        }
+        return redirect()->action('AcessoNegadoController@index');
     }
 }
