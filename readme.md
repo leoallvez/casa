@@ -78,17 +78,17 @@ O sistema conta com uma versão online: http://casa-sistema.com.br que possui al
   <tr>
     <td>Administrador do Sistema</td>
     <td>adm@casa.com.br</td>
-    <td>casa2017</td>
+    <td>SenhaCasa</td>
   </tr>
   <tr>
     <td>Administrador da Instituição</td>
     <td>adm@esperanca.com.br</td>
-    <td>casa2017</td>
+    <td>SenhaCasa</td>
   </tr>
   <tr>
     <td>Usuário Padrão</td>
     <td>padrao@esperanca.com.br</td>
-    <td>casa2017 </td>
+    <td>SenhaCasa</td>
   </tr>
 </table>
 
