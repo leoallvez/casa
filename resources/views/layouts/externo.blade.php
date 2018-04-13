@@ -10,7 +10,7 @@
     {{-- CSRF Token --}}
     <meta id="_token" name="csrf-token" content="{{ csrf_token() }}">
     {{-- Icon --}}
-    <link rel="shortcut icon" href="{{ asset('img/casa-logo.png') }}" >
+    <link href="{{ asset('img/casa-logo.png') }}" rel="shortcut icon">
     {{-- Bootstrap --}}
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}
@@ -51,12 +51,9 @@
     @if(Request::is('login'))
     
       <div class="fadein" id="fadein">
-        
-        @for($i = 1; $i < 17; $i++)
 
-          <img class="img" src='{{ asset("slides/img-".$i.".jpg") }}' style='{{ ($i > 1) ? "display: none" : ""}}'>
+        <img class="img" src='{{ asset("slides/img-1.jpg") }}'>
 
-        @endfor
       </div>
     @endif
     
@@ -71,7 +68,7 @@
     {{-- JQuery Mark--}}
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     {{-- Casa Js --}}
-    <script src="{{ asset('js/casa/min/casa.min.js') }}"></script>
+    <script src="{{ asset('js/casa/min/dev/casa.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
