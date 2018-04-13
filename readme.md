@@ -43,7 +43,7 @@ O terceiro é o usuário padrão, responsável pelo cadastramento e atualizaçã
 
 <table style="width:100%">
   <tr>
-    <th>Tecnologia</th>
+    <th>Tecnologias</th>
     <th>Descrição</th>
     <th>Versão</th>
   </tr>
