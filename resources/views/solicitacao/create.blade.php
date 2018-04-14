@@ -18,7 +18,7 @@
               <div class="x_content">
                 <br/>
                 {!! Form::open(['url' => 'solicitar-cadastro']) !!}
-                    @include('solicitacao._form', ['nomeBotaoSubmit' => 'Enviar Solicitação'])
+                  @include('solicitacao._form', ['nomeBotaoSubmit' => 'Enviar Solicitação'])
                 {!! Form::close() !!}
               </div>
             </div>

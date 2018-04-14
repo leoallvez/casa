@@ -22,8 +22,8 @@
               <div class="input-group">
                 {!! Form::text('inputBusca', $inputBusca ?? null,
                   [
-                      'class'       => 'form-control',
-                      'placeholder' => 'Pesquisar adotante por nome ou CPF',
+                    'class'       => 'form-control',
+                    'placeholder' => 'Pesquisar adotante por nome ou CPF',
                   ])
                 !!}
                 <span class="input-group-btn">

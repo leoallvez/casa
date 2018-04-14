@@ -9,7 +9,7 @@
             {!! Form::text('name', null,
                 [
                     'class'       => 'form-control',
-                    'placeholder' => 'Digite o Nome Completo do Administrador'
+                    'placeholder' => 'Digite o nome completo do administrador'
                 ])
             !!}
             <span class='validacao-text'>
@@ -39,7 +39,7 @@
             {!! Form::text('cargo', null,
                 [
                     'class'       => 'form-control',
-                    'placeholder' => 'Digite a Cargo do Administrador'
+                    'placeholder' => 'Digite a cargo do administrador'
                 ])
             !!}
             <span class='validacao-text'>
@@ -54,7 +54,7 @@
             {!! Form::text('email', null,
                 [
                     'class'       => 'form-control',
-                    'placeholder' => 'Digite o Email do Administrador'
+                    'placeholder' => 'Digite o e-mail do administrador'
                 ])
             !!}
             <span class='validacao-text'>
@@ -114,7 +114,7 @@
                 {!! Form::password('password',
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Digite a Senha do Administrador com no mínimo oito caracteres'
+                        'placeholder' => 'Digite a senha do administrador com no mínimo oito caracteres'
                     ])
                 !!}
                 <span class='validacao-text'>
@@ -129,7 +129,7 @@
                 {!! Form::password('password_confirmation',
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Confirme a Senha do Administrador'
+                        'placeholder' => 'Confirme a senha do administrador'
                     ])
                 !!}
                 <span class='validacao-text'>

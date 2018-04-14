@@ -7,7 +7,7 @@
                 {!! Form::text('razao_social', null, 
                     [
                         'class'       => 'form-control', 
-                        'placeholder' => 'Digite a Razão Social da Instituição',
+                        'placeholder' => 'Digite a razão social da instituição',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -76,7 +76,7 @@
                 {!! Form::text('endereco', null, 
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Digite o Endereço da Instituição',
+                        'placeholder' => 'Digite o endereço da instituição',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -93,7 +93,7 @@
                 {!! Form::text('endereco_numero', null, 
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Número da Instituição',
+                        'placeholder' => 'Número da instituição',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -112,7 +112,7 @@
                 {!! Form::text('complemento', null, 
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Digite o Complemento do Endereço da Instituição',
+                        'placeholder' => 'Digite o complemento do endereço da instituição',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -141,7 +141,7 @@
                     {!! Form::text('estado_id', $instituicao->estado->UF, 
                         [
                             'class'       => 'form-control',
-                            'placeholder' =>'Digite Bairro Onde a Instituição esta Localizada',
+                            'placeholder' =>'Digite bairro onde a instituição esta localizada',
                             (isset($instituicao)) ? 'disabled' : null 
                         ]) 
                     !!} 
@@ -154,7 +154,7 @@
                 {!! Form::text('cidade', null, 
                     [ 
                         'class'       => 'form-control',
-                        'placeholder' => 'Digite a Cidade Onde a Instituição esta Localizada',
+                        'placeholder' => 'Digite a cidade onde a instituição esta localizada',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -171,7 +171,7 @@
                 {!! Form::text('bairro', null, 
                     [
                         'class'       => 'form-control',
-                        'placeholder' =>'Digite Bairro Onde a Instituição esta Localizada',
+                        'placeholder' =>'Digite bairro onde a instituição esta localizada',
                         (isset($instituicao)) ? 'disabled' : null 
                     ]) 
                 !!}
@@ -232,7 +232,7 @@
                 {!! Form::text('name', $usuario->name  ?? null, 
                     [
                         'class'       => 'form-control', 
-                        'placeholder' => 'Digite o Nome Completo do Administrador',
+                        'placeholder' => 'Digite o nome completo do administrador',
                         (isset($instituicao)) ? ' disabled' : null
                     ]) 
                 !!}
@@ -269,7 +269,7 @@
                 {!! Form::text('cargo', $usuario->cargo ?? null, 
                     [
                         'class'       => 'form-control', 
-                        'placeholder' => 'Digite a Cargo do Administrador do Sistema na Instituição',
+                        'placeholder' => 'Digite a cargo do administrador do sistema na instituição',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -304,7 +304,7 @@
                 {!! Form::password('password',
                     [
                         'class'       => 'form-control', 
-                        'placeholder' => 'Digite a Senha do Administrador com no mínimo oito caracteres',
+                        'placeholder' => 'Digite a senha do administrador com no mínimo oito caracteres',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}
@@ -319,7 +319,7 @@
                 {!! Form::password('password_confirmation',
                     [
                         'class'       => 'form-control', 
-                        'placeholder' => 'Confirme a Senha do Administrador',
+                        'placeholder' => 'Confirme a senha do administrador',
                         (isset($instituicao)) ? 'disabled' : null
                     ]) 
                 !!}

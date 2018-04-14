@@ -17,7 +17,7 @@
             {!! Form::text('nome', null,
                 [
                     'class'       => 'form-control myclass ',
-                    'placeholder' => 'Nome completo do Adotante',
+                    'placeholder' => 'Nome completo do adotante',
                     (isset($solicitacao)) ? 'disabled' : null
                 ])
             !!}
@@ -350,7 +350,7 @@
             {!! Form::text('conjuge_nome', null,
                 [
                     'class'       => 'form-control conjuge',
-                    'placeholder' => 'Nome completo do cônjuge do Adotante',
+                    'placeholder' => 'Nome completo do cônjuge do adotante',
                     'id'          => 'conjuge_nome'
                 ])
             !!}
@@ -373,7 +373,7 @@
         </div>
         <div class="col-md-3 col-xs-12">
             <div class="form-group">
-                {!! Form::label('input-conjuge-nascimento', 'Data de Nascimento do Cônjuge')!!}
+                {!! Form::label('input-conjuge-nascimento', 'Data de nascimento do cônjuge')!!}
                 <span class='obrigatorio'>*</span>
                 {!! Form::text('input-conjuge-nascimento',
                     (isset($adotante->conjuge_nascimento)) ? $adotante->conjuge_nascimento->formatLocalized('%d/%m/%Y') : null,

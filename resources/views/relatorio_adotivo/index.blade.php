@@ -62,7 +62,7 @@
               {!! Form::select('sexo',['' => 'Ambos Sexo', 'F' => 'Feminino', 'M' => 'Masculino'], null, 
                 [
                   'class'       => 'form-control',
-                  'placeholder' => 'Ambos Sexo',
+                  'placeholder' => 'Ambos Sexos',
                   'id'          => 'sexo',
                 ])
               !!}

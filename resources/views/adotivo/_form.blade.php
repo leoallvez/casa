@@ -21,7 +21,7 @@
         {!! Form::text('nome', null, 
             [
                 'class'       => 'form-control', 
-                'placeholder' => 'Nome Completo do Adotivo'
+                'placeholder' => 'Nome completo do adotivo'
             ]) 
         !!}
         <span class='validacao-text'> 
@@ -84,7 +84,7 @@
                 [
                     'class'       => 'form-control',
                     'id'          => 'hidden_data_chegada',
-                    'placeholder' => 'Data de Chegada na Instiuição'
+                    'placeholder' => 'Data de chegada na instiuição'
                 ]
             )
         !!}
@@ -157,9 +157,9 @@
            $irmaos, 
            $irmaosIds ?? null, 
            [
-               'class'       => 'form-control',
-               'multiple'    => 'multiple',
-               'id'          => 'irmaos' 
+                'class'    => 'form-control',
+                'multiple' => 'multiple',
+                'id'       => 'irmaos' 
            ])
        !!} 
     </div>
@@ -172,7 +172,7 @@
             {!! Form::label(null ,'Adotante(s)') !!}<br>
             {!! Form::text(null, $adotante->getNomeEnomeConjuge(),
             [
-                'class'    => 'form-control',
+                'class' => 'form-control',
                 'disabled'
             ]) 
         !!}

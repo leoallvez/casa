@@ -152,7 +152,7 @@ class AgendaController extends Controller
     {
         $visita = Visita::find($id);
 
-        if (Gate::allows('has_access', $visita)) {
+        if (Gate::allows('has_access', $visita->agenda)) {
             $agenda = $visita->agenda;
             
             return view('agenda.registrar', compact('visita','agenda'));  
@@ -164,7 +164,8 @@ class AgendaController extends Controller
     public function registrarVisitaPost(RegistraVisitaRequest $request, $id)
     {
         $visita = Visita::find($id);
-        if (Gate::allows('has_access', $visita)) {
+
+        if (Gate::allows('has_access', $visita->agenda)) {
             $visita->update($request->all());
 
             flash(

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Adotivos
+  Adotivos
 @endsection
 
 @section('content')

@@ -130,7 +130,6 @@
                           <br>
                           <div class="col-md-2">
                             @if($adotivo->temAdotantes())
-                              {{-- {!! Form::button('Desassociar', ['class' => 'btn btn-danger']) !!} --}}
                               <a href="javascript:void(0)" class="btn btn-danger" style="margin: 5%" v-on:click="desvincular({!! $adotivo->id !!})">
                                 Desvincular
                               </a>
@@ -180,14 +179,14 @@
                                                     <a>Opinião Adotante(s)</a>
                                                   </h2><br>
                                                   <p class="excerpt">
-                                                      {{ $visita->opiniao_adotante }}
+                                                    {{ $visita->opiniao_adotante }}
                                                   </p>
                                                 </div>
                                             </div>
                                             <div class="block">
                                                 <div class="tags">
                                                   <a href="" class="tag">
-                                                      <span><b>{{ $visita->agenda->formatarData() }}</b></span>
+                                                    <span><b>{{ $visita->agenda->formatarData() }}</b></span>
                                                   </a>
                                                 </div>
                                                 <div class="block_content">

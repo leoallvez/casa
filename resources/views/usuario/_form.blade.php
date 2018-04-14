@@ -114,7 +114,7 @@
                 {!! Form::password('password',
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Digite a Senha do Usuário com no mínimo oito caracteres'
+                        'placeholder' => 'Digite a senha do usuário com no mínimo oito caracteres'
                     ])
                 !!}
                 <span class='validacao-text'>
