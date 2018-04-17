@@ -192,6 +192,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 col-xs-12">
+            
             <div class="form-group">
                 {!! Form::label('cep', 'CEP') !!}
                 {!! Form::text('cep', null,
@@ -207,6 +208,7 @@
         <div class="col-md-7 col-xs-12">
             <div class="form-group">
                 <br>
+                <i style="display: none;" id="spinner" class="fa fa-spinner fa-spin fa-2x"></i>
                 <span><stron>* Digite o CEP para buscar o endereço</stron></span>
             </div>
         </div>
@@ -525,5 +527,5 @@
     });
   </script>
   <script src="{{ asset('js/casa/min/adotante-form.min.js') }}"></script>
-  <script src="{{ asset('js/casa/min/buscar_cep.min.js') }}"></script> 
+  <script src="{{ asset('js/casa/dev/buscar_cep.js') }}"></script> 
 @endsection

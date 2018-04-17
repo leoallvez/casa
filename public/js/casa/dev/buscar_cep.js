@@ -1,5 +1,5 @@
 function buscarCEP() {
-
+    $("#spinner").show();
     var cep = $('#cep').val().replace("-", "");
     
     $.ajax({
@@ -22,7 +22,10 @@ function buscarCEP() {
                     .filter('[value=' + id_estado + ']')
                     .attr('selected', true);
 
+                $("#spinner").hide();
+
             } else {
+                $("#spinner").hide();
                 swal({
                     title: "CEP não encontrado!",
                     text: "Você ainda pode preencher as informações de endereço manualmente.",
@@ -31,7 +34,7 @@ function buscarCEP() {
             }
         },
         error: function (request, status, error) {
-  
+            $("#spinner").hide();
             swal({
                 title: "CEP não encontrado!",
                 text: "Não foi possível realizar a busca de CEP.",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="login-html">
+<html lang="pt-br" class="login-html">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     {{-- Meta, title, CSS, favicons, etc. --}}
