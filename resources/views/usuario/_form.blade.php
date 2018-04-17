@@ -9,7 +9,7 @@
             {!! Form::text('name', null,
                 [
                     'class'       => 'form-control',
-                    'placeholder' => 'Digite o Nome Completo do Usuário'
+                    'placeholder' => 'Digite o nome completo do usuário'
                 ])
             !!}
             <span class='validacao-text'>
@@ -39,7 +39,7 @@
             {!! Form::text('cargo', null,
                 [
                     'class'       => 'form-control',
-                    'placeholder' => 'Digite a Cargo do Usuário'
+                    'placeholder' => 'Digite a cargo do usuário'
                 ])
             !!}
             <span class='validacao-text'>
@@ -54,7 +54,7 @@
             {!! Form::text('email', null,
                 [
                     'class'       => 'form-control',
-                    'placeholder' => 'Digite o Email do Usuário'
+                    'placeholder' => 'Digite o e-mail do usuário'
                 ])
             !!}
             <span class='validacao-text'>
@@ -129,7 +129,7 @@
                 {!! Form::password('password_confirmation',
                     [
                         'class'       => 'form-control',
-                        'placeholder' => 'Confirme a Senha do Usuário'
+                        'placeholder' => 'Confirme a senha do usuário'
                     ])
                 !!}
                 <span class='validacao-text'>

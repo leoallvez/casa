@@ -60,13 +60,17 @@
         </div>
         @if(Request::is('solicitar-cadastro/create'))
             <div class="col-md-7 col-xs-12">
-                <div class="form-group">
-                    <br>
-                    <span>
-                        <stron>* Digite o CEP para buscar o endereço</stron>
-                    </span>
+            <div class="form-group">
+                <br>
+                <div id="loading" style="display: none;">
+                    <i id="spinner" class="fa fa-spinner fa-spin fa-2x"></i>
+                    <span><stron>Carregando...</stron></span>
+                </div>
+                <div id="messageCep">
+                    <span><stron>* Digite o CEP para buscar o endereço</stron></span>
                 </div>
             </div>
+        </div>
         @endif
     </div>
     <div class="row">
@@ -364,5 +368,5 @@
 </div>
 
 @section('js')
-  <script src="{{ asset('js/casa/min/buscar_cep.min.js') }}"></script> 
+  <script src="{{ asset('js/casa/dev/buscar_cep.js') }}"></script> 
 @endsection

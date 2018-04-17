@@ -208,8 +208,13 @@
         <div class="col-md-7 col-xs-12">
             <div class="form-group">
                 <br>
-                <i style="display: none;" id="spinner" class="fa fa-spinner fa-spin fa-2x"></i>
-                <span><stron>* Digite o CEP para buscar o endereço</stron></span>
+                <div id="loading" style="display: none;">
+                    <i id="spinner" class="fa fa-spinner fa-spin fa-2x"></i>
+                    <span><stron>Carregando...</stron></span>
+                </div>
+                <div id="messageCep">
+                    <span><stron>* Digite o CEP para buscar o endereço</stron></span>
+                </div>
             </div>
         </div>
     </div>
