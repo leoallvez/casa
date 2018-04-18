@@ -12,7 +12,7 @@
         "igorescobar/jquery-mask-plugin": "^1.14",
         "jailtonsc/validador-cpf-laravel": "^2.0",
         "geekcom/validator-docs" : "1.*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
