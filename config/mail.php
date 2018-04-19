@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'hello@example.com',
-        'name' => 'Example',
+        'address' => 'contato.casa.sistema@gmail.com',
+        'name' => 'Sistema Casa',
     ],
 
     /*
@@ -111,5 +111,15 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend' => false,
+
+    'stream' => [
+        'ssl' => [
+        'allow_self_signed' => true,
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        ],
+    ],
 
 ];
