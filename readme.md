@@ -12,7 +12,7 @@
 
 ## Objetivo
 
-O objetivo deste projeto é desenvolver um software open source para administrar os processos de adoção em orfanatos, o sistema casa é capaz de manter os dados dos adotivos e adotantes, realizar um controle de visitas e também fornecer relatórios para melhor controle do orfanato.
+O objetivo do projeto é desenvolver um software open source para administrar os processos de adoção em orfanatos, o sistema casa é capaz de manter os dados dos adotivos e adotantes, realizar um controle de visitas e também fornecer relatórios para melhor controle do orfanato.
 
 ## Justificativa
 
