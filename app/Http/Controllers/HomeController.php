@@ -27,10 +27,12 @@ class HomeController extends Controller
      */
     public function index() 
     {
-        $user = auth()->user();
+        /*
+            $user = auth()->user();
 
-        Mail::to($user)->send(new Product($user));
-
+            Mail::to($user)->send(new Product($user));
+        */
         return view('home');
+
     }
 }
