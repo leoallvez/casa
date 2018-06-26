@@ -18,8 +18,8 @@ class AdotivoLogSeeder extends Seeder
 
         while($id < 1000) {
 
-            foreach(Adotivo::all() as $adotivo) {
-                
+            foreach(Adotivo::all() as $adotivo) 
+            {
                 $val  = rand(strtotime('2015-01-01'), strtotime('2017-12-01'));
                 $data = date('Y-m-d', $val);
 
@@ -31,8 +31,9 @@ class AdotivoLogSeeder extends Seeder
                 $adotivo->nascimento   = $data;
                 $idade = $adotivo->nascimento->diffInYears(Carbon::now());
 
-                if($idade < 18){
-                    $adotivo->status_id = rand(1,5);
+                if($idade < 18)
+                {
+                    $adotivo->status_id = rand(1, 5);
                 }else{
                     $adotivo->status_id = 6;
                 }

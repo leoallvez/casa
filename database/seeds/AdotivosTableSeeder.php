@@ -717,11 +717,5 @@ class AdotivosTableSeeder extends Seeder
     		]
     	];
 		DB::table('adotivos')->insert($adotivos);
-		# Gerar logs.
-		foreach(Adotivo::all() as $adotivo) {
-			$log = new AdotivoLog();
-			$log->setAll($adotivo, $adotivo->created_at);
-			$log->salvar();
-		}
     }
 }
