@@ -91,7 +91,7 @@
             {!! Form::textarea('opiniao_adotante',
                 null,
                 [
-                    'class' => 'form-control',
+                    'class' => 'form-control summernote',
                 ])
             !!}
             <a>
@@ -111,7 +111,7 @@
             {!! Form::textarea('opiniao_adotivo',
                 null,
                 [
-                    'class' => 'form-control',
+                    'class' => 'form-control summernote',
                 ])
             !!}
             <a>

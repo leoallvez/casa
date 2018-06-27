@@ -31,3 +31,36 @@
 	    </div>
 	</div>
 @endsection
+
+
+@section('style')
+  <link href="{{ asset('css/summernote.css') }}" rel="stylesheet" />
+@endsection
+
+@section('js')
+	<script src="{{ asset('js/summernote.js') }}"></script>
+	<script src="{{ asset('js/summernote-pt-BR.js') }}"></script>
+	<script type="text/javascript">
+
+	var customToolbar = [
+			['style', ['style']],
+			['font', ['bold', 'italic', 'underline', 'clear']],
+			['fontsize', ['fontsize']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['height', ['height']],
+			['table', ['table']],
+			['insert', ['link', 'hr']],
+			['view', ['codeview']]
+    ];
+
+		$(document).ready(function() {
+			$('.summernote').summernote({
+				lang: 'pt-BR',
+				toolbar: customToolbar,
+				height: 200,
+			});
+		});
+	</script>
+@endsection
