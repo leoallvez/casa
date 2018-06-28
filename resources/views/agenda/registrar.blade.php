@@ -42,23 +42,21 @@
 	<script src="{{ asset('js/summernote-pt-BR.js') }}"></script>
 	<script type="text/javascript">
 
-	var customToolbar = [
-			['style', ['style']],
-			['font', ['bold', 'italic', 'underline', 'clear']],
-			['fontsize', ['fontsize']],
-			['fontname', ['fontname']],
-			['color', ['color']],
-			['para', ['ul', 'ol', 'paragraph']],
-			['height', ['height']],
-			['table', ['table']],
-			['insert', ['link', 'hr']],
-			['view', ['codeview']]
-    ];
-
 		$(document).ready(function() {
 			$('.summernote').summernote({
 				lang: 'pt-BR',
-				toolbar: customToolbar,
+				toolbar: [
+					['style', ['style']],
+					['font', ['bold', 'italic', 'underline', 'clear']],
+					['fontsize', ['fontsize']],
+					['fontname', ['fontname']],
+					['color', ['color']],
+					['para', ['ul', 'ol', 'paragraph']],
+					['height', ['height']],
+					['table', ['table']],
+					['insert', ['link', 'hr']],
+					['view', ['codeview']]
+    		],
 				height: 200,
 			});
 		});

@@ -12,9 +12,7 @@
 */
 
 Auth::routes();
-
-// Route::get('usuarios/buscar-adm/{id}', 'UsuarioController@buscarAdm');
-
+# Interno.
 Route::group(['middleware' => ['auth', 'usuario']], function () {
     # Acesso negado
     Route::get('acesso-negado', 'AcessoNegadoController@index');
@@ -43,7 +41,6 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::put('visitas/registra/{id}', 'AgendaController@registrarVisitaPost');
     Route::resource('visitas', 'AgendaController');
     # Relatórios. 
-    
     Route::put('relatorio-adotivo', 'RelatorioAdotivoController@gerar');
     Route::resource('relatorio-adotivo',  'RelatorioAdotivoController');
     Route::resource('relatorio-adotante', 'RelatorioAdotanteController');
@@ -59,11 +56,11 @@ Route::group(['middleware' => ['auth', 'usuario']], function () {
     Route::put('vinculos/desvincular/', 'VinculoController@desvincular' );
     Route::get('vinculos/adotivo/{adotivo_id}/adotantes/{adotantes_id}',['uses' => 'VinculoController@visualizar']);
     Route::get('vinculos/adotivo/{id}',['uses' => 'VinculoController@index', 'as' => 'listar']);
-    // Route::resource('vinculo', 'VinculoController');
-    # instituição
+    # Instituição
     Route::get('instituicao/buscar', 'InstituicaoController@buscar');
     Route::resource('instituicao', 'InstituicaoController');  
 });
-# Solicitação Externo.
+# Externo.
 Route::get('solicitar-cadastro/create', 'SolicitaCadastroController@create');
 Route::post('solicitar-cadastro', 'SolicitaCadastroController@store');
+Route::get('keyboard-cat', 'KeyboardCatController@index');

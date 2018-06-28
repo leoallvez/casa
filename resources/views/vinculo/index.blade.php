@@ -179,7 +179,7 @@
                                                     <a>Opinião Adotante(s)</a>
                                                   </h2><br>
                                                   <p class="excerpt">
-                                                    {{ $visita->opiniao_adotante }}
+                                                    {!! $visita->opiniao_adotante !!}
                                                   </p>
                                                 </div>
                                             </div>
@@ -194,7 +194,7 @@
                                                     <a>Opinião Adotivo</a>
                                                   </h2><br>
                                                   <p class="excerpt">
-                                                    {{ $visita->opiniao_adotivo }}
+                                                    {!! $visita->opiniao_adotivo !!}
                                                   </p>
                                                 </div>
                                             </div>
