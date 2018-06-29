@@ -161,6 +161,12 @@ $(document).ready(function () {
             })
             //Show Modal
             $('.modal').modal('show');
+
+            $('.summernote').each(function (index) {
+                $(this).summernote('destroy');
+            });
+            
+            makeSummernote('#observacoes');
         }
         // Handle Click on Add Button
         $('.modal').on('click', '#add-event', function (e) {
@@ -358,6 +364,25 @@ $(document).ready(function () {
     }); // End of calendar script 
 
 }); //End of Jquery document ready.
+
+function makeSummernote(element) {
+    $(element).summernote({
+        lang: 'pt-BR',
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            //['height', ['height']],
+            //['table', ['table']],
+            //['insert', ['link', 'hr']],
+            ['view', ['codeview']]
+        ],
+        height: 100,
+    });
+}
 
 function buscarAdotivos() {
     var id_adotante = $('#adotante_id').val();

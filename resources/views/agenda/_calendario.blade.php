@@ -125,7 +125,7 @@
                                     {!! Form::label('observacoes', 'Motivo') !!}
                                     {!! Form::textarea('observacoes', null,
                                         [
-                                            'class' => 'form-control',
+                                            'class' => 'form-control summernote',
                                         ])
                                     !!}
                                 </div>
@@ -147,6 +147,7 @@
     <link href="{{ asset('css/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media='print'/>
     <link href="{{ asset('css/fullcalendar/casa-fullcallendar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/summernote.css') }}" rel="stylesheet" />
 @endsection
 
 @section('calendar-js')
@@ -156,6 +157,8 @@
     <script src="{{ asset('js/fullcalendar/bootstrap-colorpicker.min.js') }}"></script>
     <script src="{{ asset('js/fullcalendar/pt-br.js') }}"></script>
     <script src="{{ asset('js/fullcalendar/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('js/summernote.js') }}"></script>
+	<script src="{{ asset('js/summernote-pt-BR.js') }}"></script>
 
     <script type="text/javascript">
         var url_base = "{{ url('/') }}";
