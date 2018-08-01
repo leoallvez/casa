@@ -14,7 +14,7 @@
     {{-- Bootstrap --}}
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     {{-- Font Awesome --}}
-      <link href="{{ asset('css/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
     {{-- NProgress --}}
     <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet" />
     {{-- Custom Theme Style --}}
@@ -35,7 +35,7 @@
     </script>
     -->
   </head>
-  <body class="nav-md">
+  <body class="nav-sm">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -59,7 +59,7 @@
               @if (!Auth::guest()) 
                 <div class="nav toggle">
                   <a id="menu_toggle">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-bars" onclick="setMenuCookie();"></i>
                   </a>
                 </div>
               @endif
@@ -136,8 +136,10 @@
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     {{-- Select2 --}}
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    {{-- Cookie Js--}}
+    <script src="{{ asset('js/casa/min/cookie.min.js') }}"></script>
     {{-- Casa Js --}}
-    <script src="{{ asset('js/casa/min/casa.min.js') }}"></script>
+    <script src="{{ asset('js/casa/dev/casa.js') }}"></script>
     @yield('js')
     {{-- Bootstrap --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -147,8 +149,7 @@
     <script src="{{ asset('js/date.js') }}"></script>
     {{-- Bootstrap-daterangepicker --}}
     <script src="{{ asset('js/moment.min.js') }}"></script>
-    <script src="{{ asset('js/daterangepicker.js') }}"></script>
- 
+     <script src="{{ asset('js/daterangepicker.js') }}"></script>
     @yield('calendar-js')
   </body>
 </html>
