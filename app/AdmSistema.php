@@ -13,5 +13,4 @@ class AdmSistema extends Usuario
     public function __construct(array $attributes = array(), $password = null) {
         parent::__construct($attributes, $password, UsuarioNivel::ADM_SISTEMA);
     }
-    
 }
