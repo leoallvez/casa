@@ -127,10 +127,10 @@ O sistema conta com uma versão online: https://casa-sistema.com.br que possui a
 
 ## Contribuindo
 
-- :star2: Coloca esse projeto nos seus favoritos com um Star
-- :fork_and_knife: Faça um Fork do projeto
-- :computer: Clone o repositório para o seu computador
-- :wrench: Contribua no código ou na documentação do Projeto
-- :point_right: Crie um commit com as mudanças e faça um Pull Request (PR)
-- :tada: Veja seu Pull Request ser aprovado e repita o ciclo!
+- Coloca esse projeto nos seus favoritos com um Star
+- Faça um Fork do projeto
+- Clone o repositório para o seu computador
+- Contribua no código ou na documentação do Projeto
+- Crie um commit com as mudanças e faça um Pull Request (PR)
+- Veja seu Pull Request ser aprovado e repita o ciclo!
 - Obrigado!
