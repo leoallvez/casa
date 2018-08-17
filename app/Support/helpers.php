@@ -14,17 +14,17 @@ function setMascara($val, $mask )
 {
   $maskSize =  strlen($mask);
 
-  if(strlen($val) >= $maskSize){
+  if (strlen($val) >= $maskSize){
   	return $val;
   }
   $maskared = '';
   $k = 0;
   for($i = 0; $i <= $maskSize-1; $i++) {
-    if($mask[$i] == '#') {
-        if(isset($val[$k]))
+    if ($mask[$i] == '#') {
+        if (isset($val[$k]))
         $maskared .= $val[$k++];
     } else {
-        if(isset($mask[$i]))
+        if (isset($mask[$i]))
         	$maskared .= $mask[$i];
     } 
   }
@@ -128,7 +128,7 @@ function quantidadePorEtniaHelper($adotivos) : array
 function porcentagem($valor_inicial, $valor_final) 
 {
 
-  if($valor_inicial > 0 && $valor_final > 0) {
+  if ($valor_inicial > 0 && $valor_final > 0) {
     return (($valor_final - $valor_inicial) / $valor_inicial * 100) * -1;
   }
 

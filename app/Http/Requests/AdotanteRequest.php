@@ -40,7 +40,7 @@ class AdotanteRequest extends FormRequest
             'cep'                       => 'size:9'
         ];
         # Conjuge
-        if($this->estado_civil_id == 2 || $this->estado_civil_id == 6) {
+        if ($this->estado_civil_id == 2 || $this->estado_civil_id == 6) {
             $regras_conjuge = [
                 'conjuge_nome'                      => 'required|regex:/^[\pL\s\-]+$/u',
                 'conjuge_nascimento'                => 'required|date|min:10|before:18 years ago|after:75 years ago',

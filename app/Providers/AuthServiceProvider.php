@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('has_access', function ($user, $element) 
         {
-            if(!is_null($element)){
+            if (!is_null($element)){
                 return $user->instituicao_id == $element->instituicao_id;
             }
             return false;

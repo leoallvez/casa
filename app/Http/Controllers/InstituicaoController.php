@@ -132,7 +132,7 @@ class InstituicaoController extends Controller
             $instituicoes = Instituicao::where('esta_aprovada', true)
             ->where('id', '<>', 1);
 
-            if(!empty($request->inputBusca)) {
+            if (!empty($request->inputBusca)) {
                 $instituicoes = $instituicoes->where('razao_social', 'like', '%'.$request->inputBusca.'%')
                 ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'));
             } 

@@ -57,7 +57,7 @@ class VinculoController extends Controller {
             ->where("adotante_id", $idAdotanteVinculo)->first();
 
             $visitas = null;
-            if(!is_null($vinculoAtual)) {
+            if (!is_null($vinculoAtual)) {
                     
                 $visitas = $vinculoAtual->visitas()
                 ->where("is_registada", true)
@@ -102,7 +102,7 @@ class VinculoController extends Controller {
         if (Gate::allows('has_access',  $adotivo)) {
             $adotante = Adotante::find($request->adotante_id);
             # Não podem tem menos 16 anos de diferença.
-            if(!$adotivo->tem16AnosDeDiferenca($adotante)) {
+            if (!$adotivo->tem16AnosDeDiferenca($adotante)) {
                 
                 flash("Adotivo tem diferença de idade inferior a 16 anos com o adotante ou seu conjuge", 'danger');
                 

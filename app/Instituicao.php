@@ -1,5 +1,4 @@
 <?php
-
 namespace Casa;
 
 use Illuminate\Database\Eloquent\Model;
@@ -73,7 +72,7 @@ class Instituicao extends Model
 	{
 		$admAtual = Usuario::find($request['adm_id']);
 		
-		if($admAtual->id == $request['old_adm_id']) {
+		if ($admAtual->id == $request['old_adm_id']) {
 			$admAtual->update($request);
 		} else {
 			# atualizarAdm novo ADM.
@@ -86,7 +85,7 @@ class Instituicao extends Model
 
 			$admAntigo->update(['nivel_id' => UsuarioNivel::PADRAO]);
 			# Anativar ADM antigo.
-			if(array_key_exists("inativar_old_adm", $request)) {
+			if (array_key_exists("inativar_old_adm", $request)) {
 				$admAntigo->delete();
 			}
 		}

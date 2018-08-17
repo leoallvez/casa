@@ -91,7 +91,7 @@ class UsuarioController extends Controller
 
             flash('Informações Alteradas com Sucesso!', 'success');
             #Se for um usuário comum  ou for adm de instituição
-            if(Auth::user()->id == $id) {
+            if (Auth::user()->id == $id) {
                 return redirect('/');
             }
 

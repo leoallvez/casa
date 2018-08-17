@@ -1,6 +1,6 @@
 <?php
-
 namespace Casa;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -75,11 +75,11 @@ class User extends Authenticatable
 
     public function getNivelCadastro() : int 
     {
-        if($this->isAdmSistema()) {
+        if ($this->isAdmSistema()) {
             return UsuarioNivel::ADM_SISTEMA;
         }
 
-       if($this->isAdmInstituicao()) {
+       if ($this->isAdmInstituicao()) {
             return UsuarioNivel::PADRAO;
         }
     }

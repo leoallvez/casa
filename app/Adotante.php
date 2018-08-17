@@ -1,6 +1,6 @@
 <?php
-
 namespace Casa;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -82,7 +82,7 @@ class Adotante extends Model
    */
   public static function validarConjuge(&$request) : void
   {
-    if($request['estado_civil_id'] != EstadoCivil::CASADO && $request['estado_civil_id'] != EstadoCivil::UNIAO_ESTAVEL) {
+    if ($request['estado_civil_id'] != EstadoCivil::CASADO && $request['estado_civil_id'] != EstadoCivil::UNIAO_ESTAVEL) {
 
       $conjugeAtributos = [
         'conjuge_rg',
@@ -129,13 +129,13 @@ class Adotante extends Model
     return  $result;
   }
 
-  public function buscar($valor_de_busca) {
-
+  public function buscar($valor_de_busca) 
+  {
     return self::where('nome', 'like', '%'.$valor_de_busca.'%')
-          ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
-          ->orWhere('cpf','=', setMascara($valor_de_busca, '###.###.###-##'))
-          ->orderBy('nome')
-          ->paginate(config('app.list_size'));
+      ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
+      ->orWhere('cpf','=', setMascara($valor_de_busca, '###.###.###-##'))
+      ->orderBy('nome')
+      ->paginate(config('app.list_size'));
   }
 
   /**

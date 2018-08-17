@@ -65,7 +65,7 @@ class RelatorioAdotivoController extends Controller
         $dadosSexo   = null;
         $dadosEtnias = null;
 
-        if(!$adotivos->isEmpty()) {
+        if (!$adotivos->isEmpty()) {
             # Valores para os gráficos
             $dadosStatus = (empty($request['status'])) ? json_encode(quantidadePorStatusHelper($adotivos))    : null;
             $dadosSexo   = (empty($request['sexo']))   ? json_encode(porcentagemAdotivoSexoHelper($adotivos)) : null;

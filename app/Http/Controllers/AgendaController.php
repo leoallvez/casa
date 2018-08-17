@@ -44,7 +44,7 @@ class AgendaController extends Controller
 
         $agendado = $agenda->agendarVisita($request->adotante_id);
 
-        if($agendado) {
+        if ($agendado) {
             return json_encode([
                 'status'  => true,
                 'message' => 'Visita agendada com sucesso',
@@ -70,7 +70,7 @@ class AgendaController extends Controller
 
         $reagendado = $agenda->reagendarVisita($request->all());
         
-        if($reagendado) {
+        if ($reagendado) {
             return json_encode([
                 'status'  => true, 
                 'message' => 'Visita reagendada com sucesso'
@@ -96,7 +96,7 @@ class AgendaController extends Controller
         if (Gate::allows('has_access', $agenda)) {
             $cancelado = $agenda->cancelarVisita($request->observacoes);
 
-            if($cancelado) {
+            if ($cancelado) {
                 return json_encode([
                     'status'  => true, 
                     'message' => 'Visita cancelada com sucesso',
@@ -117,7 +117,7 @@ class AgendaController extends Controller
 
     public function buscarAdotivos($adotante_id) 
     {
-        if(!is_null($adotante_id)) {
+        if (!is_null($adotante_id)) {
             return json_encode([
                 'status'   => true, 
                 'adotivos' => (new Vinculo)->getAdotivosByAdotantesId($adotante_id),
@@ -137,7 +137,7 @@ class AgendaController extends Controller
 
             foreach($agenda->visitas as $visita) {
       
-                if(!$visita->is_registada) {
+                if (!$visita->is_registada) {
                     $collection->prepend($visita);
                 }
             }

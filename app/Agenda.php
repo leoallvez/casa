@@ -1,6 +1,6 @@
 <?php
-
 namespace Casa;
+
 use Casa\Visita;
 use Casa\Adotante;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +40,7 @@ class Agenda extends Model
 
     public function __construct(array $attributes = array()) 
     {
-        if(count($attributes) > 0) {
+        if (count($attributes) > 0) {
             $attributes['status'] = Agenda::AGENDADA;
             $attributes['observacoes'] = null;
         }
@@ -58,7 +58,7 @@ class Agenda extends Model
 
         $temVisitaNoDia = $this->adotanteTemVisitaNoDia($adotante_id);
 
-        if(!$temVisitaNoDia) {
+        if (!$temVisitaNoDia) {
             
             $this->save();
             $adotivos = $adotante->adotivos->pluck('id');
@@ -84,7 +84,7 @@ class Agenda extends Model
     {
         $temVisitaNoDia = $this->adotanteTemVisitaNoDia(null, $atributos['dia']);
 
-        if(!$temVisitaNoDia) {
+        if (!$temVisitaNoDia) {
             
             $this->observacoes = $atributos['observacoes'];
             $this->status = Agenda::REAGENDADA;
@@ -104,7 +104,7 @@ class Agenda extends Model
     */
     public function cancelarVisita(string $observacoes) : bool
     {
-        if(!is_null($observacoes)) {
+        if (!is_null($observacoes)) {
             $this->status = Agenda::CANCELADA;
             $this->save();
             $this->delete();
@@ -130,15 +130,15 @@ class Agenda extends Model
 
             $visitas = $vinculo->visitas;
 
-            if(!is_null($visitas)) {
+            if (!is_null($visitas)) {
 
                 foreach($visitas as $visita) {
 
                     $agenda = self::where('id', $visita->agenda_id)->first();
 
-                    if(!is_null($agenda)) {
+                    if (!is_null($agenda)) {
 
-                        if($agenda->dia == $data) {
+                        if ($agenda->dia == $data) {
                             return true;
                         }
                     }
@@ -156,7 +156,7 @@ class Agenda extends Model
         $results = [];
         $agendas = self::where('instituicao_id', Auth::user()->instituicao_id ?? 2)->where('dia','>=', date('Y-m-d'))->get();
         
-        if(!is_null($agendas)) {
+        if (!is_null($agendas)) {
 
             foreach($agendas as $agenda) {
 

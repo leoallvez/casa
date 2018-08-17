@@ -58,9 +58,9 @@ class Adotivo extends Model
             ->groupBy('adotivos_status.nome')
             ->first();
 
-            if(isset($resultado)) {
+            if (isset($resultado)) {
                 $dados[] = [$s->nome, intval($resultado->quantidade)];
-            }else{
+            } else {
                 $dados[] = [$s->nome, 0];
             }
         }
@@ -91,7 +91,7 @@ class Adotivo extends Model
      */
     public function setUsuario(int $id) : void
     {
-            $this->usuario_id = $id;
+        $this->usuario_id = $id;
     }
 
     /**
@@ -107,24 +107,24 @@ class Adotivo extends Model
 
         $idade = '';
 
-        if( $anos > 0 && $anos > 1)
+        if ( $anos > 0 && $anos > 1)
             $idade .= $anos.' anos ';
-        else if($anos == 1 )
+        else if ($anos == 1 )
             $idade .= ' 1 ano ';
 
-        if($meses > 0 && $meses < 13 && $meses > 1)
+        if ($meses > 0 && $meses < 13 && $meses > 1)
             $idade .= $meses.' meses ';
-        else if($meses == 1 )
+        else if ($meses == 1 )
             $idade .= ' 1 mês';
 
-        if($semanas > 0 && $semanas < 4 && $semanas > 1)
+        if ($semanas > 0 && $semanas < 4 && $semanas > 1)
             $idade .= $semanas.' semanas ';
-        else if($semanas == 1)
+        else if ($semanas == 1)
             $idade .= '1 semana ';
 
-        if($dias > 0 && $dias < 7 && $dias > 1)
+        if ($dias > 0 && $dias < 7 && $dias > 1)
             $idade .= $dias.' dias';
-        else if($dias == 1)
+        else if ($dias == 1)
             $idade .= ' 1 dia';
 
         return $idade;
@@ -139,8 +139,8 @@ class Adotivo extends Model
     {
         $adotante_difference = $this->nascimento->diffInYears($adotante->nascimento);
         # Adotante pode não ter conjuge.
-        if(!is_null($adotante->conjuge_nascimento)) {
-            $conjuge_difference  = $this->nascimento->diffInYears($adotante->conjuge_nascimento);
+        if (!is_null($adotante->conjuge_nascimento)) {
+            $conjuge_difference = $this->nascimento->diffInYears($adotante->conjuge_nascimento);
             return $adotante_difference >= 16 && $conjuge_difference >= 16;
         }
         return $adotante_difference >= 16;
@@ -168,11 +168,11 @@ class Adotivo extends Model
      */
     public function salvarIrmaos($irmaosIds = []) : void
     {
-        if(isset($irmaosIds)) {
+        if (isset($irmaosIds)) {
 
             $irmaos = Adotivo::whereIn('id',$irmaosIds)->get();
 
-            foreach($irmaos as $irmao) {
+            foreach ($irmaos as $irmao) {
                 $irmao->irmaos()->sync([$this->id]);
             }
             $this->irmaos()->sync($irmaosIds);
@@ -186,7 +186,7 @@ class Adotivo extends Model
      */
     public function atualizarIrmaos($irmaosIds) : void
     {
-        if(isset($irmaosIds)) {
+        if (isset($irmaosIds)) {
             $this->removerVinculoNosIrmaos($irmaosIds);
             $this->realizarVinculoNosIrmaos($irmaosIds);
             $this->irmaos()->sync($irmaosIds);
@@ -205,7 +205,7 @@ class Adotivo extends Model
     private function realizarVinculoNosIrmaos(array $irmaosIds) : void
     {
         $irmaos = Adotivo::whereIn('id',$irmaosIds)->get();
-        foreach($irmaos as $irmao) {
+        foreach ($irmaos as $irmao) {
             $irmao->irmaos()->sync([$this->id]);
         }
     }
@@ -218,14 +218,14 @@ class Adotivo extends Model
     */
     private function removerVinculoNosIrmaos(array $irmaosIds = []) : void
     {
-        if(count($irmaosIds) > 0) {
+        if (count($irmaosIds) > 0) {
             # Pegar todos irmãos que não tem seu id no array
             $Irmaos= $this->irmaos()->where('irmaos.id','<>', $irmaosIds)->get();
-        }else {
+        } else {
             $Irmaos= $this->irmaos()->get();    
         }
         # Desfazer o(s) vinculo(s).
-        foreach($Irmaos as $irmao) {
+        foreach ($Irmaos as $irmao) {
             $irmao->irmaos()->detach($this->id);
         }
     }
@@ -236,8 +236,8 @@ class Adotivo extends Model
     public function temAdotantes() : bool
     {
        $result = $this->adotantes()
-       ->where('adotantes_adotivos.deleted_at', '=', null)
-       ->get();
+            ->where('adotantes_adotivos.deleted_at', '=', null)
+            ->get();
 
        return count($result) > 0;
     }
@@ -261,15 +261,15 @@ class Adotivo extends Model
 
         $vinculo = Vinculo::where('id', $vinculo_id)->first();
 
-        if(!is_null($vinculo)) {
+        if (!is_null($vinculo)) {
             # trim() retirar espaços em branco no começo e fim.
             #str_split() transforma o array em uma string.
             $nomeArray = str_split(trim($vinculo->adotivo->nome));
         
-            for($i = 0; $i < count($nomeArray); $i++) {
+            for ($i = 0; $i < count($nomeArray); $i++) {
                 $nomeAbreviado .= $nomeArray[$i];
 
-                if($nomeArray[$i] == " ") {
+                if ($nomeArray[$i] == " ") {
                     $nomeAbreviado .= $nomeArray[$i+1];
                     break;
                 }
@@ -282,9 +282,9 @@ class Adotivo extends Model
     public function buscar($valor_de_busca) 
     {
         return self::where('nome', 'like', '%'.$valor_de_busca.'%')
-        ->where('instituicao_id', Auth::user()->instituicao_id)
-        ->orderBy('nome')
-        ->paginate(config('app.list_size'));
+            ->where('instituicao_id', Auth::user()->instituicao_id)
+            ->orderBy('nome')
+            ->paginate(config('app.list_size'));
     }
 
     public function getIdadeAsInt() : int
@@ -300,7 +300,7 @@ class Adotivo extends Model
     public function adotantes() 
     {
     	return $this->belongsToMany('Casa\Adotante', 'adotantes_adotivos')
-        ->withPivot('created_at', 'deleted_at');
+            ->withPivot('created_at', 'deleted_at');
     }
 
     public function status() 

@@ -1,6 +1,6 @@
 <?php
-
 namespace Casa;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
@@ -54,7 +54,7 @@ class Usuario extends Model
      */
     public function setSenha($password) : void
     {
-        if(!is_null($password)) 
+        if (!is_null($password)) 
             $this->password = Hash::make($password);
     }
 

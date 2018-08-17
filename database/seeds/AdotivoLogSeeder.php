@@ -31,7 +31,7 @@ class AdotivoLogSeeder extends Seeder
                 $adotivo->nascimento   = $data;
                 $idade = $adotivo->nascimento->diffInYears(Carbon::now());
 
-                if($idade < 18)
+                if ($idade < 18)
                 {
                     $adotivo->status_id = rand(1, 5);
                 }else{

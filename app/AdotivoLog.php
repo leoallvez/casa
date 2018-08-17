@@ -1,6 +1,6 @@
 <?php
-
 namespace Casa;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,7 +49,7 @@ class AdotivoLog extends Model
     {
         $adotivoLogHoje = self::getAdotivoLogHoje();
         // Caso o adotivo tiver log na data de hoje atualizar
-        if(!is_null($adotivoLogHoje)) {
+        if (!is_null($adotivoLogHoje)) {
             $this->id = $adotivoLogHoje->id;
             $adotivoLogHoje = $this;
             $adotivoLogHoje->update();
@@ -61,34 +61,34 @@ class AdotivoLog extends Model
 
     private function getAdotivoLogHoje()
     {
-        return self::where('adotivo_id', $this->adotivo_id)->where('data', date('Y-m-d'))->get()->last();
+        return self::where('adotivo_id', $this->adotivo_id)
+            ->where('data', date('Y-m-d'))->get()->last();
     }
 
     public static function pesquisar($request) 
     {
-
         $resultado = self::where('instituicao_id', Auth::user()->instituicao_id);
 
-        if(!empty($request['data_inicio']) && !empty($request['data_fim']) ){
+        if (!empty($request['data_inicio']) && !empty($request['data_fim']) ) {
             
             $resultado = $resultado->whereBetween('data', 
                 [$request['data_inicio'], $request['data_fim']]
             );  
         }
 
-        if(!empty($request['sexo'])) {
+        if (!empty($request['sexo'])) {
             $resultado = $resultado->where('adotivo_sexo', $request['sexo']);    
         }
 
-        if(!empty($request['idade'])) {
+        if (!empty($request['idade'])) {
             $resultado = $resultado->where('adotivo_idade', $request['idade']);    
         }
 
-        if(!empty($request['etnia'])) {
+        if (!empty($request['etnia'])) {
             $resultado = $resultado->where('adotivo_etnia_id', $request['etnia']);    
         }
 
-        if(!empty($request['status'])) {
+        if (!empty($request['status'])) {
             $resultado = $resultado->where('adotivo_status_id', $request['status']);    
         }
 

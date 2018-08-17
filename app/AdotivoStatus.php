@@ -1,5 +1,4 @@
 <?php
-
 namespace Casa;
 
 use Illuminate\Database\Eloquent\Model;
