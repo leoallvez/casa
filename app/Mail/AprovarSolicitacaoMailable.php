@@ -20,7 +20,8 @@ class AprovarSolicitacaoMailable extends Mailable {
     public $usuario;
     public $instituicao;
 
-    public function __construct(Usuario $usuario, Instituicao $instituicao) {
+    public function __construct(Usuario $usuario, Instituicao $instituicao)
+    {
         $this->usuario = $usuario;
         $this->instituicao = $instituicao;
     }
@@ -30,7 +31,8 @@ class AprovarSolicitacaoMailable extends Mailable {
      *
      * @return $this
      */
-    public function build() {
+    public function build() 
+    {
         return $this->view('email.aprovar_solicitacao');
     }
 }

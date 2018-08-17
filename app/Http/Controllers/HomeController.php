@@ -1,6 +1,7 @@
 <?php
 
 namespace Casa\Http\Controllers;
+
 use Mail;
 use Casa\Mail\Product;
 use Illuminate\Mail\Mailer;

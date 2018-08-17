@@ -11,8 +11,7 @@ class CreateAgendasTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('agendas', function (Blueprint $table) 
-        {
+        Schema::create('agendas', function (Blueprint $table) {
             $table->increments('id');
             $table->date('dia');
             $table->time('hora_inicio');

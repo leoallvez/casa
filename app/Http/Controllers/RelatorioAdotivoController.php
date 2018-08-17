@@ -34,9 +34,16 @@ class RelatorioAdotivoController extends Controller
         $dadosSexo   = null;
         $dadosEtnias = null;
 
-        return view('relatorio_adotivo.index', 
-            compact('status', 'etnias', 'adotivos', 'idades', 
-                    'dadosStatus', 'dadosSexo', 'dadosEtnias', 'buscaRealizada'));     
+        return view('relatorio_adotivo.index', compact(
+            'status', 
+            'etnias', 
+            'adotivos', 
+            'idades', 
+            'dadosStatus', 
+            'dadosSexo', 
+            'dadosEtnias', 
+            'buscaRealizada'
+        ));     
     }
 
     /**
@@ -72,9 +79,16 @@ class RelatorioAdotivoController extends Controller
             $dadosEtnias = (empty($request['etnia']))  ? json_encode(quantidadePorEtniaHelper($adotivos))     : null;
         }
   
-        return view('relatorio_adotivo.index', 
-            compact('status', 'etnias', 'adotivos', 'idades', 
-                    'dadosStatus', 'dadosSexo', 'dadosEtnias', 'buscaRealizada'));   
+        return view('relatorio_adotivo.index', compact(
+            'status', 
+            'etnias', 
+            'adotivos', 
+            'idades', 
+            'dadosStatus', 
+            'dadosSexo', 
+            'dadosEtnias', 
+            'buscaRealizada'
+        ));   
     }
 }
 

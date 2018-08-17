@@ -1,4 +1,5 @@
 <?php
+
 namespace Casa;
 
 use Carbon\Carbon;

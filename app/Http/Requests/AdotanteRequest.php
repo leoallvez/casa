@@ -1,6 +1,7 @@
 <?php
 
 namespace Casa\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdotanteRequest extends FormRequest 

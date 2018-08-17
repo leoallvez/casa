@@ -35,9 +35,7 @@ class SendTest extends Mailable
         $subject = 'Laravel Email';
     
         return $this->view('emails.mailme')
-    
             ->from($address, $name)
-        
             ->subject($subject);
     }
 }

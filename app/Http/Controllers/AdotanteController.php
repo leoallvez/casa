@@ -25,9 +25,9 @@ class AdotanteController extends Controller
     public function index() 
     {
         $adotantes = Adotante::where('instituicao_id', Auth::user()->instituicao_id)
-        ->orderBy('nome')
-        ->paginate(config('app.list_size'));
-        
+            ->orderBy('nome')
+            ->paginate(config('app.list_size'));
+            
         return view('adotante.index', compact('adotantes'));
     }
 

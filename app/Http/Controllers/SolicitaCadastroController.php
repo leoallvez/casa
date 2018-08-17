@@ -15,7 +15,7 @@ use Casa\Http\Requests\SolicitarCadastroReprovarRequest;
 
 class SolicitaCadastroController extends Controller 
 {
-    /**     *
+    /**  
      * @return \Illuminate\Http\Response
      */
     public function index() 
@@ -58,7 +58,10 @@ class SolicitaCadastroController extends Controller
         $usuario->setNivel(UsuarioNivel::CANDIDATO);
         $usuario->save();
 
-        flash('Solicitação enviada com sucesso e será analisada pelo administrador do sistema!', 'success');
+        flash(
+            'Solicitação enviada com sucesso e será analisada pelo administrador do sistema!', 
+            'success'
+        );
 
         return redirect('login');
     }
@@ -114,10 +117,10 @@ class SolicitaCadastroController extends Controller
     public function buscar(Request $request) 
     {
         $solicitacoes = Instituicao::where('esta_aprovada', '=', 'false')
-        ->where('razao_social', 'like', '%'.$request->inputBusca.'%')
-        ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'))
-        ->orderBy('razao_social')
-        ->paginate(config('app.list_size'));
+            ->where('razao_social', 'like', '%'.$request->inputBusca.'%')
+            ->orWhere('cnpj','=', setMascara($request->inputBusca, '##.###.###/####-##'))
+            ->orderBy('razao_social')
+            ->paginate(config('app.list_size'));
 
         return view('solicitacao.index', compact('solicitacoes'));
     }

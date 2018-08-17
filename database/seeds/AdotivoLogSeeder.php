@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Casa\AdotivoLog;
 use Carbon\Carbon;
 use Casa\Adotivo;
+use Casa\AdotivoLog;
+use Illuminate\Database\Seeder;
 
 class AdotivoLogSeeder extends Seeder
 {
@@ -15,10 +15,9 @@ class AdotivoLogSeeder extends Seeder
     public function run()
     {
         $id = 51;
+        while ($id < 1000) {
 
-        while($id < 1000) {
-
-            foreach(Adotivo::all() as $adotivo) 
+            foreach (Adotivo::all() as $adotivo) 
             {
                 $val  = rand(strtotime('2015-01-01'), strtotime('2017-12-01'));
                 $data = date('Y-m-d', $val);

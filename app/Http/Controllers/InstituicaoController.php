@@ -1,6 +1,7 @@
 <?php
 
 namespace Casa\Http\Controllers;
+
 use Casa\User;
 use Casa\Estado;
 use Casa\Usuario;

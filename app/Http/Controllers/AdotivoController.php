@@ -39,7 +39,6 @@ class AdotivoController extends Controller
     public function create() 
     {
         $matricula = Adotivo::gerarMatricula();
-
         $adotantes = Adotante::pluck('nome', 'id');
         $status    = AdotivoStatus::where('id', '<', AdotivoStatus::RECEBENDO_VISITA)->pluck('nome', 'id');
         $etnias    = Etnia::pluck('nome', 'id');
@@ -112,13 +111,13 @@ class AdotivoController extends Controller
             $restricoes = Restricao::pluck('nome', 'id');
 
             $conditions = [
-                            ['instituicao_id','=', Auth::user()->instituicao_id ], 
-                            ['id','<>', $adotivo->id],
-                        ];
+                ['instituicao_id','=', Auth::user()->instituicao_id ], 
+                ['id','<>', $adotivo->id],
+            ];
 
             $irmaos = Adotivo::where($conditions)
-            ->orderBy('nome')
-            ->pluck('nome', 'id');
+                ->orderBy('nome')
+                ->pluck('nome', 'id');
 
             $irmaosIds = $adotivo->getIrmaosIds();
 
@@ -147,7 +146,7 @@ class AdotivoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(AdotivoRequest  $request, $id) 
+    public function update(AdotivoRequest $request, $id) 
     {
         $adotivo = Adotivo::find($id);
 

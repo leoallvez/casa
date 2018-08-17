@@ -1,7 +1,9 @@
 <?php
+
 use Casa\Etnia;
 use Casa\Adotivo;
 use Casa\AdotivoStatus;
+
 /**
  * Esse helper aplica uma mascara de acordo com o parametro passado.
  * Exemplo:
@@ -19,7 +21,7 @@ function setMascara($val, $mask )
   }
   $maskared = '';
   $k = 0;
-  for($i = 0; $i <= $maskSize-1; $i++) {
+  for ($i = 0; $i <= $maskSize-1; $i++) {
     if ($mask[$i] == '#') {
         if (isset($val[$k]))
         $maskared .= $val[$k++];
@@ -43,7 +45,7 @@ function getIdadesHelper() : array
   $idades[0]  = "Menos de 1 ano";
   $idades[1]  = "1 ano";
 
-  for($i = 2; $i < 18; $i++) {
+  for ($i = 2; $i < 18; $i++) {
     $idades[$i] = $i." anos";    
   }
 
@@ -64,7 +66,7 @@ function logsToAdotivosHelper($adotivosLogs)
 {
   $adotivos = collect();
 
-  foreach($adotivosLogs as $log) {
+  foreach ($adotivosLogs as $log) {
 
     $adotivo = new Adotivo(json_decode($log->adotivoJSON, true));
 
@@ -109,9 +111,9 @@ function quantidadePorStatusHelper($adotivos) : array
 
 function quantidadePorEtniaHelper($adotivos) : array
 {
-  $resultado = []; 
+    $resultado = []; 
   $total = $adotivos->count();
-
+  
   foreach (Etnia::all() as $etnia) {
 
     $quantidade = $adotivos->where("etnia_id", $etnia->id)->count();

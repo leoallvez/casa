@@ -13,8 +13,7 @@ class CreateNacionalidadesTable extends Migration
      */
     public function up() 
     {
-        Schema::create('nacionalidades', function (Blueprint $table) 
-        {
+        Schema::create('nacionalidades', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
         });

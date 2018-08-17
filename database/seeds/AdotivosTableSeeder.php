@@ -1,4 +1,5 @@
 <?php
+
 use Casa\Adotivo;
 use Casa\AdotivoLog;
 use Illuminate\Database\Seeder;

@@ -13,8 +13,7 @@ class CreateVisitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('visitas', function (Blueprint $table) 
-        {
+        Schema::create('visitas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('agenda_id');
             $table->integer('vinculo_id');

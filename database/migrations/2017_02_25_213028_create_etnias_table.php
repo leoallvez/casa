@@ -13,8 +13,7 @@ class CreateEtniasTable extends Migration
      */
     public function up() 
     {
-        Schema::create('etnias', function (Blueprint $table) 
-        {
+        Schema::create('etnias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
         });

@@ -1,4 +1,5 @@
 <?php
+
 namespace Casa;
 
 use Illuminate\Support\Facades\Auth;

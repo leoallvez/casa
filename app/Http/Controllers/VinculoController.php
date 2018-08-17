@@ -23,23 +23,23 @@ class VinculoController extends Controller {
         if (Gate::allows('has_access',  $adotivo)) {
             /** [description] Listagem do histórico adotantes*/
             $adotantesHistorico = $adotivo->adotantes()
-            ->orderBy('adotantes_adotivos.created_at')
-            ->where('adotantes_adotivos.adotivo_id', '=', $id)
-            ->where('adotantes_adotivos.deleted_at', '!=', null);
+                ->orderBy('adotantes_adotivos.created_at')
+                ->where('adotantes_adotivos.adotivo_id', '=', $id)
+                ->where('adotantes_adotivos.deleted_at', '!=', null);
             /** 
              * Caso o adotivo tenha vínculo trazer o id do adotivo, 
              * senão null. 
             */
             $idAdotanteVinculo = $adotivo->adotantes()
-            ->where('adotantes.tem_vinculo','=', 1)
-            ->where('adotantes_adotivos.adotivo_id','=', $id)
-            ->where('adotantes_adotivos.deleted_at','=', null)
-            ->first()['id'];
+                ->where('adotantes.tem_vinculo','=', 1)
+                ->where('adotantes_adotivos.adotivo_id','=', $id)
+                ->where('adotantes_adotivos.deleted_at','=', null)
+                ->first()['id'];
 
 
             $adotantes = Adotante::orderBy('nome')
-            ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
-            ->get();
+                ->where('adotantes.instituicao_id', Auth::user()->instituicao_id)
+                ->get();
             /**
              * Tirar da listagem de adotantes disponiveis os adotantes
              * que já tiverram vínculo com o adotivo.
@@ -60,8 +60,8 @@ class VinculoController extends Controller {
             if (!is_null($vinculoAtual)) {
                     
                 $visitas = $vinculoAtual->visitas()
-                ->where("is_registada", true)
-                ->get();
+                    ->where("is_registada", true)
+                    ->get();
             }
 
             $adotantes = $adotantes->pluck('nome', 'id');
@@ -129,5 +129,4 @@ class VinculoController extends Controller {
         }
         return redirect()->action('AcessoNegadoController@index');
     }
-
 }

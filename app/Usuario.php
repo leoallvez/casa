@@ -1,4 +1,5 @@
 <?php
+
 namespace Casa;
 
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +78,7 @@ class Usuario extends Model
     public static function listar(int $nivel = UsuarioNivel::PADRAO) 
     {
         $usuarios = self::where('nivel_id', $nivel)
-        ->where('instituicao_id', Auth::user()->instituicao_id);
+            ->where('instituicao_id', Auth::user()->instituicao_id);
 
         return $usuarios->orderBy('name')->paginate(config('app.list_size'));
     }
@@ -88,14 +89,14 @@ class Usuario extends Model
     public static function buscar($inputBusca, $nivel = UsuarioNivel::PADRAO) 
     {
         $usuarios = self::where('nivel_id','=', $nivel)
-        ->where('instituicao_id', Auth::user()->instituicao_id);
+            ->where('instituicao_id', Auth::user()->instituicao_id);
         #Retirar os espaços do incios e fim da string.
         $inputBusca = trim($inputBusca);
 
         $usuarios = $usuarios->where('name', 'like', '%'.$inputBusca.'%')
-        ->orWhere('cpf','=', setMascara($inputBusca, '###.###.###-##'))
-        ->orderBy('name')
-        ->paginate(config('app.list_size'));
+            ->orWhere('cpf','=', setMascara($inputBusca, '###.###.###-##'))
+            ->orderBy('name')
+            ->paginate(config('app.list_size'));
 
         return $usuarios;
     }

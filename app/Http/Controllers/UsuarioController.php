@@ -70,7 +70,6 @@ class UsuarioController extends Controller
 
             return view('usuario.edit', compact('usuario','niveis'));
         }
-
         return redirect()->action('AcessoNegadoController@index');
     }
 
@@ -94,7 +93,6 @@ class UsuarioController extends Controller
             if (Auth::user()->id == $id) {
                 return redirect('/');
             }
-
             return redirect('usuarios');
         }
         return redirect()->action('AcessoNegadoController@index');

@@ -133,9 +133,9 @@ class AgendaController extends Controller
 
         $collection = collect();
 
-        foreach($agendas as $agenda) {
+        foreach ($agendas as $agenda) {
 
-            foreach($agenda->visitas as $visita) {
+            foreach ($agenda->visitas as $visita) {
       
                 if (!$visita->is_registada) {
                     $collection->prepend($visita);

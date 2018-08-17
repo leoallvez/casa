@@ -13,8 +13,7 @@ class CreateAdotivosStatusTable extends Migration
      */
     public function up() 
     {
-        Schema::create('adotivos_status', function (Blueprint $table) 
-        {
+        Schema::create('adotivos_status', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
         });

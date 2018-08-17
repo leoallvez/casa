@@ -1,4 +1,5 @@
 <?php
+
 namespace Casa;
 
 use Casa\Visita;
@@ -66,7 +67,7 @@ class Agenda extends Model
             #TODO: bug agendando visitas para os adotantes antigo do adotivo
             
             $vinculos = Vinculo::whereIn('adotivo_id', $adotivos)->where("deleted_at", null)->get();
-            foreach($vinculos as $vinculo) {
+            foreach ($vinculos as $vinculo) {
                 $visita = new Visita;
                 $visita->vinculo()->associate($vinculo);
                 $visita->agenda()->associate($this);
@@ -126,13 +127,13 @@ class Agenda extends Model
 
         $vinculos = $adotante->vinculos()->where('deleted_at', null)->get();
 
-        foreach($vinculos as $vinculo) {
+        foreach ($vinculos as $vinculo) {
 
             $visitas = $vinculo->visitas;
 
             if (!is_null($visitas)) {
 
-                foreach($visitas as $visita) {
+                foreach ($visitas as $visita) {
 
                     $agenda = self::where('id', $visita->agenda_id)->first();
 
@@ -158,7 +159,7 @@ class Agenda extends Model
         
         if (!is_null($agendas)) {
 
-            foreach($agendas as $agenda) {
+            foreach ($agendas as $agenda) {
 
                 $agenda->getVisitasVinculos();
 

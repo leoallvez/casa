@@ -27,6 +27,7 @@ class AdmSistemaController extends Controller
         }
         return redirect()->action('AcessoNegadoController@index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
